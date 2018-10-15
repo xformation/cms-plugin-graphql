@@ -1,7 +1,14399 @@
-define(["react","app/core/core_module"],function(e,t){return function(e){var t={};function r(n){if(t[n])return t[n].exports;var i=t[n]={i:n,l:!1,exports:{}};return e[n].call(i.exports,i,i.exports,r),i.l=!0,i.exports}return r.m=e,r.c=t,r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:n})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(r.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)r.d(n,i,function(t){return e[t]}.bind(null,i));return n},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=27)}([function(e,t,r){"use strict";(function(e){function n(t){return(void 0!==e?"production":"development")===t}function i(){return!0===n("production")}function o(){return!0===n("development")}function a(){return!0===n("test")}r.d(t,"b",function(){return i}),r.d(t,"a",function(){return o}),r.d(t,"c",function(){return a})}).call(this,r(37))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.print=function(e){return(0,n.visit)(e,{leave:i})};var n=r(36),i={Name:function(e){return e.value},Variable:function(e){return"$"+e.name},Document:function(e){return o(e.definitions,"\n\n")+"\n"},OperationDefinition:function(e){var t=e.operation,r=e.name,n=u("(",o(e.variableDefinitions,", "),")"),i=o(e.directives," "),a=e.selectionSet;return r||i||n||"query"!==t?o([t,o([r,n]),i,a]," "):a},VariableDefinition:function(e){return e.variable+": "+e.type+u(" = ",e.defaultValue)},SelectionSet:function(e){return a(e.selections)},Field:function(e){var t=e.alias,r=e.name,n=e.arguments,i=e.directives,a=e.selectionSet;return o([u("",t,": ")+r+u("(",o(n,", "),")"),o(i," "),a]," ")},Argument:function(e){return e.name+": "+e.value},FragmentSpread:function(e){return"..."+e.name+u(" ",o(e.directives," "))},InlineFragment:function(e){var t=e.typeCondition,r=e.directives,n=e.selectionSet;return o(["...",u("on ",t),o(r," "),n]," ")},FragmentDefinition:function(e){var t=e.name,r=e.typeCondition,n=e.directives,i=e.selectionSet;return"fragment "+t+" on "+r+" "+u("",o(n," ")," ")+i},IntValue:function(e){return e.value},FloatValue:function(e){return e.value},StringValue:function(e){var t=e.value;return JSON.stringify(t)},BooleanValue:function(e){var t=e.value;return JSON.stringify(t)},NullValue:function(){return"null"},EnumValue:function(e){return e.value},ListValue:function(e){return"["+o(e.values,", ")+"]"},ObjectValue:function(e){return"{"+o(e.fields,", ")+"}"},ObjectField:function(e){return e.name+": "+e.value},Directive:function(e){return"@"+e.name+u("(",o(e.arguments,", "),")")},NamedType:function(e){return e.name},ListType:function(e){return"["+e.type+"]"},NonNullType:function(e){return e.type+"!"},SchemaDefinition:function(e){var t=e.directives,r=e.operationTypes;return o(["schema",o(t," "),a(r)]," ")},OperationTypeDefinition:function(e){return e.operation+": "+e.type},ScalarTypeDefinition:function(e){return o(["scalar",e.name,o(e.directives," ")]," ")},ObjectTypeDefinition:function(e){var t=e.name,r=e.interfaces,n=e.directives,i=e.fields;return o(["type",t,u("implements ",o(r,", ")),o(n," "),a(i)]," ")},FieldDefinition:function(e){var t=e.name,r=e.arguments,n=e.type,i=e.directives;return t+u("(",o(r,", "),")")+": "+n+u(" ",o(i," "))},InputValueDefinition:function(e){var t=e.name,r=e.type,n=e.defaultValue,i=e.directives;return o([t+": "+r,u("= ",n),o(i," ")]," ")},InterfaceTypeDefinition:function(e){var t=e.name,r=e.directives,n=e.fields;return o(["interface",t,o(r," "),a(n)]," ")},UnionTypeDefinition:function(e){var t=e.name,r=e.directives,n=e.types;return o(["union",t,o(r," "),"= "+o(n," | ")]," ")},EnumTypeDefinition:function(e){var t=e.name,r=e.directives,n=e.values;return o(["enum",t,o(r," "),a(n)]," ")},EnumValueDefinition:function(e){return o([e.name,o(e.directives," ")]," ")},InputObjectTypeDefinition:function(e){var t=e.name,r=e.directives,n=e.fields;return o(["input",t,o(r," "),a(n)]," ")},TypeExtensionDefinition:function(e){return"extend "+e.definition},DirectiveDefinition:function(e){var t=e.name,r=e.arguments,n=e.locations;return"directive @"+t+u("(",o(r,", "),")")+" on "+o(n," | ")}};function o(e,t){return e?e.filter(function(e){return e}).join(t||""):""}function a(e){return e&&0!==e.length?function(e){return e&&e.replace(/\n/g,"\n  ")}("{\n"+o(e,"\n"))+"\n}":"{}"}function u(e,t,r){return t?e+t+(r||""):""}},function(e,t,r){"use strict";r.r(t);var n=r(24),i="object"==typeof self&&self&&self.Object===Object&&self,o=(n.a||i||Function("return this")()).Symbol,a=Object.prototype,u=a.hasOwnProperty,s=a.toString,c=o?o.toStringTag:void 0,l=Object.prototype.toString,f=o?o.toStringTag:void 0,d=function(e){return null==e?void 0===e?"[object Undefined]":"[object Null]":f&&f in Object(e)?function(e){var t=u.call(e,c),r=e[c];try{e[c]=void 0;var n=!0}catch(e){}var i=s.call(e);return n&&(t?e[c]=r:delete e[c]),i}(e):function(e){return l.call(e)}(e)},p=function(e,t){return function(r){return e(t(r))}}(Object.getPrototypeOf,Object),h=Function.prototype,y=Object.prototype,v=h.toString,m=y.hasOwnProperty,b=v.call(Object),g=function(e){if(!function(e){return null!=e&&"object"==typeof e}(e)||"[object Object]"!=d(e))return!1;var t=p(e);if(null===t)return!0;var r=m.call(t,"constructor")&&t.constructor;return"function"==typeof r&&r instanceof r&&v.call(r)==b},w=r(3),O={INIT:"@@redux/INIT"};function E(e,t,r){var n;if("function"==typeof t&&void 0===r&&(r=t,t=void 0),void 0!==r){if("function"!=typeof r)throw new Error("Expected the enhancer to be a function.");return r(E)(e,t)}if("function"!=typeof e)throw new Error("Expected the reducer to be a function.");var i=e,o=t,a=[],u=a,s=!1;function c(){u===a&&(u=a.slice())}function l(){return o}function f(e){if("function"!=typeof e)throw new Error("Expected listener to be a function.");var t=!0;return c(),u.push(e),function(){if(t){t=!1,c();var r=u.indexOf(e);u.splice(r,1)}}}function d(e){if(!g(e))throw new Error("Actions must be plain objects. Use custom middleware for async actions.");if(void 0===e.type)throw new Error('Actions may not have an undefined "type" property. Have you misspelled a constant?');if(s)throw new Error("Reducers may not dispatch actions.");try{s=!0,o=i(o,e)}finally{s=!1}for(var t=a=u,r=0;r<t.length;r++)(0,t[r])();return e}return d({type:O.INIT}),(n={dispatch:d,subscribe:f,getState:l,replaceReducer:function(e){if("function"!=typeof e)throw new Error("Expected the nextReducer to be a function.");i=e,d({type:O.INIT})}})[w.a]=function(){var e,t=f;return(e={subscribe:function(e){if("object"!=typeof e)throw new TypeError("Expected the observer to be an object.");function r(){e.next&&e.next(l())}return r(),{unsubscribe:t(r)}}})[w.a]=function(){return this},e},n}function k(e,t){var r=t&&t.type;return"Given action "+(r&&'"'+r.toString()+'"'||"an action")+', reducer "'+e+'" returned undefined. To ignore an action, you must explicitly return the previous state. If you want this reducer to hold no value, you can return null instead of undefined.'}function T(e){for(var t=Object.keys(e),r={},n=0;n<t.length;n++){var i=t[n];"function"==typeof e[i]&&(r[i]=e[i])}var o=Object.keys(r),a=void 0;try{!function(e){Object.keys(e).forEach(function(t){var r=e[t];if(void 0===r(void 0,{type:O.INIT}))throw new Error('Reducer "'+t+"\" returned undefined during initialization. If the state passed to the reducer is undefined, you must explicitly return the initial state. The initial state may not be undefined. If you don't want to set a value for this reducer, you can use null instead of undefined.");if(void 0===r(void 0,{type:"@@redux/PROBE_UNKNOWN_ACTION_"+Math.random().toString(36).substring(7).split("").join(".")}))throw new Error('Reducer "'+t+"\" returned undefined when probed with a random type. Don't try to handle "+O.INIT+' or other actions in "redux/*" namespace. They are considered private. Instead, you must return the current state for any unknown actions, unless it is undefined, in which case you must return the initial state, regardless of the action type. The initial state may not be undefined, but can be null.')})}(r)}catch(e){a=e}return function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:{},t=arguments[1];if(a)throw a;for(var n=!1,i={},u=0;u<o.length;u++){var s=o[u],c=r[s],l=e[s],f=c(l,t);if(void 0===f){var d=k(s,t);throw new Error(d)}i[s]=f,n=n||f!==l}return n?i:e}}function I(e,t){return function(){return t(e.apply(void 0,arguments))}}function _(e,t){if("function"==typeof e)return I(e,t);if("object"!=typeof e||null===e)throw new Error("bindActionCreators expected an object or a function, instead received "+(null===e?"null":typeof e)+'. Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');for(var r=Object.keys(e),n={},i=0;i<r.length;i++){var o=r[i],a=e[o];"function"==typeof a&&(n[o]=I(a,t))}return n}function S(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return 0===t.length?function(e){return e}:1===t.length?t[0]:t.reduce(function(e,t){return function(){return e(t.apply(void 0,arguments))}})}var N=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)Object.prototype.hasOwnProperty.call(r,n)&&(e[n]=r[n])}return e};function P(){for(var e=arguments.length,t=Array(e),r=0;r<e;r++)t[r]=arguments[r];return function(e){return function(r,n,i){var o,a=e(r,n,i),u=a.dispatch,s={getState:a.getState,dispatch:function(e){return u(e)}};return o=t.map(function(e){return e(s)}),u=S.apply(void 0,o)(a.dispatch),N({},a,{dispatch:u})}}}r.d(t,"createStore",function(){return E}),r.d(t,"combineReducers",function(){return T}),r.d(t,"bindActionCreators",function(){return _}),r.d(t,"applyMiddleware",function(){return P}),r.d(t,"compose",function(){return S})},function(e,t,r){"use strict";(function(e,n){var i,o=r(23);i="undefined"!=typeof self?self:"undefined"!=typeof window?window:void 0!==e?e:n;var a=Object(o.a)(i);t.a=a}).call(this,r(7),r(35)(e))},function(e,t,r){"use strict";e.exports=function(e,t,r,n,i,o,a,u){if(!e){var s;if(void 0===t)s=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var c=[r,n,i,o,a,u],l=0;(s=new Error(t.replace(/%s/g,function(){return c[l++]}))).name="Invariant Violation"}throw s.framesToPop=1,s}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(14);t.execute=n.execute,t.ApolloLink=n.ApolloLink;var i=r(15);t.makePromise=i.makePromise;var o=r(9);t.Observable=o.default,function(e){for(var r in e)t.hasOwnProperty(r)||(t[r]=e[r])}(r(9)),t.default=n.ApolloLink},function(t,r){t.exports=e},function(e,t){var r;r=function(){return this}();try{r=r||Function("return this")()||(0,eval)("this")}catch(e){"object"==typeof window&&(r=window)}e.exports=r},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.GraphQLError=o;var n=r(19),i=r(20);function o(e,t,r,n,a,u,s){var c=Array.isArray(t)?0!==t.length?t:void 0:t?[t]:void 0,l=r;if(!l&&c){var f=c[0];l=f&&f.loc&&f.loc.source}var d,p=n;!p&&c&&(p=c.reduce(function(e,t){return t.loc&&e.push(t.loc.start),e},[])),p&&0===p.length&&(p=void 0),n&&r?d=n.map(function(e){return(0,i.getLocation)(r,e)}):c&&(d=c.reduce(function(e,t){return t.loc&&e.push((0,i.getLocation)(t.loc.source,t.loc.start)),e},[]));var h=s||u&&u.extensions;Object.defineProperties(this,{message:{value:e,enumerable:!0,writable:!0},locations:{value:d||void 0,enumerable:Boolean(d)},path:{value:a||void 0,enumerable:Boolean(a)},nodes:{value:c||void 0},source:{value:l||void 0},positions:{value:p||void 0},originalError:{value:u},extensions:{value:h||void 0,enumerable:Boolean(h)}}),u&&u.stack?Object.defineProperty(this,"stack",{value:u.stack,writable:!0,configurable:!0}):Error.captureStackTrace?Error.captureStackTrace(this,o):Object.defineProperty(this,"stack",{value:Error().stack,writable:!0,configurable:!0})}o.prototype=Object.create(Error.prototype,{constructor:{value:o},name:{value:"GraphQLError"},toString:{value:function(){return(0,n.printError)(this)}}})},function(e,t,r){"use strict";function n(e){var t=e._cleanup;t&&(e._cleanup=void 0,t())}function i(e){return void 0===e._observer}Object.defineProperty(t,"__esModule",{value:!0});var o=function(){function e(e,t){if(Object(e)!==e)throw new TypeError("Observer must be an object");if(this._cleanup=void 0,this._observer=e,e.start&&e.start(this),!i(this)){var r=new a(this);try{var o=t(r);if(null!=o){if("function"==typeof o.unsubscribe)o=function(e){return function(){e.unsubscribe()}}(o);else if("function"!=typeof o)throw new TypeError(o+" is not a function");this._cleanup=o}}catch(e){return void(r.error&&r.error(e))}i(this)&&n(this)}}return Object.defineProperty(e.prototype,"closed",{get:function(){return i(this)},enumerable:!0,configurable:!0}),e.prototype.unsubscribe=function(){!function(e){i(e)||(e._observer=void 0,n(e))}(this)},e}();t.Subscription=o;var a=function(){function e(e){this._subscription=e}return Object.defineProperty(e.prototype,"closed",{get:function(){return i(this._subscription)},enumerable:!0,configurable:!0}),e.prototype.next=function(e){var t=this._subscription;if(!i(t)){var r=t._observer;r.next&&r.next(e)}},e.prototype.error=function(e){var t=this._subscription;if(i(t))throw e;var r=t._observer;t._observer=void 0;try{if(!r.error)throw e;r.error(e)}catch(e){try{n(t)}finally{throw e}}n(t)},e.prototype.complete=function(){var e=this._subscription;if(!i(e)){var t=e._observer;e._observer=void 0;try{t.complete&&t.complete()}catch(t){try{n(e)}finally{throw t}}n(e)}},e}();t.SubscriptionObserver=a;var u=function(){function e(e){if("function"!=typeof e)throw new TypeError("Observable initializer must be a function");this._subscriber=e}return e.from=function(t){if(t.subscribe)return new e(function(e){return t.subscribe(e)});if(Array.isArray(t))return new e(function(e){for(var r=0;r<t.length;++r)if(e.next(t[r]),e.closed)return;e.complete&&e.complete()});throw new TypeError(t+" is not observable")},e.of=function(){for(var t=[],r=0;r<arguments.length;r++)t[r]=arguments[r];return new e(function(e){for(var r=0;r<t.length;++r)if(e.next(t[r]),e.closed)return;e.complete&&e.complete()})},e.prototype.subscribe=function(e,t,r){return new o("function"==typeof e?{next:e,error:t,complete:r}:e,this._subscriber)},e.prototype.forEach=function(e){var t=this;return new Promise(function(r,n){if("function"!=typeof e)return Promise.reject(new TypeError(e+" is not a function"));t.subscribe({start:function(e){this._subscription=e},next:function(t){var r=this._subscription;if(!r.closed)try{return void e(t)}catch(e){n(e),r.unsubscribe()}},error:n,complete:r})})},e.prototype.map=function(t){var r=this;if("function"!=typeof t)throw new TypeError(t+" is not a function");return new e(function(e){return r.subscribe({next:function(r){if(!e.closed){var n;try{n=t(r)}catch(t){return void e.error(t)}e.next(n)}},error:function(t){e.error(t)},complete:function(){e.complete()}})})},e.prototype.filter=function(t){var r=this;if("function"!=typeof t)throw new TypeError(t+" is not a function");return new e(function(e){r.subscribe({next:function(r){if(!e.closed){try{if(!t(r))return}catch(t){return void(e.error&&e.error(t))}e.next(r)}},error:function(t){e.error(t)},complete:function(){e.complete()}})})},e.prototype.reduce=function(t,r){var n=this;if("function"!=typeof t)throw new TypeError(t+" is not a function");var i=arguments.length>1,o=!1,a=arguments[1];return new e(function(e){n.subscribe({next:function(r){if(!e.closed){var n=!o;if(o=!0,!n||i)try{a=t(a,r)}catch(t){return void e.error(t)}else a=r}},error:function(t){e.error(t)},complete:function(){o||i?(e.next(a),e.complete()):e.error(new TypeError("Cannot reduce an empty sequence"))}})})},e.prototype.flatMap=function(t){var r=this;if("function"!=typeof t)throw new TypeError(t+" is not a function");return new e(function(n){var i=!1,o=[],a=r.subscribe({next:function(r){var i;if(t)try{i=t(r)}catch(e){return void n.error(e)}e.from(i).subscribe({start:function(e){o.push(this._subscription=e)},next:function(e){n.next(e)},error:function(e){n.error(e)},complete:function(){var e=o.indexOf(this._subscription);e>=0&&o.splice(e,1),u()}})},error:function(e){n.error(e)},complete:function(){i=!0,u()}});function u(){i&&0===o.length&&n.complete()}return function(){o.forEach(function(e){return e.unsubscribe()}),a.unsubscribe()}})},e}();t.default=u},function(e,t,r){!function(e,t,n,i,o,a){"use strict";a=a&&a.hasOwnProperty("default")?a.default:a;var u,s=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},c=function(){function e(){this.observableQueries=[]}return e.prototype.recycle=function(e){e.setOptions({fetchPolicy:"standby",pollInterval:0,fetchResults:!1}),this.observableQueries.push({observableQuery:e,subscription:e.subscribe({})})},e.prototype.reuse=function(e){if(this.observableQueries.length<=0)return null;var t=this.observableQueries.pop(),r=t.observableQuery;t.subscription.unsubscribe(),e.ssr,e.skip,e.client;var n=function(e,t){var r={};for(var n in e)Object.prototype.hasOwnProperty.call(e,n)&&t.indexOf(n)<0&&(r[n]=e[n]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var i=0;for(n=Object.getOwnPropertySymbols(e);i<n.length;i++)t.indexOf(n[i])<0&&(r[n[i]]=e[n[i]])}return r}(e,["ssr","skip","client"]);return r.setOptions(s({},n,{pollInterval:e.pollInterval,fetchPolicy:e.fetchPolicy})),r},e}(),l=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),f=function(e){function r(t){var r=e.call(this,t)||this;return r.recyclers=new WeakMap,r.getQueryRecycler=r.getQueryRecycler.bind(r),r}return l(r,e),r.prototype.componentWillReceiveProps=function(e,t){this.context.client!==t.client&&(this.recyclers=new WeakMap)},r.prototype.getQueryRecycler=function(e){return this.recyclers.has(e)||this.recyclers.set(e,new c),this.recyclers.get(e)},r.prototype.getChildContext=function(){return{getQueryRecycler:this.getQueryRecycler}},r.prototype.render=function(){return t.Children.only(this.props.children)},r.propTypes={children:n.element.isRequired},r.contextTypes={client:n.object},r.childContextTypes={getQueryRecycler:n.func.isRequired},r}(t.Component),d=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),p=r(4),h=function(e){function r(t,r){var n=e.call(this,t,r)||this;return p(t.client,'ApolloClient was not passed a client instance. Make sure you pass in your client via the "client" prop.'),t.store||"function"!=typeof t.client.initStore||t.client.initStore(),n}return d(r,e),r.prototype.componentWillReceiveProps=function(e){e.client===this.props.client||e.store||"function"!=typeof e.client.initStore||e.client.initStore()},r.prototype.getChildContext=function(){return{store:this.props.store||this.context.store,client:this.props.client}},r.prototype.render=function(){return t.createElement(f,null,t.Children.only(this.props.children))},r.propTypes={store:n.shape({subscribe:n.func.isRequired,dispatch:n.func.isRequired,getState:n.func.isRequired}),client:n.object.isRequired,children:n.element.isRequired},r.childContextTypes={store:n.object,client:n.object.isRequired},r.contextTypes={store:n.object},r}(t.Component),y=r(4);!function(e){e[e.Query=0]="Query",e[e.Mutation=1]="Mutation",e[e.Subscription=2]="Subscription"}(u||(u={}));var v=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),m=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},b=r(52),g=r(4),w=r(21),O=r(22),E=function(e){return{}},k=function(e){return!1};function T(e){var t=b(e,"variables","refetch","fetchMore","updateQuery","startPolling","stopPolling","subscribeToMore");return Object.keys(t).forEach(function(r){"function"==typeof t[r]&&(t[r]=t[r].bind(e))}),t}function I(e){return e.displayName||e.name||"Component"}var _=0,S=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),N=r(4),P=r(21),R=r(22);e.ApolloProvider=h,e.graphql=function(e,r){void 0===r&&(r={});var i=r.options,o=void 0===i?E:i,a=r.skip,s=void 0===a?k:a,c=r.alias,l=void 0===c?"Apollo":c,f=o;"function"!=typeof f&&(f=function(){return o});var d=s;"function"!=typeof d&&(d=function(){return s});var p=r.props,h=function(e){var t,r;y(!!e&&!!e.kind,"Argument of "+e+" passed to parser was not a valid GraphQL DocumentNode. You may need to use 'graphql-tag' or another method to convert your operation into a document");var n=e.definitions.filter(function(e){return"FragmentDefinition"===e.kind}),i=e.definitions.filter(function(e){return"OperationDefinition"===e.kind&&"query"===e.operation}),o=e.definitions.filter(function(e){return"OperationDefinition"===e.kind&&"mutation"===e.operation}),a=e.definitions.filter(function(e){return"OperationDefinition"===e.kind&&"subscription"===e.operation});y(!n.length||i.length||o.length||a.length,"Passing only a fragment to 'graphql' is not yet supported. You must include a query, subscription or mutation as well"),y(i.length+o.length+a.length<=1,"react-apollo only supports a query, subscription, or a mutation per HOC. "+e+" had "+i.length+" queries, "+a.length+" subscriptions and "+o.length+" mutations. You can use 'compose' to join multiple operation types to a component"),r=i.length?u.Query:u.Mutation,i.length||o.length||(r=u.Subscription);var s=i.length?i:o.length?o:a;y(1===s.length,"react-apollo only supports one defintion per HOC. "+e+" had "+s.length+" definitions. You can use 'compose' to join multiple operation types to a component");var c=s[0];return t=c.variableDefinitions||[],{name:c.name&&"Name"===c.name.kind?c.name.value:"data",type:r,variables:t}}(e),b=_++;return function(i){var o=l+"("+I(i)+")",a=function(a){function s(e,t){var r=a.call(this,e,t)||this;return r.previousData={},r.version=b,r.type=h.type,r.dataForChildViaMutation=r.dataForChildViaMutation.bind(r),r.setWrappedInstance=r.setWrappedInstance.bind(r),r}return v(s,a),s.prototype.componentWillMount=function(){this.shouldSkip(this.props)||this.setInitialProps()},s.prototype.componentDidMount=function(){if(this.hasMounted=!0,this.type!==u.Mutation&&!this.shouldSkip(this.props)&&(this.subscribeToQuery(),this.refetcherQueue)){var e=this.refetcherQueue,t=e.args,r=e.resolve,n=e.reject;this.queryObservable.refetch(t).then(r).catch(n)}},s.prototype.componentWillReceiveProps=function(e,t){var n=f(e).client;if(!function(e,t){if(!e||!t)return!1;if(e===t)return!0;var r=Object.keys(e),n=Object.keys(t);if(r.length!==n.length)return!1;for(var i=Object.prototype.hasOwnProperty,o=0;o<r.length;o++)if(!i.call(t,r[o])||e[r[o]]!==t[r[o]])return!1;return!0}(this.props,e)||this.client!==n&&this.client!==t.client){if(this.shouldRerender=!0,this.client!==n&&this.client!==t.client)return this.client=n||t.client,this.unsubscribeFromQuery(),this.queryObservable=null,this.previousData={},this.updateQuery(e),void(this.shouldSkip(e)||this.subscribeToQuery());if(this.type!==u.Mutation)return this.type===u.Subscription&&r.shouldResubscribe&&r.shouldResubscribe(this.props,e)?(this.unsubscribeFromQuery(),delete this.queryObservable,this.updateQuery(e),void this.subscribeToQuery()):void(this.shouldSkip(e)?this.shouldSkip(this.props)||this.unsubscribeFromQuery():(this.updateQuery(e),this.subscribeToQuery()))}},s.prototype.componentWillUnmount=function(){if(this.type===u.Query){if(this.queryObservable){var e=this.getQueryRecycler();e&&(e.recycle(this.queryObservable),delete this.queryObservable)}this.unsubscribeFromQuery()}this.type===u.Subscription&&this.unsubscribeFromQuery(),this.hasMounted=!1},s.prototype.getQueryRecycler=function(){return this.context.getQueryRecycler&&this.context.getQueryRecycler(s)},s.prototype.getClient=function(e){if(this.client)return this.client;var t=f(e).client;return this.client=t||this.context.client,g(!!this.client,'Could not find "client" in the context of "'+o+'". Wrap the root component in an <ApolloProvider>'),this.client},s.prototype.calculateOptions=function(e,t){void 0===e&&(e=this.props);var r=f(e);if(t&&t.variables&&(t.variables=w({},r.variables,t.variables)),t&&(r=w({},r,t)),r.variables||!h.variables.length)return r;for(var n={},a=0,u=h.variables;a<u.length;a++){var s=u[a],c=s.variable,l=s.type;c.name&&c.name.value&&(void 0===e[c.name.value]?"NonNullType"===l.kind?g(void 0!==e[c.name.value],"The operation '"+h.name+"' wrapping '"+I(i)+"' is expecting a variable: '"+c.name.value+"' but it was not found in the props passed to '"+o+"'"):n[c.name.value]=null:n[c.name.value]=e[c.name.value])}return m({},r,{variables:n})},s.prototype.calculateResultProps=function(e){var t=this.type===u.Mutation?"mutate":"data";r.name&&(t=r.name);var n,i,o=((n={})[t]=e,n.ownProps=this.props,n);return p?p(o):((i={})[t]=function(e){return e}(e),i)},s.prototype.setInitialProps=function(){if(this.type!==u.Mutation){var e=this.calculateOptions(this.props);this.createQuery(e)}},s.prototype.createQuery=function(t,r){if(void 0===r&&(r=this.props),this.type===u.Subscription)this.queryObservable=this.getClient(r).subscribe(w({query:e},t));else{var n=this.getQueryRecycler(),i=null;n&&(i=n.reuse(t)),this.queryObservable=null===i?this.getClient(r).watchQuery(w({query:e,metadata:{reactComponent:{displayName:o}}},t)):i}},s.prototype.updateQuery=function(e){var t=this.calculateOptions(e);this.queryObservable||this.createQuery(t,e),this.queryObservable._setOptionsNoResult?this.queryObservable._setOptionsNoResult(t):this.queryObservable.setOptions&&this.queryObservable.setOptions(t).catch(function(e){return null})},s.prototype.fetchData=function(){if(this.shouldSkip())return!1;if(h.type===u.Mutation||h.type===u.Subscription)return!1;var t=this.calculateOptions();if(!1===t.ssr)return!1;"network-only"!==t.fetchPolicy&&"cache-and-network"!==t.fetchPolicy||(t.fetchPolicy="cache-first");var r=this.getClient(this.props).watchQuery(w({query:e},t));return!!r.currentResult().loading&&r.result()},s.prototype.subscribeToQuery=function(){var e=this;if(!this.querySubscription){var t=function(t){e.type===u.Subscription&&(e.lastSubscriptionData=t,t={data:t});var r=Object.keys(T(t.data));g(0===r.length,"the result of the '"+o+"' operation contains keys that conflict with the return object."+r.map(function(e){return"'"+e+"'"}).join(", ")+" not allowed."),e.forceRenderChildren()};this.querySubscription=this.queryObservable.subscribe({next:t,error:function(e){if(e.hasOwnProperty("graphQLErrors"))return t({error:e});throw e}})}},s.prototype.unsubscribeFromQuery=function(){this.querySubscription&&(this.querySubscription.unsubscribe(),delete this.querySubscription)},s.prototype.shouldSkip=function(e){return void 0===e&&(e=this.props),d(e)||f(e).skip},s.prototype.forceRenderChildren=function(){this.shouldRerender=!0,this.hasMounted&&this.forceUpdate()},s.prototype.getWrappedInstance=function(){return g(r.withRef,"To access the wrapped instance, you need to specify { withRef: true } in the options"),this.wrappedInstance},s.prototype.setWrappedInstance=function(e){this.wrappedInstance=e},s.prototype.dataForChildViaMutation=function(t){var r=this.calculateOptions(this.props,t);return void 0===r.variables&&delete r.variables,r.mutation=e,this.getClient(this.props).mutate(r)},s.prototype.dataForChild=function(){var e=this;if(this.type===u.Mutation)return this.dataForChildViaMutation;var t=this.calculateOptions(this.props),r={};if(w(r,T(this.queryObservable)),this.type===u.Subscription)w(r,{loading:!this.lastSubscriptionData,variables:t.variables},this.lastSubscriptionData);else{var n=this.queryObservable.currentResult(),i=n.loading,o=n.error,a=n.networkStatus;w(r,{loading:i,networkStatus:a});var s=setTimeout(function(){o&&console.error("Unhandled (in react-apollo)",o.stack||o)},10);Object.defineProperty(r,"error",{configurable:!0,enumerable:!0,get:function(){return clearTimeout(s),o}}),i?w(r,this.previousData,n.data):o?w(r,(this.queryObservable.getLastResult()||{}).data):(w(r,n.data),this.previousData=n.data),this.querySubscription||(r.refetch=function(t){return new Promise(function(r,n){e.refetcherQueue={resolve:r,reject:n,args:t}})})}return r},s.prototype.render=function(){if(this.shouldSkip())return r.withRef?t.createElement(i,w({},this.props,{ref:this.setWrappedInstance})):t.createElement(i,this.props);var e=this.shouldRerender,n=this.renderedElement,o=this.props;if(this.shouldRerender=!1,!e&&n&&n.type===i)return n;var a=this.dataForChild(),u=this.calculateResultProps(a),s=w({},o,u);return r.withRef&&(s.ref=this.setWrappedInstance),this.renderedElement=t.createElement(i,s),this.renderedElement},s.displayName=o,s.WrappedComponent=i,s.contextTypes={client:n.object,getQueryRecycler:n.func},s}(t.Component);return O(a,i,{})}},e.withApollo=function(e,r){void 0===r&&(r={});var i="withApollo("+function(e){return e.displayName||e.name||"Component"}(e)+")",o=function(o){function a(e,t){var r=o.call(this,e,t)||this;return r.client=t.client,r.setWrappedInstance=r.setWrappedInstance.bind(r),N(!!r.client,'Could not find "client" in the context of "'+i+'". Wrap the root component in an <ApolloProvider>'),r}return S(a,o),a.prototype.getWrappedInstance=function(){return N(r.withRef,"To access the wrapped instance, you need to specify { withRef: true } in the options"),this.wrappedInstance},a.prototype.setWrappedInstance=function(e){this.wrappedInstance=e},a.prototype.render=function(){var n=P({},this.props);return n.client=this.client,r.withRef&&(n.ref=this.setWrappedInstance),t.createElement(e,n)},a.displayName=i,a.WrappedComponent=e,a.contextTypes={client:n.object.isRequired},a}(t.Component);return R(o,e,{})},e.compose=i.compose,e.gql=a,Object.keys(o).forEach(function(t){e[t]=o[t]}),Object.defineProperty(e,"__esModule",{value:!0})}(t,r(6),r(32),r(2),r(58),r(16))},function(e,t){!function(e){"use strict";if(!e.fetch){var t={searchParams:"URLSearchParams"in e,iterable:"Symbol"in e&&"iterator"in Symbol,blob:"FileReader"in e&&"Blob"in e&&function(){try{return new Blob,!0}catch(e){return!1}}(),formData:"FormData"in e,arrayBuffer:"ArrayBuffer"in e};if(t.arrayBuffer)var r=["[object Int8Array]","[object Uint8Array]","[object Uint8ClampedArray]","[object Int16Array]","[object Uint16Array]","[object Int32Array]","[object Uint32Array]","[object Float32Array]","[object Float64Array]"],n=function(e){return e&&DataView.prototype.isPrototypeOf(e)},i=ArrayBuffer.isView||function(e){return e&&r.indexOf(Object.prototype.toString.call(e))>-1};l.prototype.append=function(e,t){e=u(e),t=s(t);var r=this.map[e];this.map[e]=r?r+","+t:t},l.prototype.delete=function(e){delete this.map[u(e)]},l.prototype.get=function(e){return e=u(e),this.has(e)?this.map[e]:null},l.prototype.has=function(e){return this.map.hasOwnProperty(u(e))},l.prototype.set=function(e,t){this.map[u(e)]=s(t)},l.prototype.forEach=function(e,t){for(var r in this.map)this.map.hasOwnProperty(r)&&e.call(t,this.map[r],r,this)},l.prototype.keys=function(){var e=[];return this.forEach(function(t,r){e.push(r)}),c(e)},l.prototype.values=function(){var e=[];return this.forEach(function(t){e.push(t)}),c(e)},l.prototype.entries=function(){var e=[];return this.forEach(function(t,r){e.push([r,t])}),c(e)},t.iterable&&(l.prototype[Symbol.iterator]=l.prototype.entries);var o=["DELETE","GET","HEAD","OPTIONS","POST","PUT"];v.prototype.clone=function(){return new v(this,{body:this._bodyInit})},y.call(v.prototype),y.call(b.prototype),b.prototype.clone=function(){return new b(this._bodyInit,{status:this.status,statusText:this.statusText,headers:new l(this.headers),url:this.url})},b.error=function(){var e=new b(null,{status:0,statusText:""});return e.type="error",e};var a=[301,302,303,307,308];b.redirect=function(e,t){if(-1===a.indexOf(t))throw new RangeError("Invalid status code");return new b(null,{status:t,headers:{location:e}})},e.Headers=l,e.Request=v,e.Response=b,e.fetch=function(e,r){return new Promise(function(n,i){var o=new v(e,r),a=new XMLHttpRequest;a.onload=function(){var e={status:a.status,statusText:a.statusText,headers:function(e){var t=new l;return e.replace(/\r?\n[\t ]+/g," ").split(/\r?\n/).forEach(function(e){var r=e.split(":"),n=r.shift().trim();if(n){var i=r.join(":").trim();t.append(n,i)}}),t}(a.getAllResponseHeaders()||"")};e.url="responseURL"in a?a.responseURL:e.headers.get("X-Request-URL");var t="response"in a?a.response:a.responseText;n(new b(t,e))},a.onerror=function(){i(new TypeError("Network request failed"))},a.ontimeout=function(){i(new TypeError("Network request failed"))},a.open(o.method,o.url,!0),"include"===o.credentials?a.withCredentials=!0:"omit"===o.credentials&&(a.withCredentials=!1),"responseType"in a&&t.blob&&(a.responseType="blob"),o.headers.forEach(function(e,t){a.setRequestHeader(t,e)}),a.send(void 0===o._bodyInit?null:o._bodyInit)})},e.fetch.polyfill=!0}function u(e){if("string"!=typeof e&&(e=String(e)),/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e))throw new TypeError("Invalid character in header field name");return e.toLowerCase()}function s(e){return"string"!=typeof e&&(e=String(e)),e}function c(e){var r={next:function(){var t=e.shift();return{done:void 0===t,value:t}}};return t.iterable&&(r[Symbol.iterator]=function(){return r}),r}function l(e){this.map={},e instanceof l?e.forEach(function(e,t){this.append(t,e)},this):Array.isArray(e)?e.forEach(function(e){this.append(e[0],e[1])},this):e&&Object.getOwnPropertyNames(e).forEach(function(t){this.append(t,e[t])},this)}function f(e){if(e.bodyUsed)return Promise.reject(new TypeError("Already read"));e.bodyUsed=!0}function d(e){return new Promise(function(t,r){e.onload=function(){t(e.result)},e.onerror=function(){r(e.error)}})}function p(e){var t=new FileReader,r=d(t);return t.readAsArrayBuffer(e),r}function h(e){if(e.slice)return e.slice(0);var t=new Uint8Array(e.byteLength);return t.set(new Uint8Array(e)),t.buffer}function y(){return this.bodyUsed=!1,this._initBody=function(e){if(this._bodyInit=e,e)if("string"==typeof e)this._bodyText=e;else if(t.blob&&Blob.prototype.isPrototypeOf(e))this._bodyBlob=e;else if(t.formData&&FormData.prototype.isPrototypeOf(e))this._bodyFormData=e;else if(t.searchParams&&URLSearchParams.prototype.isPrototypeOf(e))this._bodyText=e.toString();else if(t.arrayBuffer&&t.blob&&n(e))this._bodyArrayBuffer=h(e.buffer),this._bodyInit=new Blob([this._bodyArrayBuffer]);else{if(!t.arrayBuffer||!ArrayBuffer.prototype.isPrototypeOf(e)&&!i(e))throw new Error("unsupported BodyInit type");this._bodyArrayBuffer=h(e)}else this._bodyText="";this.headers.get("content-type")||("string"==typeof e?this.headers.set("content-type","text/plain;charset=UTF-8"):this._bodyBlob&&this._bodyBlob.type?this.headers.set("content-type",this._bodyBlob.type):t.searchParams&&URLSearchParams.prototype.isPrototypeOf(e)&&this.headers.set("content-type","application/x-www-form-urlencoded;charset=UTF-8"))},t.blob&&(this.blob=function(){var e=f(this);if(e)return e;if(this._bodyBlob)return Promise.resolve(this._bodyBlob);if(this._bodyArrayBuffer)return Promise.resolve(new Blob([this._bodyArrayBuffer]));if(this._bodyFormData)throw new Error("could not read FormData body as blob");return Promise.resolve(new Blob([this._bodyText]))},this.arrayBuffer=function(){return this._bodyArrayBuffer?f(this)||Promise.resolve(this._bodyArrayBuffer):this.blob().then(p)}),this.text=function(){var e=f(this);if(e)return e;if(this._bodyBlob)return function(e){var t=new FileReader,r=d(t);return t.readAsText(e),r}(this._bodyBlob);if(this._bodyArrayBuffer)return Promise.resolve(function(e){for(var t=new Uint8Array(e),r=new Array(t.length),n=0;n<t.length;n++)r[n]=String.fromCharCode(t[n]);return r.join("")}(this._bodyArrayBuffer));if(this._bodyFormData)throw new Error("could not read FormData body as text");return Promise.resolve(this._bodyText)},t.formData&&(this.formData=function(){return this.text().then(m)}),this.json=function(){return this.text().then(JSON.parse)},this}function v(e,t){var r=(t=t||{}).body;if(e instanceof v){if(e.bodyUsed)throw new TypeError("Already read");this.url=e.url,this.credentials=e.credentials,t.headers||(this.headers=new l(e.headers)),this.method=e.method,this.mode=e.mode,r||null==e._bodyInit||(r=e._bodyInit,e.bodyUsed=!0)}else this.url=String(e);if(this.credentials=t.credentials||this.credentials||"omit",!t.headers&&this.headers||(this.headers=new l(t.headers)),this.method=function(e){var t=e.toUpperCase();return o.indexOf(t)>-1?t:e}(t.method||this.method||"GET"),this.mode=t.mode||this.mode||null,this.referrer=null,("GET"===this.method||"HEAD"===this.method)&&r)throw new TypeError("Body not allowed for GET or HEAD requests");this._initBody(r)}function m(e){var t=new FormData;return e.trim().split("&").forEach(function(e){if(e){var r=e.split("="),n=r.shift().replace(/\+/g," "),i=r.join("=").replace(/\+/g," ");t.append(decodeURIComponent(n),decodeURIComponent(i))}}),t}function b(e,t){t||(t={}),this.type="default",this.status=void 0===t.status?200:t.status,this.ok=this.status>=200&&this.status<300,this.statusText="statusText"in t?t.statusText:"OK",this.headers=new l(t.headers),this.url=t.url||"",this._initBody(e)}}("undefined"!=typeof self?self:this)},function(e,t,r){"use strict";var n=r(39),i=r(40),o=r(13);function a(e,t,r){var n=r.fragmentMap,s=r.contextValue,c=r.variableValues,l={};return e.selections.forEach(function(e){if(i.shouldInclude(e,c))if(o.isField(e)){var f=function(e,t,r){var n=r.variableValues,u=r.contextValue,s=(0,r.resolver)(e.name.value,t,o.argumentsObjectFromField(e,n),u,{isLeaf:!e.selectionSet,resultKey:o.resultKeyNameFromField(e),directives:i.getDirectiveInfoFromField(e,n)});return e.selectionSet?null==s?s:Array.isArray(s)?function e(t,r,n){return r.map(function(r){return null===r?null:Array.isArray(r)?e(t,r,n):a(t.selectionSet,r,n)})}(e,s,r):a(e.selectionSet,s,r):s}(e,t,r),d=o.resultKeyNameFromField(e);void 0!==f&&(void 0===l[d]?l[d]=f:u(l[d],f))}else{var p=void 0;if(o.isInlineFragment(e))p=e;else if(!(p=n[e.name.value]))throw new Error("No fragment named "+e.name.value);var h=p.typeCondition.name.value;if(r.fragmentMatcher(t,h,s)){var y=a(p.selectionSet,t,r);u(l,y)}}}),r.resultMapper?r.resultMapper(l,t):l}function u(e,t){if(null===t||"object"!=typeof t)return t;Object.keys(e).forEach(function(r){t.hasOwnProperty(r)&&u(e[r],t[r])}),Object.keys(t).forEach(function(r){e.hasOwnProperty(r)||(e[r]=t[r])})}t.graphql=function(e,t,r,i,o,u){void 0===u&&(u={});var s=n.getMainDefinition(t),c=n.getFragmentDefinitions(t),l={fragmentMap:n.createFragmentMap(c),contextValue:i,variableValues:o,resultMapper:u.resultMapper,resolver:e,fragmentMatcher:u.fragmentMatcher||function(){return!0}};return a(s.selectionSet,r,l)}},function(e,t,r){"use strict";var n={StringValue:!0,BooleanValue:!0,EnumValue:!0},i={IntValue:!0,FloatValue:!0};function o(e,t,r,a){if(void 0===a&&(a={}),i[r.kind])e[t.value]=Number(r.value);else if(n[r.kind])e[t.value]=r.value;else if("ObjectValue"===r.kind){var u={};r.fields.map(function(e){return o(u,e.name,e.value,a)}),e[t.value]=u}else if("Variable"===r.kind){var s=a[r.name.value];e[t.value]=s}else{if("ListValue"!==r.kind)throw new Error('The inline argument "'+t.value+'" of kind "'+r.kind+'" is not supported. Use variables instead of inline arguments to overcome this limitation.');e[t.value]=r.values.map(function(e){var r={};return o(r,t,e,a),r[t.value]})}}t.argumentsObjectFromField=function(e,t){if(e.arguments&&e.arguments.length){var r={};return e.arguments.forEach(function(e){var n=e.name,i=e.value;return o(r,n,i,t)}),r}return null},t.resultKeyNameFromField=function(e){return e.alias?e.alias.value:e.name.value},t.isField=function(e){return"Field"===e.kind},t.isInlineFragment=function(e){return"InlineFragment"===e.kind},t.graphQLResultHasError=function(e){return e.errors&&e.errors.length}},function(e,t,r){"use strict";var n=this&&this.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),i=this&&this.__assign||Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};Object.defineProperty(t,"__esModule",{value:!0});var o=r(15),a=r(16),u=r(9),s=function(){function e(){}return e.from=function(t){return 0===t.length?e.empty():t.map(o.toLink).reduce(function(e,t){return e.concat(t)})},e.empty=function(){return new c(function(e,t){return u.default.of()})},e.passthrough=function(){return new c(function(e,t){return t?t(e):u.default.of()})},e.split=function(t,r,n){void 0===n&&(n=e.passthrough());var i=o.validateLink(o.toLink(r)),a=o.validateLink(o.toLink(n));return o.isTerminating(i)&&o.isTerminating(a)?new c(function(e){return t(e)?i.request(e)||u.default.of():a.request(e)||u.default.of()}):new c(function(e,r){return t(e)?i.request(e,r)||u.default.of():a.request(e,r)||u.default.of()})},e.prototype.split=function(t,r,n){return void 0===n&&(n=e.passthrough()),this.concat(e.split(t,r,n))},e.prototype.concat=function(e){var t=this;if(o.validateLink(this),o.isTerminating(this))return console.warn(new o.LinkError("You are calling concat on a terminating link, which will have no effect",this)),this;var r=o.validateLink(o.toLink(e));return o.isTerminating(r)?new c(function(e){return t.request(e,function(e){return r.request(e)||u.default.of()})||u.default.of()}):new c(function(e,n){return t.request(e,function(e){return r.request(e,n)||u.default.of()})||u.default.of()})},e}();t.ApolloLink=s,t.execute=function(e,t){var r=i({},t);return o.validateOperation(r),r.context||(r.context={}),r.variables||(r.variables={}),r.query||(console.warn("query should either be a string or GraphQL AST"),r.query={}),e.request(function(e){var t;if((t="string"==typeof e.query?i({},e,{query:a.default(e.query)}):i({},e)).query&&t.query.definitions){if(!t.operationName){var r=["query","mutation","subscription"],n=t.query.definitions.filter(function(e){return"OperationDefinition"===e.kind&&r.indexOf(e.operation)>=0});t.operationName=function(e){return e&&e.name&&"Name"===e.name.kind&&e.name.value}(n[0])||""}}else t.operationName||(t.operationName="");return t}(r))||u.default.of()};var c=function(e){function t(t){var r=e.call(this)||this;return r.f=t,r.request=t,r}return n(t,e),t.prototype.request=function(e,t){throw Error("should be overridden")},t}(s);t.FunctionLink=c},function(e,t,r){"use strict";var n=this&&this.__extends||function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}();Object.defineProperty(t,"__esModule",{value:!0});var i=r(14);t.validateLink=function(e){if(e instanceof i.ApolloLink&&"function"==typeof e.request)return e;throw new o("Link does not extend ApolloLink and implement request",e)},t.validateOperation=function(e){for(var t=["query","operationName","variables","context"],r=0,n=Object.keys(e);r<n.length;r++){var i=n[r];if(t.indexOf(i)<0)throw new Error("illegal argument: "+i)}return e};var o=function(e){function t(t,r){var n=e.call(this,t)||this;return n.link=r,n}return n(t,e),t}(Error);t.LinkError=o,t.toLink=function(e){return"function"==typeof e?new i.FunctionLink(e):e},t.isTerminating=function(e){return e.request.length<=1},t.makePromise=function(e){var t=!1;return new Promise(function(r,n){e.subscribe({next:function(e){t?console.warn("Promise Wrapper does not support multiple results from Observable"):(t=!0,r(e))},error:n})})}},function(e,t,r){var n=r(41).parse;function i(e){return e.replace(/[\s,]+/g," ").trim()}var o={},a={};function u(e){return i(e.source.body.substring(e.start,e.end))}var s=!0,c=!1;function l(e){var t=i(e);if(o[t])return o[t];var r=n(e,{experimentalFragmentVariables:c});if(!r||"Document"!==r.kind)throw new Error("Not a valid GraphQL document.");return r=function e(t,r){var n=Object.prototype.toString.call(t);if("[object Array]"===n)return t.map(function(t){return e(t,r)});if("[object Object]"!==n)throw new Error("Unexpected input.");r&&t.loc&&delete t.loc,t.loc&&(delete t.loc.startToken,delete t.loc.endToken);var i,o,a,u=Object.keys(t);for(i in u)u.hasOwnProperty(i)&&(o=t[u[i]],"[object Object]"!==(a=Object.prototype.toString.call(o))&&"[object Array]"!==a||(t[u[i]]=e(o,!0)));return t}(r=function(e){for(var t={},r=[],n=0;n<e.definitions.length;n++){var i=e.definitions[n];if("FragmentDefinition"===i.kind){var o=i.name.value,c=u(i.loc);a.hasOwnProperty(o)&&!a[o][c]?(s&&console.warn("Warning: fragment with name "+o+" already exists.\ngraphql-tag enforces all fragment names across your application to be unique; read more about\nthis in the docs: http://dev.apollodata.com/core/fragments.html#unique-names"),a[o][c]=!0):a.hasOwnProperty(o)||(a[o]={},a[o][c]=!0),t[c]||(t[c]=!0,r.push(i))}else r.push(i)}return e.definitions=r,e}(r),!1),o[t]=r,r}function f(){for(var e=Array.prototype.slice.call(arguments),t=e[0],r="string"==typeof t?t:t[0],n=1;n<e.length;n++)e[n]&&e[n].kind&&"Document"===e[n].kind?r+=e[n].loc.source.body:r+=e[n],r+=t[n];return l(r)}f.default=f,f.resetCaches=function(){o={},a={}},f.disableFragmentWarnings=function(){s=!1},f.enableExperimentalFragmentVariables=function(){c=!0},f.disableExperimentalFragmentVariables=function(){c=!1},e.exports=f},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e,t){if(!e)throw new Error(t)}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),Object.defineProperty(t,"GraphQLError",{enumerable:!0,get:function(){return n.GraphQLError}}),Object.defineProperty(t,"syntaxError",{enumerable:!0,get:function(){return i.syntaxError}}),Object.defineProperty(t,"locatedError",{enumerable:!0,get:function(){return o.locatedError}}),Object.defineProperty(t,"printError",{enumerable:!0,get:function(){return a.printError}}),Object.defineProperty(t,"formatError",{enumerable:!0,get:function(){return u.formatError}});var n=r(8),i=r(45),o=r(46),a=r(19),u=r(47)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.printError=function(e){var t=[];if(e.nodes){var r=!0,o=!1,a=void 0;try{for(var u,s=e.nodes[Symbol.iterator]();!(r=(u=s.next()).done);r=!0){var c=u.value;c.loc&&t.push(i(c.loc.source,(0,n.getLocation)(c.loc.source,c.loc.start)))}}catch(e){o=!0,a=e}finally{try{r||null==s.return||s.return()}finally{if(o)throw a}}}else if(e.source&&e.locations){var l=e.source,f=!0,d=!1,p=void 0;try{for(var h,y=e.locations[Symbol.iterator]();!(f=(h=y.next()).done);f=!0){var v=h.value;t.push(i(l,v))}}catch(e){d=!0,p=e}finally{try{f||null==y.return||y.return()}finally{if(d)throw p}}}return 0===t.length?e.message:[e.message].concat(t).join("\n\n")+"\n"};var n=r(20);function i(e,t){var r=e.locationOffset.column-1,n=o(r)+e.body,i=t.line-1,a=e.locationOffset.line-1,u=t.line+a,s=1===t.line?r:0,c=t.column+s,l=n.split(/\r\n|[\n\r]/g);return"".concat(e.name," (").concat(u,":").concat(c,")\n")+function(e){var t=e.filter(function(e){return e[0],void 0!==e[1]}),r=0,n=!0,i=!1,a=void 0;try{for(var u,s=t[Symbol.iterator]();!(n=(u=s.next()).done);n=!0){var c=u.value[0];r=Math.max(r,c.length)}}catch(e){i=!0,a=e}finally{try{n||null==s.return||s.return()}finally{if(i)throw a}}return t.map(function(e){var t=e[0],n=e[1];return function(e,t){return o(r-t.length)+t}(0,t)+n}).join("\n")}([["".concat(u-1,": "),l[i-1]],["".concat(u,": "),l[i]],["",o(c-1)+"^"],["".concat(u+1,": "),l[i+1]]])}function o(e){return Array(e+1).join(" ")}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.getLocation=function(e,t){for(var r,n=/\r\n|[\n\r]/g,i=1,o=t+1;(r=n.exec(e.body))&&r.index<t;)i+=1,o=t+1-(r.index+r[0].length);return{line:i,column:o}}},function(e,t,r){"use strict";
+define(["app/core/core_module","react"], function(__WEBPACK_EXTERNAL_MODULE_grafana_app_core_core_module__, __WEBPACK_EXTERNAL_MODULE_react__) { return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./module.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "../node_modules/apollo-link-core/lib/index.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/apollo-link-core/lib/index.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+var link_1 = __webpack_require__(/*! ./link */ "../node_modules/apollo-link-core/lib/link.js");
+exports.execute = link_1.execute;
+exports.ApolloLink = link_1.ApolloLink;
+var linkUtils_1 = __webpack_require__(/*! ./linkUtils */ "../node_modules/apollo-link-core/lib/linkUtils.js");
+exports.makePromise = linkUtils_1.makePromise;
+var zen_observable_ts_1 = __webpack_require__(/*! zen-observable-ts */ "../node_modules/apollo-link-core/node_modules/zen-observable-ts/lib/zenObservable.js");
+exports.Observable = zen_observable_ts_1.default;
+__export(__webpack_require__(/*! zen-observable-ts */ "../node_modules/apollo-link-core/node_modules/zen-observable-ts/lib/zenObservable.js"));
+exports.default = link_1.ApolloLink;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../node_modules/apollo-link-core/lib/link.js":
+/*!****************************************************!*\
+  !*** ../node_modules/apollo-link-core/lib/link.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var linkUtils_1 = __webpack_require__(/*! ./linkUtils */ "../node_modules/apollo-link-core/lib/linkUtils.js");
+var graphql_tag_1 = __webpack_require__(/*! graphql-tag */ "../node_modules/graphql-tag/src/index.js");
+var zen_observable_ts_1 = __webpack_require__(/*! zen-observable-ts */ "../node_modules/apollo-link-core/node_modules/zen-observable-ts/lib/zenObservable.js");
+var ApolloLink = (function () {
+    function ApolloLink() {
+    }
+    ApolloLink.from = function (links) {
+        if (links.length === 0) {
+            return ApolloLink.empty();
+        }
+        return links.map(linkUtils_1.toLink).reduce(function (x, y) { return x.concat(y); });
+    };
+    ApolloLink.empty = function () {
+        return new FunctionLink(function (op, forward) { return zen_observable_ts_1.default.of(); });
+    };
+    ApolloLink.passthrough = function () {
+        return new FunctionLink(function (op, forward) { return (forward ? forward(op) : zen_observable_ts_1.default.of()); });
+    };
+    ApolloLink.split = function (test, left, right) {
+        if (right === void 0) { right = ApolloLink.passthrough(); }
+        var leftLink = linkUtils_1.validateLink(linkUtils_1.toLink(left));
+        var rightLink = linkUtils_1.validateLink(linkUtils_1.toLink(right));
+        if (linkUtils_1.isTerminating(leftLink) && linkUtils_1.isTerminating(rightLink)) {
+            return new FunctionLink(function (operation) {
+                return test(operation)
+                    ? leftLink.request(operation) || zen_observable_ts_1.default.of()
+                    : rightLink.request(operation) || zen_observable_ts_1.default.of();
+            });
+        }
+        else {
+            return new FunctionLink(function (operation, forward) {
+                return test(operation)
+                    ? leftLink.request(operation, forward) || zen_observable_ts_1.default.of()
+                    : rightLink.request(operation, forward) || zen_observable_ts_1.default.of();
+            });
+        }
+    };
+    ApolloLink.prototype.split = function (test, left, right) {
+        if (right === void 0) { right = ApolloLink.passthrough(); }
+        return this.concat(ApolloLink.split(test, left, right));
+    };
+    ApolloLink.prototype.concat = function (next) {
+        var _this = this;
+        linkUtils_1.validateLink(this);
+        if (linkUtils_1.isTerminating(this)) {
+            console.warn(new linkUtils_1.LinkError("You are calling concat on a terminating link, which will have no effect", this));
+            return this;
+        }
+        var nextLink = linkUtils_1.validateLink(linkUtils_1.toLink(next));
+        if (linkUtils_1.isTerminating(nextLink)) {
+            return new FunctionLink(function (operation) {
+                return _this.request(operation, function (op) { return nextLink.request(op) || zen_observable_ts_1.default.of(); }) || zen_observable_ts_1.default.of();
+            });
+        }
+        else {
+            return new FunctionLink(function (operation, forward) {
+                return (_this.request(operation, function (op) {
+                    return nextLink.request(op, forward) || zen_observable_ts_1.default.of();
+                }) || zen_observable_ts_1.default.of());
+            });
+        }
+    };
+    return ApolloLink;
+}());
+exports.ApolloLink = ApolloLink;
+function execute(link, operation) {
+    var copy = __assign({}, operation);
+    linkUtils_1.validateOperation(copy);
+    if (!copy.context) {
+        copy.context = {};
+    }
+    if (!copy.variables) {
+        copy.variables = {};
+    }
+    if (!copy.query) {
+        console.warn("query should either be a string or GraphQL AST");
+        copy.query = {};
+    }
+    return link.request(transformOperation(copy)) || zen_observable_ts_1.default.of();
+}
+exports.execute = execute;
+function getName(node) {
+    return node && node.name && node.name.kind === 'Name' && node.name.value;
+}
+function transformOperation(operation) {
+    var transformedOperation;
+    if (typeof operation.query === 'string') {
+        transformedOperation = __assign({}, operation, { query: graphql_tag_1.default(operation.query) });
+    }
+    else {
+        transformedOperation = __assign({}, operation);
+    }
+    if (transformedOperation.query && transformedOperation.query.definitions) {
+        if (!transformedOperation.operationName) {
+            var operationTypes_1 = ['query', 'mutation', 'subscription'];
+            var definitions = transformedOperation.query.definitions.filter(function (x) {
+                return x.kind === 'OperationDefinition' &&
+                    operationTypes_1.indexOf(x.operation) >= 0;
+            });
+            transformedOperation.operationName = getName(definitions[0]) || '';
+        }
+    }
+    else if (!transformedOperation.operationName) {
+        transformedOperation.operationName = '';
+    }
+    return transformedOperation;
+}
+var FunctionLink = (function (_super) {
+    __extends(FunctionLink, _super);
+    function FunctionLink(f) {
+        var _this = _super.call(this) || this;
+        _this.f = f;
+        _this.request = f;
+        return _this;
+    }
+    FunctionLink.prototype.request = function (operation, forward) {
+        throw Error('should be overridden');
+    };
+    return FunctionLink;
+}(ApolloLink));
+exports.FunctionLink = FunctionLink;
+//# sourceMappingURL=link.js.map
+
+/***/ }),
+
+/***/ "../node_modules/apollo-link-core/lib/linkUtils.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/apollo-link-core/lib/linkUtils.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var link_1 = __webpack_require__(/*! ./link */ "../node_modules/apollo-link-core/lib/link.js");
+function validateLink(link) {
+    if (link instanceof link_1.ApolloLink && typeof link.request === 'function') {
+        return link;
+    }
+    else {
+        throw new LinkError('Link does not extend ApolloLink and implement request', link);
+    }
+}
+exports.validateLink = validateLink;
+function validateOperation(operation) {
+    var OPERATION_FIELDS = ['query', 'operationName', 'variables', 'context'];
+    for (var _i = 0, _a = Object.keys(operation); _i < _a.length; _i++) {
+        var key = _a[_i];
+        if (OPERATION_FIELDS.indexOf(key) < 0) {
+            throw new Error("illegal argument: " + key);
+        }
+    }
+    return operation;
+}
+exports.validateOperation = validateOperation;
+var LinkError = (function (_super) {
+    __extends(LinkError, _super);
+    function LinkError(message, link) {
+        var _this = _super.call(this, message) || this;
+        _this.link = link;
+        return _this;
+    }
+    return LinkError;
+}(Error));
+exports.LinkError = LinkError;
+function toLink(link) {
+    if (typeof link === 'function') {
+        return new link_1.FunctionLink(link);
+    }
+    else {
+        return link;
+    }
+}
+exports.toLink = toLink;
+function isTerminating(link) {
+    return link.request.length <= 1;
+}
+exports.isTerminating = isTerminating;
+function makePromise(observable) {
+    var completed = false;
+    return new Promise(function (resolve, reject) {
+        observable.subscribe({
+            next: function (data) {
+                if (completed) {
+                    console.warn("Promise Wrapper does not support multiple results from Observable");
+                }
+                else {
+                    completed = true;
+                    resolve(data);
+                }
+            },
+            error: reject,
+        });
+    });
+}
+exports.makePromise = makePromise;
+//# sourceMappingURL=linkUtils.js.map
+
+/***/ }),
+
+/***/ "../node_modules/apollo-link-core/node_modules/zen-observable-ts/lib/zenObservable.js":
+/*!********************************************************************************************!*\
+  !*** ../node_modules/apollo-link-core/node_modules/zen-observable-ts/lib/zenObservable.js ***!
+  \********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+function cleanupSubscription(subscription) {
+    var cleanup = subscription._cleanup;
+    if (!cleanup) {
+        return;
+    }
+    subscription._cleanup = undefined;
+    cleanup();
+}
+function subscriptionClosed(subscription) {
+    return subscription._observer === undefined;
+}
+function closeSubscription(subscription) {
+    if (subscriptionClosed(subscription)) {
+        return;
+    }
+    subscription._observer = undefined;
+    cleanupSubscription(subscription);
+}
+function cleanupFromSubscription(subscription) {
+    return function () {
+        subscription.unsubscribe();
+    };
+}
+var Subscription = (function () {
+    function Subscription(observer, subscriber) {
+        if (Object(observer) !== observer) {
+            throw new TypeError('Observer must be an object');
+        }
+        this._cleanup = undefined;
+        this._observer = observer;
+        if (observer.start) {
+            observer.start(this);
+        }
+        if (subscriptionClosed(this)) {
+            return;
+        }
+        var _observer = new SubscriptionObserver(this);
+        try {
+            var cleanup = subscriber(_observer);
+            if (cleanup != null) {
+                if (typeof cleanup.unsubscribe ===
+                    'function') {
+                    cleanup = cleanupFromSubscription(cleanup);
+                }
+                else if (typeof cleanup !== 'function') {
+                    throw new TypeError(cleanup + ' is not a function');
+                }
+                this._cleanup = cleanup;
+            }
+        }
+        catch (e) {
+            if (_observer.error) {
+                _observer.error(e);
+            }
+            return;
+        }
+        if (subscriptionClosed(this)) {
+            cleanupSubscription(this);
+        }
+    }
+    Object.defineProperty(Subscription.prototype, "closed", {
+        get: function () {
+            return subscriptionClosed(this);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Subscription.prototype.unsubscribe = function () {
+        closeSubscription(this);
+    };
+    return Subscription;
+}());
+exports.Subscription = Subscription;
+var SubscriptionObserver = (function () {
+    function SubscriptionObserver(subscription) {
+        this._subscription = subscription;
+    }
+    Object.defineProperty(SubscriptionObserver.prototype, "closed", {
+        get: function () {
+            return subscriptionClosed(this._subscription);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    SubscriptionObserver.prototype.next = function (value) {
+        var subscription = this._subscription;
+        if (subscriptionClosed(subscription)) {
+            return;
+        }
+        var observer = subscription._observer;
+        if (!observer.next) {
+            return;
+        }
+        observer.next(value);
+        return;
+    };
+    SubscriptionObserver.prototype.error = function (value) {
+        var subscription = this._subscription;
+        if (subscriptionClosed(subscription)) {
+            throw value;
+        }
+        var observer = subscription._observer;
+        subscription._observer = undefined;
+        try {
+            if (!observer.error) {
+                throw value;
+            }
+            observer.error(value);
+        }
+        catch (e) {
+            try {
+                cleanupSubscription(subscription);
+            }
+            finally {
+                throw e;
+            }
+        }
+        cleanupSubscription(subscription);
+    };
+    SubscriptionObserver.prototype.complete = function () {
+        var subscription = this._subscription;
+        if (subscriptionClosed(subscription)) {
+            return;
+        }
+        var observer = subscription._observer;
+        subscription._observer = undefined;
+        try {
+            if (observer.complete) {
+                observer.complete();
+            }
+        }
+        catch (e) {
+            try {
+                cleanupSubscription(subscription);
+            }
+            finally {
+                throw e;
+            }
+        }
+        cleanupSubscription(subscription);
+    };
+    return SubscriptionObserver;
+}());
+exports.SubscriptionObserver = SubscriptionObserver;
+var Observable = (function () {
+    function Observable(subscriber) {
+        if (typeof subscriber !== 'function') {
+            throw new TypeError('Observable initializer must be a function');
+        }
+        this._subscriber = subscriber;
+    }
+    Observable.from = function (observable) {
+        if (observable.subscribe) {
+            return new Observable(function (observer) {
+                return observable.subscribe(observer);
+            });
+        }
+        if (Array.isArray(observable)) {
+            return new Observable(function (observer) {
+                for (var i = 0; i < observable.length; ++i) {
+                    observer.next(observable[i]);
+                    if (observer.closed) {
+                        return;
+                    }
+                }
+                if (observer.complete) {
+                    observer.complete();
+                }
+            });
+        }
+        throw new TypeError(observable + ' is not observable');
+    };
+    Observable.of = function () {
+        var items = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            items[_i] = arguments[_i];
+        }
+        return new Observable(function (observer) {
+            for (var i = 0; i < items.length; ++i) {
+                observer.next(items[i]);
+                if (observer.closed) {
+                    return;
+                }
+            }
+            if (observer.complete) {
+                observer.complete();
+            }
+        });
+    };
+    Observable.prototype.subscribe = function (observerOrNext, error, complete) {
+        if (typeof observerOrNext === 'function') {
+            return new Subscription({
+                next: observerOrNext,
+                error: error,
+                complete: complete,
+            }, this._subscriber);
+        }
+        return new Subscription(observerOrNext, this._subscriber);
+    };
+    Observable.prototype.forEach = function (fn) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (typeof fn !== 'function') {
+                return Promise.reject(new TypeError(fn + ' is not a function'));
+            }
+            _this.subscribe({
+                start: function (subscription) {
+                    this._subscription = subscription;
+                },
+                next: function (value) {
+                    var subscription = this._subscription;
+                    if (subscription.closed) {
+                        return;
+                    }
+                    try {
+                        fn(value);
+                        return;
+                    }
+                    catch (err) {
+                        reject(err);
+                        subscription.unsubscribe();
+                    }
+                },
+                error: reject,
+                complete: resolve,
+            });
+        });
+    };
+    Observable.prototype.map = function (fn) {
+        var _this = this;
+        if (typeof fn !== 'function') {
+            throw new TypeError(fn + ' is not a function');
+        }
+        return new Observable(function (observer) {
+            return _this.subscribe({
+                next: function (value) {
+                    if (observer.closed) {
+                        return;
+                    }
+                    var _value;
+                    try {
+                        _value = fn(value);
+                    }
+                    catch (e) {
+                        observer.error(e);
+                        return;
+                    }
+                    observer.next(_value);
+                },
+                error: function (e) {
+                    observer.error(e);
+                },
+                complete: function () {
+                    observer.complete();
+                },
+            });
+        });
+    };
+    Observable.prototype.filter = function (fn) {
+        var _this = this;
+        if (typeof fn !== 'function') {
+            throw new TypeError(fn + ' is not a function');
+        }
+        return new Observable(function (observer) {
+            _this.subscribe({
+                next: function (value) {
+                    if (observer.closed) {
+                        return;
+                    }
+                    try {
+                        if (!fn(value)) {
+                            return;
+                        }
+                    }
+                    catch (e) {
+                        if (observer.error) {
+                            observer.error(e);
+                        }
+                        return;
+                    }
+                    observer.next(value);
+                },
+                error: function (e) {
+                    observer.error(e);
+                },
+                complete: function () {
+                    observer.complete();
+                },
+            });
+        });
+    };
+    Observable.prototype.reduce = function (fn, initialValue) {
+        var _this = this;
+        if (typeof fn !== 'function') {
+            throw new TypeError(fn + ' is not a function');
+        }
+        var hasSeed = arguments.length > 1;
+        var hasValue = false;
+        var seed = arguments[1];
+        var acc = seed;
+        return new Observable(function (observer) {
+            _this.subscribe({
+                next: function (value) {
+                    if (observer.closed) {
+                        return;
+                    }
+                    var first = !hasValue;
+                    hasValue = true;
+                    if (!first || hasSeed) {
+                        try {
+                            acc = fn(acc, value);
+                        }
+                        catch (e) {
+                            observer.error(e);
+                            return;
+                        }
+                    }
+                    else {
+                        acc = value;
+                    }
+                },
+                error: function (e) {
+                    observer.error(e);
+                },
+                complete: function () {
+                    if (!hasValue && !hasSeed) {
+                        observer.error(new TypeError('Cannot reduce an empty sequence'));
+                        return;
+                    }
+                    observer.next(acc);
+                    observer.complete();
+                },
+            });
+        });
+    };
+    Observable.prototype.flatMap = function (fn) {
+        var _this = this;
+        if (typeof fn !== 'function') {
+            throw new TypeError(fn + ' is not a function');
+        }
+        return new Observable(function (observer) {
+            var completed = false;
+            var subscriptions = [];
+            var outer = _this.subscribe({
+                next: function (value) {
+                    var _value;
+                    if (fn) {
+                        try {
+                            _value = fn(value);
+                        }
+                        catch (x) {
+                            observer.error(x);
+                            return;
+                        }
+                    }
+                    Observable.from(_value).subscribe({
+                        start: function (s) {
+                            subscriptions.push((this._subscription = s));
+                        },
+                        next: function (data) {
+                            observer.next(data);
+                        },
+                        error: function (e) {
+                            observer.error(e);
+                        },
+                        complete: function () {
+                            var i = subscriptions.indexOf(this._subscription);
+                            if (i >= 0) {
+                                subscriptions.splice(i, 1);
+                            }
+                            closeIfDone();
+                        },
+                    });
+                },
+                error: function (e) {
+                    observer.error(e);
+                },
+                complete: function () {
+                    completed = true;
+                    closeIfDone();
+                },
+            });
+            function closeIfDone() {
+                if (completed && subscriptions.length === 0) {
+                    observer.complete();
+                }
+            }
+            return function () {
+                subscriptions.forEach(function (s) { return s.unsubscribe(); });
+                outer.unsubscribe();
+            };
+        });
+    };
+    return Observable;
+}());
+exports.default = Observable;
+//# sourceMappingURL=zenObservable.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/directives.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/directives.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var storeUtils_1 = __webpack_require__(/*! ./storeUtils */ "../node_modules/graphql-anywhere/lib/src/storeUtils.js");
+function getDirectiveInfoFromField(field, variables) {
+    if (field.directives && field.directives.length) {
+        var directiveObj_1 = {};
+        field.directives.forEach(function (directive) {
+            directiveObj_1[directive.name.value] = storeUtils_1.argumentsObjectFromField(directive, variables);
+        });
+        return directiveObj_1;
+    }
+    return null;
+}
+exports.getDirectiveInfoFromField = getDirectiveInfoFromField;
+function shouldInclude(selection, variables) {
+    if (variables === void 0) { variables = {}; }
+    if (!selection.directives) {
+        return true;
+    }
+    var res = true;
+    selection.directives.some(function (directive) {
+        if (directive.name.value !== 'skip' && directive.name.value !== 'include') {
+            return;
+        }
+        var directiveArguments = directive.arguments;
+        var directiveName = directive.name.value;
+        if (directiveArguments.length !== 1) {
+            throw new Error("Incorrect number of arguments for the @" + directiveName + " directive.");
+        }
+        var ifArgument = directive.arguments[0];
+        if (!ifArgument.name || ifArgument.name.value !== 'if') {
+            throw new Error("Invalid argument for the @" + directiveName + " directive.");
+        }
+        var ifValue = directive.arguments[0].value;
+        var evaledValue = false;
+        if (!ifValue || ifValue.kind !== 'BooleanValue') {
+            if (ifValue.kind !== 'Variable') {
+                throw new Error("Argument for the @" + directiveName + " directive must be a variable or a bool ean value.");
+            }
+            else {
+                evaledValue = variables[ifValue.name.value];
+                if (evaledValue === undefined) {
+                    throw new Error("Invalid variable referenced in @" + directiveName + " directive.");
+                }
+            }
+        }
+        else {
+            evaledValue = ifValue.value;
+        }
+        if (directiveName === 'skip') {
+            evaledValue = !evaledValue;
+        }
+        if (!evaledValue) {
+            res = false;
+            return true;
+        }
+        return false;
+    });
+    return res;
+}
+exports.shouldInclude = shouldInclude;
+//# sourceMappingURL=directives.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/getFromAST.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/getFromAST.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function checkDocument(doc) {
+    if (doc.kind !== 'Document') {
+        throw new Error("Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
+    }
+    var numOpDefinitions = doc.definitions.filter(function (definition) {
+        return definition.kind === 'OperationDefinition';
+    }).length;
+    if (numOpDefinitions > 1) {
+        throw new Error('Queries must have exactly one operation definition.');
+    }
+}
+function getFragmentDefinitions(doc) {
+    var fragmentDefinitions = doc.definitions.filter(function (definition) {
+        if (definition.kind === 'FragmentDefinition') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    });
+    return fragmentDefinitions;
+}
+exports.getFragmentDefinitions = getFragmentDefinitions;
+function createFragmentMap(fragments) {
+    if (fragments === void 0) { fragments = []; }
+    var symTable = {};
+    fragments.forEach(function (fragment) {
+        symTable[fragment.name.value] = fragment;
+    });
+    return symTable;
+}
+exports.createFragmentMap = createFragmentMap;
+function getMainDefinition(queryDoc) {
+    checkDocument(queryDoc);
+    var fragmentDefinition;
+    for (var _i = 0, _a = queryDoc.definitions; _i < _a.length; _i++) {
+        var definition = _a[_i];
+        if (definition.kind === 'OperationDefinition') {
+            var operation = definition.operation;
+            if (operation === 'query' || operation === 'mutation' || operation === 'subscription') {
+                return definition;
+            }
+        }
+        if (definition.kind === 'FragmentDefinition' && !fragmentDefinition) {
+            fragmentDefinition = definition;
+        }
+    }
+    if (fragmentDefinition) {
+        return fragmentDefinition;
+    }
+    throw new Error('Expected a parsed GraphQL query with a query, mutation, subscription, or a fragment.');
+}
+exports.getMainDefinition = getMainDefinition;
+//# sourceMappingURL=getFromAST.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/graphql.js":
+/*!***********************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/graphql.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var getFromAST_1 = __webpack_require__(/*! ./getFromAST */ "../node_modules/graphql-anywhere/lib/src/getFromAST.js");
+var directives_1 = __webpack_require__(/*! ./directives */ "../node_modules/graphql-anywhere/lib/src/directives.js");
+var storeUtils_1 = __webpack_require__(/*! ./storeUtils */ "../node_modules/graphql-anywhere/lib/src/storeUtils.js");
+function graphql(resolver, document, rootValue, contextValue, variableValues, execOptions) {
+    if (execOptions === void 0) { execOptions = {}; }
+    var mainDefinition = getFromAST_1.getMainDefinition(document);
+    var fragments = getFromAST_1.getFragmentDefinitions(document);
+    var fragmentMap = getFromAST_1.createFragmentMap(fragments);
+    var resultMapper = execOptions.resultMapper;
+    var fragmentMatcher = execOptions.fragmentMatcher || (function () { return true; });
+    var execContext = {
+        fragmentMap: fragmentMap,
+        contextValue: contextValue,
+        variableValues: variableValues,
+        resultMapper: resultMapper,
+        resolver: resolver,
+        fragmentMatcher: fragmentMatcher,
+    };
+    return executeSelectionSet(mainDefinition.selectionSet, rootValue, execContext);
+}
+exports.graphql = graphql;
+function executeSelectionSet(selectionSet, rootValue, execContext) {
+    var fragmentMap = execContext.fragmentMap, contextValue = execContext.contextValue, variables = execContext.variableValues;
+    var result = {};
+    selectionSet.selections.forEach(function (selection) {
+        if (!directives_1.shouldInclude(selection, variables)) {
+            return;
+        }
+        if (storeUtils_1.isField(selection)) {
+            var fieldResult = executeField(selection, rootValue, execContext);
+            var resultFieldKey = storeUtils_1.resultKeyNameFromField(selection);
+            if (fieldResult !== undefined) {
+                if (result[resultFieldKey] === undefined) {
+                    result[resultFieldKey] = fieldResult;
+                }
+                else {
+                    merge(result[resultFieldKey], fieldResult);
+                }
+            }
+        }
+        else {
+            var fragment = void 0;
+            if (storeUtils_1.isInlineFragment(selection)) {
+                fragment = selection;
+            }
+            else {
+                fragment = fragmentMap[selection.name.value];
+                if (!fragment) {
+                    throw new Error("No fragment named " + selection.name.value);
+                }
+            }
+            var typeCondition = fragment.typeCondition.name.value;
+            if (execContext.fragmentMatcher(rootValue, typeCondition, contextValue)) {
+                var fragmentResult = executeSelectionSet(fragment.selectionSet, rootValue, execContext);
+                merge(result, fragmentResult);
+            }
+        }
+    });
+    if (execContext.resultMapper) {
+        return execContext.resultMapper(result, rootValue);
+    }
+    return result;
+}
+function executeField(field, rootValue, execContext) {
+    var variables = execContext.variableValues, contextValue = execContext.contextValue, resolver = execContext.resolver;
+    var fieldName = field.name.value;
+    var args = storeUtils_1.argumentsObjectFromField(field, variables);
+    var info = {
+        isLeaf: !field.selectionSet,
+        resultKey: storeUtils_1.resultKeyNameFromField(field),
+        directives: directives_1.getDirectiveInfoFromField(field, variables),
+    };
+    var result = resolver(fieldName, rootValue, args, contextValue, info);
+    if (!field.selectionSet) {
+        return result;
+    }
+    if (result == null) {
+        return result;
+    }
+    if (Array.isArray(result)) {
+        return executeSubSelectedArray(field, result, execContext);
+    }
+    return executeSelectionSet(field.selectionSet, result, execContext);
+}
+function executeSubSelectedArray(field, result, execContext) {
+    return result.map(function (item) {
+        if (item === null) {
+            return null;
+        }
+        if (Array.isArray(item)) {
+            return executeSubSelectedArray(field, item, execContext);
+        }
+        return executeSelectionSet(field.selectionSet, item, execContext);
+    });
+}
+function merge(dest, src) {
+    if (src === null ||
+        typeof src !== 'object') {
+        return src;
+    }
+    Object.keys(dest).forEach(function (destKey) {
+        if (src.hasOwnProperty(destKey)) {
+            merge(dest[destKey], src[destKey]);
+        }
+    });
+    Object.keys(src).forEach(function (srcKey) {
+        if (!dest.hasOwnProperty(srcKey)) {
+            dest[srcKey] = src[srcKey];
+        }
+    });
+}
+//# sourceMappingURL=graphql.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/index.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/index.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var utilities_1 = __webpack_require__(/*! ./utilities */ "../node_modules/graphql-anywhere/lib/src/utilities.js");
+exports.filter = utilities_1.filter;
+exports.check = utilities_1.check;
+exports.propType = utilities_1.propType;
+var graphql_1 = __webpack_require__(/*! ./graphql */ "../node_modules/graphql-anywhere/lib/src/graphql.js");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = graphql_1.graphql;
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/storeUtils.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/storeUtils.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var SCALAR_TYPES = {
+    StringValue: true,
+    BooleanValue: true,
+    EnumValue: true,
+};
+function isScalarValue(value) {
+    return !!SCALAR_TYPES[value.kind];
+}
+var NUMBER_TYPES = {
+    IntValue: true,
+    FloatValue: true,
+};
+function isNumberValue(value) {
+    return NUMBER_TYPES[value.kind];
+}
+function isVariable(value) {
+    return value.kind === 'Variable';
+}
+function isObject(value) {
+    return value.kind === 'ObjectValue';
+}
+function isList(value) {
+    return value.kind === 'ListValue';
+}
+function valueToObjectRepresentation(argObj, name, value, variables) {
+    if (variables === void 0) { variables = {}; }
+    if (isNumberValue(value)) {
+        argObj[name.value] = Number(value.value);
+    }
+    else if (isScalarValue(value)) {
+        argObj[name.value] = value.value;
+    }
+    else if (isObject(value)) {
+        var nestedArgObj_1 = {};
+        value.fields.map(function (obj) { return valueToObjectRepresentation(nestedArgObj_1, obj.name, obj.value, variables); });
+        argObj[name.value] = nestedArgObj_1;
+    }
+    else if (isVariable(value)) {
+        var variableValue = variables[value.name.value];
+        argObj[name.value] = variableValue;
+    }
+    else if (isList(value)) {
+        argObj[name.value] = value.values.map(function (listValue) {
+            var nestedArgArrayObj = {};
+            valueToObjectRepresentation(nestedArgArrayObj, name, listValue, variables);
+            return nestedArgArrayObj[name.value];
+        });
+    }
+    else {
+        throw new Error("The inline argument \"" + name.value + "\" of kind \"" + value.kind + "\" is not supported. Use variables instead of inline arguments to overcome this limitation.");
+    }
+}
+function argumentsObjectFromField(field, variables) {
+    if (field.arguments && field.arguments.length) {
+        var argObj_1 = {};
+        field.arguments.forEach(function (_a) {
+            var name = _a.name, value = _a.value;
+            return valueToObjectRepresentation(argObj_1, name, value, variables);
+        });
+        return argObj_1;
+    }
+    return null;
+}
+exports.argumentsObjectFromField = argumentsObjectFromField;
+function resultKeyNameFromField(field) {
+    return field.alias ?
+        field.alias.value :
+        field.name.value;
+}
+exports.resultKeyNameFromField = resultKeyNameFromField;
+function isField(selection) {
+    return selection.kind === 'Field';
+}
+exports.isField = isField;
+function isInlineFragment(selection) {
+    return selection.kind === 'InlineFragment';
+}
+exports.isInlineFragment = isInlineFragment;
+function graphQLResultHasError(result) {
+    return result.errors && result.errors.length;
+}
+exports.graphQLResultHasError = graphQLResultHasError;
+//# sourceMappingURL=storeUtils.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-anywhere/lib/src/utilities.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/graphql-anywhere/lib/src/utilities.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var graphql_1 = __webpack_require__(/*! ./graphql */ "../node_modules/graphql-anywhere/lib/src/graphql.js");
+function filter(doc, data) {
+    var resolver = function (fieldName, root, args, context, info) {
+        return root[info.resultKey];
+    };
+    return graphql_1.graphql(resolver, doc, data);
+}
+exports.filter = filter;
+function check(doc, data) {
+    var resolver = function (fieldName, root, args, context, info) {
+        if (!{}.hasOwnProperty.call(root, info.resultKey)) {
+            throw new Error(info.resultKey + " missing on " + root);
+        }
+        return root[info.resultKey];
+    };
+    graphql_1.graphql(resolver, doc, data, {}, {}, {
+        fragmentMatcher: function () { return false; },
+    });
+}
+exports.check = check;
+var ANONYMOUS = '<<anonymous>>';
+function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+}
+PropTypeError.prototype = Error.prototype;
+var reactPropTypeLocationNames = {
+    prop: 'prop',
+    context: 'context',
+    childContext: 'child context',
+};
+function createChainableTypeChecker(validate) {
+    function checkType(isRequired, props, propName, componentName, location, propFullName) {
+        componentName = componentName || ANONYMOUS;
+        propFullName = propFullName || propName;
+        if (props[propName] == null) {
+            var locationName = reactPropTypeLocationNames[location];
+            if (isRequired) {
+                if (props[propName] === null) {
+                    return new PropTypeError("The " + locationName + " `" + propFullName + "` is marked as required " +
+                        ("in `" + componentName + "`, but its value is `null`."));
+                }
+                return new PropTypeError("The " + locationName + " `" + propFullName + "` is marked as required in " +
+                    ("`" + componentName + "`, but its value is `undefined`."));
+            }
+            return null;
+        }
+        else {
+            return validate(props, propName, componentName, location, propFullName);
+        }
+    }
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+    return chainedCheckType;
+}
+function propType(doc) {
+    return createChainableTypeChecker(function (props, propName) {
+        var prop = props[propName];
+        try {
+            check(doc, prop);
+            return null;
+        }
+        catch (e) {
+            return e;
+        }
+    });
+}
+exports.propType = propType;
+//# sourceMappingURL=utilities.js.map
+
+/***/ }),
+
+/***/ "../node_modules/graphql-tag/src/index.js":
+/*!************************************************!*\
+  !*** ../node_modules/graphql-tag/src/index.js ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var parser = __webpack_require__(/*! graphql/language/parser */ "../node_modules/graphql/language/parser.js");
+
+var parse = parser.parse;
+
+// Strip insignificant whitespace
+// Note that this could do a lot more, such as reorder fields etc.
+function normalize(string) {
+  return string.replace(/[\s,]+/g, ' ').trim();
+}
+
+// A map docString -> graphql document
+var docCache = {};
+
+// A map fragmentName -> [normalized source]
+var fragmentSourceMap = {};
+
+function cacheKeyFromLoc(loc) {
+  return normalize(loc.source.body.substring(loc.start, loc.end));
+}
+
+// For testing.
+function resetCaches() {
+  docCache = {};
+  fragmentSourceMap = {};
+}
+
+// Take a unstripped parsed document (query/mutation or even fragment), and
+// check all fragment definitions, checking for name->source uniqueness.
+// We also want to make sure only unique fragments exist in the document.
+var printFragmentWarnings = true;
+function processFragments(ast) {
+  var astFragmentMap = {};
+  var definitions = [];
+
+  for (var i = 0; i < ast.definitions.length; i++) {
+    var fragmentDefinition = ast.definitions[i];
+
+    if (fragmentDefinition.kind === 'FragmentDefinition') {
+      var fragmentName = fragmentDefinition.name.value;
+      var sourceKey = cacheKeyFromLoc(fragmentDefinition.loc);
+
+      // We know something about this fragment
+      if (fragmentSourceMap.hasOwnProperty(fragmentName) && !fragmentSourceMap[fragmentName][sourceKey]) {
+
+        // this is a problem because the app developer is trying to register another fragment with
+        // the same name as one previously registered. So, we tell them about it.
+        if (printFragmentWarnings) {
+          console.warn("Warning: fragment with name " + fragmentName + " already exists.\n"
+            + "graphql-tag enforces all fragment names across your application to be unique; read more about\n"
+            + "this in the docs: http://dev.apollodata.com/core/fragments.html#unique-names");
+        }
+
+        fragmentSourceMap[fragmentName][sourceKey] = true;
+
+      } else if (!fragmentSourceMap.hasOwnProperty(fragmentName)) {
+        fragmentSourceMap[fragmentName] = {};
+        fragmentSourceMap[fragmentName][sourceKey] = true;
+      }
+
+      if (!astFragmentMap[sourceKey]) {
+        astFragmentMap[sourceKey] = true;
+        definitions.push(fragmentDefinition);
+      }
+    } else {
+      definitions.push(fragmentDefinition);
+    }
+  }
+
+  ast.definitions = definitions;
+  return ast;
+}
+
+function disableFragmentWarnings() {
+  printFragmentWarnings = false;
+}
+
+function stripLoc(doc, removeLocAtThisLevel) {
+  var docType = Object.prototype.toString.call(doc);
+
+  if (docType === '[object Array]') {
+    return doc.map(function (d) {
+      return stripLoc(d, removeLocAtThisLevel);
+    });
+  }
+
+  if (docType !== '[object Object]') {
+    throw new Error('Unexpected input.');
+  }
+
+  // We don't want to remove the root loc field so we can use it
+  // for fragment substitution (see below)
+  if (removeLocAtThisLevel && doc.loc) {
+    delete doc.loc;
+  }
+
+  // https://github.com/apollographql/graphql-tag/issues/40
+  if (doc.loc) {
+    delete doc.loc.startToken;
+    delete doc.loc.endToken;
+  }
+
+  var keys = Object.keys(doc);
+  var key;
+  var value;
+  var valueType;
+
+  for (key in keys) {
+    if (keys.hasOwnProperty(key)) {
+      value = doc[keys[key]];
+      valueType = Object.prototype.toString.call(value);
+
+      if (valueType === '[object Object]' || valueType === '[object Array]') {
+        doc[keys[key]] = stripLoc(value, true);
+      }
+    }
+  }
+
+  return doc;
+}
+
+var experimentalFragmentVariables = false;
+function parseDocument(doc) {
+  var cacheKey = normalize(doc);
+
+  if (docCache[cacheKey]) {
+    return docCache[cacheKey];
+  }
+
+  var parsed = parse(doc, { experimentalFragmentVariables: experimentalFragmentVariables });
+  if (!parsed || parsed.kind !== 'Document') {
+    throw new Error('Not a valid GraphQL document.');
+  }
+
+  // check that all "new" fragments inside the documents are consistent with
+  // existing fragments of the same name
+  parsed = processFragments(parsed);
+  parsed = stripLoc(parsed, false);
+  docCache[cacheKey] = parsed;
+
+  return parsed;
+}
+
+function enableExperimentalFragmentVariables() {
+  experimentalFragmentVariables = true;
+}
+
+function disableExperimentalFragmentVariables() {
+  experimentalFragmentVariables = false;
+}
+
+// XXX This should eventually disallow arbitrary string interpolation, like Relay does
+function gql(/* arguments */) {
+  var args = Array.prototype.slice.call(arguments);
+
+  var literals = args[0];
+
+  // We always get literals[0] and then matching post literals for each arg given
+  var result = (typeof(literals) === "string") ? literals : literals[0];
+
+  for (var i = 1; i < args.length; i++) {
+    if (args[i] && args[i].kind && args[i].kind === 'Document') {
+      result += args[i].loc.source.body;
+    } else {
+      result += args[i];
+    }
+
+    result += literals[i];
+  }
+
+  return parseDocument(result);
+}
+
+// Support typescript, which isn't as nice as Babel about default exports
+gql.default = gql;
+gql.resetCaches = resetCaches;
+gql.disableFragmentWarnings = disableFragmentWarnings;
+gql.enableExperimentalFragmentVariables = enableExperimentalFragmentVariables;
+gql.disableExperimentalFragmentVariables = disableExperimentalFragmentVariables;
+
+module.exports = gql;
+
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/GraphQLError.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/graphql/error/GraphQLError.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GraphQLError = GraphQLError;
+
+var _printError = __webpack_require__(/*! ./printError */ "../node_modules/graphql/error/printError.js");
+
+var _location = __webpack_require__(/*! ../language/location */ "../node_modules/graphql/language/location.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+function GraphQLError( // eslint-disable-line no-redeclare
+message, nodes, source, positions, path, originalError, extensions) {
+  // Compute list of blame nodes.
+  var _nodes = Array.isArray(nodes) ? nodes.length !== 0 ? nodes : undefined : nodes ? [nodes] : undefined; // Compute locations in the source for the given nodes/positions.
+
+
+  var _source = source;
+
+  if (!_source && _nodes) {
+    var node = _nodes[0];
+    _source = node && node.loc && node.loc.source;
+  }
+
+  var _positions = positions;
+
+  if (!_positions && _nodes) {
+    _positions = _nodes.reduce(function (list, node) {
+      if (node.loc) {
+        list.push(node.loc.start);
+      }
+
+      return list;
+    }, []);
+  }
+
+  if (_positions && _positions.length === 0) {
+    _positions = undefined;
+  }
+
+  var _locations;
+
+  if (positions && source) {
+    _locations = positions.map(function (pos) {
+      return (0, _location.getLocation)(source, pos);
+    });
+  } else if (_nodes) {
+    _locations = _nodes.reduce(function (list, node) {
+      if (node.loc) {
+        list.push((0, _location.getLocation)(node.loc.source, node.loc.start));
+      }
+
+      return list;
+    }, []);
+  }
+
+  var _extensions = extensions || originalError && originalError.extensions;
+
+  Object.defineProperties(this, {
+    message: {
+      value: message,
+      // By being enumerable, JSON.stringify will include `message` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: true,
+      writable: true
+    },
+    locations: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: _locations || undefined,
+      // By being enumerable, JSON.stringify will include `locations` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(_locations)
+    },
+    path: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: path || undefined,
+      // By being enumerable, JSON.stringify will include `path` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(path)
+    },
+    nodes: {
+      value: _nodes || undefined
+    },
+    source: {
+      value: _source || undefined
+    },
+    positions: {
+      value: _positions || undefined
+    },
+    originalError: {
+      value: originalError
+    },
+    extensions: {
+      // Coercing falsey values to undefined ensures they will not be included
+      // in JSON.stringify() when not provided.
+      value: _extensions || undefined,
+      // By being enumerable, JSON.stringify will include `path` in the
+      // resulting output. This ensures that the simplest possible GraphQL
+      // service adheres to the spec.
+      enumerable: Boolean(_extensions)
+    }
+  }); // Include (non-enumerable) stack trace.
+
+  if (originalError && originalError.stack) {
+    Object.defineProperty(this, 'stack', {
+      value: originalError.stack,
+      writable: true,
+      configurable: true
+    });
+  } else if (Error.captureStackTrace) {
+    Error.captureStackTrace(this, GraphQLError);
+  } else {
+    Object.defineProperty(this, 'stack', {
+      value: Error().stack,
+      writable: true,
+      configurable: true
+    });
+  }
+}
+
+GraphQLError.prototype = Object.create(Error.prototype, {
+  constructor: {
+    value: GraphQLError
+  },
+  name: {
+    value: 'GraphQLError'
+  },
+  toString: {
+    value: function toString() {
+      return (0, _printError.printError)(this);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/formatError.js":
+/*!****************************************************!*\
+  !*** ../node_modules/graphql/error/formatError.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.formatError = formatError;
+
+var _invariant = _interopRequireDefault(__webpack_require__(/*! ../jsutils/invariant */ "../node_modules/graphql/jsutils/invariant.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a GraphQLError, format it according to the rules described by the
+ * Response Format, Errors section of the GraphQL Specification.
+ */
+function formatError(error) {
+  !error ? (0, _invariant.default)(0, 'Received null or undefined error.') : void 0;
+  var message = error.message || 'An unknown error occurred.';
+  var locations = error.locations;
+  var path = error.path;
+  var extensions = error.extensions;
+  return extensions ? {
+    message: message,
+    locations: locations,
+    path: path,
+    extensions: extensions
+  } : {
+    message: message,
+    locations: locations,
+    path: path
+  };
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/index.js":
+/*!**********************************************!*\
+  !*** ../node_modules/graphql/error/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "GraphQLError", {
+  enumerable: true,
+  get: function get() {
+    return _GraphQLError.GraphQLError;
+  }
+});
+Object.defineProperty(exports, "syntaxError", {
+  enumerable: true,
+  get: function get() {
+    return _syntaxError.syntaxError;
+  }
+});
+Object.defineProperty(exports, "locatedError", {
+  enumerable: true,
+  get: function get() {
+    return _locatedError.locatedError;
+  }
+});
+Object.defineProperty(exports, "printError", {
+  enumerable: true,
+  get: function get() {
+    return _printError.printError;
+  }
+});
+Object.defineProperty(exports, "formatError", {
+  enumerable: true,
+  get: function get() {
+    return _formatError.formatError;
+  }
+});
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "../node_modules/graphql/error/GraphQLError.js");
+
+var _syntaxError = __webpack_require__(/*! ./syntaxError */ "../node_modules/graphql/error/syntaxError.js");
+
+var _locatedError = __webpack_require__(/*! ./locatedError */ "../node_modules/graphql/error/locatedError.js");
+
+var _printError = __webpack_require__(/*! ./printError */ "../node_modules/graphql/error/printError.js");
+
+var _formatError = __webpack_require__(/*! ./formatError */ "../node_modules/graphql/error/formatError.js");
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/locatedError.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/graphql/error/locatedError.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.locatedError = locatedError;
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "../node_modules/graphql/error/GraphQLError.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given an arbitrary Error, presumably thrown while attempting to execute a
+ * GraphQL operation, produce a new GraphQLError aware of the location in the
+ * document responsible for the original Error.
+ */
+function locatedError(originalError, nodes, path) {
+  // Note: this uses a brand-check to support GraphQL errors originating from
+  // other contexts.
+  if (originalError && Array.isArray(originalError.path)) {
+    return originalError;
+  }
+
+  return new _GraphQLError.GraphQLError(originalError && originalError.message, originalError && originalError.nodes || nodes, originalError && originalError.source, originalError && originalError.positions, path, originalError);
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/printError.js":
+/*!***************************************************!*\
+  !*** ../node_modules/graphql/error/printError.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.printError = printError;
+
+var _location = __webpack_require__(/*! ../language/location */ "../node_modules/graphql/language/location.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Prints a GraphQLError to a string, representing useful location information
+ * about the error's position in the source.
+ */
+function printError(error) {
+  var printedLocations = [];
+
+  if (error.nodes) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = error.nodes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var node = _step.value;
+
+        if (node.loc) {
+          printedLocations.push(highlightSourceAtLocation(node.loc.source, (0, _location.getLocation)(node.loc.source, node.loc.start)));
+        }
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return != null) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  } else if (error.source && error.locations) {
+    var source = error.source;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = error.locations[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var location = _step2.value;
+        printedLocations.push(highlightSourceAtLocation(source, location));
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+
+  return printedLocations.length === 0 ? error.message : [error.message].concat(printedLocations).join('\n\n') + '\n';
+}
+/**
+ * Render a helpful description of the location of the error in the GraphQL
+ * Source document.
+ */
+
+
+function highlightSourceAtLocation(source, location) {
+  var firstLineColumnOffset = source.locationOffset.column - 1;
+  var body = whitespace(firstLineColumnOffset) + source.body;
+  var lineIndex = location.line - 1;
+  var lineOffset = source.locationOffset.line - 1;
+  var lineNum = location.line + lineOffset;
+  var columnOffset = location.line === 1 ? firstLineColumnOffset : 0;
+  var columnNum = location.column + columnOffset;
+  var lines = body.split(/\r\n|[\n\r]/g);
+  return "".concat(source.name, " (").concat(lineNum, ":").concat(columnNum, ")\n") + printPrefixedLines([// Lines specified like this: ["prefix", "string"],
+  ["".concat(lineNum - 1, ": "), lines[lineIndex - 1]], ["".concat(lineNum, ": "), lines[lineIndex]], ['', whitespace(columnNum - 1) + '^'], ["".concat(lineNum + 1, ": "), lines[lineIndex + 1]]]);
+}
+
+function printPrefixedLines(lines) {
+  var existingLines = lines.filter(function (_ref) {
+    var _ = _ref[0],
+        line = _ref[1];
+    return line !== undefined;
+  });
+  var padLen = 0;
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = existingLines[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var _ref4 = _step3.value;
+      var prefix = _ref4[0];
+      padLen = Math.max(padLen, prefix.length);
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3.return != null) {
+        _iterator3.return();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  return existingLines.map(function (_ref3) {
+    var prefix = _ref3[0],
+        line = _ref3[1];
+    return lpad(padLen, prefix) + line;
+  }).join('\n');
+}
+
+function whitespace(len) {
+  return Array(len + 1).join(' ');
+}
+
+function lpad(len, str) {
+  return whitespace(len - str.length) + str;
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/error/syntaxError.js":
+/*!****************************************************!*\
+  !*** ../node_modules/graphql/error/syntaxError.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.syntaxError = syntaxError;
+
+var _GraphQLError = __webpack_require__(/*! ./GraphQLError */ "../node_modules/graphql/error/GraphQLError.js");
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Produces a GraphQLError representing a syntax error, containing useful
+ * descriptive information about the syntax error's position in the source.
+ */
+function syntaxError(source, position, description) {
+  return new _GraphQLError.GraphQLError("Syntax Error: ".concat(description), undefined, source, [position]);
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/jsutils/defineToStringTag.js":
+/*!************************************************************!*\
+  !*** ../node_modules/graphql/jsutils/defineToStringTag.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = applyToStringTag;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The `applyToStringTag()` function checks first to see if the runtime
+ * supports the `Symbol` class and then if the `Symbol.toStringTag` constant
+ * is defined as a `Symbol` instance. If both conditions are met, the
+ * Symbol.toStringTag property is defined as a getter that returns the
+ * supplied class constructor's name.
+ *
+ * @method applyToStringTag
+ *
+ * @param {Class<any>} classObject a class such as Object, String, Number but
+ * typically one of your own creation through the class keyword; `class A {}`,
+ * for example.
+ */
+function applyToStringTag(classObject) {
+  if (typeof Symbol === 'function' && Symbol.toStringTag) {
+    Object.defineProperty(classObject.prototype, Symbol.toStringTag, {
+      get: function get() {
+        return this.constructor.name;
+      }
+    });
+  }
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/jsutils/inspect.js":
+/*!**************************************************!*\
+  !*** ../node_modules/graphql/jsutils/inspect.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = inspect;
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Used to print values in error messages.
+ */
+function inspect(value) {
+  switch (_typeof(value)) {
+    case 'string':
+      return JSON.stringify(value);
+
+    case 'function':
+      return value.name ? "[function ".concat(value.name, "]") : '[function]';
+
+    case 'object':
+      if (value) {
+        if (typeof value.inspect === 'function') {
+          return value.inspect();
+        } else if (Array.isArray(value)) {
+          return '[' + value.map(inspect).join(', ') + ']';
+        }
+
+        var properties = Object.keys(value).map(function (k) {
+          return "".concat(k, ": ").concat(inspect(value[k]));
+        }).join(', ');
+        return properties ? '{ ' + properties + ' }' : '{}';
+      }
+
+      return String(value);
+
+    default:
+      return String(value);
+  }
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/jsutils/invariant.js":
+/*!****************************************************!*\
+  !*** ../node_modules/graphql/jsutils/invariant.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = invariant;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+function invariant(condition, message) {
+  /* istanbul ignore else */
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/blockStringValue.js":
+/*!************************************************************!*\
+  !*** ../node_modules/graphql/language/blockStringValue.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = blockStringValue;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Produces the value of a block string from its parsed raw value, similar to
+ * CoffeeScript's block string, Python's docstring trim or Ruby's strip_heredoc.
+ *
+ * This implements the GraphQL spec's BlockStringValue() static algorithm.
+ */
+function blockStringValue(rawString) {
+  // Expand a block string's raw value into independent lines.
+  var lines = rawString.split(/\r\n|[\n\r]/g); // Remove common indentation from all lines but first.
+
+  var commonIndent = null;
+
+  for (var i = 1; i < lines.length; i++) {
+    var line = lines[i];
+    var indent = leadingWhitespace(line);
+
+    if (indent < line.length && (commonIndent === null || indent < commonIndent)) {
+      commonIndent = indent;
+
+      if (commonIndent === 0) {
+        break;
+      }
+    }
+  }
+
+  if (commonIndent) {
+    for (var _i = 1; _i < lines.length; _i++) {
+      lines[_i] = lines[_i].slice(commonIndent);
+    }
+  } // Remove leading and trailing blank lines.
+
+
+  while (lines.length > 0 && isBlank(lines[0])) {
+    lines.shift();
+  }
+
+  while (lines.length > 0 && isBlank(lines[lines.length - 1])) {
+    lines.pop();
+  } // Return a string of the lines joined with U+000A.
+
+
+  return lines.join('\n');
+}
+
+function leadingWhitespace(str) {
+  var i = 0;
+
+  while (i < str.length && (str[i] === ' ' || str[i] === '\t')) {
+    i++;
+  }
+
+  return i;
+}
+
+function isBlank(str) {
+  return leadingWhitespace(str) === str.length;
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/directiveLocation.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/graphql/language/directiveLocation.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.DirectiveLocation = void 0;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The set of allowed directive location values.
+ */
+var DirectiveLocation = Object.freeze({
+  // Request Definitions
+  QUERY: 'QUERY',
+  MUTATION: 'MUTATION',
+  SUBSCRIPTION: 'SUBSCRIPTION',
+  FIELD: 'FIELD',
+  FRAGMENT_DEFINITION: 'FRAGMENT_DEFINITION',
+  FRAGMENT_SPREAD: 'FRAGMENT_SPREAD',
+  INLINE_FRAGMENT: 'INLINE_FRAGMENT',
+  VARIABLE_DEFINITION: 'VARIABLE_DEFINITION',
+  // Type System Definitions
+  SCHEMA: 'SCHEMA',
+  SCALAR: 'SCALAR',
+  OBJECT: 'OBJECT',
+  FIELD_DEFINITION: 'FIELD_DEFINITION',
+  ARGUMENT_DEFINITION: 'ARGUMENT_DEFINITION',
+  INTERFACE: 'INTERFACE',
+  UNION: 'UNION',
+  ENUM: 'ENUM',
+  ENUM_VALUE: 'ENUM_VALUE',
+  INPUT_OBJECT: 'INPUT_OBJECT',
+  INPUT_FIELD_DEFINITION: 'INPUT_FIELD_DEFINITION'
+});
+/**
+ * The enum type representing the directive location values.
+ */
+
+exports.DirectiveLocation = DirectiveLocation;
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/kinds.js":
+/*!*************************************************!*\
+  !*** ../node_modules/graphql/language/kinds.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Kind = void 0;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * The set of allowed kind values for AST nodes.
+ */
+var Kind = Object.freeze({
+  // Name
+  NAME: 'Name',
+  // Document
+  DOCUMENT: 'Document',
+  OPERATION_DEFINITION: 'OperationDefinition',
+  VARIABLE_DEFINITION: 'VariableDefinition',
+  SELECTION_SET: 'SelectionSet',
+  FIELD: 'Field',
+  ARGUMENT: 'Argument',
+  // Fragments
+  FRAGMENT_SPREAD: 'FragmentSpread',
+  INLINE_FRAGMENT: 'InlineFragment',
+  FRAGMENT_DEFINITION: 'FragmentDefinition',
+  // Values
+  VARIABLE: 'Variable',
+  INT: 'IntValue',
+  FLOAT: 'FloatValue',
+  STRING: 'StringValue',
+  BOOLEAN: 'BooleanValue',
+  NULL: 'NullValue',
+  ENUM: 'EnumValue',
+  LIST: 'ListValue',
+  OBJECT: 'ObjectValue',
+  OBJECT_FIELD: 'ObjectField',
+  // Directives
+  DIRECTIVE: 'Directive',
+  // Types
+  NAMED_TYPE: 'NamedType',
+  LIST_TYPE: 'ListType',
+  NON_NULL_TYPE: 'NonNullType',
+  // Type System Definitions
+  SCHEMA_DEFINITION: 'SchemaDefinition',
+  OPERATION_TYPE_DEFINITION: 'OperationTypeDefinition',
+  // Type Definitions
+  SCALAR_TYPE_DEFINITION: 'ScalarTypeDefinition',
+  OBJECT_TYPE_DEFINITION: 'ObjectTypeDefinition',
+  FIELD_DEFINITION: 'FieldDefinition',
+  INPUT_VALUE_DEFINITION: 'InputValueDefinition',
+  INTERFACE_TYPE_DEFINITION: 'InterfaceTypeDefinition',
+  UNION_TYPE_DEFINITION: 'UnionTypeDefinition',
+  ENUM_TYPE_DEFINITION: 'EnumTypeDefinition',
+  ENUM_VALUE_DEFINITION: 'EnumValueDefinition',
+  INPUT_OBJECT_TYPE_DEFINITION: 'InputObjectTypeDefinition',
+  // Directive Definitions
+  DIRECTIVE_DEFINITION: 'DirectiveDefinition',
+  // Type System Extensions
+  SCHEMA_EXTENSION: 'SchemaExtension',
+  // Type Extensions
+  SCALAR_TYPE_EXTENSION: 'ScalarTypeExtension',
+  OBJECT_TYPE_EXTENSION: 'ObjectTypeExtension',
+  INTERFACE_TYPE_EXTENSION: 'InterfaceTypeExtension',
+  UNION_TYPE_EXTENSION: 'UnionTypeExtension',
+  ENUM_TYPE_EXTENSION: 'EnumTypeExtension',
+  INPUT_OBJECT_TYPE_EXTENSION: 'InputObjectTypeExtension'
+});
+/**
+ * The enum type representing the possible kind values of AST nodes.
+ */
+
+exports.Kind = Kind;
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/lexer.js":
+/*!*************************************************!*\
+  !*** ../node_modules/graphql/language/lexer.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.createLexer = createLexer;
+exports.getTokenDesc = getTokenDesc;
+exports.TokenKind = void 0;
+
+var _error = __webpack_require__(/*! ../error */ "../node_modules/graphql/error/index.js");
+
+var _blockStringValue = _interopRequireDefault(__webpack_require__(/*! ./blockStringValue */ "../node_modules/graphql/language/blockStringValue.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a Source object, this returns a Lexer for that source.
+ * A Lexer is a stateful stream generator in that every time
+ * it is advanced, it returns the next token in the Source. Assuming the
+ * source lexes, the final Token emitted by the lexer will be of kind
+ * EOF, after which the lexer will repeatedly return the same EOF token
+ * whenever called.
+ */
+function createLexer(source, options) {
+  var startOfFileToken = new Tok(TokenKind.SOF, 0, 0, 0, 0, null);
+  var lexer = {
+    source: source,
+    options: options,
+    lastToken: startOfFileToken,
+    token: startOfFileToken,
+    line: 1,
+    lineStart: 0,
+    advance: advanceLexer,
+    lookahead: lookahead
+  };
+  return lexer;
+}
+
+function advanceLexer() {
+  this.lastToken = this.token;
+  var token = this.token = this.lookahead();
+  return token;
+}
+
+function lookahead() {
+  var token = this.token;
+
+  if (token.kind !== TokenKind.EOF) {
+    do {
+      // Note: next is only mutable during parsing, so we cast to allow this.
+      token = token.next || (token.next = readToken(this, token));
+    } while (token.kind === TokenKind.COMMENT);
+  }
+
+  return token;
+}
+/**
+ * The return type of createLexer.
+ */
+
+
+/**
+ * An exported enum describing the different kinds of tokens that the
+ * lexer emits.
+ */
+var TokenKind = Object.freeze({
+  SOF: '<SOF>',
+  EOF: '<EOF>',
+  BANG: '!',
+  DOLLAR: '$',
+  AMP: '&',
+  PAREN_L: '(',
+  PAREN_R: ')',
+  SPREAD: '...',
+  COLON: ':',
+  EQUALS: '=',
+  AT: '@',
+  BRACKET_L: '[',
+  BRACKET_R: ']',
+  BRACE_L: '{',
+  PIPE: '|',
+  BRACE_R: '}',
+  NAME: 'Name',
+  INT: 'Int',
+  FLOAT: 'Float',
+  STRING: 'String',
+  BLOCK_STRING: 'BlockString',
+  COMMENT: 'Comment'
+});
+/**
+ * The enum type representing the token kinds values.
+ */
+
+exports.TokenKind = TokenKind;
+
+/**
+ * A helper function to describe a token as a string for debugging
+ */
+function getTokenDesc(token) {
+  var value = token.value;
+  return value ? "".concat(token.kind, " \"").concat(value, "\"") : token.kind;
+}
+
+var charCodeAt = String.prototype.charCodeAt;
+var slice = String.prototype.slice;
+/**
+ * Helper function for constructing the Token object.
+ */
+
+function Tok(kind, start, end, line, column, prev, value) {
+  this.kind = kind;
+  this.start = start;
+  this.end = end;
+  this.line = line;
+  this.column = column;
+  this.value = value;
+  this.prev = prev;
+  this.next = null;
+} // Print a simplified form when appearing in JSON/util.inspect.
+
+
+Tok.prototype.toJSON = Tok.prototype.inspect = function toJSON() {
+  return {
+    kind: this.kind,
+    value: this.value,
+    line: this.line,
+    column: this.column
+  };
+};
+
+function printCharCode(code) {
+  return (// NaN/undefined represents access beyond the end of the file.
+    isNaN(code) ? TokenKind.EOF : // Trust JSON for ASCII.
+    code < 0x007f ? JSON.stringify(String.fromCharCode(code)) : // Otherwise print the escaped form.
+    "\"\\u".concat(('00' + code.toString(16).toUpperCase()).slice(-4), "\"")
+  );
+}
+/**
+ * Gets the next token from the source starting at the given position.
+ *
+ * This skips over whitespace and comments until it finds the next lexable
+ * token, then lexes punctuators immediately or calls the appropriate helper
+ * function for more complicated tokens.
+ */
+
+
+function readToken(lexer, prev) {
+  var source = lexer.source;
+  var body = source.body;
+  var bodyLength = body.length;
+  var pos = positionAfterWhitespace(body, prev.end, lexer);
+  var line = lexer.line;
+  var col = 1 + pos - lexer.lineStart;
+
+  if (pos >= bodyLength) {
+    return new Tok(TokenKind.EOF, bodyLength, bodyLength, line, col, prev);
+  }
+
+  var code = charCodeAt.call(body, pos); // SourceCharacter
+
+  switch (code) {
+    // !
+    case 33:
+      return new Tok(TokenKind.BANG, pos, pos + 1, line, col, prev);
+    // #
+
+    case 35:
+      return readComment(source, pos, line, col, prev);
+    // $
+
+    case 36:
+      return new Tok(TokenKind.DOLLAR, pos, pos + 1, line, col, prev);
+    // &
+
+    case 38:
+      return new Tok(TokenKind.AMP, pos, pos + 1, line, col, prev);
+    // (
+
+    case 40:
+      return new Tok(TokenKind.PAREN_L, pos, pos + 1, line, col, prev);
+    // )
+
+    case 41:
+      return new Tok(TokenKind.PAREN_R, pos, pos + 1, line, col, prev);
+    // .
+
+    case 46:
+      if (charCodeAt.call(body, pos + 1) === 46 && charCodeAt.call(body, pos + 2) === 46) {
+        return new Tok(TokenKind.SPREAD, pos, pos + 3, line, col, prev);
+      }
+
+      break;
+    // :
+
+    case 58:
+      return new Tok(TokenKind.COLON, pos, pos + 1, line, col, prev);
+    // =
+
+    case 61:
+      return new Tok(TokenKind.EQUALS, pos, pos + 1, line, col, prev);
+    // @
+
+    case 64:
+      return new Tok(TokenKind.AT, pos, pos + 1, line, col, prev);
+    // [
+
+    case 91:
+      return new Tok(TokenKind.BRACKET_L, pos, pos + 1, line, col, prev);
+    // ]
+
+    case 93:
+      return new Tok(TokenKind.BRACKET_R, pos, pos + 1, line, col, prev);
+    // {
+
+    case 123:
+      return new Tok(TokenKind.BRACE_L, pos, pos + 1, line, col, prev);
+    // |
+
+    case 124:
+      return new Tok(TokenKind.PIPE, pos, pos + 1, line, col, prev);
+    // }
+
+    case 125:
+      return new Tok(TokenKind.BRACE_R, pos, pos + 1, line, col, prev);
+    // A-Z _ a-z
+
+    case 65:
+    case 66:
+    case 67:
+    case 68:
+    case 69:
+    case 70:
+    case 71:
+    case 72:
+    case 73:
+    case 74:
+    case 75:
+    case 76:
+    case 77:
+    case 78:
+    case 79:
+    case 80:
+    case 81:
+    case 82:
+    case 83:
+    case 84:
+    case 85:
+    case 86:
+    case 87:
+    case 88:
+    case 89:
+    case 90:
+    case 95:
+    case 97:
+    case 98:
+    case 99:
+    case 100:
+    case 101:
+    case 102:
+    case 103:
+    case 104:
+    case 105:
+    case 106:
+    case 107:
+    case 108:
+    case 109:
+    case 110:
+    case 111:
+    case 112:
+    case 113:
+    case 114:
+    case 115:
+    case 116:
+    case 117:
+    case 118:
+    case 119:
+    case 120:
+    case 121:
+    case 122:
+      return readName(source, pos, line, col, prev);
+    // - 0-9
+
+    case 45:
+    case 48:
+    case 49:
+    case 50:
+    case 51:
+    case 52:
+    case 53:
+    case 54:
+    case 55:
+    case 56:
+    case 57:
+      return readNumber(source, pos, code, line, col, prev);
+    // "
+
+    case 34:
+      if (charCodeAt.call(body, pos + 1) === 34 && charCodeAt.call(body, pos + 2) === 34) {
+        return readBlockString(source, pos, line, col, prev);
+      }
+
+      return readString(source, pos, line, col, prev);
+  }
+
+  throw (0, _error.syntaxError)(source, pos, unexpectedCharacterMessage(code));
+}
+/**
+ * Report a message that an unexpected character was encountered.
+ */
+
+
+function unexpectedCharacterMessage(code) {
+  if (code < 0x0020 && code !== 0x0009 && code !== 0x000a && code !== 0x000d) {
+    return "Cannot contain the invalid character ".concat(printCharCode(code), ".");
+  }
+
+  if (code === 39) {
+    // '
+    return "Unexpected single quote character ('), did you mean to use " + 'a double quote (")?';
+  }
+
+  return "Cannot parse the unexpected character ".concat(printCharCode(code), ".");
+}
+/**
+ * Reads from body starting at startPosition until it finds a non-whitespace
+ * or commented character, then returns the position of that character for
+ * lexing.
+ */
+
+
+function positionAfterWhitespace(body, startPosition, lexer) {
+  var bodyLength = body.length;
+  var position = startPosition;
+
+  while (position < bodyLength) {
+    var code = charCodeAt.call(body, position); // tab | space | comma | BOM
+
+    if (code === 9 || code === 32 || code === 44 || code === 0xfeff) {
+      ++position;
+    } else if (code === 10) {
+      // new line
+      ++position;
+      ++lexer.line;
+      lexer.lineStart = position;
+    } else if (code === 13) {
+      // carriage return
+      if (charCodeAt.call(body, position + 1) === 10) {
+        position += 2;
+      } else {
+        ++position;
+      }
+
+      ++lexer.line;
+      lexer.lineStart = position;
+    } else {
+      break;
+    }
+  }
+
+  return position;
+}
+/**
+ * Reads a comment token from the source file.
+ *
+ * #[\u0009\u0020-\uFFFF]*
+ */
+
+
+function readComment(source, start, line, col, prev) {
+  var body = source.body;
+  var code;
+  var position = start;
+
+  do {
+    code = charCodeAt.call(body, ++position);
+  } while (code !== null && ( // SourceCharacter but not LineTerminator
+  code > 0x001f || code === 0x0009));
+
+  return new Tok(TokenKind.COMMENT, start, position, line, col, prev, slice.call(body, start + 1, position));
+}
+/**
+ * Reads a number token from the source file, either a float
+ * or an int depending on whether a decimal point appears.
+ *
+ * Int:   -?(0|[1-9][0-9]*)
+ * Float: -?(0|[1-9][0-9]*)(\.[0-9]+)?((E|e)(+|-)?[0-9]+)?
+ */
+
+
+function readNumber(source, start, firstCode, line, col, prev) {
+  var body = source.body;
+  var code = firstCode;
+  var position = start;
+  var isFloat = false;
+
+  if (code === 45) {
+    // -
+    code = charCodeAt.call(body, ++position);
+  }
+
+  if (code === 48) {
+    // 0
+    code = charCodeAt.call(body, ++position);
+
+    if (code >= 48 && code <= 57) {
+      throw (0, _error.syntaxError)(source, position, "Invalid number, unexpected digit after 0: ".concat(printCharCode(code), "."));
+    }
+  } else {
+    position = readDigits(source, position, code);
+    code = charCodeAt.call(body, position);
+  }
+
+  if (code === 46) {
+    // .
+    isFloat = true;
+    code = charCodeAt.call(body, ++position);
+    position = readDigits(source, position, code);
+    code = charCodeAt.call(body, position);
+  }
+
+  if (code === 69 || code === 101) {
+    // E e
+    isFloat = true;
+    code = charCodeAt.call(body, ++position);
+
+    if (code === 43 || code === 45) {
+      // + -
+      code = charCodeAt.call(body, ++position);
+    }
+
+    position = readDigits(source, position, code);
+  }
+
+  return new Tok(isFloat ? TokenKind.FLOAT : TokenKind.INT, start, position, line, col, prev, slice.call(body, start, position));
+}
+/**
+ * Returns the new position in the source after reading digits.
+ */
+
+
+function readDigits(source, start, firstCode) {
+  var body = source.body;
+  var position = start;
+  var code = firstCode;
+
+  if (code >= 48 && code <= 57) {
+    // 0 - 9
+    do {
+      code = charCodeAt.call(body, ++position);
+    } while (code >= 48 && code <= 57); // 0 - 9
+
+
+    return position;
+  }
+
+  throw (0, _error.syntaxError)(source, position, "Invalid number, expected digit but got: ".concat(printCharCode(code), "."));
+}
+/**
+ * Reads a string token from the source file.
+ *
+ * "([^"\\\u000A\u000D]|(\\(u[0-9a-fA-F]{4}|["\\/bfnrt])))*"
+ */
+
+
+function readString(source, start, line, col, prev) {
+  var body = source.body;
+  var position = start + 1;
+  var chunkStart = position;
+  var code = 0;
+  var value = '';
+
+  while (position < body.length && (code = charCodeAt.call(body, position)) !== null && // not LineTerminator
+  code !== 0x000a && code !== 0x000d) {
+    // Closing Quote (")
+    if (code === 34) {
+      value += slice.call(body, chunkStart, position);
+      return new Tok(TokenKind.STRING, start, position + 1, line, col, prev, value);
+    } // SourceCharacter
+
+
+    if (code < 0x0020 && code !== 0x0009) {
+      throw (0, _error.syntaxError)(source, position, "Invalid character within String: ".concat(printCharCode(code), "."));
+    }
+
+    ++position;
+
+    if (code === 92) {
+      // \
+      value += slice.call(body, chunkStart, position - 1);
+      code = charCodeAt.call(body, position);
+
+      switch (code) {
+        case 34:
+          value += '"';
+          break;
+
+        case 47:
+          value += '/';
+          break;
+
+        case 92:
+          value += '\\';
+          break;
+
+        case 98:
+          value += '\b';
+          break;
+
+        case 102:
+          value += '\f';
+          break;
+
+        case 110:
+          value += '\n';
+          break;
+
+        case 114:
+          value += '\r';
+          break;
+
+        case 116:
+          value += '\t';
+          break;
+
+        case 117:
+          // u
+          var charCode = uniCharCode(charCodeAt.call(body, position + 1), charCodeAt.call(body, position + 2), charCodeAt.call(body, position + 3), charCodeAt.call(body, position + 4));
+
+          if (charCode < 0) {
+            throw (0, _error.syntaxError)(source, position, 'Invalid character escape sequence: ' + "\\u".concat(body.slice(position + 1, position + 5), "."));
+          }
+
+          value += String.fromCharCode(charCode);
+          position += 4;
+          break;
+
+        default:
+          throw (0, _error.syntaxError)(source, position, "Invalid character escape sequence: \\".concat(String.fromCharCode(code), "."));
+      }
+
+      ++position;
+      chunkStart = position;
+    }
+  }
+
+  throw (0, _error.syntaxError)(source, position, 'Unterminated string.');
+}
+/**
+ * Reads a block string token from the source file.
+ *
+ * """("?"?(\\"""|\\(?!=""")|[^"\\]))*"""
+ */
+
+
+function readBlockString(source, start, line, col, prev) {
+  var body = source.body;
+  var position = start + 3;
+  var chunkStart = position;
+  var code = 0;
+  var rawValue = '';
+
+  while (position < body.length && (code = charCodeAt.call(body, position)) !== null) {
+    // Closing Triple-Quote (""")
+    if (code === 34 && charCodeAt.call(body, position + 1) === 34 && charCodeAt.call(body, position + 2) === 34) {
+      rawValue += slice.call(body, chunkStart, position);
+      return new Tok(TokenKind.BLOCK_STRING, start, position + 3, line, col, prev, (0, _blockStringValue.default)(rawValue));
+    } // SourceCharacter
+
+
+    if (code < 0x0020 && code !== 0x0009 && code !== 0x000a && code !== 0x000d) {
+      throw (0, _error.syntaxError)(source, position, "Invalid character within String: ".concat(printCharCode(code), "."));
+    } // Escape Triple-Quote (\""")
+
+
+    if (code === 92 && charCodeAt.call(body, position + 1) === 34 && charCodeAt.call(body, position + 2) === 34 && charCodeAt.call(body, position + 3) === 34) {
+      rawValue += slice.call(body, chunkStart, position) + '"""';
+      position += 4;
+      chunkStart = position;
+    } else {
+      ++position;
+    }
+  }
+
+  throw (0, _error.syntaxError)(source, position, 'Unterminated string.');
+}
+/**
+ * Converts four hexadecimal chars to the integer that the
+ * string represents. For example, uniCharCode('0','0','0','f')
+ * will return 15, and uniCharCode('0','0','f','f') returns 255.
+ *
+ * Returns a negative number on error, if a char was invalid.
+ *
+ * This is implemented by noting that char2hex() returns -1 on error,
+ * which means the result of ORing the char2hex() will also be negative.
+ */
+
+
+function uniCharCode(a, b, c, d) {
+  return char2hex(a) << 12 | char2hex(b) << 8 | char2hex(c) << 4 | char2hex(d);
+}
+/**
+ * Converts a hex character to its integer value.
+ * '0' becomes 0, '9' becomes 9
+ * 'A' becomes 10, 'F' becomes 15
+ * 'a' becomes 10, 'f' becomes 15
+ *
+ * Returns -1 on error.
+ */
+
+
+function char2hex(a) {
+  return a >= 48 && a <= 57 ? a - 48 // 0-9
+  : a >= 65 && a <= 70 ? a - 55 // A-F
+  : a >= 97 && a <= 102 ? a - 87 // a-f
+  : -1;
+}
+/**
+ * Reads an alphanumeric + underscore name from the source.
+ *
+ * [_A-Za-z][_0-9A-Za-z]*
+ */
+
+
+function readName(source, start, line, col, prev) {
+  var body = source.body;
+  var bodyLength = body.length;
+  var position = start + 1;
+  var code = 0;
+
+  while (position !== bodyLength && (code = charCodeAt.call(body, position)) !== null && (code === 95 || // _
+  code >= 48 && code <= 57 || // 0-9
+  code >= 65 && code <= 90 || // A-Z
+  code >= 97 && code <= 122) // a-z
+  ) {
+    ++position;
+  }
+
+  return new Tok(TokenKind.NAME, start, position, line, col, prev, slice.call(body, start, position));
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/location.js":
+/*!****************************************************!*\
+  !*** ../node_modules/graphql/language/location.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getLocation = getLocation;
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Represents a location in a Source.
+ */
+
+/**
+ * Takes a Source and a UTF-8 character offset, and returns the corresponding
+ * line and column as a SourceLocation.
+ */
+function getLocation(source, position) {
+  var lineRegexp = /\r\n|[\n\r]/g;
+  var line = 1;
+  var column = position + 1;
+  var match;
+
+  while ((match = lineRegexp.exec(source.body)) && match.index < position) {
+    line += 1;
+    column = position + 1 - (match.index + match[0].length);
+  }
+
+  return {
+    line: line,
+    column: column
+  };
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/parser.js":
+/*!**************************************************!*\
+  !*** ../node_modules/graphql/language/parser.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.parse = parse;
+exports.parseValue = parseValue;
+exports.parseType = parseType;
+exports.parseConstValue = parseConstValue;
+exports.parseTypeReference = parseTypeReference;
+exports.parseNamedType = parseNamedType;
+
+var _inspect = _interopRequireDefault(__webpack_require__(/*! ../jsutils/inspect */ "../node_modules/graphql/jsutils/inspect.js"));
+
+var _source = __webpack_require__(/*! ./source */ "../node_modules/graphql/language/source.js");
+
+var _error = __webpack_require__(/*! ../error */ "../node_modules/graphql/error/index.js");
+
+var _lexer = __webpack_require__(/*! ./lexer */ "../node_modules/graphql/language/lexer.js");
+
+var _kinds = __webpack_require__(/*! ./kinds */ "../node_modules/graphql/language/kinds.js");
+
+var _directiveLocation = __webpack_require__(/*! ./directiveLocation */ "../node_modules/graphql/language/directiveLocation.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Copyright (c) 2015-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *  strict
+ */
+
+/**
+ * Given a GraphQL source, parses it into a Document.
+ * Throws GraphQLError if a syntax error is encountered.
+ */
+function parse(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+
+  if (!(sourceObj instanceof _source.Source)) {
+    throw new TypeError("Must provide Source. Received: ".concat((0, _inspect.default)(sourceObj)));
+  }
+
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  return parseDocument(lexer);
+}
+/**
+ * Given a string containing a GraphQL value (ex. `[42]`), parse the AST for
+ * that value.
+ * Throws GraphQLError if a syntax error is encountered.
+ *
+ * This is useful within tools that operate upon GraphQL Values directly and
+ * in isolation of complete GraphQL documents.
+ *
+ * Consider providing the results to the utility function: valueFromAST().
+ */
+
+
+function parseValue(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  expect(lexer, _lexer.TokenKind.SOF);
+  var value = parseValueLiteral(lexer, false);
+  expect(lexer, _lexer.TokenKind.EOF);
+  return value;
+}
+/**
+ * Given a string containing a GraphQL Type (ex. `[Int!]`), parse the AST for
+ * that type.
+ * Throws GraphQLError if a syntax error is encountered.
+ *
+ * This is useful within tools that operate upon GraphQL Types directly and
+ * in isolation of complete GraphQL documents.
+ *
+ * Consider providing the results to the utility function: typeFromAST().
+ */
+
+
+function parseType(source, options) {
+  var sourceObj = typeof source === 'string' ? new _source.Source(source) : source;
+  var lexer = (0, _lexer.createLexer)(sourceObj, options || {});
+  expect(lexer, _lexer.TokenKind.SOF);
+  var type = parseTypeReference(lexer);
+  expect(lexer, _lexer.TokenKind.EOF);
+  return type;
+}
+/**
+ * Converts a name lex token into a name parse node.
+ */
+
+
+function parseName(lexer) {
+  var token = expect(lexer, _lexer.TokenKind.NAME);
+  return {
+    kind: _kinds.Kind.NAME,
+    value: token.value,
+    loc: loc(lexer, token)
+  };
+} // Implements the parsing rules in the Document section.
+
+/**
+ * Document : Definition+
+ */
+
+
+function parseDocument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.DOCUMENT,
+    definitions: many(lexer, _lexer.TokenKind.SOF, parseDefinition, _lexer.TokenKind.EOF),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Definition :
+ *   - ExecutableDefinition
+ *   - TypeSystemDefinition
+ *   - TypeSystemExtension
+ */
+
+
+function parseDefinition(lexer) {
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    switch (lexer.token.value) {
+      case 'query':
+      case 'mutation':
+      case 'subscription':
+      case 'fragment':
+        return parseExecutableDefinition(lexer);
+
+      case 'schema':
+      case 'scalar':
+      case 'type':
+      case 'interface':
+      case 'union':
+      case 'enum':
+      case 'input':
+      case 'directive':
+        return parseTypeSystemDefinition(lexer);
+
+      case 'extend':
+        return parseTypeSystemExtension(lexer);
+    }
+  } else if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return parseExecutableDefinition(lexer);
+  } else if (peekDescription(lexer)) {
+    return parseTypeSystemDefinition(lexer);
+  }
+
+  throw unexpected(lexer);
+}
+/**
+ * ExecutableDefinition :
+ *   - OperationDefinition
+ *   - FragmentDefinition
+ */
+
+
+function parseExecutableDefinition(lexer) {
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    switch (lexer.token.value) {
+      case 'query':
+      case 'mutation':
+      case 'subscription':
+        return parseOperationDefinition(lexer);
+
+      case 'fragment':
+        return parseFragmentDefinition(lexer);
+    }
+  } else if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return parseOperationDefinition(lexer);
+  }
+
+  throw unexpected(lexer);
+} // Implements the parsing rules in the Operations section.
+
+/**
+ * OperationDefinition :
+ *  - SelectionSet
+ *  - OperationType Name? VariableDefinitions? Directives? SelectionSet
+ */
+
+
+function parseOperationDefinition(lexer) {
+  var start = lexer.token;
+
+  if (peek(lexer, _lexer.TokenKind.BRACE_L)) {
+    return {
+      kind: _kinds.Kind.OPERATION_DEFINITION,
+      operation: 'query',
+      name: undefined,
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: parseSelectionSet(lexer),
+      loc: loc(lexer, start)
+    };
+  }
+
+  var operation = parseOperationType(lexer);
+  var name;
+
+  if (peek(lexer, _lexer.TokenKind.NAME)) {
+    name = parseName(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.OPERATION_DEFINITION,
+    operation: operation,
+    name: name,
+    variableDefinitions: parseVariableDefinitions(lexer),
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * OperationType : one of query mutation subscription
+ */
+
+
+function parseOperationType(lexer) {
+  var operationToken = expect(lexer, _lexer.TokenKind.NAME);
+
+  switch (operationToken.value) {
+    case 'query':
+      return 'query';
+
+    case 'mutation':
+      return 'mutation';
+
+    case 'subscription':
+      return 'subscription';
+  }
+
+  throw unexpected(lexer, operationToken);
+}
+/**
+ * VariableDefinitions : ( VariableDefinition+ )
+ */
+
+
+function parseVariableDefinitions(lexer) {
+  return peek(lexer, _lexer.TokenKind.PAREN_L) ? many(lexer, _lexer.TokenKind.PAREN_L, parseVariableDefinition, _lexer.TokenKind.PAREN_R) : [];
+}
+/**
+ * VariableDefinition : Variable : Type DefaultValue? Directives[Const]?
+ */
+
+
+function parseVariableDefinition(lexer) {
+  var start = lexer.token;
+
+  if (lexer.options.experimentalVariableDefinitionDirectives) {
+    return {
+      kind: _kinds.Kind.VARIABLE_DEFINITION,
+      variable: parseVariable(lexer),
+      type: (expect(lexer, _lexer.TokenKind.COLON), parseTypeReference(lexer)),
+      defaultValue: skip(lexer, _lexer.TokenKind.EQUALS) ? parseValueLiteral(lexer, true) : undefined,
+      directives: parseDirectives(lexer, true),
+      loc: loc(lexer, start)
+    };
+  }
+
+  return {
+    kind: _kinds.Kind.VARIABLE_DEFINITION,
+    variable: parseVariable(lexer),
+    type: (expect(lexer, _lexer.TokenKind.COLON), parseTypeReference(lexer)),
+    defaultValue: skip(lexer, _lexer.TokenKind.EQUALS) ? parseValueLiteral(lexer, true) : undefined,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Variable : $ Name
+ */
+
+
+function parseVariable(lexer) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.DOLLAR);
+  return {
+    kind: _kinds.Kind.VARIABLE,
+    name: parseName(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * SelectionSet : { Selection+ }
+ */
+
+
+function parseSelectionSet(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.SELECTION_SET,
+    selections: many(lexer, _lexer.TokenKind.BRACE_L, parseSelection, _lexer.TokenKind.BRACE_R),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Selection :
+ *   - Field
+ *   - FragmentSpread
+ *   - InlineFragment
+ */
+
+
+function parseSelection(lexer) {
+  return peek(lexer, _lexer.TokenKind.SPREAD) ? parseFragment(lexer) : parseField(lexer);
+}
+/**
+ * Field : Alias? Name Arguments? Directives? SelectionSet?
+ *
+ * Alias : Name :
+ */
+
+
+function parseField(lexer) {
+  var start = lexer.token;
+  var nameOrAlias = parseName(lexer);
+  var alias;
+  var name;
+
+  if (skip(lexer, _lexer.TokenKind.COLON)) {
+    alias = nameOrAlias;
+    name = parseName(lexer);
+  } else {
+    name = nameOrAlias;
+  }
+
+  return {
+    kind: _kinds.Kind.FIELD,
+    alias: alias,
+    name: name,
+    arguments: parseArguments(lexer, false),
+    directives: parseDirectives(lexer, false),
+    selectionSet: peek(lexer, _lexer.TokenKind.BRACE_L) ? parseSelectionSet(lexer) : undefined,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * Arguments[Const] : ( Argument[?Const]+ )
+ */
+
+
+function parseArguments(lexer, isConst) {
+  var item = isConst ? parseConstArgument : parseArgument;
+  return peek(lexer, _lexer.TokenKind.PAREN_L) ? many(lexer, _lexer.TokenKind.PAREN_L, item, _lexer.TokenKind.PAREN_R) : [];
+}
+/**
+ * Argument[Const] : Name : Value[?Const]
+ */
+
+
+function parseArgument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.ARGUMENT,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseValueLiteral(lexer, false)),
+    loc: loc(lexer, start)
+  };
+}
+
+function parseConstArgument(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.ARGUMENT,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseConstValue(lexer)),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Fragments section.
+
+/**
+ * Corresponds to both FragmentSpread and InlineFragment in the spec.
+ *
+ * FragmentSpread : ... FragmentName Directives?
+ *
+ * InlineFragment : ... TypeCondition? Directives? SelectionSet
+ */
+
+
+function parseFragment(lexer) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.SPREAD);
+
+  if (peek(lexer, _lexer.TokenKind.NAME) && lexer.token.value !== 'on') {
+    return {
+      kind: _kinds.Kind.FRAGMENT_SPREAD,
+      name: parseFragmentName(lexer),
+      directives: parseDirectives(lexer, false),
+      loc: loc(lexer, start)
+    };
+  }
+
+  var typeCondition;
+
+  if (lexer.token.value === 'on') {
+    lexer.advance();
+    typeCondition = parseNamedType(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INLINE_FRAGMENT,
+    typeCondition: typeCondition,
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * FragmentDefinition :
+ *   - fragment FragmentName on TypeCondition Directives? SelectionSet
+ *
+ * TypeCondition : NamedType
+ */
+
+
+function parseFragmentDefinition(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'fragment'); // Experimental support for defining variables within fragments changes
+  // the grammar of FragmentDefinition:
+  //   - fragment FragmentName VariableDefinitions? on TypeCondition Directives? SelectionSet
+
+  if (lexer.options.experimentalFragmentVariables) {
+    return {
+      kind: _kinds.Kind.FRAGMENT_DEFINITION,
+      name: parseFragmentName(lexer),
+      variableDefinitions: parseVariableDefinitions(lexer),
+      typeCondition: (expectKeyword(lexer, 'on'), parseNamedType(lexer)),
+      directives: parseDirectives(lexer, false),
+      selectionSet: parseSelectionSet(lexer),
+      loc: loc(lexer, start)
+    };
+  }
+
+  return {
+    kind: _kinds.Kind.FRAGMENT_DEFINITION,
+    name: parseFragmentName(lexer),
+    typeCondition: (expectKeyword(lexer, 'on'), parseNamedType(lexer)),
+    directives: parseDirectives(lexer, false),
+    selectionSet: parseSelectionSet(lexer),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * FragmentName : Name but not `on`
+ */
+
+
+function parseFragmentName(lexer) {
+  if (lexer.token.value === 'on') {
+    throw unexpected(lexer);
+  }
+
+  return parseName(lexer);
+} // Implements the parsing rules in the Values section.
+
+/**
+ * Value[Const] :
+ *   - [~Const] Variable
+ *   - IntValue
+ *   - FloatValue
+ *   - StringValue
+ *   - BooleanValue
+ *   - NullValue
+ *   - EnumValue
+ *   - ListValue[?Const]
+ *   - ObjectValue[?Const]
+ *
+ * BooleanValue : one of `true` `false`
+ *
+ * NullValue : `null`
+ *
+ * EnumValue : Name but not `true`, `false` or `null`
+ */
+
+
+function parseValueLiteral(lexer, isConst) {
+  var token = lexer.token;
+
+  switch (token.kind) {
+    case _lexer.TokenKind.BRACKET_L:
+      return parseList(lexer, isConst);
+
+    case _lexer.TokenKind.BRACE_L:
+      return parseObject(lexer, isConst);
+
+    case _lexer.TokenKind.INT:
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.INT,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.FLOAT:
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.FLOAT,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.STRING:
+    case _lexer.TokenKind.BLOCK_STRING:
+      return parseStringLiteral(lexer);
+
+    case _lexer.TokenKind.NAME:
+      if (token.value === 'true' || token.value === 'false') {
+        lexer.advance();
+        return {
+          kind: _kinds.Kind.BOOLEAN,
+          value: token.value === 'true',
+          loc: loc(lexer, token)
+        };
+      } else if (token.value === 'null') {
+        lexer.advance();
+        return {
+          kind: _kinds.Kind.NULL,
+          loc: loc(lexer, token)
+        };
+      }
+
+      lexer.advance();
+      return {
+        kind: _kinds.Kind.ENUM,
+        value: token.value,
+        loc: loc(lexer, token)
+      };
+
+    case _lexer.TokenKind.DOLLAR:
+      if (!isConst) {
+        return parseVariable(lexer);
+      }
+
+      break;
+  }
+
+  throw unexpected(lexer);
+}
+
+function parseStringLiteral(lexer) {
+  var token = lexer.token;
+  lexer.advance();
+  return {
+    kind: _kinds.Kind.STRING,
+    value: token.value,
+    block: token.kind === _lexer.TokenKind.BLOCK_STRING,
+    loc: loc(lexer, token)
+  };
+}
+
+function parseConstValue(lexer) {
+  return parseValueLiteral(lexer, true);
+}
+
+function parseValueValue(lexer) {
+  return parseValueLiteral(lexer, false);
+}
+/**
+ * ListValue[Const] :
+ *   - [ ]
+ *   - [ Value[?Const]+ ]
+ */
+
+
+function parseList(lexer, isConst) {
+  var start = lexer.token;
+  var item = isConst ? parseConstValue : parseValueValue;
+  return {
+    kind: _kinds.Kind.LIST,
+    values: any(lexer, _lexer.TokenKind.BRACKET_L, item, _lexer.TokenKind.BRACKET_R),
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectValue[Const] :
+ *   - { }
+ *   - { ObjectField[?Const]+ }
+ */
+
+
+function parseObject(lexer, isConst) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.BRACE_L);
+  var fields = [];
+
+  while (!skip(lexer, _lexer.TokenKind.BRACE_R)) {
+    fields.push(parseObjectField(lexer, isConst));
+  }
+
+  return {
+    kind: _kinds.Kind.OBJECT,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectField[Const] : Name : Value[?Const]
+ */
+
+
+function parseObjectField(lexer, isConst) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.OBJECT_FIELD,
+    name: parseName(lexer),
+    value: (expect(lexer, _lexer.TokenKind.COLON), parseValueLiteral(lexer, isConst)),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Directives section.
+
+/**
+ * Directives[Const] : Directive[?Const]+
+ */
+
+
+function parseDirectives(lexer, isConst) {
+  var directives = [];
+
+  while (peek(lexer, _lexer.TokenKind.AT)) {
+    directives.push(parseDirective(lexer, isConst));
+  }
+
+  return directives;
+}
+/**
+ * Directive[Const] : @ Name Arguments[?Const]?
+ */
+
+
+function parseDirective(lexer, isConst) {
+  var start = lexer.token;
+  expect(lexer, _lexer.TokenKind.AT);
+  return {
+    kind: _kinds.Kind.DIRECTIVE,
+    name: parseName(lexer),
+    arguments: parseArguments(lexer, isConst),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Types section.
+
+/**
+ * Type :
+ *   - NamedType
+ *   - ListType
+ *   - NonNullType
+ */
+
+
+function parseTypeReference(lexer) {
+  var start = lexer.token;
+  var type;
+
+  if (skip(lexer, _lexer.TokenKind.BRACKET_L)) {
+    type = parseTypeReference(lexer);
+    expect(lexer, _lexer.TokenKind.BRACKET_R);
+    type = {
+      kind: _kinds.Kind.LIST_TYPE,
+      type: type,
+      loc: loc(lexer, start)
+    };
+  } else {
+    type = parseNamedType(lexer);
+  }
+
+  if (skip(lexer, _lexer.TokenKind.BANG)) {
+    return {
+      kind: _kinds.Kind.NON_NULL_TYPE,
+      type: type,
+      loc: loc(lexer, start)
+    };
+  }
+
+  return type;
+}
+/**
+ * NamedType : Name
+ */
+
+
+function parseNamedType(lexer) {
+  var start = lexer.token;
+  return {
+    kind: _kinds.Kind.NAMED_TYPE,
+    name: parseName(lexer),
+    loc: loc(lexer, start)
+  };
+} // Implements the parsing rules in the Type Definition section.
+
+/**
+ * TypeSystemDefinition :
+ *   - SchemaDefinition
+ *   - TypeDefinition
+ *   - DirectiveDefinition
+ *
+ * TypeDefinition :
+ *   - ScalarTypeDefinition
+ *   - ObjectTypeDefinition
+ *   - InterfaceTypeDefinition
+ *   - UnionTypeDefinition
+ *   - EnumTypeDefinition
+ *   - InputObjectTypeDefinition
+ */
+
+
+function parseTypeSystemDefinition(lexer) {
+  // Many definitions begin with a description and require a lookahead.
+  var keywordToken = peekDescription(lexer) ? lexer.lookahead() : lexer.token;
+
+  if (keywordToken.kind === _lexer.TokenKind.NAME) {
+    switch (keywordToken.value) {
+      case 'schema':
+        return parseSchemaDefinition(lexer);
+
+      case 'scalar':
+        return parseScalarTypeDefinition(lexer);
+
+      case 'type':
+        return parseObjectTypeDefinition(lexer);
+
+      case 'interface':
+        return parseInterfaceTypeDefinition(lexer);
+
+      case 'union':
+        return parseUnionTypeDefinition(lexer);
+
+      case 'enum':
+        return parseEnumTypeDefinition(lexer);
+
+      case 'input':
+        return parseInputObjectTypeDefinition(lexer);
+
+      case 'directive':
+        return parseDirectiveDefinition(lexer);
+    }
+  }
+
+  throw unexpected(lexer, keywordToken);
+}
+
+function peekDescription(lexer) {
+  return peek(lexer, _lexer.TokenKind.STRING) || peek(lexer, _lexer.TokenKind.BLOCK_STRING);
+}
+/**
+ * Description : StringValue
+ */
+
+
+function parseDescription(lexer) {
+  if (peekDescription(lexer)) {
+    return parseStringLiteral(lexer);
+  }
+}
+/**
+ * SchemaDefinition : schema Directives[Const]? { OperationTypeDefinition+ }
+ */
+
+
+function parseSchemaDefinition(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'schema');
+  var directives = parseDirectives(lexer, true);
+  var operationTypes = many(lexer, _lexer.TokenKind.BRACE_L, parseOperationTypeDefinition, _lexer.TokenKind.BRACE_R);
+  return {
+    kind: _kinds.Kind.SCHEMA_DEFINITION,
+    directives: directives,
+    operationTypes: operationTypes,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * OperationTypeDefinition : OperationType : NamedType
+ */
+
+
+function parseOperationTypeDefinition(lexer) {
+  var start = lexer.token;
+  var operation = parseOperationType(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseNamedType(lexer);
+  return {
+    kind: _kinds.Kind.OPERATION_TYPE_DEFINITION,
+    operation: operation,
+    type: type,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ScalarTypeDefinition : Description? scalar Name Directives[Const]?
+ */
+
+
+function parseScalarTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'scalar');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.SCALAR_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectTypeDefinition :
+ *   Description?
+ *   type Name ImplementsInterfaces? Directives[Const]? FieldsDefinition?
+ */
+
+
+function parseObjectTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'type');
+  var name = parseName(lexer);
+  var interfaces = parseImplementsInterfaces(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.OBJECT_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    interfaces: interfaces,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ImplementsInterfaces :
+ *   - implements `&`? NamedType
+ *   - ImplementsInterfaces & NamedType
+ */
+
+
+function parseImplementsInterfaces(lexer) {
+  var types = [];
+
+  if (lexer.token.value === 'implements') {
+    lexer.advance(); // Optional leading ampersand
+
+    skip(lexer, _lexer.TokenKind.AMP);
+
+    do {
+      types.push(parseNamedType(lexer));
+    } while (skip(lexer, _lexer.TokenKind.AMP) || // Legacy support for the SDL?
+    lexer.options.allowLegacySDLImplementsInterfaces && peek(lexer, _lexer.TokenKind.NAME));
+  }
+
+  return types;
+}
+/**
+ * FieldsDefinition : { FieldDefinition+ }
+ */
+
+
+function parseFieldsDefinition(lexer) {
+  // Legacy support for the SDL?
+  if (lexer.options.allowLegacySDLEmptyFields && peek(lexer, _lexer.TokenKind.BRACE_L) && lexer.lookahead().kind === _lexer.TokenKind.BRACE_R) {
+    lexer.advance();
+    lexer.advance();
+    return [];
+  }
+
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseFieldDefinition, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * FieldDefinition :
+ *   - Description? Name ArgumentsDefinition? : Type Directives[Const]?
+ */
+
+
+function parseFieldDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  var args = parseArgumentDefs(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseTypeReference(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.FIELD_DEFINITION,
+    description: description,
+    name: name,
+    arguments: args,
+    type: type,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ArgumentsDefinition : ( InputValueDefinition+ )
+ */
+
+
+function parseArgumentDefs(lexer) {
+  if (!peek(lexer, _lexer.TokenKind.PAREN_L)) {
+    return [];
+  }
+
+  return many(lexer, _lexer.TokenKind.PAREN_L, parseInputValueDef, _lexer.TokenKind.PAREN_R);
+}
+/**
+ * InputValueDefinition :
+ *   - Description? Name : Type DefaultValue? Directives[Const]?
+ */
+
+
+function parseInputValueDef(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  expect(lexer, _lexer.TokenKind.COLON);
+  var type = parseTypeReference(lexer);
+  var defaultValue;
+
+  if (skip(lexer, _lexer.TokenKind.EQUALS)) {
+    defaultValue = parseConstValue(lexer);
+  }
+
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.INPUT_VALUE_DEFINITION,
+    description: description,
+    name: name,
+    type: type,
+    defaultValue: defaultValue,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InterfaceTypeDefinition :
+ *   - Description? interface Name Directives[Const]? FieldsDefinition?
+ */
+
+
+function parseInterfaceTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'interface');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.INTERFACE_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionTypeDefinition :
+ *   - Description? union Name Directives[Const]? UnionMemberTypes?
+ */
+
+
+function parseUnionTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'union');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var types = parseUnionMemberTypes(lexer);
+  return {
+    kind: _kinds.Kind.UNION_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    types: types,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionMemberTypes :
+ *   - = `|`? NamedType
+ *   - UnionMemberTypes | NamedType
+ */
+
+
+function parseUnionMemberTypes(lexer) {
+  var types = [];
+
+  if (skip(lexer, _lexer.TokenKind.EQUALS)) {
+    // Optional leading pipe
+    skip(lexer, _lexer.TokenKind.PIPE);
+
+    do {
+      types.push(parseNamedType(lexer));
+    } while (skip(lexer, _lexer.TokenKind.PIPE));
+  }
+
+  return types;
+}
+/**
+ * EnumTypeDefinition :
+ *   - Description? enum Name Directives[Const]? EnumValuesDefinition?
+ */
+
+
+function parseEnumTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'enum');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var values = parseEnumValuesDefinition(lexer);
+  return {
+    kind: _kinds.Kind.ENUM_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    values: values,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * EnumValuesDefinition : { EnumValueDefinition+ }
+ */
+
+
+function parseEnumValuesDefinition(lexer) {
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseEnumValueDefinition, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * EnumValueDefinition : Description? EnumValue Directives[Const]?
+ *
+ * EnumValue : Name
+ */
+
+
+function parseEnumValueDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  return {
+    kind: _kinds.Kind.ENUM_VALUE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputObjectTypeDefinition :
+ *   - Description? input Name Directives[Const]? InputFieldsDefinition?
+ */
+
+
+function parseInputObjectTypeDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'input');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseInputFieldsDefinition(lexer);
+  return {
+    kind: _kinds.Kind.INPUT_OBJECT_TYPE_DEFINITION,
+    description: description,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputFieldsDefinition : { InputValueDefinition+ }
+ */
+
+
+function parseInputFieldsDefinition(lexer) {
+  return peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseInputValueDef, _lexer.TokenKind.BRACE_R) : [];
+}
+/**
+ * TypeSystemExtension :
+ *   - SchemaExtension
+ *   - TypeExtension
+ *
+ * TypeExtension :
+ *   - ScalarTypeExtension
+ *   - ObjectTypeExtension
+ *   - InterfaceTypeExtension
+ *   - UnionTypeExtension
+ *   - EnumTypeExtension
+ *   - InputObjectTypeDefinition
+ */
+
+
+function parseTypeSystemExtension(lexer) {
+  var keywordToken = lexer.lookahead();
+
+  if (keywordToken.kind === _lexer.TokenKind.NAME) {
+    switch (keywordToken.value) {
+      case 'schema':
+        return parseSchemaExtension(lexer);
+
+      case 'scalar':
+        return parseScalarTypeExtension(lexer);
+
+      case 'type':
+        return parseObjectTypeExtension(lexer);
+
+      case 'interface':
+        return parseInterfaceTypeExtension(lexer);
+
+      case 'union':
+        return parseUnionTypeExtension(lexer);
+
+      case 'enum':
+        return parseEnumTypeExtension(lexer);
+
+      case 'input':
+        return parseInputObjectTypeExtension(lexer);
+    }
+  }
+
+  throw unexpected(lexer, keywordToken);
+}
+/**
+ * SchemaExtension :
+ *  - extend schema Directives[Const]? { OperationTypeDefinition+ }
+ *  - extend schema Directives[Const]
+ */
+
+
+function parseSchemaExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'schema');
+  var directives = parseDirectives(lexer, true);
+  var operationTypes = peek(lexer, _lexer.TokenKind.BRACE_L) ? many(lexer, _lexer.TokenKind.BRACE_L, parseOperationTypeDefinition, _lexer.TokenKind.BRACE_R) : [];
+
+  if (directives.length === 0 && operationTypes.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.SCHEMA_EXTENSION,
+    directives: directives,
+    operationTypes: operationTypes,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ScalarTypeExtension :
+ *   - extend scalar Name Directives[Const]
+ */
+
+
+function parseScalarTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'scalar');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+
+  if (directives.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.SCALAR_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * ObjectTypeExtension :
+ *  - extend type Name ImplementsInterfaces? Directives[Const]? FieldsDefinition
+ *  - extend type Name ImplementsInterfaces? Directives[Const]
+ *  - extend type Name ImplementsInterfaces
+ */
+
+
+function parseObjectTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'type');
+  var name = parseName(lexer);
+  var interfaces = parseImplementsInterfaces(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+
+  if (interfaces.length === 0 && directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.OBJECT_TYPE_EXTENSION,
+    name: name,
+    interfaces: interfaces,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InterfaceTypeExtension :
+ *   - extend interface Name Directives[Const]? FieldsDefinition
+ *   - extend interface Name Directives[Const]
+ */
+
+
+function parseInterfaceTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'interface');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseFieldsDefinition(lexer);
+
+  if (directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INTERFACE_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * UnionTypeExtension :
+ *   - extend union Name Directives[Const]? UnionMemberTypes
+ *   - extend union Name Directives[Const]
+ */
+
+
+function parseUnionTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'union');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var types = parseUnionMemberTypes(lexer);
+
+  if (directives.length === 0 && types.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.UNION_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    types: types,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * EnumTypeExtension :
+ *   - extend enum Name Directives[Const]? EnumValuesDefinition
+ *   - extend enum Name Directives[Const]
+ */
+
+
+function parseEnumTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'enum');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var values = parseEnumValuesDefinition(lexer);
+
+  if (directives.length === 0 && values.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.ENUM_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    values: values,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * InputObjectTypeExtension :
+ *   - extend input Name Directives[Const]? InputFieldsDefinition
+ *   - extend input Name Directives[Const]
+ */
+
+
+function parseInputObjectTypeExtension(lexer) {
+  var start = lexer.token;
+  expectKeyword(lexer, 'extend');
+  expectKeyword(lexer, 'input');
+  var name = parseName(lexer);
+  var directives = parseDirectives(lexer, true);
+  var fields = parseInputFieldsDefinition(lexer);
+
+  if (directives.length === 0 && fields.length === 0) {
+    throw unexpected(lexer);
+  }
+
+  return {
+    kind: _kinds.Kind.INPUT_OBJECT_TYPE_EXTENSION,
+    name: name,
+    directives: directives,
+    fields: fields,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * DirectiveDefinition :
+ *   - Description? directive @ Name ArgumentsDefinition? on DirectiveLocations
+ */
+
+
+function parseDirectiveDefinition(lexer) {
+  var start = lexer.token;
+  var description = parseDescription(lexer);
+  expectKeyword(lexer, 'directive');
+  expect(lexer, _lexer.TokenKind.AT);
+  var name = parseName(lexer);
+  var args = parseArgumentDefs(lexer);
+  expectKeyword(lexer, 'on');
+  var locations = parseDirectiveLocations(lexer);
+  return {
+    kind: _kinds.Kind.DIRECTIVE_DEFINITION,
+    description: description,
+    name: name,
+    arguments: args,
+    locations: locations,
+    loc: loc(lexer, start)
+  };
+}
+/**
+ * DirectiveLocations :
+ *   - `|`? DirectiveLocation
+ *   - DirectiveLocations | DirectiveLocation
+ */
+
+
+function parseDirectiveLocations(lexer) {
+  // Optional leading pipe
+  skip(lexer, _lexer.TokenKind.PIPE);
+  var locations = [];
+
+  do {
+    locations.push(parseDirectiveLocation(lexer));
+  } while (skip(lexer, _lexer.TokenKind.PIPE));
+
+  return locations;
+}
+/*
+ * DirectiveLocation :
+ *   - ExecutableDirectiveLocation
+ *   - TypeSystemDirectiveLocation
+ *
+ * ExecutableDirectiveLocation : one of
+ *   `QUERY`
+ *   `MUTATION`
+ *   `SUBSCRIPTION`
+ *   `FIELD`
+ *   `FRAGMENT_DEFINITION`
+ *   `FRAGMENT_SPREAD`
+ *   `INLINE_FRAGMENT`
+ *
+ * TypeSystemDirectiveLocation : one of
+ *   `SCHEMA`
+ *   `SCALAR`
+ *   `OBJECT`
+ *   `FIELD_DEFINITION`
+ *   `ARGUMENT_DEFINITION`
+ *   `INTERFACE`
+ *   `UNION`
+ *   `ENUM`
+ *   `ENUM_VALUE`
+ *   `INPUT_OBJECT`
+ *   `INPUT_FIELD_DEFINITION`
+ */
+
+
+function parseDirectiveLocation(lexer) {
+  var start = lexer.token;
+  var name = parseName(lexer);
+
+  if (_directiveLocation.DirectiveLocation.hasOwnProperty(name.value)) {
+    return name;
+  }
+
+  throw unexpected(lexer, start);
+} // Core parsing utility functions
+
+/**
+ * Returns a location object, used to identify the place in
+ * the source that created a given parsed object.
+ */
+
+
+function loc(lexer, startToken) {
+  if (!lexer.options.noLocation) {
+    return new Loc(startToken, lexer.lastToken, lexer.source);
+  }
+}
+
+function Loc(startToken, endToken, source) {
+  this.start = startToken.start;
+  this.end = endToken.end;
+  this.startToken = startToken;
+  this.endToken = endToken;
+  this.source = source;
+} // Print a simplified form when appearing in JSON/util.inspect.
+
+
+Loc.prototype.toJSON = Loc.prototype.inspect = function toJSON() {
+  return {
+    start: this.start,
+    end: this.end
+  };
+};
+/**
+ * Determines if the next token is of a given kind
+ */
+
+
+function peek(lexer, kind) {
+  return lexer.token.kind === kind;
+}
+/**
+ * If the next token is of the given kind, return true after advancing
+ * the lexer. Otherwise, do not change the parser state and return false.
+ */
+
+
+function skip(lexer, kind) {
+  var match = lexer.token.kind === kind;
+
+  if (match) {
+    lexer.advance();
+  }
+
+  return match;
+}
+/**
+ * If the next token is of the given kind, return that token after advancing
+ * the lexer. Otherwise, do not change the parser state and throw an error.
+ */
+
+
+function expect(lexer, kind) {
+  var token = lexer.token;
+
+  if (token.kind === kind) {
+    lexer.advance();
+    return token;
+  }
+
+  throw (0, _error.syntaxError)(lexer.source, token.start, "Expected ".concat(kind, ", found ").concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * If the next token is a keyword with the given value, return that token after
+ * advancing the lexer. Otherwise, do not change the parser state and return
+ * false.
+ */
+
+
+function expectKeyword(lexer, value) {
+  var token = lexer.token;
+
+  if (token.kind === _lexer.TokenKind.NAME && token.value === value) {
+    lexer.advance();
+    return token;
+  }
+
+  throw (0, _error.syntaxError)(lexer.source, token.start, "Expected \"".concat(value, "\", found ").concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * Helper function for creating an error when an unexpected lexed token
+ * is encountered.
+ */
+
+
+function unexpected(lexer, atToken) {
+  var token = atToken || lexer.token;
+  return (0, _error.syntaxError)(lexer.source, token.start, "Unexpected ".concat((0, _lexer.getTokenDesc)(token)));
+}
+/**
+ * Returns a possibly empty list of parse nodes, determined by
+ * the parseFn. This list begins with a lex token of openKind
+ * and ends with a lex token of closeKind. Advances the parser
+ * to the next lex token after the closing token.
+ */
+
+
+function any(lexer, openKind, parseFn, closeKind) {
+  expect(lexer, openKind);
+  var nodes = [];
+
+  while (!skip(lexer, closeKind)) {
+    nodes.push(parseFn(lexer));
+  }
+
+  return nodes;
+}
+/**
+ * Returns a non-empty list of parse nodes, determined by
+ * the parseFn. This list begins with a lex token of openKind
+ * and ends with a lex token of closeKind. Advances the parser
+ * to the next lex token after the closing token.
+ */
+
+
+function many(lexer, openKind, parseFn, closeKind) {
+  expect(lexer, openKind);
+  var nodes = [parseFn(lexer)];
+
+  while (!skip(lexer, closeKind)) {
+    nodes.push(parseFn(lexer));
+  }
+
+  return nodes;
+}
+
+/***/ }),
+
+/***/ "../node_modules/graphql/language/source.js":
+/*!**************************************************!*\
+  !*** ../node_modules/graphql/language/source.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Source = void 0;
+
+var _invariant = _interopRequireDefault(__webpack_require__(/*! ../jsutils/invariant */ "../node_modules/graphql/jsutils/invariant.js"));
+
+var _defineToStringTag = _interopRequireDefault(__webpack_require__(/*! ../jsutils/defineToStringTag */ "../node_modules/graphql/jsutils/defineToStringTag.js"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * A representation of source input to GraphQL.
+ * `name` and `locationOffset` are optional. They are useful for clients who
+ * store GraphQL documents in source files; for example, if the GraphQL input
+ * starts at line 40 in a file named Foo.graphql, it might be useful for name to
+ * be "Foo.graphql" and location to be `{ line: 40, column: 0 }`.
+ * line and column in locationOffset are 1-indexed
+ */
+var Source = function Source(body, name, locationOffset) {
+  _defineProperty(this, "body", void 0);
+
+  _defineProperty(this, "name", void 0);
+
+  _defineProperty(this, "locationOffset", void 0);
+
+  this.body = body;
+  this.name = name || 'GraphQL request';
+  this.locationOffset = locationOffset || {
+    line: 1,
+    column: 1
+  };
+  !(this.locationOffset.line > 0) ? (0, _invariant.default)(0, 'line in locationOffset is 1-indexed and must be positive') : void 0;
+  !(this.locationOffset.column > 0) ? (0, _invariant.default)(0, 'column in locationOffset is 1-indexed and must be positive') : void 0;
+}; // Conditionally apply `[Symbol.toStringTag]` if `Symbol`s are supported
+
+
+exports.Source = Source;
+(0, _defineToStringTag.default)(Source);
+
+/***/ }),
+
+/***/ "../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":
+/*!***********************************************************************************!*\
+  !*** ../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+var REACT_STATICS = {
+    childContextTypes: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    getDerivedStateFromProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+
+var KNOWN_STATICS = {
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    callee: true,
+    arguments: true,
+    arity: true
+};
+
+var defineProperty = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
+
+function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+
+        if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+        }
+
+        var keys = getOwnPropertyNames(sourceComponent);
+
+        if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+        }
+
+        for (var i = 0; i < keys.length; ++i) {
+            var key = keys[i];
+            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
+                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+                try { // Avoid failures from read-only properties
+                    defineProperty(targetComponent, key, descriptor);
+                } catch (e) {}
+            }
+        }
+
+        return targetComponent;
+    }
+
+    return targetComponent;
+}
+
+module.exports = hoistNonReactStatics;
+
+
+/***/ }),
+
+/***/ "../node_modules/invariant/browser.js":
+/*!********************************************!*\
+  !*** ../node_modules/invariant/browser.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var invariant = function(condition, format, a, b, c, d, e, f) {
+  if (true) {
+    if (format === undefined) {
+      throw new Error('invariant requires an error message argument');
+    }
+  }
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error(
+        'Minified exception occurred; use the non-minified dev environment ' +
+        'for the full error message and additional helpful warnings.'
+      );
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(
+        format.replace(/%s/g, function() { return args[argIndex++]; })
+      );
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+};
+
+module.exports = invariant;
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_Symbol.js":
+/*!********************************************!*\
+  !*** ../node_modules/lodash-es/_Symbol.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _root_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_root.js */ "../node_modules/lodash-es/_root.js");
+
+
+/** Built-in value references. */
+var Symbol = _root_js__WEBPACK_IMPORTED_MODULE_0__["default"].Symbol;
+
+/* harmony default export */ __webpack_exports__["default"] = (Symbol);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_baseGetTag.js":
+/*!************************************************!*\
+  !*** ../node_modules/lodash-es/_baseGetTag.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Symbol_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_Symbol.js */ "../node_modules/lodash-es/_Symbol.js");
+/* harmony import */ var _getRawTag_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_getRawTag.js */ "../node_modules/lodash-es/_getRawTag.js");
+/* harmony import */ var _objectToString_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./_objectToString.js */ "../node_modules/lodash-es/_objectToString.js");
+
+
+
+
+/** `Object#toString` result references. */
+var nullTag = '[object Null]',
+    undefinedTag = '[object Undefined]';
+
+/** Built-in value references. */
+var symToStringTag = _Symbol_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? _Symbol_js__WEBPACK_IMPORTED_MODULE_0__["default"].toStringTag : undefined;
+
+/**
+ * The base implementation of `getTag` without fallbacks for buggy environments.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the `toStringTag`.
+ */
+function baseGetTag(value) {
+  if (value == null) {
+    return value === undefined ? undefinedTag : nullTag;
+  }
+  return (symToStringTag && symToStringTag in Object(value))
+    ? Object(_getRawTag_js__WEBPACK_IMPORTED_MODULE_1__["default"])(value)
+    : Object(_objectToString_js__WEBPACK_IMPORTED_MODULE_2__["default"])(value);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (baseGetTag);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_freeGlobal.js":
+/*!************************************************!*\
+  !*** ../node_modules/lodash-es/_freeGlobal.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/* harmony default export */ __webpack_exports__["default"] = (freeGlobal);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_getPrototype.js":
+/*!**************************************************!*\
+  !*** ../node_modules/lodash-es/_getPrototype.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _overArg_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_overArg.js */ "../node_modules/lodash-es/_overArg.js");
+
+
+/** Built-in value references. */
+var getPrototype = Object(_overArg_js__WEBPACK_IMPORTED_MODULE_0__["default"])(Object.getPrototypeOf, Object);
+
+/* harmony default export */ __webpack_exports__["default"] = (getPrototype);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_getRawTag.js":
+/*!***********************************************!*\
+  !*** ../node_modules/lodash-es/_getRawTag.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Symbol_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_Symbol.js */ "../node_modules/lodash-es/_Symbol.js");
+
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/** Built-in value references. */
+var symToStringTag = _Symbol_js__WEBPACK_IMPORTED_MODULE_0__["default"] ? _Symbol_js__WEBPACK_IMPORTED_MODULE_0__["default"].toStringTag : undefined;
+
+/**
+ * A specialized version of `baseGetTag` which ignores `Symbol.toStringTag` values.
+ *
+ * @private
+ * @param {*} value The value to query.
+ * @returns {string} Returns the raw `toStringTag`.
+ */
+function getRawTag(value) {
+  var isOwn = hasOwnProperty.call(value, symToStringTag),
+      tag = value[symToStringTag];
+
+  try {
+    value[symToStringTag] = undefined;
+    var unmasked = true;
+  } catch (e) {}
+
+  var result = nativeObjectToString.call(value);
+  if (unmasked) {
+    if (isOwn) {
+      value[symToStringTag] = tag;
+    } else {
+      delete value[symToStringTag];
+    }
+  }
+  return result;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (getRawTag);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_objectToString.js":
+/*!****************************************************!*\
+  !*** ../node_modules/lodash-es/_objectToString.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var nativeObjectToString = objectProto.toString;
+
+/**
+ * Converts `value` to a string using `Object.prototype.toString`.
+ *
+ * @private
+ * @param {*} value The value to convert.
+ * @returns {string} Returns the converted string.
+ */
+function objectToString(value) {
+  return nativeObjectToString.call(value);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (objectToString);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_overArg.js":
+/*!*********************************************!*\
+  !*** ../node_modules/lodash-es/_overArg.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Creates a unary function that invokes `func` with its argument transformed.
+ *
+ * @private
+ * @param {Function} func The function to wrap.
+ * @param {Function} transform The argument transform.
+ * @returns {Function} Returns the new function.
+ */
+function overArg(func, transform) {
+  return function(arg) {
+    return func(transform(arg));
+  };
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (overArg);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/_root.js":
+/*!******************************************!*\
+  !*** ../node_modules/lodash-es/_root.js ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _freeGlobal_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_freeGlobal.js */ "../node_modules/lodash-es/_freeGlobal.js");
+
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = _freeGlobal_js__WEBPACK_IMPORTED_MODULE_0__["default"] || freeSelf || Function('return this')();
+
+/* harmony default export */ __webpack_exports__["default"] = (root);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/isObjectLike.js":
+/*!*************************************************!*\
+  !*** ../node_modules/lodash-es/isObjectLike.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return value != null && typeof value == 'object';
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (isObjectLike);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash-es/isPlainObject.js":
+/*!**************************************************!*\
+  !*** ../node_modules/lodash-es/isPlainObject.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _baseGetTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./_baseGetTag.js */ "../node_modules/lodash-es/_baseGetTag.js");
+/* harmony import */ var _getPrototype_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./_getPrototype.js */ "../node_modules/lodash-es/_getPrototype.js");
+/* harmony import */ var _isObjectLike_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./isObjectLike.js */ "../node_modules/lodash-es/isObjectLike.js");
+
+
+
+
+/** `Object#toString` result references. */
+var objectTag = '[object Object]';
+
+/** Used for built-in method references. */
+var funcProto = Function.prototype,
+    objectProto = Object.prototype;
+
+/** Used to resolve the decompiled source of functions. */
+var funcToString = funcProto.toString;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/** Used to infer the `Object` constructor. */
+var objectCtorString = funcToString.call(Object);
+
+/**
+ * Checks if `value` is a plain object, that is, an object created by the
+ * `Object` constructor or one with a `[[Prototype]]` of `null`.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.8.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ * @example
+ *
+ * function Foo() {
+ *   this.a = 1;
+ * }
+ *
+ * _.isPlainObject(new Foo);
+ * // => false
+ *
+ * _.isPlainObject([1, 2, 3]);
+ * // => false
+ *
+ * _.isPlainObject({ 'x': 0, 'y': 0 });
+ * // => true
+ *
+ * _.isPlainObject(Object.create(null));
+ * // => true
+ */
+function isPlainObject(value) {
+  if (!Object(_isObjectLike_js__WEBPACK_IMPORTED_MODULE_2__["default"])(value) || Object(_baseGetTag_js__WEBPACK_IMPORTED_MODULE_0__["default"])(value) != objectTag) {
+    return false;
+  }
+  var proto = Object(_getPrototype_js__WEBPACK_IMPORTED_MODULE_1__["default"])(value);
+  if (proto === null) {
+    return true;
+  }
+  var Ctor = hasOwnProperty.call(proto, 'constructor') && proto.constructor;
+  return typeof Ctor == 'function' && Ctor instanceof Ctor &&
+    funcToString.call(Ctor) == objectCtorString;
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (isPlainObject);
+
+
+/***/ }),
+
+/***/ "../node_modules/lodash.pick/index.js":
+/*!********************************************!*\
+  !*** ../node_modules/lodash.pick/index.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {/**
+ * lodash (Custom Build) <https://lodash.com/>
+ * Build: `lodash modularize exports="npm" -o ./`
+ * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */
+
+/** Used as references for various `Number` constants. */
+var INFINITY = 1 / 0,
+    MAX_SAFE_INTEGER = 9007199254740991;
+
+/** `Object#toString` result references. */
+var argsTag = '[object Arguments]',
+    funcTag = '[object Function]',
+    genTag = '[object GeneratorFunction]',
+    symbolTag = '[object Symbol]';
+
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
+
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+/**
+ * A faster alternative to `Function#apply`, this function invokes `func`
+ * with the `this` binding of `thisArg` and the arguments of `args`.
+ *
+ * @private
+ * @param {Function} func The function to invoke.
+ * @param {*} thisArg The `this` binding of `func`.
+ * @param {Array} args The arguments to invoke `func` with.
+ * @returns {*} Returns the result of `func`.
+ */
+function apply(func, thisArg, args) {
+  switch (args.length) {
+    case 0: return func.call(thisArg);
+    case 1: return func.call(thisArg, args[0]);
+    case 2: return func.call(thisArg, args[0], args[1]);
+    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+  }
+  return func.apply(thisArg, args);
+}
+
+/**
+ * A specialized version of `_.map` for arrays without support for iteratee
+ * shorthands.
+ *
+ * @private
+ * @param {Array} [array] The array to iterate over.
+ * @param {Function} iteratee The function invoked per iteration.
+ * @returns {Array} Returns the new mapped array.
+ */
+function arrayMap(array, iteratee) {
+  var index = -1,
+      length = array ? array.length : 0,
+      result = Array(length);
+
+  while (++index < length) {
+    result[index] = iteratee(array[index], index, array);
+  }
+  return result;
+}
+
+/**
+ * Appends the elements of `values` to `array`.
+ *
+ * @private
+ * @param {Array} array The array to modify.
+ * @param {Array} values The values to append.
+ * @returns {Array} Returns `array`.
+ */
+function arrayPush(array, values) {
+  var index = -1,
+      length = values.length,
+      offset = array.length;
+
+  while (++index < length) {
+    array[offset + index] = values[index];
+  }
+  return array;
+}
+
+/** Used for built-in method references. */
+var objectProto = Object.prototype;
+
+/** Used to check objects for own properties. */
+var hasOwnProperty = objectProto.hasOwnProperty;
+
+/**
+ * Used to resolve the
+ * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
+ * of values.
+ */
+var objectToString = objectProto.toString;
+
+/** Built-in value references. */
+var Symbol = root.Symbol,
+    propertyIsEnumerable = objectProto.propertyIsEnumerable,
+    spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined;
+
+/* Built-in method references for those with the same name as other `lodash` methods. */
+var nativeMax = Math.max;
+
+/**
+ * The base implementation of `_.flatten` with support for restricting flattening.
+ *
+ * @private
+ * @param {Array} array The array to flatten.
+ * @param {number} depth The maximum recursion depth.
+ * @param {boolean} [predicate=isFlattenable] The function invoked per iteration.
+ * @param {boolean} [isStrict] Restrict to values that pass `predicate` checks.
+ * @param {Array} [result=[]] The initial result value.
+ * @returns {Array} Returns the new flattened array.
+ */
+function baseFlatten(array, depth, predicate, isStrict, result) {
+  var index = -1,
+      length = array.length;
+
+  predicate || (predicate = isFlattenable);
+  result || (result = []);
+
+  while (++index < length) {
+    var value = array[index];
+    if (depth > 0 && predicate(value)) {
+      if (depth > 1) {
+        // Recursively flatten arrays (susceptible to call stack limits).
+        baseFlatten(value, depth - 1, predicate, isStrict, result);
+      } else {
+        arrayPush(result, value);
+      }
+    } else if (!isStrict) {
+      result[result.length] = value;
+    }
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.pick` without support for individual
+ * property identifiers.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} props The property identifiers to pick.
+ * @returns {Object} Returns the new object.
+ */
+function basePick(object, props) {
+  object = Object(object);
+  return basePickBy(object, props, function(value, key) {
+    return key in object;
+  });
+}
+
+/**
+ * The base implementation of  `_.pickBy` without support for iteratee shorthands.
+ *
+ * @private
+ * @param {Object} object The source object.
+ * @param {string[]} props The property identifiers to pick from.
+ * @param {Function} predicate The function invoked per property.
+ * @returns {Object} Returns the new object.
+ */
+function basePickBy(object, props, predicate) {
+  var index = -1,
+      length = props.length,
+      result = {};
+
+  while (++index < length) {
+    var key = props[index],
+        value = object[key];
+
+    if (predicate(value, key)) {
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
+/**
+ * The base implementation of `_.rest` which doesn't validate or coerce arguments.
+ *
+ * @private
+ * @param {Function} func The function to apply a rest parameter to.
+ * @param {number} [start=func.length-1] The start position of the rest parameter.
+ * @returns {Function} Returns the new function.
+ */
+function baseRest(func, start) {
+  start = nativeMax(start === undefined ? (func.length - 1) : start, 0);
+  return function() {
+    var args = arguments,
+        index = -1,
+        length = nativeMax(args.length - start, 0),
+        array = Array(length);
+
+    while (++index < length) {
+      array[index] = args[start + index];
+    }
+    index = -1;
+    var otherArgs = Array(start + 1);
+    while (++index < start) {
+      otherArgs[index] = args[index];
+    }
+    otherArgs[start] = array;
+    return apply(func, this, otherArgs);
+  };
+}
+
+/**
+ * Checks if `value` is a flattenable `arguments` object or array.
+ *
+ * @private
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is flattenable, else `false`.
+ */
+function isFlattenable(value) {
+  return isArray(value) || isArguments(value) ||
+    !!(spreadableSymbol && value && value[spreadableSymbol]);
+}
+
+/**
+ * Converts `value` to a string key if it's not a string or symbol.
+ *
+ * @private
+ * @param {*} value The value to inspect.
+ * @returns {string|symbol} Returns the key.
+ */
+function toKey(value) {
+  if (typeof value == 'string' || isSymbol(value)) {
+    return value;
+  }
+  var result = (value + '');
+  return (result == '0' && (1 / value) == -INFINITY) ? '-0' : result;
+}
+
+/**
+ * Checks if `value` is likely an `arguments` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArguments(function() { return arguments; }());
+ * // => true
+ *
+ * _.isArguments([1, 2, 3]);
+ * // => false
+ */
+function isArguments(value) {
+  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
+  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
+    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+}
+
+/**
+ * Checks if `value` is classified as an `Array` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array, else `false`.
+ * @example
+ *
+ * _.isArray([1, 2, 3]);
+ * // => true
+ *
+ * _.isArray(document.body.children);
+ * // => false
+ *
+ * _.isArray('abc');
+ * // => false
+ *
+ * _.isArray(_.noop);
+ * // => false
+ */
+var isArray = Array.isArray;
+
+/**
+ * Checks if `value` is array-like. A value is considered array-like if it's
+ * not a function and has a `value.length` that's an integer greater than or
+ * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+ * @example
+ *
+ * _.isArrayLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLike(document.body.children);
+ * // => true
+ *
+ * _.isArrayLike('abc');
+ * // => true
+ *
+ * _.isArrayLike(_.noop);
+ * // => false
+ */
+function isArrayLike(value) {
+  return value != null && isLength(value.length) && !isFunction(value);
+}
+
+/**
+ * This method is like `_.isArrayLike` except that it also checks if `value`
+ * is an object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an array-like object,
+ *  else `false`.
+ * @example
+ *
+ * _.isArrayLikeObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isArrayLikeObject(document.body.children);
+ * // => true
+ *
+ * _.isArrayLikeObject('abc');
+ * // => false
+ *
+ * _.isArrayLikeObject(_.noop);
+ * // => false
+ */
+function isArrayLikeObject(value) {
+  return isObjectLike(value) && isArrayLike(value);
+}
+
+/**
+ * Checks if `value` is classified as a `Function` object.
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a function, else `false`.
+ * @example
+ *
+ * _.isFunction(_);
+ * // => true
+ *
+ * _.isFunction(/abc/);
+ * // => false
+ */
+function isFunction(value) {
+  // The use of `Object#toString` avoids issues with the `typeof` operator
+  // in Safari 8-9 which returns 'object' for typed array and other constructors.
+  var tag = isObject(value) ? objectToString.call(value) : '';
+  return tag == funcTag || tag == genTag;
+}
+
+/**
+ * Checks if `value` is a valid array-like length.
+ *
+ * **Note:** This method is loosely based on
+ * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
+ * @example
+ *
+ * _.isLength(3);
+ * // => true
+ *
+ * _.isLength(Number.MIN_VALUE);
+ * // => false
+ *
+ * _.isLength(Infinity);
+ * // => false
+ *
+ * _.isLength('3');
+ * // => false
+ */
+function isLength(value) {
+  return typeof value == 'number' &&
+    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+}
+
+/**
+ * Checks if `value` is the
+ * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+ * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+ *
+ * @static
+ * @memberOf _
+ * @since 0.1.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+ * @example
+ *
+ * _.isObject({});
+ * // => true
+ *
+ * _.isObject([1, 2, 3]);
+ * // => true
+ *
+ * _.isObject(_.noop);
+ * // => true
+ *
+ * _.isObject(null);
+ * // => false
+ */
+function isObject(value) {
+  var type = typeof value;
+  return !!value && (type == 'object' || type == 'function');
+}
+
+/**
+ * Checks if `value` is object-like. A value is object-like if it's not `null`
+ * and has a `typeof` result of "object".
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+ * @example
+ *
+ * _.isObjectLike({});
+ * // => true
+ *
+ * _.isObjectLike([1, 2, 3]);
+ * // => true
+ *
+ * _.isObjectLike(_.noop);
+ * // => false
+ *
+ * _.isObjectLike(null);
+ * // => false
+ */
+function isObjectLike(value) {
+  return !!value && typeof value == 'object';
+}
+
+/**
+ * Checks if `value` is classified as a `Symbol` primitive or object.
+ *
+ * @static
+ * @memberOf _
+ * @since 4.0.0
+ * @category Lang
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
+ * @example
+ *
+ * _.isSymbol(Symbol.iterator);
+ * // => true
+ *
+ * _.isSymbol('abc');
+ * // => false
+ */
+function isSymbol(value) {
+  return typeof value == 'symbol' ||
+    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+}
+
+/**
+ * Creates an object composed of the picked `object` properties.
+ *
+ * @static
+ * @since 0.1.0
+ * @memberOf _
+ * @category Object
+ * @param {Object} object The source object.
+ * @param {...(string|string[])} [props] The property identifiers to pick.
+ * @returns {Object} Returns the new object.
+ * @example
+ *
+ * var object = { 'a': 1, 'b': '2', 'c': 3 };
+ *
+ * _.pick(object, ['a', 'c']);
+ * // => { 'a': 1, 'c': 3 }
+ */
+var pick = baseRest(function(object, props) {
+  return object == null ? {} : basePick(object, arrayMap(baseFlatten(props, 1), toKey));
+});
+
+module.exports = pick;
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "../node_modules/node-libs-browser/node_modules/process/browser.js":
+/*!*************************************************************************!*\
+  !*** ../node_modules/node-libs-browser/node_modules/process/browser.js ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+
+/***/ "../node_modules/object-assign/index.js":
+/*!**********************************************!*\
+  !*** ../node_modules/object-assign/index.js ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /*
 object-assign
 (c) Sindre Sorhus
 @license MIT
-*/var n=Object.getOwnPropertySymbols,i=Object.prototype.hasOwnProperty,o=Object.prototype.propertyIsEnumerable;e.exports=function(){try{if(!Object.assign)return!1;var e=new String("abc");if(e[5]="de","5"===Object.getOwnPropertyNames(e)[0])return!1;for(var t={},r=0;r<10;r++)t["_"+String.fromCharCode(r)]=r;if("0123456789"!==Object.getOwnPropertyNames(t).map(function(e){return t[e]}).join(""))return!1;var n={};return"abcdefghijklmnopqrst".split("").forEach(function(e){n[e]=e}),"abcdefghijklmnopqrst"===Object.keys(Object.assign({},n)).join("")}catch(e){return!1}}()?Object.assign:function(e,t){for(var r,a,u=function(e){if(null===e||void 0===e)throw new TypeError("Object.assign cannot be called with null or undefined");return Object(e)}(e),s=1;s<arguments.length;s++){for(var c in r=Object(arguments[s]))i.call(r,c)&&(u[c]=r[c]);if(n){a=n(r);for(var l=0;l<a.length;l++)o.call(r,a[l])&&(u[a[l]]=r[a[l]])}}return u}},function(e,t,r){"use strict";var n={childContextTypes:!0,contextTypes:!0,defaultProps:!0,displayName:!0,getDefaultProps:!0,getDerivedStateFromProps:!0,mixins:!0,propTypes:!0,type:!0},i={name:!0,length:!0,prototype:!0,caller:!0,callee:!0,arguments:!0,arity:!0},o=Object.defineProperty,a=Object.getOwnPropertyNames,u=Object.getOwnPropertySymbols,s=Object.getOwnPropertyDescriptor,c=Object.getPrototypeOf,l=c&&c(Object);e.exports=function e(t,r,f){if("string"!=typeof r){if(l){var d=c(r);d&&d!==l&&e(t,d,f)}var p=a(r);u&&(p=p.concat(u(r)));for(var h=0;h<p.length;++h){var y=p[h];if(!(n[y]||i[y]||f&&f[y])){var v=s(r,y);try{o(t,y,v)}catch(e){}}}return t}return t}},function(e,t,r){"use strict";function n(e){var t,r=e.Symbol;return"function"==typeof r?r.observable?t=r.observable:(t=r("observable"),r.observable=t):t="@@observable",t}r.d(t,"a",function(){return n})},function(e,t,r){"use strict";(function(e){var r="object"==typeof e&&e&&e.Object===Object&&e;t.a=r}).call(this,r(7))},function(e,t,r){"use strict";var n=r(38);t.filter=n.filter,t.check=n.check,t.propType=n.propType;var i=r(12);Object.defineProperty(t,"__esModule",{value:!0}),t.default=i.graphql},function(e,t){t.version="1.9.3"},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(28);t.WelcomePage=n.WelcomePage;var i=r(29);t.OwnersPage=i.OwnersPage},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=function(){function e(){}return e.templateUrl="/partials/welcome.html",e}();t.WelcomePage=n},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),r(30);var n=r(57),i=function(){function e(){this.graphQLClient=n.createGraphQLClient()}return e.templateUrl="/partials/owners.html",e}();t.OwnersPage=i},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(31);r(56)._default.directive("ownersList",["reactDirective",function(e){return e(n.default,["change","database","execute","query","request"])}])},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(6),i=r(10),o=r(53),a=r(55),u=function(e){var t=e.owner;return n.createElement("tr",{key:t.id},n.createElement("td",null,t.firstName," ",t.lastName),n.createElement("td",{className:"hidden-sm hidden-xs"},t.address),n.createElement("td",null,t.city),n.createElement("td",null,t.telephone),n.createElement("td",{className:"hidden-xs"},t.pets.map(function(e){return e.name}).join(", ")),n.createElement("td",{className:"hidden-xs"},t.pets.reduce(function(e,t){return e+t.visits.totalCount},0)||""))},s=function(e){var t=e.owners;return n.createElement("table",{className:"table table-striped"},n.createElement("thead",null,n.createElement("tr",null,n.createElement("th",null,"Name"),n.createElement("th",{className:"hidden-sm hidden-xs"},"Address"),n.createElement("th",null,"City"),n.createElement("th",null,"Telephone"),n.createElement("th",{className:"hidden-xs"},"Pets"),n.createElement("th",{className:"hidden-xs"},"Visits"))),n.createElement("tbody",null,t.map(function(e){return n.createElement(u,{key:e.id,owner:e})})))};t.default=i.graphql(o)(a.default(function(e){var t=e.data.owners;return n.createElement("section",null,n.createElement("h2",null,t.length," Owners found"),n.createElement(s,{owners:t}))}))},function(e,t,r){e.exports=r(33)()},function(e,t,r){"use strict";var n=r(34);function i(){}e.exports=function(){function e(e,t,r,i,o,a){if(a!==n){var u=new Error("Calling PropTypes validators directly is not supported by the `prop-types` package. Use PropTypes.checkPropTypes() to call them. Read more at http://fb.me/use-check-prop-types");throw u.name="Invariant Violation",u}}function t(){return e}e.isRequired=e;var r={array:e,bool:e,func:e,number:e,object:e,string:e,symbol:e,any:e,arrayOf:t,element:e,instanceOf:t,node:e,objectOf:t,oneOf:t,oneOfType:t,shape:t,exact:t};return r.checkPropTypes=i,r.PropTypes=r,r}},function(e,t,r){"use strict";e.exports="SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED"},function(e,t){e.exports=function(e){if(!e.webpackPolyfill){var t=Object.create(e);t.children||(t.children=[]),Object.defineProperty(t,"loaded",{enumerable:!0,get:function(){return t.l}}),Object.defineProperty(t,"id",{enumerable:!0,get:function(){return t.i}}),Object.defineProperty(t,"exports",{enumerable:!0}),t.webpackPolyfill=1}return t}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.visit=function(e,t,r){var u=r||n,s=void 0,c=Array.isArray(e),l=[e],f=-1,d=[],p=void 0,h=[],y=[],v=e;do{var m=++f===l.length,b=void 0,g=void 0,w=m&&0!==d.length;if(m){if(b=0===y.length?void 0:h.pop(),g=p,p=y.pop(),w){if(c)g=g.slice();else{var O={};for(var E in g)g.hasOwnProperty(E)&&(O[E]=g[E]);g=O}for(var k=0,T=0;T<d.length;T++){var I=d[T][0],_=d[T][1];c&&(I-=k),c&&null===_?(g.splice(I,1),k++):g[I]=_}}f=s.index,l=s.keys,d=s.edits,c=s.inArray,s=s.prev}else{if(b=p?c?f:l[f]:void 0,null===(g=p?p[b]:v)||void 0===g)continue;p&&h.push(b)}var S=void 0;if(!Array.isArray(g)){if(!o(g))throw new Error("Invalid AST Node: "+JSON.stringify(g));var N=a(t,g.kind,m);if(N){if((S=N.call(t,g,b,p,h,y))===i)break;if(!1===S){if(!m){h.pop();continue}}else if(void 0!==S&&(d.push([b,S]),!m)){if(!o(S)){h.pop();continue}g=S}}}void 0===S&&w&&d.push([b,g]),m||(s={inArray:c,index:f,keys:l,edits:d,prev:s},l=(c=Array.isArray(g))?g:u[g.kind]||[],f=-1,d=[],p&&y.push(p),p=g)}while(void 0!==s);return 0!==d.length&&(v=d[d.length-1][1]),v},t.visitInParallel=function(e){var t=new Array(e.length);return{enter:function(r){for(var n=0;n<e.length;n++)if(!t[n]){var o=a(e[n],r.kind,!1);if(o){var u=o.apply(e[n],arguments);if(!1===u)t[n]=r;else if(u===i)t[n]=i;else if(void 0!==u)return u}}},leave:function(r){for(var n=0;n<e.length;n++)if(t[n])t[n]===r&&(t[n]=null);else{var o=a(e[n],r.kind,!0);if(o){var u=o.apply(e[n],arguments);if(u===i)t[n]=i;else if(void 0!==u&&!1!==u)return u}}}}},t.visitWithTypeInfo=function(e,t){return{enter:function(r){e.enter(r);var n=a(t,r.kind,!1);if(n){var i=n.apply(t,arguments);return void 0!==i&&(e.leave(r),o(i)&&e.enter(i)),i}},leave:function(r){var n=a(t,r.kind,!0),i=void 0;return n&&(i=n.apply(t,arguments)),e.leave(r),i}}},t.getVisitFn=a;var n=t.QueryDocumentKeys={Name:[],Document:["definitions"],OperationDefinition:["name","variableDefinitions","directives","selectionSet"],VariableDefinition:["variable","type","defaultValue"],Variable:["name"],SelectionSet:["selections"],Field:["alias","name","arguments","directives","selectionSet"],Argument:["name","value"],FragmentSpread:["name","directives"],InlineFragment:["typeCondition","directives","selectionSet"],FragmentDefinition:["name","typeCondition","directives","selectionSet"],IntValue:[],FloatValue:[],StringValue:[],BooleanValue:[],NullValue:[],EnumValue:[],ListValue:["values"],ObjectValue:["fields"],ObjectField:["name","value"],Directive:["name","arguments"],NamedType:["name"],ListType:["type"],NonNullType:["type"],SchemaDefinition:["directives","operationTypes"],OperationTypeDefinition:["type"],ScalarTypeDefinition:["name","directives"],ObjectTypeDefinition:["name","interfaces","directives","fields"],FieldDefinition:["name","arguments","type","directives"],InputValueDefinition:["name","type","defaultValue","directives"],InterfaceTypeDefinition:["name","directives","fields"],UnionTypeDefinition:["name","directives","types"],EnumTypeDefinition:["name","directives","values"],EnumValueDefinition:["name","directives"],InputObjectTypeDefinition:["name","directives","fields"],TypeExtensionDefinition:["definition"],DirectiveDefinition:["name","arguments","locations"]},i=t.BREAK={};function o(e){return e&&"string"==typeof e.kind}function a(e,t,r){var n=e[t];if(n){if(!r&&"function"==typeof n)return n;var i=r?n.leave:n.enter;if("function"==typeof i)return i}else{var o=r?e.leave:e.enter;if(o){if("function"==typeof o)return o;var a=o[t];if("function"==typeof a)return a}}}},function(e,t){var r,n,i=e.exports={};function o(){throw new Error("setTimeout has not been defined")}function a(){throw new Error("clearTimeout has not been defined")}function u(e){if(r===setTimeout)return setTimeout(e,0);if((r===o||!r)&&setTimeout)return r=setTimeout,setTimeout(e,0);try{return r(e,0)}catch(t){try{return r.call(null,e,0)}catch(t){return r.call(this,e,0)}}}!function(){try{r="function"==typeof setTimeout?setTimeout:o}catch(e){r=o}try{n="function"==typeof clearTimeout?clearTimeout:a}catch(e){n=a}}();var s,c=[],l=!1,f=-1;function d(){l&&s&&(l=!1,s.length?c=s.concat(c):f=-1,c.length&&p())}function p(){if(!l){var e=u(d);l=!0;for(var t=c.length;t;){for(s=c,c=[];++f<t;)s&&s[f].run();f=-1,t=c.length}s=null,l=!1,function(e){if(n===clearTimeout)return clearTimeout(e);if((n===a||!n)&&clearTimeout)return n=clearTimeout,clearTimeout(e);try{n(e)}catch(t){try{return n.call(null,e)}catch(t){return n.call(this,e)}}}(e)}}function h(e,t){this.fun=e,this.array=t}function y(){}i.nextTick=function(e){var t=new Array(arguments.length-1);if(arguments.length>1)for(var r=1;r<arguments.length;r++)t[r-1]=arguments[r];c.push(new h(e,t)),1!==c.length||l||u(p)},h.prototype.run=function(){this.fun.apply(null,this.array)},i.title="browser",i.browser=!0,i.env={},i.argv=[],i.version="",i.versions={},i.on=y,i.addListener=y,i.once=y,i.off=y,i.removeListener=y,i.removeAllListeners=y,i.emit=y,i.prependListener=y,i.prependOnceListener=y,i.listeners=function(e){return[]},i.binding=function(e){throw new Error("process.binding is not supported")},i.cwd=function(){return"/"},i.chdir=function(e){throw new Error("process.chdir is not supported")},i.umask=function(){return 0}},function(e,t,r){"use strict";var n=r(12);function i(e,t){n.graphql(function(e,t,r,n,i){if(!{}.hasOwnProperty.call(t,i.resultKey))throw new Error(i.resultKey+" missing on "+t);return t[i.resultKey]},e,t,{},{},{fragmentMatcher:function(){return!1}})}t.filter=function(e,t){return n.graphql(function(e,t,r,n,i){return t[i.resultKey]},e,t)},t.check=i;var o="<<anonymous>>";function a(e){this.message=e,this.stack=""}a.prototype=Error.prototype;var u={prop:"prop",context:"context",childContext:"child context"};t.propType=function(e){return function(e){function t(t,r,n,i,s,c){if(i=i||o,c=c||n,null==r[n]){var l=u[s];return t?null===r[n]?new a("The "+l+" `"+c+"` is marked as required in `"+i+"`, but its value is `null`."):new a("The "+l+" `"+c+"` is marked as required in `"+i+"`, but its value is `undefined`."):null}return e(r,n,i,s,c)}var r=t.bind(null,!1);return r.isRequired=t.bind(null,!0),r}(function(t,r){var n=t[r];try{return i(e,n),null}catch(e){return e}})}},function(e,t,r){"use strict";t.getFragmentDefinitions=function(e){return e.definitions.filter(function(e){return"FragmentDefinition"===e.kind})},t.createFragmentMap=function(e){void 0===e&&(e=[]);var t={};return e.forEach(function(e){t[e.name.value]=e}),t},t.getMainDefinition=function(e){var t;!function(e){if("Document"!==e.kind)throw new Error('Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a "gql" tag? http://docs.apollostack.com/apollo-client/core.html#gql');if(e.definitions.filter(function(e){return"OperationDefinition"===e.kind}).length>1)throw new Error("Queries must have exactly one operation definition.")}(e);for(var r=0,n=e.definitions;r<n.length;r++){var i=n[r];if("OperationDefinition"===i.kind){var o=i.operation;if("query"===o||"mutation"===o||"subscription"===o)return i}"FragmentDefinition"!==i.kind||t||(t=i)}if(t)return t;throw new Error("Expected a parsed GraphQL query with a query, mutation, subscription, or a fragment.")}},function(e,t,r){"use strict";var n=r(13);t.getDirectiveInfoFromField=function(e,t){if(e.directives&&e.directives.length){var r={};return e.directives.forEach(function(e){r[e.name.value]=n.argumentsObjectFromField(e,t)}),r}return null},t.shouldInclude=function(e,t){if(void 0===t&&(t={}),!e.directives)return!0;var r=!0;return e.directives.some(function(e){if("skip"===e.name.value||"include"===e.name.value){var n=e.arguments,i=e.name.value;if(1!==n.length)throw new Error("Incorrect number of arguments for the @"+i+" directive.");var o=e.arguments[0];if(!o.name||"if"!==o.name.value)throw new Error("Invalid argument for the @"+i+" directive.");var a=e.arguments[0].value,u=!1;if(a&&"BooleanValue"===a.kind)u=a.value;else{if("Variable"!==a.kind)throw new Error("Argument for the @"+i+" directive must be a variable or a bool ean value.");if(void 0===(u=t[a.name.value]))throw new Error("Invalid variable referenced in @"+i+" directive.")}return"skip"===i&&(u=!u),!u&&(r=!1,!0)}}),r}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.parse=function(e,t){var r="string"==typeof e?new i.Source(e):e;if(!(r instanceof i.Source))throw new TypeError("Must provide Source. Received: ".concat((0,n.default)(r)));return function(e){var t=e.token;return{kind:u.Kind.DOCUMENT,definitions:Z(e,a.TokenKind.SOF,l,a.TokenKind.EOF),loc:G(e,t)}}((0,a.createLexer)(r,t||{}))},t.parseValue=function(e,t){var r="string"==typeof e?new i.Source(e):e,n=(0,a.createLexer)(r,t||{});X(n,a.TokenKind.SOF);var o=k(n,!1);return X(n,a.TokenKind.EOF),o},t.parseType=function(e,t){var r="string"==typeof e?new i.Source(e):e,n=(0,a.createLexer)(r,t||{});X(n,a.TokenKind.SOF);var o=R(n);return X(n,a.TokenKind.EOF),o},t.parseConstValue=I,t.parseTypeReference=R,t.parseNamedType=q;var n=function(e){return e&&e.__esModule?e:{default:e}}(r(42)),i=r(43),o=r(18),a=r(48),u=r(50),s=r(51);function c(e){var t=X(e,a.TokenKind.NAME);return{kind:u.Kind.NAME,value:t.value,loc:G(e,t)}}function l(e){if(H(e,a.TokenKind.NAME))switch(e.token.value){case"query":case"mutation":case"subscription":case"fragment":return f(e);case"schema":case"scalar":case"type":case"interface":case"union":case"enum":case"input":case"directive":return A(e);case"extend":return function(e){var t=e.lookahead();if(t.kind===a.TokenKind.NAME)switch(t.value){case"schema":return function(e){var t=e.token;z(e,"extend"),z(e,"schema");var r=N(e,!0),n=H(e,a.TokenKind.BRACE_L)?Z(e,a.TokenKind.BRACE_L,M,a.TokenKind.BRACE_R):[];if(0===r.length&&0===n.length)throw $(e);return{kind:u.Kind.SCHEMA_EXTENSION,directives:r,operationTypes:n,loc:G(e,t)}}(e);case"scalar":return function(e){var t=e.token;z(e,"extend"),z(e,"scalar");var r=c(e),n=N(e,!0);if(0===n.length)throw $(e);return{kind:u.Kind.SCALAR_TYPE_EXTENSION,name:r,directives:n,loc:G(e,t)}}(e);case"type":return function(e){var t=e.token;z(e,"extend"),z(e,"type");var r=c(e),n=L(e),i=N(e,!0),o=Q(e);if(0===n.length&&0===i.length&&0===o.length)throw $(e);return{kind:u.Kind.OBJECT_TYPE_EXTENSION,name:r,interfaces:n,directives:i,fields:o,loc:G(e,t)}}(e);case"interface":return function(e){var t=e.token;z(e,"extend"),z(e,"interface");var r=c(e),n=N(e,!0),i=Q(e);if(0===n.length&&0===i.length)throw $(e);return{kind:u.Kind.INTERFACE_TYPE_EXTENSION,name:r,directives:n,fields:i,loc:G(e,t)}}(e);case"union":return function(e){var t=e.token;z(e,"extend"),z(e,"union");var r=c(e),n=N(e,!0),i=K(e);if(0===n.length&&0===i.length)throw $(e);return{kind:u.Kind.UNION_TYPE_EXTENSION,name:r,directives:n,types:i,loc:G(e,t)}}(e);case"enum":return function(e){var t=e.token;z(e,"extend"),z(e,"enum");var r=c(e),n=N(e,!0),i=U(e);if(0===n.length&&0===i.length)throw $(e);return{kind:u.Kind.ENUM_TYPE_EXTENSION,name:r,directives:n,values:i,loc:G(e,t)}}(e);case"input":return function(e){var t=e.token;z(e,"extend"),z(e,"input");var r=c(e),n=N(e,!0),i=V(e);if(0===n.length&&0===i.length)throw $(e);return{kind:u.Kind.INPUT_OBJECT_TYPE_EXTENSION,name:r,directives:n,fields:i,loc:G(e,t)}}(e)}throw $(e,t)}(e)}else{if(H(e,a.TokenKind.BRACE_L))return f(e);if(F(e))return A(e)}throw $(e)}function f(e){if(H(e,a.TokenKind.NAME))switch(e.token.value){case"query":case"mutation":case"subscription":return d(e);case"fragment":return function(e){var t=e.token;return z(e,"fragment"),e.options.experimentalFragmentVariables?{kind:u.Kind.FRAGMENT_DEFINITION,name:E(e),variableDefinitions:h(e),typeCondition:(z(e,"on"),q(e)),directives:N(e,!1),selectionSet:m(e),loc:G(e,t)}:{kind:u.Kind.FRAGMENT_DEFINITION,name:E(e),typeCondition:(z(e,"on"),q(e)),directives:N(e,!1),selectionSet:m(e),loc:G(e,t)}}(e)}else if(H(e,a.TokenKind.BRACE_L))return d(e);throw $(e)}function d(e){var t=e.token;if(H(e,a.TokenKind.BRACE_L))return{kind:u.Kind.OPERATION_DEFINITION,operation:"query",name:void 0,variableDefinitions:[],directives:[],selectionSet:m(e),loc:G(e,t)};var r,n=p(e);return H(e,a.TokenKind.NAME)&&(r=c(e)),{kind:u.Kind.OPERATION_DEFINITION,operation:n,name:r,variableDefinitions:h(e),directives:N(e,!1),selectionSet:m(e),loc:G(e,t)}}function p(e){var t=X(e,a.TokenKind.NAME);switch(t.value){case"query":return"query";case"mutation":return"mutation";case"subscription":return"subscription"}throw $(e,t)}function h(e){return H(e,a.TokenKind.PAREN_L)?Z(e,a.TokenKind.PAREN_L,y,a.TokenKind.PAREN_R):[]}function y(e){var t=e.token;return e.options.experimentalVariableDefinitionDirectives?{kind:u.Kind.VARIABLE_DEFINITION,variable:v(e),type:(X(e,a.TokenKind.COLON),R(e)),defaultValue:J(e,a.TokenKind.EQUALS)?k(e,!0):void 0,directives:N(e,!0),loc:G(e,t)}:{kind:u.Kind.VARIABLE_DEFINITION,variable:v(e),type:(X(e,a.TokenKind.COLON),R(e)),defaultValue:J(e,a.TokenKind.EQUALS)?k(e,!0):void 0,loc:G(e,t)}}function v(e){var t=e.token;return X(e,a.TokenKind.DOLLAR),{kind:u.Kind.VARIABLE,name:c(e),loc:G(e,t)}}function m(e){var t=e.token;return{kind:u.Kind.SELECTION_SET,selections:Z(e,a.TokenKind.BRACE_L,b,a.TokenKind.BRACE_R),loc:G(e,t)}}function b(e){return H(e,a.TokenKind.SPREAD)?function(e){var t,r=e.token;return X(e,a.TokenKind.SPREAD),H(e,a.TokenKind.NAME)&&"on"!==e.token.value?{kind:u.Kind.FRAGMENT_SPREAD,name:E(e),directives:N(e,!1),loc:G(e,r)}:("on"===e.token.value&&(e.advance(),t=q(e)),{kind:u.Kind.INLINE_FRAGMENT,typeCondition:t,directives:N(e,!1),selectionSet:m(e),loc:G(e,r)})}(e):function(e){var t,r,n=e.token,i=c(e);return J(e,a.TokenKind.COLON)?(t=i,r=c(e)):r=i,{kind:u.Kind.FIELD,alias:t,name:r,arguments:g(e,!1),directives:N(e,!1),selectionSet:H(e,a.TokenKind.BRACE_L)?m(e):void 0,loc:G(e,n)}}(e)}function g(e,t){var r=t?O:w;return H(e,a.TokenKind.PAREN_L)?Z(e,a.TokenKind.PAREN_L,r,a.TokenKind.PAREN_R):[]}function w(e){var t=e.token;return{kind:u.Kind.ARGUMENT,name:c(e),value:(X(e,a.TokenKind.COLON),k(e,!1)),loc:G(e,t)}}function O(e){var t=e.token;return{kind:u.Kind.ARGUMENT,name:c(e),value:(X(e,a.TokenKind.COLON),I(e)),loc:G(e,t)}}function E(e){if("on"===e.token.value)throw $(e);return c(e)}function k(e,t){var r=e.token;switch(r.kind){case a.TokenKind.BRACKET_L:return function(e,t){var r=e.token,n=t?I:_;return{kind:u.Kind.LIST,values:function(e,t,r,n){X(e,t);for(var i=[];!J(e,n);)i.push(r(e));return i}(e,a.TokenKind.BRACKET_L,n,a.TokenKind.BRACKET_R),loc:G(e,r)}}(e,t);case a.TokenKind.BRACE_L:return function(e,t){var r=e.token;X(e,a.TokenKind.BRACE_L);for(var n=[];!J(e,a.TokenKind.BRACE_R);)n.push(S(e,t));return{kind:u.Kind.OBJECT,fields:n,loc:G(e,r)}}(e,t);case a.TokenKind.INT:return e.advance(),{kind:u.Kind.INT,value:r.value,loc:G(e,r)};case a.TokenKind.FLOAT:return e.advance(),{kind:u.Kind.FLOAT,value:r.value,loc:G(e,r)};case a.TokenKind.STRING:case a.TokenKind.BLOCK_STRING:return T(e);case a.TokenKind.NAME:return"true"===r.value||"false"===r.value?(e.advance(),{kind:u.Kind.BOOLEAN,value:"true"===r.value,loc:G(e,r)}):"null"===r.value?(e.advance(),{kind:u.Kind.NULL,loc:G(e,r)}):(e.advance(),{kind:u.Kind.ENUM,value:r.value,loc:G(e,r)});case a.TokenKind.DOLLAR:if(!t)return v(e)}throw $(e)}function T(e){var t=e.token;return e.advance(),{kind:u.Kind.STRING,value:t.value,block:t.kind===a.TokenKind.BLOCK_STRING,loc:G(e,t)}}function I(e){return k(e,!0)}function _(e){return k(e,!1)}function S(e,t){var r=e.token;return{kind:u.Kind.OBJECT_FIELD,name:c(e),value:(X(e,a.TokenKind.COLON),k(e,t)),loc:G(e,r)}}function N(e,t){for(var r=[];H(e,a.TokenKind.AT);)r.push(P(e,t));return r}function P(e,t){var r=e.token;return X(e,a.TokenKind.AT),{kind:u.Kind.DIRECTIVE,name:c(e),arguments:g(e,t),loc:G(e,r)}}function R(e){var t,r=e.token;return J(e,a.TokenKind.BRACKET_L)?(t=R(e),X(e,a.TokenKind.BRACKET_R),t={kind:u.Kind.LIST_TYPE,type:t,loc:G(e,r)}):t=q(e),J(e,a.TokenKind.BANG)?{kind:u.Kind.NON_NULL_TYPE,type:t,loc:G(e,r)}:t}function q(e){var t=e.token;return{kind:u.Kind.NAMED_TYPE,name:c(e),loc:G(e,t)}}function A(e){var t=F(e)?e.lookahead():e.token;if(t.kind===a.TokenKind.NAME)switch(t.value){case"schema":return function(e){var t=e.token;z(e,"schema");var r=N(e,!0),n=Z(e,a.TokenKind.BRACE_L,M,a.TokenKind.BRACE_R);return{kind:u.Kind.SCHEMA_DEFINITION,directives:r,operationTypes:n,loc:G(e,t)}}(e);case"scalar":return function(e){var t=e.token,r=j(e);z(e,"scalar");var n=c(e),i=N(e,!0);return{kind:u.Kind.SCALAR_TYPE_DEFINITION,description:r,name:n,directives:i,loc:G(e,t)}}(e);case"type":return function(e){var t=e.token,r=j(e);z(e,"type");var n=c(e),i=L(e),o=N(e,!0),a=Q(e);return{kind:u.Kind.OBJECT_TYPE_DEFINITION,description:r,name:n,interfaces:i,directives:o,fields:a,loc:G(e,t)}}(e);case"interface":return function(e){var t=e.token,r=j(e);z(e,"interface");var n=c(e),i=N(e,!0),o=Q(e);return{kind:u.Kind.INTERFACE_TYPE_DEFINITION,description:r,name:n,directives:i,fields:o,loc:G(e,t)}}(e);case"union":return function(e){var t=e.token,r=j(e);z(e,"union");var n=c(e),i=N(e,!0),o=K(e);return{kind:u.Kind.UNION_TYPE_DEFINITION,description:r,name:n,directives:i,types:o,loc:G(e,t)}}(e);case"enum":return function(e){var t=e.token,r=j(e);z(e,"enum");var n=c(e),i=N(e,!0),o=U(e);return{kind:u.Kind.ENUM_TYPE_DEFINITION,description:r,name:n,directives:i,values:o,loc:G(e,t)}}(e);case"input":return function(e){var t=e.token,r=j(e);z(e,"input");var n=c(e),i=N(e,!0),o=V(e);return{kind:u.Kind.INPUT_OBJECT_TYPE_DEFINITION,description:r,name:n,directives:i,fields:o,loc:G(e,t)}}(e);case"directive":return function(e){var t=e.token,r=j(e);z(e,"directive"),X(e,a.TokenKind.AT);var n=c(e),i=D(e);z(e,"on");var o=function(e){J(e,a.TokenKind.PIPE);var t=[];do{t.push(Y(e))}while(J(e,a.TokenKind.PIPE));return t}(e);return{kind:u.Kind.DIRECTIVE_DEFINITION,description:r,name:n,arguments:i,locations:o,loc:G(e,t)}}(e)}throw $(e,t)}function F(e){return H(e,a.TokenKind.STRING)||H(e,a.TokenKind.BLOCK_STRING)}function j(e){if(F(e))return T(e)}function M(e){var t=e.token,r=p(e);X(e,a.TokenKind.COLON);var n=q(e);return{kind:u.Kind.OPERATION_TYPE_DEFINITION,operation:r,type:n,loc:G(e,t)}}function L(e){var t=[];if("implements"===e.token.value){e.advance(),J(e,a.TokenKind.AMP);do{t.push(q(e))}while(J(e,a.TokenKind.AMP)||e.options.allowLegacySDLImplementsInterfaces&&H(e,a.TokenKind.NAME))}return t}function Q(e){return e.options.allowLegacySDLEmptyFields&&H(e,a.TokenKind.BRACE_L)&&e.lookahead().kind===a.TokenKind.BRACE_R?(e.advance(),e.advance(),[]):H(e,a.TokenKind.BRACE_L)?Z(e,a.TokenKind.BRACE_L,x,a.TokenKind.BRACE_R):[]}function x(e){var t=e.token,r=j(e),n=c(e),i=D(e);X(e,a.TokenKind.COLON);var o=R(e),s=N(e,!0);return{kind:u.Kind.FIELD_DEFINITION,description:r,name:n,arguments:i,type:o,directives:s,loc:G(e,t)}}function D(e){return H(e,a.TokenKind.PAREN_L)?Z(e,a.TokenKind.PAREN_L,C,a.TokenKind.PAREN_R):[]}function C(e){var t=e.token,r=j(e),n=c(e);X(e,a.TokenKind.COLON);var i,o=R(e);J(e,a.TokenKind.EQUALS)&&(i=I(e));var s=N(e,!0);return{kind:u.Kind.INPUT_VALUE_DEFINITION,description:r,name:n,type:o,defaultValue:i,directives:s,loc:G(e,t)}}function K(e){var t=[];if(J(e,a.TokenKind.EQUALS)){J(e,a.TokenKind.PIPE);do{t.push(q(e))}while(J(e,a.TokenKind.PIPE))}return t}function U(e){return H(e,a.TokenKind.BRACE_L)?Z(e,a.TokenKind.BRACE_L,B,a.TokenKind.BRACE_R):[]}function B(e){var t=e.token,r=j(e),n=c(e),i=N(e,!0);return{kind:u.Kind.ENUM_VALUE_DEFINITION,description:r,name:n,directives:i,loc:G(e,t)}}function V(e){return H(e,a.TokenKind.BRACE_L)?Z(e,a.TokenKind.BRACE_L,C,a.TokenKind.BRACE_R):[]}function Y(e){var t=e.token,r=c(e);if(s.DirectiveLocation.hasOwnProperty(r.value))return r;throw $(e,t)}function G(e,t){if(!e.options.noLocation)return new W(t,e.lastToken,e.source)}function W(e,t,r){this.start=e.start,this.end=t.end,this.startToken=e,this.endToken=t,this.source=r}function H(e,t){return e.token.kind===t}function J(e,t){var r=e.token.kind===t;return r&&e.advance(),r}function X(e,t){var r=e.token;if(r.kind===t)return e.advance(),r;throw(0,o.syntaxError)(e.source,r.start,"Expected ".concat(t,", found ").concat((0,a.getTokenDesc)(r)))}function z(e,t){var r=e.token;if(r.kind===a.TokenKind.NAME&&r.value===t)return e.advance(),r;throw(0,o.syntaxError)(e.source,r.start,'Expected "'.concat(t,'", found ').concat((0,a.getTokenDesc)(r)))}function $(e,t){var r=t||e.token;return(0,o.syntaxError)(e.source,r.start,"Unexpected ".concat((0,a.getTokenDesc)(r)))}function Z(e,t,r,n){X(e,t);for(var i=[r(e)];!J(e,n);)i.push(r(e));return i}W.prototype.toJSON=W.prototype.inspect=function(){return{start:this.start,end:this.end}}},function(e,t,r){"use strict";function n(e){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function e(t){switch(n(t)){case"string":return JSON.stringify(t);case"function":return t.name?"[function ".concat(t.name,"]"):"[function]";case"object":if(t){if("function"==typeof t.inspect)return t.inspect();if(Array.isArray(t))return"["+t.map(e).join(", ")+"]";var r=Object.keys(t).map(function(r){return"".concat(r,": ").concat(e(t[r]))}).join(", ");return r?"{ "+r+" }":"{}"}return String(t);default:return String(t)}}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Source=void 0;var n=o(r(17)),i=o(r(44));function o(e){return e&&e.__esModule?e:{default:e}}function a(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}var u=function(e,t,r){a(this,"body",void 0),a(this,"name",void 0),a(this,"locationOffset",void 0),this.body=e,this.name=t||"GraphQL request",this.locationOffset=r||{line:1,column:1},this.locationOffset.line>0||(0,n.default)(0,"line in locationOffset is 1-indexed and must be positive"),this.locationOffset.column>0||(0,n.default)(0,"column in locationOffset is 1-indexed and must be positive")};t.Source=u,(0,i.default)(u)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){"function"==typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e.prototype,Symbol.toStringTag,{get:function(){return this.constructor.name}})}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.syntaxError=function(e,t,r){return new n.GraphQLError("Syntax Error: ".concat(r),void 0,e,[t])};var n=r(8)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.locatedError=function(e,t,r){return e&&Array.isArray(e.path)?e:new n.GraphQLError(e&&e.message,e&&e.nodes||t,e&&e.source,e&&e.positions,r,e)};var n=r(8)},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.formatError=function(e){e||(0,n.default)(0,"Received null or undefined error.");var t=e.message||"An unknown error occurred.",r=e.locations,i=e.path,o=e.extensions;return o?{message:t,locations:r,path:i,extensions:o}:{message:t,locations:r,path:i}};var n=function(e){return e&&e.__esModule?e:{default:e}}(r(17))},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.createLexer=function(e,t){var r=new l(u.SOF,0,0,0,0,null);return{source:e,options:t,lastToken:r,token:r,line:1,lineStart:0,advance:o,lookahead:a}},t.getTokenDesc=function(e){var t=e.value;return t?"".concat(e.kind,' "').concat(t,'"'):e.kind},t.TokenKind=void 0;var n=r(18),i=function(e){return e&&e.__esModule?e:{default:e}}(r(49));function o(){return this.lastToken=this.token,this.token=this.lookahead()}function a(){var e=this.token;if(e.kind!==u.EOF)do{e=e.next||(e.next=d(this,e))}while(e.kind===u.COMMENT);return e}var u=Object.freeze({SOF:"<SOF>",EOF:"<EOF>",BANG:"!",DOLLAR:"$",AMP:"&",PAREN_L:"(",PAREN_R:")",SPREAD:"...",COLON:":",EQUALS:"=",AT:"@",BRACKET_L:"[",BRACKET_R:"]",BRACE_L:"{",PIPE:"|",BRACE_R:"}",NAME:"Name",INT:"Int",FLOAT:"Float",STRING:"String",BLOCK_STRING:"BlockString",COMMENT:"Comment"});t.TokenKind=u;var s=String.prototype.charCodeAt,c=String.prototype.slice;function l(e,t,r,n,i,o,a){this.kind=e,this.start=t,this.end=r,this.line=n,this.column=i,this.value=a,this.prev=o,this.next=null}function f(e){return isNaN(e)?u.EOF:e<127?JSON.stringify(String.fromCharCode(e)):'"\\u'.concat(("00"+e.toString(16).toUpperCase()).slice(-4),'"')}function d(e,t){var r=e.source,o=r.body,a=o.length,d=function(e,t,r){for(var n=e.length,i=t;i<n;){var o=s.call(e,i);if(9===o||32===o||44===o||65279===o)++i;else if(10===o)++i,++r.line,r.lineStart=i;else{if(13!==o)break;10===s.call(e,i+1)?i+=2:++i,++r.line,r.lineStart=i}}return i}(o,t.end,e),y=e.line,v=1+d-e.lineStart;if(d>=a)return new l(u.EOF,a,a,y,v,t);var m=s.call(o,d);switch(m){case 33:return new l(u.BANG,d,d+1,y,v,t);case 35:return function(e,t,r,n,i){var o,a=e.body,f=t;do{o=s.call(a,++f)}while(null!==o&&(o>31||9===o));return new l(u.COMMENT,t,f,r,n,i,c.call(a,t+1,f))}(r,d,y,v,t);case 36:return new l(u.DOLLAR,d,d+1,y,v,t);case 38:return new l(u.AMP,d,d+1,y,v,t);case 40:return new l(u.PAREN_L,d,d+1,y,v,t);case 41:return new l(u.PAREN_R,d,d+1,y,v,t);case 46:if(46===s.call(o,d+1)&&46===s.call(o,d+2))return new l(u.SPREAD,d,d+3,y,v,t);break;case 58:return new l(u.COLON,d,d+1,y,v,t);case 61:return new l(u.EQUALS,d,d+1,y,v,t);case 64:return new l(u.AT,d,d+1,y,v,t);case 91:return new l(u.BRACKET_L,d,d+1,y,v,t);case 93:return new l(u.BRACKET_R,d,d+1,y,v,t);case 123:return new l(u.BRACE_L,d,d+1,y,v,t);case 124:return new l(u.PIPE,d,d+1,y,v,t);case 125:return new l(u.BRACE_R,d,d+1,y,v,t);case 65:case 66:case 67:case 68:case 69:case 70:case 71:case 72:case 73:case 74:case 75:case 76:case 77:case 78:case 79:case 80:case 81:case 82:case 83:case 84:case 85:case 86:case 87:case 88:case 89:case 90:case 95:case 97:case 98:case 99:case 100:case 101:case 102:case 103:case 104:case 105:case 106:case 107:case 108:case 109:case 110:case 111:case 112:case 113:case 114:case 115:case 116:case 117:case 118:case 119:case 120:case 121:case 122:return function(e,t,r,n,i){for(var o=e.body,a=o.length,f=t+1,d=0;f!==a&&null!==(d=s.call(o,f))&&(95===d||d>=48&&d<=57||d>=65&&d<=90||d>=97&&d<=122);)++f;return new l(u.NAME,t,f,r,n,i,c.call(o,t,f))}(r,d,y,v,t);case 45:case 48:case 49:case 50:case 51:case 52:case 53:case 54:case 55:case 56:case 57:return function(e,t,r,i,o,a){var d=e.body,h=r,y=t,v=!1;if(45===h&&(h=s.call(d,++y)),48===h){if((h=s.call(d,++y))>=48&&h<=57)throw(0,n.syntaxError)(e,y,"Invalid number, unexpected digit after 0: ".concat(f(h),"."))}else y=p(e,y,h),h=s.call(d,y);return 46===h&&(v=!0,h=s.call(d,++y),y=p(e,y,h),h=s.call(d,y)),69!==h&&101!==h||(v=!0,43!==(h=s.call(d,++y))&&45!==h||(h=s.call(d,++y)),y=p(e,y,h)),new l(v?u.FLOAT:u.INT,t,y,i,o,a,c.call(d,t,y))}(r,d,m,y,v,t);case 34:return 34===s.call(o,d+1)&&34===s.call(o,d+2)?function(e,t,r,o,a){for(var d=e.body,p=t+3,h=p,y=0,v="";p<d.length&&null!==(y=s.call(d,p));){if(34===y&&34===s.call(d,p+1)&&34===s.call(d,p+2))return v+=c.call(d,h,p),new l(u.BLOCK_STRING,t,p+3,r,o,a,(0,i.default)(v));if(y<32&&9!==y&&10!==y&&13!==y)throw(0,n.syntaxError)(e,p,"Invalid character within String: ".concat(f(y),"."));92===y&&34===s.call(d,p+1)&&34===s.call(d,p+2)&&34===s.call(d,p+3)?(v+=c.call(d,h,p)+'"""',h=p+=4):++p}throw(0,n.syntaxError)(e,p,"Unterminated string.")}(r,d,y,v,t):function(e,t,r,i,o){for(var a=e.body,d=t+1,p=d,y=0,v="";d<a.length&&null!==(y=s.call(a,d))&&10!==y&&13!==y;){if(34===y)return v+=c.call(a,p,d),new l(u.STRING,t,d+1,r,i,o,v);if(y<32&&9!==y)throw(0,n.syntaxError)(e,d,"Invalid character within String: ".concat(f(y),"."));if(++d,92===y){switch(v+=c.call(a,p,d-1),y=s.call(a,d)){case 34:v+='"';break;case 47:v+="/";break;case 92:v+="\\";break;case 98:v+="\b";break;case 102:v+="\f";break;case 110:v+="\n";break;case 114:v+="\r";break;case 116:v+="\t";break;case 117:var m=h(s.call(a,d+1),s.call(a,d+2),s.call(a,d+3),s.call(a,d+4));if(m<0)throw(0,n.syntaxError)(e,d,"Invalid character escape sequence: "+"\\u".concat(a.slice(d+1,d+5),"."));v+=String.fromCharCode(m),d+=4;break;default:throw(0,n.syntaxError)(e,d,"Invalid character escape sequence: \\".concat(String.fromCharCode(y),"."))}p=++d}}throw(0,n.syntaxError)(e,d,"Unterminated string.")}(r,d,y,v,t)}throw(0,n.syntaxError)(r,d,function(e){return e<32&&9!==e&&10!==e&&13!==e?"Cannot contain the invalid character ".concat(f(e),"."):39===e?"Unexpected single quote character ('), did you mean to use a double quote (\")?":"Cannot parse the unexpected character ".concat(f(e),".")}(m))}function p(e,t,r){var i=e.body,o=t,a=r;if(a>=48&&a<=57){do{a=s.call(i,++o)}while(a>=48&&a<=57);return o}throw(0,n.syntaxError)(e,o,"Invalid number, expected digit but got: ".concat(f(a),"."))}function h(e,t,r,n){return y(e)<<12|y(t)<<8|y(r)<<4|y(n)}function y(e){return e>=48&&e<=57?e-48:e>=65&&e<=70?e-55:e>=97&&e<=102?e-87:-1}l.prototype.toJSON=l.prototype.inspect=function(){return{kind:this.kind,value:this.value,line:this.line,column:this.column}}},function(e,t,r){"use strict";function n(e){for(var t=0;t<e.length&&(" "===e[t]||"\t"===e[t]);)t++;return t}function i(e){return n(e)===e.length}Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){for(var t=e.split(/\r\n|[\n\r]/g),r=null,o=1;o<t.length;o++){var a=t[o],u=n(a);if(u<a.length&&(null===r||u<r)&&0===(r=u))break}if(r)for(var s=1;s<t.length;s++)t[s]=t[s].slice(r);for(;t.length>0&&i(t[0]);)t.shift();for(;t.length>0&&i(t[t.length-1]);)t.pop();return t.join("\n")}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Kind=void 0;var n=Object.freeze({NAME:"Name",DOCUMENT:"Document",OPERATION_DEFINITION:"OperationDefinition",VARIABLE_DEFINITION:"VariableDefinition",SELECTION_SET:"SelectionSet",FIELD:"Field",ARGUMENT:"Argument",FRAGMENT_SPREAD:"FragmentSpread",INLINE_FRAGMENT:"InlineFragment",FRAGMENT_DEFINITION:"FragmentDefinition",VARIABLE:"Variable",INT:"IntValue",FLOAT:"FloatValue",STRING:"StringValue",BOOLEAN:"BooleanValue",NULL:"NullValue",ENUM:"EnumValue",LIST:"ListValue",OBJECT:"ObjectValue",OBJECT_FIELD:"ObjectField",DIRECTIVE:"Directive",NAMED_TYPE:"NamedType",LIST_TYPE:"ListType",NON_NULL_TYPE:"NonNullType",SCHEMA_DEFINITION:"SchemaDefinition",OPERATION_TYPE_DEFINITION:"OperationTypeDefinition",SCALAR_TYPE_DEFINITION:"ScalarTypeDefinition",OBJECT_TYPE_DEFINITION:"ObjectTypeDefinition",FIELD_DEFINITION:"FieldDefinition",INPUT_VALUE_DEFINITION:"InputValueDefinition",INTERFACE_TYPE_DEFINITION:"InterfaceTypeDefinition",UNION_TYPE_DEFINITION:"UnionTypeDefinition",ENUM_TYPE_DEFINITION:"EnumTypeDefinition",ENUM_VALUE_DEFINITION:"EnumValueDefinition",INPUT_OBJECT_TYPE_DEFINITION:"InputObjectTypeDefinition",DIRECTIVE_DEFINITION:"DirectiveDefinition",SCHEMA_EXTENSION:"SchemaExtension",SCALAR_TYPE_EXTENSION:"ScalarTypeExtension",OBJECT_TYPE_EXTENSION:"ObjectTypeExtension",INTERFACE_TYPE_EXTENSION:"InterfaceTypeExtension",UNION_TYPE_EXTENSION:"UnionTypeExtension",ENUM_TYPE_EXTENSION:"EnumTypeExtension",INPUT_OBJECT_TYPE_EXTENSION:"InputObjectTypeExtension"});t.Kind=n},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.DirectiveLocation=void 0;var n=Object.freeze({QUERY:"QUERY",MUTATION:"MUTATION",SUBSCRIPTION:"SUBSCRIPTION",FIELD:"FIELD",FRAGMENT_DEFINITION:"FRAGMENT_DEFINITION",FRAGMENT_SPREAD:"FRAGMENT_SPREAD",INLINE_FRAGMENT:"INLINE_FRAGMENT",VARIABLE_DEFINITION:"VARIABLE_DEFINITION",SCHEMA:"SCHEMA",SCALAR:"SCALAR",OBJECT:"OBJECT",FIELD_DEFINITION:"FIELD_DEFINITION",ARGUMENT_DEFINITION:"ARGUMENT_DEFINITION",INTERFACE:"INTERFACE",UNION:"UNION",ENUM:"ENUM",ENUM_VALUE:"ENUM_VALUE",INPUT_OBJECT:"INPUT_OBJECT",INPUT_FIELD_DEFINITION:"INPUT_FIELD_DEFINITION"});t.DirectiveLocation=n},function(e,t,r){(function(t){var r=1/0,n=9007199254740991,i="[object Arguments]",o="[object Function]",a="[object GeneratorFunction]",u="[object Symbol]",s="object"==typeof t&&t&&t.Object===Object&&t,c="object"==typeof self&&self&&self.Object===Object&&self,l=s||c||Function("return this")();function f(e,t){for(var r=-1,n=t.length,i=e.length;++r<n;)e[i+r]=t[r];return e}var d=Object.prototype,p=d.hasOwnProperty,h=d.toString,y=l.Symbol,v=d.propertyIsEnumerable,m=y?y.isConcatSpreadable:void 0,b=Math.max;function g(e){return O(e)||function(e){return function(e){return E(e)&&function(e){return null!=e&&function(e){return"number"==typeof e&&e>-1&&e%1==0&&e<=n}(e.length)&&!function(e){var t=function(e){var t=typeof e;return!!e&&("object"==t||"function"==t)}(e)?h.call(e):"";return t==o||t==a}(e)}(e)}(e)&&p.call(e,"callee")&&(!v.call(e,"callee")||h.call(e)==i)}(e)||!!(m&&e&&e[m])}function w(e){if("string"==typeof e||function(e){return"symbol"==typeof e||E(e)&&h.call(e)==u}(e))return e;var t=e+"";return"0"==t&&1/e==-r?"-0":t}var O=Array.isArray;function E(e){return!!e&&"object"==typeof e}var k=function(e,t){return t=b(void 0===t?e.length-1:t,0),function(){for(var r=arguments,n=-1,i=b(r.length-t,0),o=Array(i);++n<i;)o[n]=r[t+n];n=-1;for(var a=Array(t+1);++n<t;)a[n]=r[n];return a[t]=o,function(e,t,r){switch(r.length){case 0:return e.call(t);case 1:return e.call(t,r[0]);case 2:return e.call(t,r[0],r[1]);case 3:return e.call(t,r[0],r[1],r[2])}return e.apply(t,r)}(e,this,a)}}(function(e,t){return null==e?{}:function(e,t){return function(e,t,r){for(var n=-1,i=t.length,o={};++n<i;){var a=t[n],u=e[a];r(u,a)&&(o[a]=u)}return o}(e=Object(e),t,function(t,r){return r in e})}(e,function(e,t){for(var r=-1,n=e?e.length:0,i=Array(n);++r<n;)i[r]=t(e[r],r,e);return i}(function e(t,r,n,i,o){var a=-1,u=t.length;for(n||(n=g),o||(o=[]);++a<u;){var s=t[a];r>0&&n(s)?r>1?e(s,r-1,n,i,o):f(o,s):i||(o[o.length]=s)}return o}(t,1),w))});e.exports=k}).call(this,r(7))},function(e,t,r){var n={kind:"Document",definitions:[{kind:"FragmentDefinition",name:{kind:"Name",value:"ownerSummary"},typeCondition:{kind:"NamedType",name:{kind:"Name",value:"Owner"}},directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"FragmentSpread",name:{kind:"Name",value:"owner"},directives:[]},{kind:"Field",name:{kind:"Name",value:"pets"},arguments:[],directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"Field",name:{kind:"Name",value:"name"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"visits"},arguments:[],directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"Field",name:{kind:"Name",value:"totalCount"},arguments:[],directives:[]}]}}]}}]}},{kind:"OperationDefinition",operation:"query",name:{kind:"Name",value:"ownerList"},variableDefinitions:[],directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"Field",name:{kind:"Name",value:"owners"},arguments:[],directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"FragmentSpread",name:{kind:"Name",value:"ownerSummary"},directives:[]}]}}]}}],loc:{start:0,end:221}};n.loc.source={body:'#import "../../gqlfragments/owner.graphql"\r\n\r\nfragment ownerSummary on Owner {\r\n  ...owner\r\n  pets {\r\n    name\r\n    visits {\r\n      totalCount\r\n    }\r\n  }\r\n}\r\n\r\nquery ownerList {\r\n  owners {\r\n    ...ownerSummary\r\n  }\r\n}\r\n',name:"GraphQL request",locationOffset:{line:1,column:1}};var i={};n.definitions=n.definitions.concat(r(54).definitions.filter(function(e){if("FragmentDefinition"!==e.kind)return!0;var t=e.name.value;return!i[t]&&(i[t]=!0,!0)}));var o={};function a(e,t){for(var r=0;r<e.definitions.length;r++){var n=e.definitions[r];if(n.name&&n.name.value==t)return n}}n.definitions.forEach(function(e){if(e.name){var t=new Set;!function e(t,r){if("FragmentSpread"===t.kind)r.add(t.name.value);else if("VariableDefinition"===t.kind){var n=t.type;"NamedType"===n.kind&&r.add(n.name.value)}t.selectionSet&&t.selectionSet.selections.forEach(function(t){e(t,r)}),t.variableDefinitions&&t.variableDefinitions.forEach(function(t){e(t,r)}),t.definitions&&t.definitions.forEach(function(t){e(t,r)})}(e,t),o[e.name.value]=t}}),e.exports=n,e.exports.ownerList=function(e,t){var r={kind:e.kind,definitions:[a(e,t)]};e.hasOwnProperty("loc")&&(r.loc=e.loc);for(var n=o[t]||new Set,i=new Set,u=new Set(n);u.size>0;){var s=u;u=new Set,s.forEach(function(e){i.has(e)||(i.add(e),(o[e]||new Set).forEach(function(e){u.add(e)}))})}return i.forEach(function(t){var n=a(e,t);n&&r.definitions.push(n)}),r}(n,"ownerList")},function(e,t){var r={kind:"Document",definitions:[{kind:"FragmentDefinition",name:{kind:"Name",value:"owner"},typeCondition:{kind:"NamedType",name:{kind:"Name",value:"Owner"}},directives:[],selectionSet:{kind:"SelectionSet",selections:[{kind:"Field",name:{kind:"Name",value:"id"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"firstName"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"lastName"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"address"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"city"},arguments:[],directives:[]},{kind:"Field",name:{kind:"Name",value:"telephone"},arguments:[],directives:[]}]}}],loc:{start:0,end:93}};r.loc.source={body:"fragment owner on Owner {\r\n  id\r\n  firstName\r\n  lastName\r\n  address\r\n  city\r\n  telephone\r\n}\r\n",name:"GraphQL request",locationOffset:{line:1,column:1}},e.exports=r},function(e,t,r){"use strict";var n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};Object.defineProperty(t,"__esModule",{value:!0});var i=r(6);t.default=function(e){return function(t){return t.data.loading?i.createElement("h1",null,"Loading"):i.createElement(e,n({},t))}}},function(e,r){e.exports=t},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(10);t.createGraphQLClient=function(){var e=n.createNetworkInterface({uri:"http://localhost:9977/graphql"});return new n.ApolloClient({networkInterface:e})}},function(e,t,r){"use strict";r.r(t),r(11);var n=r(1);function i(e,t,r,n){if("IntValue"===r.kind||"FloatValue"===r.kind)e[t.value]=Number(r.value);else if("BooleanValue"===r.kind||"StringValue"===r.kind)e[t.value]=r.value;else if("ObjectValue"===r.kind){var o={};r.fields.map(function(e){return i(o,e.name,e.value,n)}),e[t.value]=o}else if("Variable"===r.kind){var a=(n||{})[r.name.value];e[t.value]=a}else if("ListValue"===r.kind)e[t.value]=r.values.map(function(e){var r={};return i(r,t,e,n),r[t.value]});else{if("EnumValue"!==r.kind)throw new Error('The inline argument "'+t.value+'" of kind "'+r.kind+'" is not supported.\n                    Use variables instead of inline arguments to overcome this limitation.');e[t.value]=r.value}}function o(e,t,r){if(r&&r.connection&&r.connection.key){if(r.connection.filter&&r.connection.filter.length>0){var n=r.connection.filter?r.connection.filter:[];n.sort();var i=t,o={};return n.forEach(function(e){o[e]=i[e]}),r.connection.key+"("+JSON.stringify(o)+")"}return r.connection.key}return t?e+"("+JSON.stringify(t)+")":e}function a(e){return e.errors&&e.errors.length}function u(e){return null!=e&&"object"==typeof e&&"id"===e.type}function s(e,t){return void 0===t&&(t=!1),{type:"id",id:e,generated:t}}function c(e){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];return t.forEach(function(t){void 0!==t&&null!==t&&Object.keys(t).forEach(function(r){e[r]=t[r]})}),e}var l=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};function f(e){d(e);var t=null;if(e.definitions.forEach(function(e){"OperationDefinition"===e.kind&&"mutation"===e.operation&&(t=e)}),!t)throw new Error("Must contain a mutation definition.");return t}function d(e){if("Document"!==e.kind)throw new Error('Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a "gql" tag? http://docs.apollostack.com/apollo-client/core.html#gql');var t=!1;e.definitions.forEach(function(e){switch(e.kind){case"FragmentDefinition":break;case"OperationDefinition":if(t)throw new Error("Queries must have exactly one operation definition.");t=!0;break;default:throw new Error('Schema type definitions not allowed in queries. Found: "'+e.kind+'"')}})}function p(e){var t=null;return e.definitions.forEach(function(e){"OperationDefinition"===e.kind&&e.name&&(t=e.name.value)}),t}function h(e){return e.definitions.filter(function(e){return"FragmentDefinition"===e.kind})}function y(e){d(e);var t=null;if(e.definitions.map(function(e){"OperationDefinition"===e.kind&&"query"===e.operation&&(t=e)}),!t)throw new Error("Must contain a query definition.");return t}function v(e){d(e);var t=null;if(e.definitions.map(function(e){"OperationDefinition"===e.kind&&(t=e)}),!t)throw new Error("Must contain a query definition.");return t}function m(e){void 0===e&&(e=[]);var t={};return e.forEach(function(e){t[e.name.value]=e}),t}function b(e,t){var r=t,n=[];if(e.definitions.forEach(function(e){if("OperationDefinition"===e.kind)throw new Error("Found a "+e.operation+" operation"+(e.name?" named '"+e.name.value+"'":"")+". No operations are allowed when using a fragment as a query. Only fragments are allowed.");"FragmentDefinition"===e.kind&&n.push(e)}),void 0===r){if(1!==n.length)throw new Error("Found "+n.length+" fragments. `fragmentName` must be provided when there is not exactly 1 fragment.");r=n[0].name.value}return l({},e,{definitions:[{kind:"OperationDefinition",operation:"query",selectionSet:{kind:"SelectionSet",selections:[{kind:"FragmentSpread",name:{kind:"Name",value:r}}]}}].concat(e.definitions)})}function g(e){if(e.variableDefinitions&&e.variableDefinitions.length){var t=e.variableDefinitions.filter(function(e){return e.defaultValue}).map(function(e){var t=e.variable,r=e.defaultValue,n={};return i(n,t.name,r),n});return c.apply(void 0,[{}].concat(t))}return{}}function w(e){if(Array.isArray(e))return e.map(function(e){return w(e)});if(null!==e&&"object"==typeof e){var t={};for(var r in e)e.hasOwnProperty(r)&&(t[r]=w(e[r]));return t}return e}var O={kind:"Field",name:{kind:"Name",value:"__typename"}};function E(e){d(e);var t=w(e);return t.definitions.forEach(function(e){var t="OperationDefinition"===e.kind;!function e(t,r){void 0===r&&(r=!1),t.selections&&(r||t.selections.some(function(e){return"Field"===e.kind&&"__typename"===e.name.value})||t.selections.push(O),t.selections.forEach(function(t){"Field"===t.kind?0!==t.name.value.lastIndexOf("__",0)&&t.selectionSet&&e(t.selectionSet):"InlineFragment"===t.kind&&t.selectionSet&&e(t.selectionSet)}))}(e.selectionSet,t)}),t}function k(e){d(e);var t=w(e);return t.definitions.forEach(function(e){!function e(t){t.selections&&(t.selections.forEach(function(e){"Field"===e.kind&&e&&e.directives&&(e.directives=e.directives.filter(function(e){var t="connection"===e.name.value;return t&&(e.arguments&&e.arguments.some(function(e){return"key"===e.name.value})||console.warn("Removing an @connection directive even though it does not have a key. You may want to use the key parameter to specify a store key.")),!t}))}),t.selections.forEach(function(t){"Field"===t.kind?t.selectionSet&&e(t.selectionSet):"InlineFragment"===t.kind&&t.selectionSet&&e(t.selectionSet)}))}(e.selectionSet)}),t}var T=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),I=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};function _(e){return I({},e,{query:Object(n.print)(e.query)})}var S=function(){function e(e,t){if(void 0===t&&(t={}),!e)throw new Error("A remote endpoint is required for a network layer");if("string"!=typeof e)throw new Error("Remote endpoint must be a string");this._uri=e,this._opts=I({},t),this._middlewares=[],this._afterwares=[]}return e.prototype.query=function(e){return new Promise(function(e,t){t(new Error("BaseNetworkInterface should not be used directly"))})},e}(),N=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return T(t,e),t.prototype.applyMiddlewares=function(e){var t=this;return new Promise(function(r,n){var i=e.request,o=e.options;!function(e,t){var a=function(u){if(u)n(u);else if(e.length>0){var s=e.shift();s&&s.applyMiddleware.apply(t,[{request:i,options:o},a])}else r({request:i,options:o})};a()}(t._middlewares.slice(),t)})},t.prototype.applyAfterwares=function(e){var t=this,r=e.response,n=e.options;return new Promise(function(e,i){var o={response:r,options:n};!function(t,r){var n=function(){if(t.length>0){var i=t.shift();i&&i.applyAfterware.apply(r,[o,n])}else e(o)};n()}(t._afterwares.slice(),t)})},t.prototype.fetchFromRemoteEndpoint=function(e){var t=e.request,r=e.options;return fetch(this._uri,I({},this._opts,{body:JSON.stringify(_(t)),method:"POST"},r,{headers:I({Accept:"*/*","Content-Type":"application/json"},r.headers)}))},t.prototype.query=function(e){var t=this,r=I({},this._opts);return this.applyMiddlewares({request:e,options:r}).then(function(e){return e.request.query&&(e.request.query=k(e.request.query)),e}).then(function(e){return t.fetchFromRemoteEndpoint.call(t,e)}).then(function(e){return t.applyAfterwares({response:e,options:r})}).then(function(e){var t=e.response,r=t;return r.json().catch(function(e){var n=new Error("Network request failed with status "+t.status+' - "'+t.statusText+'"');throw n.response=r,n.parseError=e,n})}).then(function(t){if(t.hasOwnProperty("data")||t.hasOwnProperty("errors"))return t;throw new Error("Server response was missing for query '"+e.debugName+"'.")})},t.prototype.use=function(e){var t=this;return e.map(function(e){if("function"!=typeof e.applyMiddleware)throw new Error("Middleware must implement the applyMiddleware function");t._middlewares.push(e)}),this},t.prototype.useAfter=function(e){var t=this;return e.map(function(e){if("function"!=typeof e.applyAfterware)throw new Error("Afterware must implement the applyAfterware function");t._afterwares.push(e)}),this},t}(S);function P(e,t){if(void 0===t&&(t={}),!e)throw new Error("You must pass an options argument to createNetworkInterface.");var r,n;return"string"==typeof e?(console.warn('Passing the URI as the first argument to createNetworkInterface is deprecated as of Apollo Client 0.5. Please pass it as the "uri" property of the network interface options.'),n=t.opts,r=e):(n=e.opts,r=e.uri),new N(r,n)}var R=function(){function e(e){var t=e.batchInterval,r=e.batchMax,n=void 0===r?0:r,i=e.batchFetchFunction;this.queuedRequests=[],this.queuedRequests=[],this.batchInterval=t,this.batchMax=n,this.batchFetchFunction=i}return e.prototype.enqueueRequest=function(e){var t={request:e};return this.queuedRequests.push(t),t.promise=new Promise(function(e,r){t.resolve=e,t.reject=r}),1===this.queuedRequests.length&&this.scheduleQueueConsumption(),this.queuedRequests.length===this.batchMax&&this.consumeQueue(),t.promise},e.prototype.consumeQueue=function(){var e=this.queuedRequests.map(function(e){return e.request}),t=[],r=[],n=[];return this.queuedRequests.forEach(function(e,i){t.push(e.promise),r.push(e.resolve),n.push(e.reject)}),this.queuedRequests=[],this.batchFetchFunction(e).then(function(e){e.forEach(function(e,t){r[t](e)})}).catch(function(e){n.forEach(function(t,r){n[r](e)})}),t},e.prototype.scheduleQueueConsumption=function(){var e=this;setTimeout(function(){e.queuedRequests.length&&e.consumeQueue()},this.batchInterval)},e}(),q=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),A=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},F=function(e){function t(t){var r=t.uri,n=t.batchInterval,i=void 0===n?10:n,o=t.batchMax,a=void 0===o?0:o,u=t.fetchOpts,s=e.call(this,r,u)||this;if("number"!=typeof i)throw new Error("batchInterval must be a number, got "+i);if("number"!=typeof a)throw new Error("batchMax must be a number, got "+a);return s.batcher=new R({batchInterval:i,batchMax:a,batchFetchFunction:s.batchQuery.bind(s)}),s}return q(t,e),t.prototype.query=function(e){return this.batcher.enqueueRequest(e)},t.prototype.batchQuery=function(e){var t=this,r=A({},this._opts),n=this.applyBatchMiddlewares({requests:e,options:r});return new Promise(function(e,r){n.then(function(n){return n.requests.forEach(function(e){e.query&&(e.query=k(e.query))}),t.batchedFetchFromRemoteEndpoint(n).then(function(e){var r=e;return r.ok?e.json():t.applyBatchAfterwares({responses:[r],options:n.options}).then(function(){var e=new Error("Network request failed with status "+r.status+' - "'+r.statusText+'"');throw e.response=r,e})}).then(function(i){if("function"!=typeof i.map)throw new Error("BatchingNetworkInterface: server response is not an array");t.applyBatchAfterwares({responses:i,options:n.options}).then(function(t){e(t.responses)}).catch(function(e){r(e)})})}).catch(function(e){r(e)})})},t.prototype.applyBatchMiddlewares=function(e){var t=this,r=e.requests,n=e.options;return new Promise(function(e,i){!function(t,i){var o=function(){if(t.length>0){var a=t.shift();a&&a.applyBatchMiddleware.apply(i,[{requests:r,options:n},o])}else e({requests:r,options:n})};o()}(t._middlewares.slice(),t)})},t.prototype.applyBatchAfterwares=function(e){var t=this,r=e.responses,n=e.options;return new Promise(function(e,i){var o={responses:r,options:n};!function(t,r){var n=function(){if(t.length>0){var i=t.shift();i&&i.applyBatchAfterware.apply(r,[o,n])}else e(o)};n()}(t._afterwares.slice(),t)})},t.prototype.use=function(e){var t=this;return e.map(function(e){if("function"!=typeof e.applyBatchMiddleware)throw new Error("Batch middleware must implement the applyBatchMiddleware function");t._middlewares.push(e)}),this},t.prototype.useAfter=function(e){var t=this;return e.map(function(e){if("function"!=typeof e.applyBatchAfterware)throw new Error("Batch afterware must implement the applyBatchAfterware function");t._afterwares.push(e)}),this},t.prototype.batchedFetchFromRemoteEndpoint=function(e){var t={};c(t,e.options);var r=e.requests.map(function(e){return _(e)});return fetch(this._uri,A({},this._opts,{body:JSON.stringify(r),method:"POST"},t,{headers:A({Accept:"*/*","Content-Type":"application/json"},t.headers)}))},t}(S);function j(e){if(!e)throw new Error("You must pass an options argument to createNetworkInterface.");return new F({uri:e.uri,batchInterval:e.batchInterval,batchMax:e.batchMax,fetchOpts:e.opts||{}})}var M=r(2);function L(e){return"APOLLO_QUERY_RESULT"===e.type}function Q(e){return"APOLLO_MUTATION_RESULT"===e.type}function x(e){return"APOLLO_SUBSCRIPTION_RESULT"===e.type}var D=r(0),C=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),K=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},U=function(e){function t(){var t=null!==e&&e.apply(this,arguments)||this;return t.type="WriteError",t}return C(t,e),t}(Error);function B(e,t){var r=new U("Error writing result to store for query "+(t.loc&&t.loc.source&&t.loc.source.body));return r.message+="/n"+e.message,r.stack=e.stack,r}function V(e){var t=e.result,r=e.query,n=e.store,i=void 0===n?{}:n,o=e.variables,a=e.dataIdFromObject,u=e.fragmentMap,s=void 0===u?{}:u,l=e.fragmentMatcherFunction,f=y(r);o=c({},g(f),o);try{return G({dataId:"ROOT_QUERY",result:t,selectionSet:f.selectionSet,context:{store:i,processedData:{},variables:o,dataIdFromObject:a,fragmentMap:s,fragmentMatcherFunction:l}})}catch(e){throw B(e,r)}}function Y(e){var t=e.dataId,r=e.result,n=e.document,i=e.store,o=void 0===i?{}:i,a=e.variables,u=e.dataIdFromObject,s=e.fragmentMatcherFunction,l=v(n),f=l.selectionSet,d=m(h(n));a=c({},g(l),a);try{return G({result:r,dataId:t,selectionSet:f,context:{store:o,processedData:{},variables:a,dataIdFromObject:u,fragmentMap:d,fragmentMatcherFunction:s}})}catch(e){throw B(e,n)}}function G(e){var t=e.result,r=e.dataId,n=e.selectionSet,a=e.context,s=a.variables,c=a.store,l=(a.dataIdFromObject,a.fragmentMap);return n.selections.forEach(function(e){var n=function(e,t){if(void 0===t&&(t={}),!e.directives)return!0;var r=!0;return e.directives.forEach(function(e){if("skip"===e.name.value||"include"===e.name.value){var n=e.arguments||[],i=e.name.value;if(1!==n.length)throw new Error("Incorrect number of arguments for the @"+i+" directive.");var o=n[0];if(!o.name||"if"!==o.name.value)throw new Error("Invalid argument for the @"+i+" directive.");var a=n[0].value,u=!1;if(a&&"BooleanValue"===a.kind)u=a.value;else{if("Variable"!==a.kind)throw new Error("Argument for the @"+i+" directive must be a variable or a bool ean value.");if(void 0===(u=t[a.name.value]))throw new Error("Invalid variable referenced in @"+i+" directive.")}"skip"===i&&(u=!u),u||(r=!1)}}),r}(e,s);if(function(e){return"Field"===e.kind}(e)){var c=function(e){return e.alias?e.alias.value:e.name.value}(e),f=t[c];n&&(void 0!==f?function(e){var t,r=e.field,n=e.value,a=e.dataId,s=e.context,c=s.variables,l=s.dataIdFromObject,f=s.store,d=(s.fragmentMap,function(e,t){var r=null;e.directives&&(r={},e.directives.forEach(function(e){r[e.name.value]={},e.arguments&&e.arguments.forEach(function(n){var o=n.name,a=n.value;return i(r[e.name.value],o,a,t)})}));var n=null;return e.arguments&&e.arguments.length&&(n={},e.arguments.forEach(function(e){var r=e.name,o=e.value;return i(n,r,o,t)})),o(e.name.value,n,r)}(r,c)),p=!1,h="";if(r.selectionSet&&null!==n)if(Array.isArray(n)){t=function e(t,r,n,i){return t.map(function(t,o){if(null===t)return null;var a=r+"."+o;if(Array.isArray(t))return e(t,a,n,i);var u=!0;if(i.dataIdFromObject){var s=i.dataIdFromObject(t);s&&(a=s,u=!1)}return H(a,n,i.processedData)||G({dataId:a,result:t,selectionSet:n,context:i}),{type:"id",id:a,generated:u}})}(n,a+"."+d,r.selectionSet,s)}else{var y=a+"."+d,v=!0;if(W(y)||(y="$"+y),l){var m=l(n);if(m&&W(m))throw new Error('IDs returned by dataIdFromObject cannot begin with the "$" character.');m&&(y=m,v=!1)}if(H(y,r,s.processedData)||G({dataId:y,result:n,selectionSet:r.selectionSet,context:s}),t={type:"id",id:y,generated:v},f[a]&&f[a][d]!==t){var b=f[a][d];if(u(t)&&t.generated&&u(b)&&!b.generated)throw new Error("Store error: the application attempted to write an object with no provided id but the store already contains an id of "+b.id+" for this object.");u(b)&&b.generated&&(h=b.id,p=!0)}}else t=null!=n&&"object"==typeof n?{type:"json",json:n}:n;var g,w=K({},f[a],((g={})[d]=t,g));p&&function e(t,r,n){var i=n[t],o=n[r];Object.keys(i).forEach(function(a){var s=i[a],c=o[a];u(s)&&W(s.id)&&u(c)&&e(s.id,c.id,n),delete n[t],n[r]=K({},i,o)})}(h,t.id,f),f[a]&&t===f[a][d]||(f[a]=w)}({dataId:r,value:f,field:e,context:a}):a.fragmentMatcherFunction&&(Object(D.b)()||console.warn("Missing field "+c+" in "+JSON.stringify(t,null,2).substring(0,100))))}else{var d=void 0;if(function(e){return"InlineFragment"===e.kind}(e))d=e;else if(!(d=(l||{})[e.name.value]))throw new Error("No fragment named "+e.name.value+".");var p=!0;if(a.fragmentMatcherFunction&&d.typeCondition){var h={store:{self:t},returnPartialData:!1,hasMissingField:!1,customResolvers:{}};p=a.fragmentMatcherFunction({type:"id",id:"self",generated:!1},d.typeCondition.name.value,h),h.returnPartialData&&console.error("WARNING: heuristic fragment matching going on!")}n&&p&&G({result:t,selectionSet:d.selectionSet,dataId:r,context:a})}}),c}function W(e){return"$"===e[0]}function H(e,t,r){if(!r)return!1;if(r[e]){if(r[e].indexOf(t)>=0)return!0;r[e].push(t)}else r[e]=[t];return!1}var J=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},X=[];function z(e){if(0===e.optimistic.length)return e.data;var t=e.optimistic.map(function(e){return e.data});return c.apply(void 0,[{},e.data].concat(t))}function $(e,t,r,n,i){var o=he(e,t,i),a={};return Object.keys(o).forEach(function(t){o[t]!==e[t]&&(a[t]=o[t])}),a}var Z=r(25),ee=r.n(Z);function te(e,t){if(e===t)return!0;if(e instanceof Date&&t instanceof Date)return e.getTime()===t.getTime();if(null!=e&&"object"==typeof e&&null!=t&&"object"==typeof t){for(var r in e)if(Object.prototype.hasOwnProperty.call(e,r)){if(!Object.prototype.hasOwnProperty.call(t,r))return!1;if(!te(e[r],t[r]))return!1}for(var r in t)if(!Object.prototype.hasOwnProperty.call(e,r))return!1;return!0}return!1}var re=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},ne="undefined"!=typeof Symbol?Symbol("id"):"@@id";function ie(e){return ae(re({},e,{returnPartialData:!1})).result}var oe=function(e,t,r,n,i){var a=i.resultKey,s=i.directives;!function(e){if(!u(t))throw new Error("Encountered a sub-selection on the query, but the store doesn't have an object reference. This should never happen during normal use unless you have custom code that is directly manipulating the store; please file an issue.")}();var c=t.id,l=n.store[c],f=o(e,r,s),d=(l||{})[f];if(void 0===d){if(n.customResolvers&&l&&(l.__typename||"ROOT_QUERY"===c)){var p=l.__typename||"Query",h=n.customResolvers[p];if(h){var y=h[e];y&&(d=y(l,r))}}if(void 0===d){if(!n.returnPartialData)throw new Error("Can't find field "+f+" on object ("+c+") "+JSON.stringify(l,null,2)+".");return n.hasMissingField=!0,d}}return null!=d&&"object"==typeof d&&"json"===d.type?t.previousResult&&te(t.previousResult[a],d.json)?t.previousResult[a]:d.json:(t.previousResult&&(d=function e(t,r){if(u(t))return re({},t,{previousResult:r});if(Array.isArray(t)){var n={};return Array.isArray(r)&&r.forEach(function(e){e&&e[ne]&&(n[e[ne]]=e)}),t.map(function(t,i){var o=r&&r[i];return u(t)&&(o=n[t.id]||o),e(t,o)})}return t}(d,t.previousResult[a])),d)};function ae(e){var t=e.store,r=e.query,n=e.variables,i=e.previousResult,o=e.returnPartialData,a=void 0===o||o,u=e.rootId,s=void 0===u?"ROOT_QUERY":u,l=e.fragmentMatcherFunction,f=e.config;n=c({},g(y(r)),n);var d={store:t,returnPartialData:a,customResolvers:f&&f.customResolvers||{},hasMissingField:!1},p={type:"id",id:s,previousResult:i};return{result:ee()(oe,r,p,d,n,{fragmentMatcher:l,resultMapper:ue}),isMissing:d.hasMissingField}}function ue(e,t){if(t.previousResult){var r=Object.keys(e);if(Object.keys(t.previousResult).reduce(function(e,t){return e&&r.indexOf(t)>-1},!0)&&r.reduce(function(r,n){return r&&function e(t,r){return t===r||!(!Array.isArray(t)||!Array.isArray(r)||t.length!==r.length)&&t.reduce(function(t,n,i){return t&&e(n,r[i])},!0)}(e[n],t.previousResult[n])},!0))return t.previousResult}return Object.defineProperty(e,ne,{enumerable:!1,configurable:!1,writable:!1,value:t.id}),e}var se=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},ce=function(){function e(e,t,r,n){this.store=e,this.reduxRootSelector=t,this.reducerConfig=n,this.fragmentMatcher=r}return e.prototype.readQuery=function(e){var t=e.query,r=e.variables;return this.reducerConfig.addTypename&&(t=E(t)),ie({rootId:"ROOT_QUERY",store:z(this.reduxRootSelector(this.store.getState())),query:t,variables:r,fragmentMatcherFunction:this.fragmentMatcher.match,config:this.reducerConfig})},e.prototype.readFragment=function(e){var t=e.id,r=e.fragment,n=e.fragmentName,i=e.variables,o=b(r,n),a=z(this.reduxRootSelector(this.store.getState()));return void 0===a[t]?null:(this.reducerConfig.addTypename&&(o=E(o)),ie({rootId:t,store:a,query:o,variables:i,fragmentMatcherFunction:this.fragmentMatcher.match,config:this.reducerConfig}))},e.prototype.writeQuery=function(e){var t=e.data,r=e.query,n=e.variables;this.reducerConfig.addTypename&&(r=E(r)),this.store.dispatch({type:"APOLLO_WRITE",writes:[{rootId:"ROOT_QUERY",result:t,document:r,operationName:p(r),variables:n||{}}]})},e.prototype.writeFragment=function(e){var t=e.data,r=e.id,n=e.fragment,i=e.fragmentName,o=e.variables,a=b(n,i);this.reducerConfig.addTypename&&(a=E(a)),this.store.dispatch({type:"APOLLO_WRITE",writes:[{rootId:r,result:t,document:a,operationName:p(a),variables:o||{}}]})},e}(),le=function(){function e(e,t){this.data=se({},e),this.reducerConfig=t,this.writes=[],this.isFinished=!1}return e.prototype.finish=function(){this.assertNotFinished();var e=this.writes;return this.writes=[],this.isFinished=!0,e},e.prototype.readQuery=function(e){var t=e.query,r=e.variables;return this.assertNotFinished(),this.reducerConfig.addTypename&&(t=E(t)),ie({rootId:"ROOT_QUERY",store:this.data,query:t,variables:r,config:this.reducerConfig,fragmentMatcherFunction:this.reducerConfig.fragmentMatcher})},e.prototype.readFragment=function(e){var t=e.id,r=e.fragment,n=e.fragmentName,i=e.variables;if(this.assertNotFinished(),!r)throw new Error("fragment option is required. Please pass a GraphQL fragment to readFragment.");var o=this.data,a=b(r,n);return this.reducerConfig.addTypename&&(a=E(a)),void 0===o[t]?null:ie({rootId:t,store:o,query:a,variables:i,config:this.reducerConfig,fragmentMatcherFunction:this.reducerConfig.fragmentMatcher})},e.prototype.writeQuery=function(e){var t=e.data,r=e.query,n=e.variables;this.assertNotFinished(),this.reducerConfig.addTypename&&(r=E(r)),this.applyWrite({rootId:"ROOT_QUERY",result:t,document:r,operationName:p(r),variables:n||{}})},e.prototype.writeFragment=function(e){var t=e.data,r=e.id,n=e.fragment,i=e.fragmentName,o=e.variables;if(this.assertNotFinished(),!n)throw new Error("fragment option is required. Please pass a GraphQL fragment to writeFragment.");var a=b(n,i);this.reducerConfig.addTypename&&(a=E(a)),this.applyWrite({rootId:r,result:t,document:a,operationName:p(a),variables:o||{}})},e.prototype.assertNotFinished=function(){if(this.isFinished)throw new Error("Cannot call transaction methods after the transaction has finished.")},e.prototype.applyWrite=function(e){Y({result:e.result,dataId:e.rootId,document:e.document,variables:e.variables,store:this.data,dataIdFromObject:this.reducerConfig.dataIdFromObject||function(){return null},fragmentMatcherFunction:this.reducerConfig.fragmentMatcher}),this.writes.push(e)},e}(),fe=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};function de(e){try{return e()}catch(e){console.error&&console.error(e)}}var pe=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e};function he(e,t,r){void 0===e&&(e={});var n=t;if(L(t)){if(t.fetchMoreForQueryId)return e;if(!a(t.result)){var i=pe({},e),o=Y({result:t.result.data,dataId:"ROOT_QUERY",document:t.document,variables:t.variables,store:i,dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher});return t.extraReducers&&t.extraReducers.forEach(function(e){o=e(o,n)}),o}}else if(x(t)){if(!a(t.result)){i=pe({},e);var u=Y({result:t.result.data,dataId:"ROOT_SUBSCRIPTION",document:t.document,variables:t.variables,store:i,dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher});return t.extraReducers&&t.extraReducers.forEach(function(e){u=e(u,n)}),u}}else if(Q(n)){if(!n.result.errors){i=pe({},e);var s=Y({result:n.result.data,dataId:"ROOT_MUTATION",document:n.document,variables:n.variables,store:i,dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher}),c=n.updateQueries;if(c&&Object.keys(c).filter(function(e){return c[e]}).forEach(function(t){var i=c[t],o=i.query,a=i.reducer,u=ae({store:e,query:o.document,variables:o.variables,returnPartialData:!0,fragmentMatcherFunction:r.fragmentMatcher,config:r}),l=u.result;if(!u.isMissing){var f=de(function(){return a(l,{mutationResult:n.result,queryName:p(o.document),queryVariables:o.variables})});f&&(s=Y({result:f,dataId:"ROOT_QUERY",document:o.document,variables:o.variables,store:s,dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher}))}}),n.update){var l=n.update,f=new le(s,r);de(function(){return l(f,n.result)});var d=f.finish();s=he(s,{type:"APOLLO_WRITE",writes:d},r)}return n.extraReducers&&n.extraReducers.forEach(function(e){s=e(s,n)}),s}}else{if("APOLLO_UPDATE_QUERY_RESULT"===n.type)return function(e,t,r){var n=t.variables,i=t.document;return Y({result:t.newResult,dataId:"ROOT_QUERY",variables:n,document:i,store:fe({},e),dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher})}(e,n,r);if("APOLLO_STORE_RESET"===t.type)return{};if("APOLLO_WRITE"===t.type)return t.writes.reduce(function(e,t){return Y({result:t.result,dataId:t.rootId,document:t.document,variables:t.variables,store:e,dataIdFromObject:r.dataIdFromObject,fragmentMatcherFunction:r.fragmentMatcher})},pe({},e))}return e}var ye=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},ve=function(e){return function(e){return function(t){try{return e(t)}catch(e){throw console.error("Caught an exception!",e),console.error(e.stack),e}}}},me=function(e,t){var r={error:e};return L(t)?r.queryId=t.queryId:x(t)?r.subscriptionId=t.subscriptionId:Q(t)&&(r.mutationId=t.mutationId),r};function be(e){return function(t,r){void 0===t&&(t={});try{var n={data:he(t.data,r,e),optimistic:[],reducerError:null};return n.optimistic=function(e,t,r,n){if(void 0===e&&(e=X),"APOLLO_MUTATION_INIT"===t.type&&t.optimisticResponse){var i={type:"APOLLO_MUTATION_RESULT",result:{data:"function"==typeof t.optimisticResponse?t.optimisticResponse(t.variables):t.optimisticResponse},document:t.mutation,operationName:t.operationName,variables:t.variables,mutationId:t.mutationId,extraReducers:t.extraReducers,updateQueries:t.updateQueries,update:t.update},o={action:i,data:$(z(J({},r,{optimistic:e})),i,r.queries,r.mutations,n),mutationId:t.mutationId};return e.concat([o])}return("APOLLO_MUTATION_ERROR"===t.type||Q(t))&&e.some(function(e){return e.mutationId===t.mutationId})?function(e,t,r,n){void 0===t&&(t=X);var i=c({},r.data);return t.filter(function(t){return!e(t)}).map(function(e){var t=$(i,e.action,r.queries,r.mutations,n);return c(i,t),J({},e,{data:t})})}(function(e){return e.mutationId===t.mutationId},e,r,n):e}(t.optimistic,r,n,e),t.data===n.data&&t.optimistic===n.optimistic&&t.reducerError===n.reducerError?t:n}catch(e){return ye({},t,{reducerError:me(e,r)})}}}function ge(e){var t=void 0===e?{}:e,r=t.reduxRootKey,n=void 0===r?"apollo":r,i=t.initialState,o=t.config,a=void 0===o?{}:o,u=t.reportCrashes,s=void 0===u||u,c=t.logger,l=[],f=[];if(s&&f.push(ve),c&&f.push(c),f.length>0&&l.push(M.applyMiddleware.apply(void 0,f)),"undefined"!=typeof window){var d=window;d.devToolsExtension&&l.push(d.devToolsExtension())}var p,h=M.compose;if(i&&i[n]&&i[n].queries)throw new Error("Apollo initial state may not contain queries, only data");if(i&&i[n]&&i[n].mutations)throw new Error("Apollo initial state may not contain mutations, only data");return Object(M.createStore)(Object(M.combineReducers)(((p={})[n]=be(a),p)),i,h.apply(void 0,l))}var we,Oe,Ee=r(3),ke=function(){function e(e){this.subscriberFunction=e}return e.prototype[Ee.a]=function(){return this},e.prototype.subscribe=function(e){var t=this.subscriberFunction(e);return void 0!==t.unsubscribe?t:{unsubscribe:t}},e}(),Te=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),Ie=function(e){var t="";return Array.isArray(e.graphQLErrors)&&0!==e.graphQLErrors.length&&e.graphQLErrors.forEach(function(e){var r=e?e.message:"Error message not found.";t+="GraphQL error: "+r+"\n"}),e.networkError&&(t+="Network error: "+e.networkError.message+"\n"),t=t.replace(/\n$/,"")},_e=function(e){function t(t){var r=t.graphQLErrors,n=t.networkError,i=t.errorMessage,o=t.extraInfo,a=e.call(this,i)||this;return a.graphQLErrors=r||[],a.networkError=n||null,a.message=i||Ie(a),a.extraInfo=o,a}return Te(t,e),t}(Error);function Se(e){return Object(D.a)()||Object(D.c)()?function e(t){return Object.freeze(t),Object.getOwnPropertyNames(t).forEach(function(r){!t.hasOwnProperty(r)||null===t[r]||"object"!=typeof t[r]&&"function"!=typeof t[r]||Object.isFrozen(t[r])||e(t[r])}),t}(e):e}function Ne(e){return e<7}!function(e){e[e.normal=1]="normal",e[e.refetch=2]="refetch",e[e.poll=3]="poll"}(we||(we={})),function(e){e[e.loading=1]="loading",e[e.setVariables=2]="setVariables",e[e.fetchMore=3]="fetchMore",e[e.refetch=4]="refetch",e[e.poll=6]="poll",e[e.ready=7]="ready",e[e.error=8]="error"}(Oe||(Oe={}));var Pe=function(){var e=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)t.hasOwnProperty(r)&&(e[r]=t[r])};return function(t,r){function n(){this.constructor=t}e(t,r),t.prototype=null===r?Object.create(r):(n.prototype=r.prototype,new n)}}(),Re=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},qe=function(e){function t(t){var r=t.scheduler,n=t.options,i=t.shouldSubscribe,o=void 0===i||i,a=this,u=r.queryManager,s=u.generateQueryId();return(a=e.call(this,function(e){return a.onSubscribe(e)})||this).isCurrentlyPolling=!1,a.options=n,a.variables=a.options.variables||{},a.scheduler=r,a.queryManager=u,a.queryId=s,a.shouldSubscribe=o,a.observers=[],a.subscriptionHandles=[],a}return Pe(t,e),t.prototype.result=function(){var e=this;return new Promise(function(t,r){var n=null,i={next:function(r){t(r),0===e.observers.filter(function(e){return e!==i}).length&&e.queryManager.removeQuery(e.queryId),setTimeout(function(){n.unsubscribe()},0)},error:function(e){r(e)}};n=e.subscribe(i)})},t.prototype.currentResult=function(){var e=this.queryManager.getCurrentQueryResult(this,!0),t=e.data,r=e.partial,n=this.queryManager.queryStore.get(this.queryId);if(n&&(n.graphQLErrors&&n.graphQLErrors.length>0||n.networkError)){var i=new _e({graphQLErrors:n.graphQLErrors,networkError:n.networkError});return{data:{},loading:!1,networkStatus:n.networkStatus,error:i}}var o,a=!n||n.networkStatus===Oe.loading,u="network-only"===this.options.fetchPolicy&&a||r&&"cache-only"!==this.options.fetchPolicy,s={data:t,loading:Ne(o=n?n.networkStatus:u?Oe.loading:Oe.ready),networkStatus:o};return r||(this.lastResult=Re({},s,{stale:!1})),Re({},s,{partial:r})},t.prototype.getLastResult=function(){return this.lastResult},t.prototype.refetch=function(e){if(this.variables=Re({},this.variables,e),"cache-only"===this.options.fetchPolicy)return Promise.reject(new Error("cache-only fetchPolicy option should not be used together with query refetch."));this.options.variables=Re({},this.options.variables,this.variables);var t=Re({},this.options,{fetchPolicy:"network-only"});return this.queryManager.fetchQuery(this.queryId,t,we.refetch).then(function(e){return Se(e)})},t.prototype.fetchMore=function(e){var t=this;if(!e.updateQuery)throw new Error("updateQuery option is required. This function defines how to update the query data with the new results.");return Promise.resolve().then(function(){var r=t.queryManager.generateQueryId(),n=null;if(e.query)n=e;else{var i=Re({},t.variables,e.variables);n=Re({},t.options,e,{variables:i})}return n=Re({},n,{query:n.query,fetchPolicy:"network-only"}),t.queryManager.fetchQuery(r,n,we.normal,t.queryId)}).then(function(r){var n=r.data,i=e.updateQuery;return t.updateQuery(function(e,t){var r=t.variables;return i(e,{fetchMoreResult:n,queryVariables:r})}),r})},t.prototype.subscribeToMore=function(e){var t=this,r=this.queryManager.startGraphQLSubscription({query:e.document,variables:e.variables}).subscribe({next:function(r){if(e.updateQuery){var n=e.updateQuery;t.updateQuery(function(e,t){var i=t.variables;return n(e,{subscriptionData:{data:r},variables:i})})}},error:function(t){e.onError?e.onError(t):console.error("Unhandled GraphQL subscription error",t)}});return this.subscriptionHandles.push(r),function(){var e=t.subscriptionHandles.indexOf(r);e>=0&&(t.subscriptionHandles.splice(e,1),r.unsubscribe())}},t.prototype.setOptions=function(e){var t=this.options;this.options=Re({},this.options,e),e.pollInterval?this.startPolling(e.pollInterval):0===e.pollInterval&&this.stopPolling();var r="network-only"!==t.fetchPolicy&&"network-only"===e.fetchPolicy||"cache-only"===t.fetchPolicy&&"cache-only"!==e.fetchPolicy||"standby"===t.fetchPolicy&&"standby"!==e.fetchPolicy||!1;return this.setVariables(this.options.variables,r,e.fetchResults)},t.prototype.setVariables=function(e,t,r){void 0===t&&(t=!1),void 0===r&&(r=!0);var n=Re({},this.variables,e);return te(n,this.variables)&&!t?0!==this.observers.length&&r?this.result():new Promise(function(e){return e()}):(this.variables=n,this.options.variables=n,0===this.observers.length?new Promise(function(e){return e()}):this.queryManager.fetchQuery(this.queryId,Re({},this.options,{variables:this.variables})).then(function(e){return Se(e)}))},t.prototype.updateQuery=function(e){var t=this.queryManager.getQueryWithPreviousResult(this.queryId),r=t.previousResult,n=t.variables,i=t.document,o=de(function(){return e(r,{variables:n})});o&&this.queryManager.store.dispatch({type:"APOLLO_UPDATE_QUERY_RESULT",newResult:o,variables:n,document:i,operationName:p(i)})},t.prototype.stopPolling=function(){this.isCurrentlyPolling&&(this.scheduler.stopPollingQuery(this.queryId),this.options.pollInterval=void 0,this.isCurrentlyPolling=!1)},t.prototype.startPolling=function(e){if("cache-first"===this.options.fetchPolicy||"cache-only"===this.options.fetchPolicy)throw new Error("Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.");this.isCurrentlyPolling&&(this.scheduler.stopPollingQuery(this.queryId),this.isCurrentlyPolling=!1),this.options.pollInterval=e,this.isCurrentlyPolling=!0,this.scheduler.startPollingQuery(this.options,this.queryId)},t.prototype.onSubscribe=function(e){var t=this;return this.observers.push(e),e.next&&this.lastResult&&e.next(this.lastResult),e.error&&this.lastError&&e.error(this.lastError),1===this.observers.length&&this.setUpQuery(),{unsubscribe:function(){t.observers.some(function(t){return t===e})&&(t.observers=t.observers.filter(function(t){return t!==e}),0===t.observers.length&&t.tearDownQuery())}}},t.prototype.setUpQuery=function(){var e=this;if(this.shouldSubscribe&&this.queryManager.addObservableQuery(this.queryId,this),this.options.pollInterval){if("cache-first"===this.options.fetchPolicy||"cache-only"===this.options.fetchPolicy)throw new Error("Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.");this.isCurrentlyPolling=!0,this.scheduler.startPollingQuery(this.options,this.queryId)}var t={next:function(t){e.lastResult=t,e.observers.forEach(function(e){e.next&&e.next(t)})},error:function(t){e.observers.forEach(function(e){e.error?e.error(t):console.error("Unhandled error",t.message,t.stack)}),e.lastError=t}};this.queryManager.startQuery(this.queryId,this.options,this.queryManager.queryListenerForObserver(this.queryId,this.options,t))},t.prototype.tearDownQuery=function(){this.isCurrentlyPolling&&(this.scheduler.stopPollingQuery(this.queryId),this.isCurrentlyPolling=!1),this.subscriptionHandles.forEach(function(e){return e.unsubscribe()}),this.subscriptionHandles=[],this.queryManager.stopQuery(this.queryId),this.shouldSubscribe&&this.queryManager.removeObservableQuery(this.queryId),this.observers=[]},t}(ke),Ae=r(5),Fe=Object.create({}),je=function(){function e(e){e&&e.introspectionQueryResultData?(this.possibleTypesMap=this.parseIntrospectionResult(e.introspectionQueryResultData),this.isReady=!0):this.isReady=!1,this.match=this.match.bind(this)}return e.prototype.match=function(e,t,r){if(!this.isReady)throw new Error("FragmentMatcher.match() was called before FragmentMatcher.init()");var n=r.store[e.id];if(!n)return!1;if(!n.__typename)throw new Error("Cannot match fragment because __typename property is missing: "+JSON.stringify(n));if(n.__typename===t)return!0;var i=this.possibleTypesMap[t];return!!(i&&i.indexOf(n.__typename)>-1)},e.prototype.parseIntrospectionResult=function(e){var t={};return e.__schema.types.forEach(function(e){"UNION"!==e.kind&&"INTERFACE"!==e.kind||(t[e.name]=e.possibleTypes.map(function(e){return e.name}))}),t},e}(),Me=!1,Le=function(){function e(){}return e.prototype.ensureReady=function(){return Promise.resolve()},e.prototype.canBypassInit=function(){return!0},e.prototype.match=function(e,t,r){var n=r.store[e.id];return!!n&&(n.__typename?n.__typename===t||(function(e,t){if(void 0===t&&(t="warn"),!Object(D.b)()&&!Fe[e])switch(Object(D.c)()||(Fe[e]=!0),t){case"error":console.error(e);break;default:console.warn(e)}}("You are using the simple (heuristic) fragment matcher, but your queries contain union or interface types.\n     Apollo Client will not be able to able to accurately map fragments.To make this error go away, use the IntrospectionFragmentMatcher as described in the docs: http://dev.apollodata.com/react/initialization.html#fragment-matcher","error"),r.returnPartialData=!0,!0):(Me||(console.warn("You're using fragments in your queries, but either don't have the addTypename:\n  true option set in Apollo Client, or you are trying to write a fragment to the store without the __typename.\n   Please turn on the addTypename option and include __typename when writing fragments so that Apollo Client\n   can accurately match fragments."),console.warn("Could not find __typename on Fragment ",t,n),console.warn("DEPRECATION WARNING: using fragments without __typename is unsupported behavior and will be removed in future versions of Apollo client. You should fix this and set addTypename to true now."),Object(D.c)()||(Me=!0)),r.returnPartialData=!0,!0))},e}(),Qe=function(){function e(e){this.networkInterface=e,this.inFlightRequestPromises={}}return e.prototype.query=function(e,t){var r=this;if(void 0===t&&(t=!0),!t)return this.networkInterface.query(e);var n=this.getKey(e);return this.inFlightRequestPromises[n]||(this.inFlightRequestPromises[n]=this.networkInterface.query(e)),this.inFlightRequestPromises[n].then(function(e){return delete r.inFlightRequestPromises[n],e}).catch(function(e){throw delete r.inFlightRequestPromises[n],e})},e.prototype.getKey=function(e){return Object(n.print)(e.query)+"|"+JSON.stringify(e.variables)+"|"+e.operationName},e}(),xe=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},De=function(){function e(){this.store={}}return e.prototype.getStore=function(){return this.store},e.prototype.get=function(e){return this.store[e]},e.prototype.initQuery=function(e){var t=this.store[e.queryId];if(t&&t.queryString!==e.queryString)throw new Error("Internal Error: may not update existing query string in store");var r,n=!1,i=null;e.storePreviousVariables&&t&&t.networkStatus!==Oe.loading&&(te(t.variables,e.variables)||(n=!0,i=t.variables)),r=n?Oe.setVariables:e.isPoll?Oe.poll:e.isRefetch?Oe.refetch:Oe.loading,this.store[e.queryId]={queryString:e.queryString,document:e.document,variables:e.variables,previousVariables:i,networkError:null,graphQLErrors:[],networkStatus:r,metadata:e.metadata},"string"==typeof e.fetchMoreForQueryId&&(this.store[e.fetchMoreForQueryId].networkStatus=Oe.fetchMore)},e.prototype.markQueryResult=function(e,t,r){this.store[e]&&(this.store[e].networkError=null,this.store[e].graphQLErrors=t.errors&&t.errors.length?t.errors:[],this.store[e].previousVariables=null,this.store[e].networkStatus=Oe.ready,"string"==typeof r&&(this.store[r].networkStatus=Oe.ready))},e.prototype.markQueryError=function(e,t,r){this.store[e]&&(this.store[e].networkError=t,this.store[e].networkStatus=Oe.error,"string"==typeof r&&this.markQueryError(r,t,void 0))},e.prototype.markQueryResultClient=function(e,t){this.store[e]&&(this.store[e].networkError=null,this.store[e].previousVariables=null,this.store[e].networkStatus=t?Oe.ready:Oe.loading)},e.prototype.stopQuery=function(e){delete this.store[e]},e.prototype.reset=function(e){var t=this;this.store=Object.keys(this.store).filter(function(t){return e.indexOf(t)>-1}).reduce(function(e,r){return e[r]=xe({},t.store[r],{networkStatus:Oe.loading}),e},{})},e}(),Ce=function(){function e(){this.store={}}return e.prototype.getStore=function(){return this.store},e.prototype.get=function(e){return this.store[e]},e.prototype.initMutation=function(e,t,r){this.store[e]={mutationString:t,variables:r||{},loading:!0,error:null}},e.prototype.markMutationError=function(e,t){this.store[e].loading=!1,this.store[e].error=t},e.prototype.markMutationResult=function(e){this.store[e].loading=!1,this.store[e].error=null},e.prototype.reset=function(){this.store={}},e}(),Ke=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},Ue=function(){function e(e){var t=e.queryManager;this.queryManager=t,this.pollingTimers={},this.inFlightQueries={},this.registeredQueries={},this.intervalQueries={}}return e.prototype.checkInFlight=function(e){var t=this.queryManager.queryStore.get(e);return t&&t.networkStatus!==Oe.ready&&t.networkStatus!==Oe.error},e.prototype.fetchQuery=function(e,t,r){var n=this;return new Promise(function(i,o){n.queryManager.fetchQuery(e,t,r).then(function(e){i(e)}).catch(function(e){o(e)})})},e.prototype.startPollingQuery=function(e,t,r){if(!e.pollInterval)throw new Error("Attempted to start a polling query without a polling interval.");return this.queryManager.ssrMode?t:(this.registeredQueries[t]=e,r&&this.queryManager.addQueryListener(t,r),this.addQueryOnInterval(t,e),t)},e.prototype.stopPollingQuery=function(e){delete this.registeredQueries[e]},e.prototype.fetchQueriesOnInterval=function(e){var t=this;this.intervalQueries[e]=this.intervalQueries[e].filter(function(e){if(!t.registeredQueries.hasOwnProperty(e))return!1;if(t.checkInFlight(e))return!0;var r=t.registeredQueries[e],n=Ke({},r);return n.fetchPolicy="network-only",t.fetchQuery(e,n,we.poll),!0}),0===this.intervalQueries[e].length&&(clearInterval(this.pollingTimers[e]),delete this.intervalQueries[e])},e.prototype.addQueryOnInterval=function(e,t){var r=this,n=t.pollInterval;if(!n)throw new Error("A poll interval is required to start polling query with id '"+e+"'.");this.intervalQueries.hasOwnProperty(n.toString())&&this.intervalQueries[n].length>0?this.intervalQueries[n].push(e):(this.intervalQueries[n]=[e],this.pollingTimers[n]=setInterval(function(){r.fetchQueriesOnInterval(n)},n))},e.prototype.registerPollingQuery=function(e){if(!e.pollInterval)throw new Error("Attempted to register a non-polling query with the scheduler.");return new qe({scheduler:this,options:e})},e}(),Be=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},Ve=function(){function e(e){var t,r=e.networkInterface,n=e.store,i=e.reduxRootSelector,o=e.reducerConfig,a=void 0===o?{}:o,u=e.fragmentMatcher,s=e.addTypename,c=void 0===s||s,l=e.queryDeduplication,f=void 0!==l&&l,d=e.ssrMode,p=void 0!==d&&d,h=this;this.mutationStore=new Ce,this.queryStore=new De,this.idCounter=1,this.lastRequestId={},this.disableBroadcasting=!1,this.networkInterface=r,this.deduplicator=new Qe(r),this.store=n,this.reduxRootSelector=i,this.reducerConfig=a,this.pollingTimers={},this.queryListeners={},this.queryDocuments={},this.addTypename=c,this.queryDeduplication=f,this.ssrMode=p,this.fragmentMatcher=void 0===u?new Le:u,this.scheduler=new Ue({queryManager:this}),this.fetchQueryPromises={},this.observableQueries={},this.queryIdsByName={},this.store.subscribe&&this.store.subscribe(function(){var e=t||{},r=Object.keys(e).length;te(e,t=h.getApolloState())&&r||h.broadcastQueries()})}return e.prototype.broadcastNewStore=function(e){this.broadcastQueries()},e.prototype.mutate=function(e){var t=this,r=e.mutation,i=e.variables,o=e.optimisticResponse,a=e.updateQueries,u=e.refetchQueries,s=void 0===u?[]:u,l=e.update;if(!r)throw new Error("mutation option is required. You must specify your GraphQL document in the mutation option.");var d=this.generateQueryId();this.addTypename&&(r=E(r)),i=c({},g(f(r)),i);var h=Object(n.print)(r),y={query:r,variables:i,operationName:p(r)};this.queryDocuments[d]=r;var v=function(){var e={};return a&&Object.keys(a).forEach(function(r){return(t.queryIdsByName[r]||[]).forEach(function(n){e[n]={reducer:a[r],query:t.queryStore.get(n)}})}),e};return this.store.dispatch({type:"APOLLO_MUTATION_INIT",mutationString:h,mutation:r,variables:i||{},operationName:p(r),mutationId:d,optimisticResponse:o,extraReducers:this.getExtraReducers(),updateQueries:v(),update:l}),this.mutationStore.initMutation(d,h,i),new Promise(function(e,n){t.networkInterface.query(y).then(function(o){if(o.errors){var a=new _e({graphQLErrors:o.errors});return t.store.dispatch({type:"APOLLO_MUTATION_ERROR",error:a,mutationId:d}),t.mutationStore.markMutationError(d,a),delete t.queryDocuments[d],void n(a)}t.store.dispatch({type:"APOLLO_MUTATION_RESULT",result:o,mutationId:d,document:r,operationName:p(r),variables:i||{},extraReducers:t.getExtraReducers(),updateQueries:v(),update:l}),t.mutationStore.markMutationResult(d);var u=t.getApolloState().reducerError;u&&u.mutationId===d?n(u.error):("string"==typeof s[0]?s.forEach(function(e){t.refetchQueryByName(e)}):s.forEach(function(e){t.query({query:e.query,variables:e.variables,fetchPolicy:"network-only"})}),delete t.queryDocuments[d],e(o))}).catch(function(e){t.store.dispatch({type:"APOLLO_MUTATION_ERROR",error:e,mutationId:d}),delete t.queryDocuments[d],n(new _e({networkError:e}))})})},e.prototype.fetchQuery=function(t,r,i,o){var a,u=this,s=r.variables,c=void 0===s?{}:s,l=r.metadata,f=void 0===l?null:l,d=r.fetchPolicy,h=void 0===d?"cache-first":d,y=this.transformQueryDocument(r).queryDoc,v=Object(n.print)(y),m="network-only"===h;if(i!==we.refetch&&"network-only"!==h){var b=ae({query:y,store:this.reduxRootSelector(this.store.getState()).data,variables:c,returnPartialData:!0,fragmentMatcherFunction:this.fragmentMatcher.match,config:this.reducerConfig}),g=b.isMissing,w=b.result;m=g||"cache-and-network"===h,a=w}var O=m&&"cache-only"!==h&&"standby"!==h,E=this.generateRequestId();if(this.queryDocuments[t]=y,this.queryStore.initQuery({queryId:t,queryString:v,document:y,storePreviousVariables:O,variables:c,isPoll:i===we.poll,isRefetch:i===we.refetch,metadata:f,fetchMoreForQueryId:o}),this.broadcastQueries(),e.EMIT_REDUX_ACTIONS&&this.store.dispatch({type:"APOLLO_QUERY_INIT",queryString:v,document:y,operationName:p(y),variables:c,fetchPolicy:h,queryId:t,requestId:E,storePreviousVariables:O,isPoll:i===we.poll,isRefetch:i===we.refetch,fetchMoreForQueryId:o,metadata:f}),this.lastRequestId[t]=E,(!O||"cache-and-network"===h)&&(this.queryStore.markQueryResultClient(t,!O),this.broadcastQueries(),e.EMIT_REDUX_ACTIONS&&this.store.dispatch({type:"APOLLO_QUERY_RESULT_CLIENT",result:{data:a},variables:c,document:y,operationName:p(y),complete:!O,queryId:t,requestId:E})),O){var k=this.fetchRequest({requestId:E,queryId:t,document:y,options:r,fetchMoreForQueryId:o}).catch(function(r){throw r.hasOwnProperty("graphQLErrors")?r:(E>=(u.lastRequestId[t]||1)&&(e.EMIT_REDUX_ACTIONS&&u.store.dispatch({type:"APOLLO_QUERY_ERROR",error:r,queryId:t,requestId:E,fetchMoreForQueryId:o}),u.queryStore.markQueryError(t,r,o),u.broadcastQueries()),u.removeFetchQueryPromise(E),new _e({networkError:r}))});if("cache-and-network"!==h)return k}return Promise.resolve({data:a})},e.prototype.queryListenerForObserver=function(e,t,r){var n=this,i=!1;return function(o){if(o){o=n.queryStore.get(e);var a=n.observableQueries[e],u=a?a.observableQuery:null,s=u?u.options.fetchPolicy:t.fetchPolicy;if("standby"!==s){var c=u?u.getLastResult():null,l=o.previousVariables||"cache-only"===s||"cache-and-network"===s,f=c&&o.networkStatus!==c.networkStatus;if(!Ne(o.networkStatus)||f&&t.notifyOnNetworkStatusChange||l)if(o.graphQLErrors&&o.graphQLErrors.length>0||o.networkError){var d=new _e({graphQLErrors:o.graphQLErrors,networkError:o.networkError});if(i=!0,r.error)try{r.error(d)}catch(e){setTimeout(function(){throw e},0)}else setTimeout(function(){throw d},0),Object(D.b)()||console.info("An unhandled error was thrown because no error handler is registered for the query "+o.queryString)}else try{var p,h=ae({store:n.getDataWithOptimisticResults(),query:n.queryDocuments[e],variables:o.previousVariables||o.variables,config:n.reducerConfig,fragmentMatcherFunction:n.fragmentMatcher.match,previousResult:c&&c.data}),y=h.result,v=h.isMissing;if(p=v&&"cache-only"!==s?{data:c&&c.data,loading:Ne(o.networkStatus),networkStatus:o.networkStatus,stale:!0}:{data:y,loading:Ne(o.networkStatus),networkStatus:o.networkStatus,stale:!1},r.next&&(!c||!p||c.networkStatus!==p.networkStatus||c.stale!==p.stale||c.data!==p.data||i))try{r.next(Se(p))}catch(e){setTimeout(function(){throw e},0)}i=!1}catch(e){return i=!0,void(r.error&&r.error(new _e({networkError:e})))}}}}},e.prototype.watchQuery=function(e,t){if(void 0===t&&(t=!0),e.returnPartialData)throw new Error("returnPartialData option is no longer supported since Apollo Client 1.0.");if(e.forceFetch)throw new Error("forceFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.");if(e.noFetch)throw new Error("noFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.");if("standby"===e.fetchPolicy)throw new Error('client.watchQuery cannot be called with fetchPolicy set to "standby"');var r=y(e.query);if(r.variableDefinitions&&r.variableDefinitions.length){var n=g(r);e.variables=c({},n,e.variables)}void 0===e.notifyOnNetworkStatusChange&&(e.notifyOnNetworkStatusChange=!1);var i=Be({},e);return new qe({scheduler:this.scheduler,options:i,shouldSubscribe:t})},e.prototype.query=function(e){var t=this;if(!e.query)throw new Error("query option is required. You must specify your GraphQL document in the query option.");if("Document"!==e.query.kind)throw new Error('You must wrap the query string in a "gql" tag.');if(e.returnPartialData)throw new Error("returnPartialData option only supported on watchQuery.");if(e.pollInterval)throw new Error("pollInterval option only supported on watchQuery.");if(e.forceFetch)throw new Error("forceFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.");if(e.noFetch)throw new Error("noFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.");if(void 0!==e.notifyOnNetworkStatusChange)throw new Error('Cannot call "query" with "notifyOnNetworkStatusChange" option. Only "watchQuery" has that option.');e.notifyOnNetworkStatusChange=!1;var r=this.idCounter,n=new Promise(function(i,o){return t.addFetchQueryPromise(r,n,i,o),t.watchQuery(e,!1).result().then(function(e){t.removeFetchQueryPromise(r),i(e)}).catch(function(e){t.removeFetchQueryPromise(r),o(e)})});return n},e.prototype.generateQueryId=function(){var e=this.idCounter.toString();return this.idCounter++,e},e.prototype.stopQueryInStore=function(t){this.queryStore.stopQuery(t),this.broadcastQueries(),e.EMIT_REDUX_ACTIONS&&this.store.dispatch({type:"APOLLO_QUERY_STOP",queryId:t})},e.prototype.getApolloState=function(){return this.reduxRootSelector(this.store.getState())},e.prototype.selectApolloState=function(e){return this.reduxRootSelector(e.getState())},e.prototype.getInitialState=function(){return{data:this.getApolloState().data}},e.prototype.getDataWithOptimisticResults=function(){return z(this.getApolloState())},e.prototype.addQueryListener=function(e,t){this.queryListeners[e]=this.queryListeners[e]||[],this.queryListeners[e].push(t)},e.prototype.addFetchQueryPromise=function(e,t,r,n){this.fetchQueryPromises[e.toString()]={promise:t,resolve:r,reject:n}},e.prototype.removeFetchQueryPromise=function(e){delete this.fetchQueryPromises[e.toString()]},e.prototype.addObservableQuery=function(e,t){this.observableQueries[e]={observableQuery:t};var r=y(t.options.query);if(r.name&&r.name.value){var n=r.name.value;this.queryIdsByName[n]=this.queryIdsByName[n]||[],this.queryIdsByName[n].push(t.queryId)}},e.prototype.removeObservableQuery=function(e){var t=this.observableQueries[e].observableQuery,r=y(t.options.query),n=r.name?r.name.value:null;delete this.observableQueries[e],n&&(this.queryIdsByName[n]=this.queryIdsByName[n].filter(function(e){return!(t.queryId===e)}))},e.prototype.resetStore=function(){var e=this;Object.keys(this.fetchQueryPromises).forEach(function(t){(0,e.fetchQueryPromises[t].reject)(new Error("Store reset while query was in flight."))}),this.queryStore.reset(Object.keys(this.observableQueries)),this.store.dispatch({type:"APOLLO_STORE_RESET",observableQueryIds:Object.keys(this.observableQueries)}),this.mutationStore.reset();var t=[];return Object.keys(this.observableQueries).forEach(function(r){e.queryStore.get(r);var n=e.observableQueries[r].observableQuery.options.fetchPolicy;"cache-only"!==n&&"standby"!==n&&t.push(e.observableQueries[r].observableQuery.refetch())}),Promise.all(t)},e.prototype.startQuery=function(e,t,r){return this.addQueryListener(e,r),this.fetchQuery(e,t).catch(function(e){}),e},e.prototype.startGraphQLSubscription=function(e){var t=this,r=e.query,n=r;this.addTypename&&(n=E(n));var i,o=c({},g(v(r)),e.variables),a={query:n,variables:o,operationName:p(n)},u=[];return new ke(function(e){return u.push(e),1===u.length&&(i=t.networkInterface.subscribe(a,function(e,r){e?u.forEach(function(t){t.error&&t.error(e)}):(t.store.dispatch({type:"APOLLO_SUBSCRIPTION_RESULT",document:n,operationName:p(n),result:{data:r},variables:o,subscriptionId:i,extraReducers:t.getExtraReducers()}),u.forEach(function(e){e.next&&e.next(r)}))})),{unsubscribe:function(){0===(u=u.filter(function(t){return t!==e})).length&&t.networkInterface.unsubscribe(i)},_networkSubscriptionId:i}})},e.prototype.removeQuery=function(e){delete this.queryListeners[e],delete this.queryDocuments[e]},e.prototype.stopQuery=function(e){this.removeQuery(e),this.stopQueryInStore(e)},e.prototype.getCurrentQueryResult=function(e,t){void 0===t&&(t=!1);var r=this.getQueryParts(e),n=r.variables,i=r.document,o=e.getLastResult(),a=(e.options,{store:t?this.getDataWithOptimisticResults():this.getApolloState().data,query:i,variables:n,config:this.reducerConfig,previousResult:o?o.data:void 0,fragmentMatcherFunction:this.fragmentMatcher.match});try{return Se({data:ie(a),partial:!1})}catch(e){return Se({data:{},partial:!0})}},e.prototype.getQueryWithPreviousResult=function(e,t){var r;if(void 0===t&&(t=!1),"string"==typeof e){if(!this.observableQueries[e])throw new Error("ObservableQuery with this id doesn't exist: "+e);r=this.observableQueries[e].observableQuery}else r=e;var n=this.getQueryParts(r),i=n.variables,o=n.document;return{previousResult:this.getCurrentQueryResult(r,t).data,variables:i,document:o}},e.prototype.getQueryParts=function(e){var t=e.options,r=e.options.query;return this.addTypename&&(r=E(r)),{variables:t.variables,document:r}},e.prototype.transformQueryDocument=function(e){var t=e.query;return this.addTypename&&(t=E(t)),{queryDoc:t}},e.prototype.getExtraReducers=function(){var e=this;return Object.keys(this.observableQueries).map(function(t){var r=e.observableQueries[t].observableQuery,n=r.options;return n.reducer?function(e,t,r,n){return function(i,o){var a,u=ae({store:i,query:t,variables:r,returnPartialData:!0,fragmentMatcherFunction:n.fragmentMatcher,config:n}),s=u.result;if(u.isMissing)return i;try{a=e(s,o,r)}catch(e){throw console.warn("Unhandled error in result reducer",e),e}return s!==a?Y({dataId:"ROOT_QUERY",result:a,store:i,document:t,variables:r,dataIdFromObject:n.dataIdFromObject,fragmentMatcherFunction:n.fragmentMatcher}):i}}(n.reducer,e.addTypename?E(n.query):n.query,r.variables||{},e.reducerConfig):null}).filter(function(e){return null!==e})},e.prototype.fetchRequest=function(e){var t=this,r=e.requestId,n=e.queryId,i=e.document,o=e.options,a=e.fetchMoreForQueryId,u=o.variables,s={query:i,variables:u,operationName:p(i)},c=new Promise(function(e,o){t.addFetchQueryPromise(r,c,e,o),t.deduplicator.query(s,t.queryDeduplication).then(function(e){var o=t.getExtraReducers();if(r>=(t.lastRequestId[n]||1)){t.disableBroadcasting=!0,t.store.dispatch({type:"APOLLO_QUERY_RESULT",document:i,variables:u||{},operationName:p(i),result:e,queryId:n,requestId:r,fetchMoreForQueryId:a,extraReducers:o}),t.disableBroadcasting=!1;var s=t.getApolloState().reducerError;s&&s.queryId===n||(t.queryStore.markQueryResult(n,e,a),t.broadcastQueries())}if(t.removeFetchQueryPromise(r),e.errors)throw new _e({graphQLErrors:e.errors});return e}).then(function(o){var s;if(a)s=o.data;else try{s=ie({store:t.getApolloState().data,variables:u,query:i,config:t.reducerConfig,fragmentMatcherFunction:t.fragmentMatcher.match})}catch(e){}var c=t.getApolloState().reducerError;return c&&c.queryId===n?Promise.reject(c.error):(t.removeFetchQueryPromise(r),e({data:s,loading:!1,networkStatus:Oe.ready,stale:!1}),Promise.resolve())}).catch(function(e){o(e)})});return c},e.prototype.refetchQueryByName=function(e){var t=this,r=this.queryIdsByName[e];return void 0===r?void console.warn("Warning: unknown query with name "+e+" asked to refetch"):Promise.all(r.map(function(e){return t.observableQueries[e].observableQuery.refetch()}))},e.prototype.broadcastQueries=function(){var e=this;this.disableBroadcasting||Object.keys(this.queryListeners).forEach(function(t){var r=e.queryListeners[t];r&&r.forEach(function(r){r&&r(e.queryStore.get(t))})})},e.prototype.generateRequestId=function(){var e=this.idCounter;return this.idCounter++,e},e.EMIT_REDUX_ACTIONS=!0,e}(),Ye=r(26),Ge=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var i in t=arguments[r])Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},We="apollo";function He(e){return e[We]}function Je(e){if(e.__typename){if(void 0!==e.id)return e.__typename+":"+e.id;if(void 0!==e._id)return e.__typename+":"+e._id}return null}var Xe=!1,ze=function(){function e(e){void 0===e&&(e={});var t=this;this.middleware=function(){return function(e){return t.setStore(e),function(r){return function(n){var i=t.queryManager.selectApolloState(e),o=r(n);return t.queryManager.selectApolloState(e)!==i&&t.queryManager.broadcastNewStore(e.getState()),t.devToolsHookCb&&t.devToolsHookCb({action:n,state:{queries:t.queryManager.queryStore.getStore(),mutations:t.queryManager.mutationStore.getStore()},dataWithOptimisticResults:t.queryManager.getDataWithOptimisticResults()}),o}}}};var r=e.dataIdFromObject,n=e.networkInterface,i=e.reduxRootSelector,a=e.initialState,u=e.ssrMode,s=void 0!==u&&u,c=e.ssrForceFetchDelay,l=void 0===c?0:c,f=e.addTypename,d=void 0===f||f,p=e.customResolvers,h=e.connectToDevTools,y=e.fragmentMatcher,v=e.queryDeduplication,m=void 0===v||v;if("function"==typeof i)this.reduxRootSelector=i;else if(void 0!==i)throw new Error('"reduxRootSelector" must be a function.');if(this.fragmentMatcher=void 0===y?new Le:y,n instanceof Ae.ApolloLink){var b=0;this.networkInterface={query:function(e){return function(t){return new Promise(function(r,n){var i=!1,o=e(t).subscribe({next:function(e){i?console.warn("Apollo Client does not support multiple results from an Observable"):(r(e),i=!0)},error:n,complete:function(){return o.unsubscribe()}})})}}(function(e){return Object(Ae.execute)(n,e)}),subscribe:function(e,r){t.subscriptionMap||(t.subscriptionMap=new Map);var i=Object(Ae.execute)(n,e).subscribe({next:function(e){return r(void 0,e)},error:function(e){return r([e])},complete:r}),o=b.toString();return t.subscriptionMap.set(o,i),b++,o},unsubscribe:function(e){if(t.subscriptionMap){var r=t.subscriptionMap.get(e);r&&r.unsubscribe()}}}}else this.networkInterface=n||P({uri:"/graphql"});this.initialState=a||{},this.addTypename=d,this.disableNetworkFetches=s||l>0,this.dataId=r=r||Je,this.dataIdFromObject=this.dataId,this.fieldWithArgs=o,this.queryDeduplication=m,this.ssrMode=s,l&&setTimeout(function(){return t.disableNetworkFetches=!1},l),this.reducerConfig={dataIdFromObject:r,customResolvers:p,addTypename:d,fragmentMatcher:this.fragmentMatcher.match},this.watchQuery=this.watchQuery.bind(this),this.query=this.query.bind(this),this.mutate=this.mutate.bind(this),this.setStore=this.setStore.bind(this),this.resetStore=this.resetStore.bind(this);var g=!Object(D.b)()&&"undefined"!=typeof window&&!window.__APOLLO_CLIENT__;(void 0===h?g:h)&&(window.__APOLLO_CLIENT__=this),Xe||Object(D.b)()||(Xe=!0,"undefined"!=typeof window&&window.document&&window.top===window.self&&void 0===window.__APOLLO_DEVTOOLS_GLOBAL_HOOK__&&navigator.userAgent.indexOf("Chrome")>-1&&console.debug("Download the Apollo DevTools for a better development experience: https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm")),this.version=Ye.version}return e.prototype.watchQuery=function(e){return this.initStore(),this.disableNetworkFetches&&"network-only"===e.fetchPolicy&&(e=Ge({},e,{fetchPolicy:"cache-first"})),this.queryManager.watchQuery(e)},e.prototype.query=function(e){if(this.initStore(),"cache-and-network"===e.fetchPolicy)throw new Error("cache-and-network fetchPolicy can only be used with watchQuery");return this.disableNetworkFetches&&"network-only"===e.fetchPolicy&&(e=Ge({},e,{fetchPolicy:"cache-first"})),this.queryManager.query(e)},e.prototype.mutate=function(e){return this.initStore(),this.queryManager.mutate(e)},e.prototype.subscribe=function(e){return this.initStore(),this.queryManager.startGraphQLSubscription(e)},e.prototype.readQuery=function(e){return this.initProxy().readQuery(e)},e.prototype.readFragment=function(e){return this.initProxy().readFragment(e)},e.prototype.writeQuery=function(e){return this.initProxy().writeQuery(e)},e.prototype.writeFragment=function(e){return this.initProxy().writeFragment(e)},e.prototype.reducer=function(){return be(this.reducerConfig)},e.prototype.__actionHookForDevTools=function(e){this.devToolsHookCb=e},e.prototype.initStore=function(){var e=this;if(!this.store){if(this.reduxRootSelector)throw new Error('Cannot initialize the store because "reduxRootSelector" is provided. reduxRootSelector should only be used when the store is created outside of the client. This may lead to unexpected results when querying the store internally. Please remove that option from ApolloClient constructor.');this.setStore(ge({reduxRootKey:We,initialState:this.initialState,config:this.reducerConfig,logger:function(t){return function(t){return function(r){var n=t(r);return e.devToolsHookCb&&e.devToolsHookCb({action:r,state:{queries:e.queryManager.queryStore.getStore(),mutations:e.queryManager.mutationStore.getStore()},dataWithOptimisticResults:e.queryManager.getDataWithOptimisticResults()}),n}}}}))}},e.prototype.resetStore=function(){return this.queryManager?this.queryManager.resetStore():null},e.prototype.getInitialState=function(){return this.initStore(),this.queryManager.getInitialState()},e.prototype.setStore=function(e){var t;if(void 0===(t=this.reduxRootSelector?this.reduxRootSelector:He)(e.getState()))throw new Error('Existing store does not use apolloReducer. Please make sure the store is properly configured and "reduxRootSelector" is correctly specified.');this.store=e,this.queryManager=new Ve({networkInterface:this.networkInterface,reduxRootSelector:t,store:e,addTypename:this.addTypename,reducerConfig:this.reducerConfig,queryDeduplication:this.queryDeduplication,fragmentMatcher:this.fragmentMatcher,ssrMode:this.ssrMode})},e.prototype.initProxy=function(){return this.proxy||(this.initStore(),this.proxy=new ce(this.store,this.reduxRootSelector||He,this.fragmentMatcher,this.reducerConfig)),this.proxy},e}();r.d(t,"createNetworkInterface",function(){return P}),r.d(t,"createBatchingNetworkInterface",function(){return j}),r.d(t,"createApolloStore",function(){return ge}),r.d(t,"createApolloReducer",function(){return be}),r.d(t,"readQueryFromStore",function(){return ie}),r.d(t,"writeQueryToStore",function(){return V}),r.d(t,"addTypenameToDocument",function(){return E}),r.d(t,"createFragmentMap",function(){return m}),r.d(t,"NetworkStatus",function(){return Oe}),r.d(t,"ApolloError",function(){return _e}),r.d(t,"getQueryDefinition",function(){return y}),r.d(t,"getMutationDefinition",function(){return f}),r.d(t,"getFragmentDefinitions",function(){return h}),r.d(t,"toIdValue",function(){return s}),r.d(t,"IntrospectionFragmentMatcher",function(){return je}),r.d(t,"printAST",function(){return n.print}),r.d(t,"HTTPFetchNetworkInterface",function(){return N}),r.d(t,"HTTPBatchedNetworkInterface",function(){return F}),r.d(t,"ObservableQuery",function(){return qe}),r.d(t,"ApolloClient",function(){return ze}),t.default=ze}])});
+*/
+
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/prop-types/checkPropTypes.js":
+/*!****************************************************!*\
+  !*** ../node_modules/prop-types/checkPropTypes.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var printWarning = function() {};
+
+if (true) {
+  var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../node_modules/prop-types/lib/ReactPropTypesSecret.js");
+  var loggedTypeFailures = {};
+
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+/**
+ * Assert that the values match with the type specs.
+ * Error messages are memorized and will only be shown once.
+ *
+ * @param {object} typeSpecs Map of name to a ReactPropType
+ * @param {object} values Runtime values that need to be type-checked
+ * @param {string} location e.g. "prop", "context", "child context"
+ * @param {string} componentName Name of the component for error messages.
+ * @param {?Function} getStack Returns the component stack.
+ * @private
+ */
+function checkPropTypes(typeSpecs, values, location, componentName, getStack) {
+  if (true) {
+    for (var typeSpecName in typeSpecs) {
+      if (typeSpecs.hasOwnProperty(typeSpecName)) {
+        var error;
+        // Prop type validation may throw. In case they do, we don't want to
+        // fail the render phase where it didn't fail before. So we log it.
+        // After these have been cleaned up, we'll let them throw.
+        try {
+          // This is intentionally an invariant that gets caught. It's the same
+          // behavior as without this statement except with a better message.
+          if (typeof typeSpecs[typeSpecName] !== 'function') {
+            var err = Error(
+              (componentName || 'React class') + ': ' + location + ' type `' + typeSpecName + '` is invalid; ' +
+              'it must be a function, usually from the `prop-types` package, but received `' + typeof typeSpecs[typeSpecName] + '`.'
+            );
+            err.name = 'Invariant Violation';
+            throw err;
+          }
+          error = typeSpecs[typeSpecName](values, typeSpecName, componentName, location, null, ReactPropTypesSecret);
+        } catch (ex) {
+          error = ex;
+        }
+        if (error && !(error instanceof Error)) {
+          printWarning(
+            (componentName || 'React class') + ': type specification of ' +
+            location + ' `' + typeSpecName + '` is invalid; the type checker ' +
+            'function must return `null` or an `Error` but returned a ' + typeof error + '. ' +
+            'You may have forgotten to pass an argument to the type checker ' +
+            'creator (arrayOf, instanceOf, objectOf, oneOf, oneOfType, and ' +
+            'shape all require an argument).'
+          )
+
+        }
+        if (error instanceof Error && !(error.message in loggedTypeFailures)) {
+          // Only monitor this failure once because there tends to be a lot of the
+          // same error.
+          loggedTypeFailures[error.message] = true;
+
+          var stack = getStack ? getStack() : '';
+
+          printWarning(
+            'Failed ' + location + ' type: ' + error.message + (stack != null ? stack : '')
+          );
+        }
+      }
+    }
+  }
+}
+
+module.exports = checkPropTypes;
+
+
+/***/ }),
+
+/***/ "../node_modules/prop-types/factoryWithTypeCheckers.js":
+/*!*************************************************************!*\
+  !*** ../node_modules/prop-types/factoryWithTypeCheckers.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var assign = __webpack_require__(/*! object-assign */ "../node_modules/object-assign/index.js");
+
+var ReactPropTypesSecret = __webpack_require__(/*! ./lib/ReactPropTypesSecret */ "../node_modules/prop-types/lib/ReactPropTypesSecret.js");
+var checkPropTypes = __webpack_require__(/*! ./checkPropTypes */ "../node_modules/prop-types/checkPropTypes.js");
+
+var printWarning = function() {};
+
+if (true) {
+  printWarning = function(text) {
+    var message = 'Warning: ' + text;
+    if (typeof console !== 'undefined') {
+      console.error(message);
+    }
+    try {
+      // --- Welcome to debugging React ---
+      // This error was thrown as a convenience so that you can use this stack
+      // to find the callsite that caused this warning to fire.
+      throw new Error(message);
+    } catch (x) {}
+  };
+}
+
+function emptyFunctionThatReturnsNull() {
+  return null;
+}
+
+module.exports = function(isValidElement, throwOnDirectAccess) {
+  /* global Symbol */
+  var ITERATOR_SYMBOL = typeof Symbol === 'function' && Symbol.iterator;
+  var FAUX_ITERATOR_SYMBOL = '@@iterator'; // Before Symbol spec.
+
+  /**
+   * Returns the iterator method function contained on the iterable object.
+   *
+   * Be sure to invoke the function with the iterable as context:
+   *
+   *     var iteratorFn = getIteratorFn(myIterable);
+   *     if (iteratorFn) {
+   *       var iterator = iteratorFn.call(myIterable);
+   *       ...
+   *     }
+   *
+   * @param {?object} maybeIterable
+   * @return {?function}
+   */
+  function getIteratorFn(maybeIterable) {
+    var iteratorFn = maybeIterable && (ITERATOR_SYMBOL && maybeIterable[ITERATOR_SYMBOL] || maybeIterable[FAUX_ITERATOR_SYMBOL]);
+    if (typeof iteratorFn === 'function') {
+      return iteratorFn;
+    }
+  }
+
+  /**
+   * Collection of methods that allow declaration and validation of props that are
+   * supplied to React components. Example usage:
+   *
+   *   var Props = require('ReactPropTypes');
+   *   var MyArticle = React.createClass({
+   *     propTypes: {
+   *       // An optional string prop named "description".
+   *       description: Props.string,
+   *
+   *       // A required enum prop named "category".
+   *       category: Props.oneOf(['News','Photos']).isRequired,
+   *
+   *       // A prop named "dialog" that requires an instance of Dialog.
+   *       dialog: Props.instanceOf(Dialog).isRequired
+   *     },
+   *     render: function() { ... }
+   *   });
+   *
+   * A more formal specification of how these methods are used:
+   *
+   *   type := array|bool|func|object|number|string|oneOf([...])|instanceOf(...)
+   *   decl := ReactPropTypes.{type}(.isRequired)?
+   *
+   * Each and every declaration produces a function with the same signature. This
+   * allows the creation of custom validation functions. For example:
+   *
+   *  var MyLink = React.createClass({
+   *    propTypes: {
+   *      // An optional string or URI prop named "href".
+   *      href: function(props, propName, componentName) {
+   *        var propValue = props[propName];
+   *        if (propValue != null && typeof propValue !== 'string' &&
+   *            !(propValue instanceof URI)) {
+   *          return new Error(
+   *            'Expected a string or an URI for ' + propName + ' in ' +
+   *            componentName
+   *          );
+   *        }
+   *      }
+   *    },
+   *    render: function() {...}
+   *  });
+   *
+   * @internal
+   */
+
+  var ANONYMOUS = '<<anonymous>>';
+
+  // Important!
+  // Keep this list in sync with production version in `./factoryWithThrowingShims.js`.
+  var ReactPropTypes = {
+    array: createPrimitiveTypeChecker('array'),
+    bool: createPrimitiveTypeChecker('boolean'),
+    func: createPrimitiveTypeChecker('function'),
+    number: createPrimitiveTypeChecker('number'),
+    object: createPrimitiveTypeChecker('object'),
+    string: createPrimitiveTypeChecker('string'),
+    symbol: createPrimitiveTypeChecker('symbol'),
+
+    any: createAnyTypeChecker(),
+    arrayOf: createArrayOfTypeChecker,
+    element: createElementTypeChecker(),
+    instanceOf: createInstanceTypeChecker,
+    node: createNodeChecker(),
+    objectOf: createObjectOfTypeChecker,
+    oneOf: createEnumTypeChecker,
+    oneOfType: createUnionTypeChecker,
+    shape: createShapeTypeChecker,
+    exact: createStrictShapeTypeChecker,
+  };
+
+  /**
+   * inlined Object.is polyfill to avoid requiring consumers ship their own
+   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
+   */
+  /*eslint-disable no-self-compare*/
+  function is(x, y) {
+    // SameValue algorithm
+    if (x === y) {
+      // Steps 1-5, 7-10
+      // Steps 6.b-6.e: +0 != -0
+      return x !== 0 || 1 / x === 1 / y;
+    } else {
+      // Step 6.a: NaN == NaN
+      return x !== x && y !== y;
+    }
+  }
+  /*eslint-enable no-self-compare*/
+
+  /**
+   * We use an Error-like object for backward compatibility as people may call
+   * PropTypes directly and inspect their output. However, we don't use real
+   * Errors anymore. We don't inspect their stack anyway, and creating them
+   * is prohibitively expensive if they are created too often, such as what
+   * happens in oneOfType() for any type before the one that matched.
+   */
+  function PropTypeError(message) {
+    this.message = message;
+    this.stack = '';
+  }
+  // Make `instanceof Error` still work for returned errors.
+  PropTypeError.prototype = Error.prototype;
+
+  function createChainableTypeChecker(validate) {
+    if (true) {
+      var manualPropTypeCallCache = {};
+      var manualPropTypeWarningCount = 0;
+    }
+    function checkType(isRequired, props, propName, componentName, location, propFullName, secret) {
+      componentName = componentName || ANONYMOUS;
+      propFullName = propFullName || propName;
+
+      if (secret !== ReactPropTypesSecret) {
+        if (throwOnDirectAccess) {
+          // New behavior only for users of `prop-types` package
+          var err = new Error(
+            'Calling PropTypes validators directly is not supported by the `prop-types` package. ' +
+            'Use `PropTypes.checkPropTypes()` to call them. ' +
+            'Read more at http://fb.me/use-check-prop-types'
+          );
+          err.name = 'Invariant Violation';
+          throw err;
+        } else if ("development" !== 'production' && typeof console !== 'undefined') {
+          // Old behavior for people using React.PropTypes
+          var cacheKey = componentName + ':' + propName;
+          if (
+            !manualPropTypeCallCache[cacheKey] &&
+            // Avoid spamming the console because they are often not actionable except for lib authors
+            manualPropTypeWarningCount < 3
+          ) {
+            printWarning(
+              'You are manually calling a React.PropTypes validation ' +
+              'function for the `' + propFullName + '` prop on `' + componentName  + '`. This is deprecated ' +
+              'and will throw in the standalone `prop-types` package. ' +
+              'You may be seeing this warning due to a third-party PropTypes ' +
+              'library. See https://fb.me/react-warning-dont-call-proptypes ' + 'for details.'
+            );
+            manualPropTypeCallCache[cacheKey] = true;
+            manualPropTypeWarningCount++;
+          }
+        }
+      }
+      if (props[propName] == null) {
+        if (isRequired) {
+          if (props[propName] === null) {
+            return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required ' + ('in `' + componentName + '`, but its value is `null`.'));
+          }
+          return new PropTypeError('The ' + location + ' `' + propFullName + '` is marked as required in ' + ('`' + componentName + '`, but its value is `undefined`.'));
+        }
+        return null;
+      } else {
+        return validate(props, propName, componentName, location, propFullName);
+      }
+    }
+
+    var chainedCheckType = checkType.bind(null, false);
+    chainedCheckType.isRequired = checkType.bind(null, true);
+
+    return chainedCheckType;
+  }
+
+  function createPrimitiveTypeChecker(expectedType) {
+    function validate(props, propName, componentName, location, propFullName, secret) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== expectedType) {
+        // `propValue` being instance of, say, date/regexp, pass the 'object'
+        // check, but we can offer a more precise error message here rather than
+        // 'of type `object`'.
+        var preciseType = getPreciseType(propValue);
+
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createAnyTypeChecker() {
+    return createChainableTypeChecker(emptyFunctionThatReturnsNull);
+  }
+
+  function createArrayOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
+      }
+      var propValue = props[propName];
+      if (!Array.isArray(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
+      }
+      for (var i = 0; i < propValue.length; i++) {
+        var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', ReactPropTypesSecret);
+        if (error instanceof Error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createElementTypeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      if (!isValidElement(propValue)) {
+        var propType = getPropType(propValue);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected a single ReactElement.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createInstanceTypeChecker(expectedClass) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!(props[propName] instanceof expectedClass)) {
+        var expectedClassName = expectedClass.name || ANONYMOUS;
+        var actualClassName = getClassName(props[propName]);
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createEnumTypeChecker(expectedValues) {
+    if (!Array.isArray(expectedValues)) {
+       true ? printWarning('Invalid argument supplied to oneOf, expected an instance of array.') : undefined;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      for (var i = 0; i < expectedValues.length; i++) {
+        if (is(propValue, expectedValues[i])) {
+          return null;
+        }
+      }
+
+      var valuesString = JSON.stringify(expectedValues);
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of value `' + propValue + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createObjectOfTypeChecker(typeChecker) {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (typeof typeChecker !== 'function') {
+        return new PropTypeError('Property `' + propFullName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
+      }
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      }
+      for (var key in propValue) {
+        if (propValue.hasOwnProperty(key)) {
+          var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+          if (error instanceof Error) {
+            return error;
+          }
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createUnionTypeChecker(arrayOfTypeCheckers) {
+    if (!Array.isArray(arrayOfTypeCheckers)) {
+       true ? printWarning('Invalid argument supplied to oneOfType, expected an instance of array.') : undefined;
+      return emptyFunctionThatReturnsNull;
+    }
+
+    for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+      var checker = arrayOfTypeCheckers[i];
+      if (typeof checker !== 'function') {
+        printWarning(
+          'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
+          'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
+        );
+        return emptyFunctionThatReturnsNull;
+      }
+    }
+
+    function validate(props, propName, componentName, location, propFullName) {
+      for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
+        var checker = arrayOfTypeCheckers[i];
+        if (checker(props, propName, componentName, location, propFullName, ReactPropTypesSecret) == null) {
+          return null;
+        }
+      }
+
+      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`.'));
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createNodeChecker() {
+    function validate(props, propName, componentName, location, propFullName) {
+      if (!isNode(props[propName])) {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`, expected a ReactNode.'));
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      for (var key in shapeTypes) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          continue;
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+    return createChainableTypeChecker(validate);
+  }
+
+  function createStrictShapeTypeChecker(shapeTypes) {
+    function validate(props, propName, componentName, location, propFullName) {
+      var propValue = props[propName];
+      var propType = getPropType(propValue);
+      if (propType !== 'object') {
+        return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      }
+      // We need to check all keys in case some are required but missing from
+      // props.
+      var allKeys = assign({}, props[propName], shapeTypes);
+      for (var key in allKeys) {
+        var checker = shapeTypes[key];
+        if (!checker) {
+          return new PropTypeError(
+            'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+            '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
+            '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
+          );
+        }
+        var error = checker(propValue, key, componentName, location, propFullName + '.' + key, ReactPropTypesSecret);
+        if (error) {
+          return error;
+        }
+      }
+      return null;
+    }
+
+    return createChainableTypeChecker(validate);
+  }
+
+  function isNode(propValue) {
+    switch (typeof propValue) {
+      case 'number':
+      case 'string':
+      case 'undefined':
+        return true;
+      case 'boolean':
+        return !propValue;
+      case 'object':
+        if (Array.isArray(propValue)) {
+          return propValue.every(isNode);
+        }
+        if (propValue === null || isValidElement(propValue)) {
+          return true;
+        }
+
+        var iteratorFn = getIteratorFn(propValue);
+        if (iteratorFn) {
+          var iterator = iteratorFn.call(propValue);
+          var step;
+          if (iteratorFn !== propValue.entries) {
+            while (!(step = iterator.next()).done) {
+              if (!isNode(step.value)) {
+                return false;
+              }
+            }
+          } else {
+            // Iterator will provide entry [k,v] tuples rather than values.
+            while (!(step = iterator.next()).done) {
+              var entry = step.value;
+              if (entry) {
+                if (!isNode(entry[1])) {
+                  return false;
+                }
+              }
+            }
+          }
+        } else {
+          return false;
+        }
+
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  function isSymbol(propType, propValue) {
+    // Native Symbol.
+    if (propType === 'symbol') {
+      return true;
+    }
+
+    // 19.4.3.5 Symbol.prototype[@@toStringTag] === 'Symbol'
+    if (propValue['@@toStringTag'] === 'Symbol') {
+      return true;
+    }
+
+    // Fallback for non-spec compliant Symbols which are polyfilled.
+    if (typeof Symbol === 'function' && propValue instanceof Symbol) {
+      return true;
+    }
+
+    return false;
+  }
+
+  // Equivalent of `typeof` but with special handling for array and regexp.
+  function getPropType(propValue) {
+    var propType = typeof propValue;
+    if (Array.isArray(propValue)) {
+      return 'array';
+    }
+    if (propValue instanceof RegExp) {
+      // Old webkits (at least until Android 4.0) return 'function' rather than
+      // 'object' for typeof a RegExp. We'll normalize this here so that /bla/
+      // passes PropTypes.object.
+      return 'object';
+    }
+    if (isSymbol(propType, propValue)) {
+      return 'symbol';
+    }
+    return propType;
+  }
+
+  // This handles more types than `getPropType`. Only used for error messages.
+  // See `createPrimitiveTypeChecker`.
+  function getPreciseType(propValue) {
+    if (typeof propValue === 'undefined' || propValue === null) {
+      return '' + propValue;
+    }
+    var propType = getPropType(propValue);
+    if (propType === 'object') {
+      if (propValue instanceof Date) {
+        return 'date';
+      } else if (propValue instanceof RegExp) {
+        return 'regexp';
+      }
+    }
+    return propType;
+  }
+
+  // Returns a string that is postfixed to a warning about an invalid type.
+  // For example, "undefined" or "of type array"
+  function getPostfixForTypeWarning(value) {
+    var type = getPreciseType(value);
+    switch (type) {
+      case 'array':
+      case 'object':
+        return 'an ' + type;
+      case 'boolean':
+      case 'date':
+      case 'regexp':
+        return 'a ' + type;
+      default:
+        return type;
+    }
+  }
+
+  // Returns class name of the object, if any.
+  function getClassName(propValue) {
+    if (!propValue.constructor || !propValue.constructor.name) {
+      return ANONYMOUS;
+    }
+    return propValue.constructor.name;
+  }
+
+  ReactPropTypes.checkPropTypes = checkPropTypes;
+  ReactPropTypes.PropTypes = ReactPropTypes;
+
+  return ReactPropTypes;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/prop-types/index.js":
+/*!*******************************************!*\
+  !*** ../node_modules/prop-types/index.js ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (true) {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(/*! ./factoryWithTypeCheckers */ "../node_modules/prop-types/factoryWithTypeCheckers.js")(isValidElement, throwOnDirectAccess);
+} else {}
+
+
+/***/ }),
+
+/***/ "../node_modules/prop-types/lib/ReactPropTypesSecret.js":
+/*!**************************************************************!*\
+  !*** ../node_modules/prop-types/lib/ReactPropTypesSecret.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+
+
+var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
+
+module.exports = ReactPropTypesSecret;
+
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/ApolloClient.js":
+/*!*******************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/ApolloClient.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _transport_networkInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./transport/networkInterface */ "../node_modules/react-apollo/node_modules/apollo-client/transport/networkInterface.js");
+/* harmony import */ var apollo_link_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! apollo-link-core */ "../node_modules/apollo-link-core/lib/index.js");
+/* harmony import */ var apollo_link_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(apollo_link_core__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./data/fragmentMatcher */ "../node_modules/react-apollo/node_modules/apollo-client/data/fragmentMatcher.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "../node_modules/react-apollo/node_modules/apollo-client/store.js");
+/* harmony import */ var _core_QueryManager__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/QueryManager */ "../node_modules/react-apollo/node_modules/apollo-client/core/QueryManager.js");
+/* harmony import */ var _util_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util/environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+/* harmony import */ var _data_storeUtils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data/storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony import */ var _data_proxy__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./data/proxy */ "../node_modules/react-apollo/node_modules/apollo-client/data/proxy.js");
+/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./version */ "../node_modules/react-apollo/node_modules/apollo-client/version.js");
+/* harmony import */ var _version__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_version__WEBPACK_IMPORTED_MODULE_8__);
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+
+
+
+var DEFAULT_REDUX_ROOT_KEY = 'apollo';
+function defaultReduxRootSelector(state) {
+    return state[DEFAULT_REDUX_ROOT_KEY];
+}
+function defaultDataIdFromObject(result) {
+    if (result.__typename) {
+        if (result.id !== undefined) {
+            return result.__typename + ":" + result.id;
+        }
+        if (result._id !== undefined) {
+            return result.__typename + ":" + result._id;
+        }
+    }
+    return null;
+}
+var hasSuggestedDevtools = false;
+var ApolloClient = (function () {
+    function ApolloClient(options) {
+        if (options === void 0) { options = {}; }
+        var _this = this;
+        this.middleware = function () {
+            return function (store) {
+                _this.setStore(store);
+                return function (next) { return function (action) {
+                    var previousApolloState = _this.queryManager.selectApolloState(store);
+                    var returnValue = next(action);
+                    var newApolloState = _this.queryManager.selectApolloState(store);
+                    if (newApolloState !== previousApolloState) {
+                        _this.queryManager.broadcastNewStore(store.getState());
+                    }
+                    if (_this.devToolsHookCb) {
+                        _this.devToolsHookCb({
+                            action: action,
+                            state: {
+                                queries: _this.queryManager.queryStore.getStore(),
+                                mutations: _this.queryManager.mutationStore.getStore(),
+                            },
+                            dataWithOptimisticResults: _this.queryManager.getDataWithOptimisticResults(),
+                        });
+                    }
+                    return returnValue;
+                }; };
+            };
+        };
+        var dataIdFromObject = options.dataIdFromObject;
+        var networkInterface = options.networkInterface, reduxRootSelector = options.reduxRootSelector, initialState = options.initialState, _a = options.ssrMode, ssrMode = _a === void 0 ? false : _a, _b = options.ssrForceFetchDelay, ssrForceFetchDelay = _b === void 0 ? 0 : _b, _c = options.addTypename, addTypename = _c === void 0 ? true : _c, customResolvers = options.customResolvers, connectToDevTools = options.connectToDevTools, fragmentMatcher = options.fragmentMatcher, _d = options.queryDeduplication, queryDeduplication = _d === void 0 ? true : _d;
+        if (typeof reduxRootSelector === 'function') {
+            this.reduxRootSelector = reduxRootSelector;
+        }
+        else if (typeof reduxRootSelector !== 'undefined') {
+            throw new Error('"reduxRootSelector" must be a function.');
+        }
+        if (typeof fragmentMatcher === 'undefined') {
+            this.fragmentMatcher = new _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_2__["HeuristicFragmentMatcher"]();
+        }
+        else {
+            this.fragmentMatcher = fragmentMatcher;
+        }
+        var createQuery = function (getResult) {
+            return function (request) {
+                return new Promise(function (resolve, reject) {
+                    var resolved = false;
+                    var subscription = getResult(request).subscribe({
+                        next: function (data) {
+                            if (!resolved) {
+                                resolve(data);
+                                resolved = true;
+                            }
+                            else {
+                                console.warn('Apollo Client does not support multiple results from an Observable');
+                            }
+                        },
+                        error: reject,
+                        complete: function () { return subscription.unsubscribe(); },
+                    });
+                });
+            };
+        };
+        if (networkInterface instanceof apollo_link_core__WEBPACK_IMPORTED_MODULE_1__["ApolloLink"]) {
+            var count_1 = 0;
+            this.networkInterface = {
+                query: createQuery(function (request) {
+                    return Object(apollo_link_core__WEBPACK_IMPORTED_MODULE_1__["execute"])(networkInterface, request);
+                }),
+                subscribe: function (request, handler) {
+                    if (!_this.subscriptionMap) {
+                        _this.subscriptionMap = new Map();
+                    }
+                    var subscription = Object(apollo_link_core__WEBPACK_IMPORTED_MODULE_1__["execute"])(networkInterface, request).subscribe({
+                        next: function (data) { return handler(undefined, data); },
+                        error: function (error) { return handler([error]); },
+                        complete: handler,
+                    });
+                    var id = count_1.toString();
+                    _this.subscriptionMap.set(id, subscription);
+                    count_1++;
+                    return id;
+                },
+                unsubscribe: function (id) {
+                    if (_this.subscriptionMap) {
+                        var subscription = _this.subscriptionMap.get(id);
+                        if (subscription) {
+                            subscription.unsubscribe();
+                        }
+                    }
+                },
+            };
+        }
+        else {
+            this.networkInterface = networkInterface
+                ? networkInterface
+                : Object(_transport_networkInterface__WEBPACK_IMPORTED_MODULE_0__["createNetworkInterface"])({ uri: '/graphql' });
+        }
+        this.initialState = initialState ? initialState : {};
+        this.addTypename = addTypename;
+        this.disableNetworkFetches = ssrMode || ssrForceFetchDelay > 0;
+        this.dataId = dataIdFromObject =
+            dataIdFromObject || defaultDataIdFromObject;
+        this.dataIdFromObject = this.dataId;
+        this.fieldWithArgs = _data_storeUtils__WEBPACK_IMPORTED_MODULE_6__["getStoreKeyName"];
+        this.queryDeduplication = queryDeduplication;
+        this.ssrMode = ssrMode;
+        if (ssrForceFetchDelay) {
+            setTimeout(function () { return (_this.disableNetworkFetches = false); }, ssrForceFetchDelay);
+        }
+        this.reducerConfig = {
+            dataIdFromObject: dataIdFromObject,
+            customResolvers: customResolvers,
+            addTypename: addTypename,
+            fragmentMatcher: this.fragmentMatcher.match,
+        };
+        this.watchQuery = this.watchQuery.bind(this);
+        this.query = this.query.bind(this);
+        this.mutate = this.mutate.bind(this);
+        this.setStore = this.setStore.bind(this);
+        this.resetStore = this.resetStore.bind(this);
+        var defaultConnectToDevTools = !Object(_util_environment__WEBPACK_IMPORTED_MODULE_5__["isProduction"])() &&
+            typeof window !== 'undefined' &&
+            !window.__APOLLO_CLIENT__;
+        if (typeof connectToDevTools === 'undefined'
+            ? defaultConnectToDevTools
+            : connectToDevTools) {
+            window.__APOLLO_CLIENT__ = this;
+        }
+        if (!hasSuggestedDevtools && !Object(_util_environment__WEBPACK_IMPORTED_MODULE_5__["isProduction"])()) {
+            hasSuggestedDevtools = true;
+            if (typeof window !== 'undefined' &&
+                window.document &&
+                window.top === window.self) {
+                if (typeof window.__APOLLO_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
+                    if (navigator.userAgent.indexOf('Chrome') > -1) {
+                        console.debug('Download the Apollo DevTools ' +
+                            'for a better development experience: ' +
+                            'https://chrome.google.com/webstore/detail/apollo-client-developer-t/jdkknkkbebbapilgoeccciglkfbmbnfm');
+                    }
+                }
+            }
+        }
+        this.version = _version__WEBPACK_IMPORTED_MODULE_8__["version"];
+    }
+    ApolloClient.prototype.watchQuery = function (options) {
+        this.initStore();
+        if (this.disableNetworkFetches && options.fetchPolicy === 'network-only') {
+            options = __assign({}, options, { fetchPolicy: 'cache-first' });
+        }
+        return this.queryManager.watchQuery(options);
+    };
+    ApolloClient.prototype.query = function (options) {
+        this.initStore();
+        if (options.fetchPolicy === 'cache-and-network') {
+            throw new Error('cache-and-network fetchPolicy can only be used with watchQuery');
+        }
+        if (this.disableNetworkFetches && options.fetchPolicy === 'network-only') {
+            options = __assign({}, options, { fetchPolicy: 'cache-first' });
+        }
+        return this.queryManager.query(options);
+    };
+    ApolloClient.prototype.mutate = function (options) {
+        this.initStore();
+        return this.queryManager.mutate(options);
+    };
+    ApolloClient.prototype.subscribe = function (options) {
+        this.initStore();
+        return this.queryManager.startGraphQLSubscription(options);
+    };
+    ApolloClient.prototype.readQuery = function (options) {
+        return this.initProxy().readQuery(options);
+    };
+    ApolloClient.prototype.readFragment = function (options) {
+        return this.initProxy().readFragment(options);
+    };
+    ApolloClient.prototype.writeQuery = function (options) {
+        return this.initProxy().writeQuery(options);
+    };
+    ApolloClient.prototype.writeFragment = function (options) {
+        return this.initProxy().writeFragment(options);
+    };
+    ApolloClient.prototype.reducer = function () {
+        return Object(_store__WEBPACK_IMPORTED_MODULE_3__["createApolloReducer"])(this.reducerConfig);
+    };
+    ApolloClient.prototype.__actionHookForDevTools = function (cb) {
+        this.devToolsHookCb = cb;
+    };
+    ApolloClient.prototype.initStore = function () {
+        var _this = this;
+        if (this.store) {
+            return;
+        }
+        if (this.reduxRootSelector) {
+            throw new Error('Cannot initialize the store because "reduxRootSelector" is provided. ' +
+                'reduxRootSelector should only be used when the store is created outside of the client. ' +
+                'This may lead to unexpected results when querying the store internally. ' +
+                "Please remove that option from ApolloClient constructor.");
+        }
+        this.setStore(Object(_store__WEBPACK_IMPORTED_MODULE_3__["createApolloStore"])({
+            reduxRootKey: DEFAULT_REDUX_ROOT_KEY,
+            initialState: this.initialState,
+            config: this.reducerConfig,
+            logger: function (store) { return function (next) { return function (action) {
+                var result = next(action);
+                if (_this.devToolsHookCb) {
+                    _this.devToolsHookCb({
+                        action: action,
+                        state: {
+                            queries: _this.queryManager.queryStore.getStore(),
+                            mutations: _this.queryManager.mutationStore.getStore(),
+                        },
+                        dataWithOptimisticResults: _this.queryManager.getDataWithOptimisticResults(),
+                    });
+                }
+                return result;
+            }; }; },
+        }));
+    };
+    ApolloClient.prototype.resetStore = function () {
+        return this.queryManager ? this.queryManager.resetStore() : null;
+    };
+    ApolloClient.prototype.getInitialState = function () {
+        this.initStore();
+        return this.queryManager.getInitialState();
+    };
+    ApolloClient.prototype.setStore = function (store) {
+        var reduxRootSelector;
+        if (this.reduxRootSelector) {
+            reduxRootSelector = this.reduxRootSelector;
+        }
+        else {
+            reduxRootSelector = defaultReduxRootSelector;
+        }
+        if (typeof reduxRootSelector(store.getState()) === 'undefined') {
+            throw new Error('Existing store does not use apolloReducer. Please make sure the store ' +
+                'is properly configured and "reduxRootSelector" is correctly specified.');
+        }
+        this.store = store;
+        this.queryManager = new _core_QueryManager__WEBPACK_IMPORTED_MODULE_4__["QueryManager"]({
+            networkInterface: this.networkInterface,
+            reduxRootSelector: reduxRootSelector,
+            store: store,
+            addTypename: this.addTypename,
+            reducerConfig: this.reducerConfig,
+            queryDeduplication: this.queryDeduplication,
+            fragmentMatcher: this.fragmentMatcher,
+            ssrMode: this.ssrMode,
+        });
+    };
+    ApolloClient.prototype.initProxy = function () {
+        if (!this.proxy) {
+            this.initStore();
+            this.proxy = new _data_proxy__WEBPACK_IMPORTED_MODULE_7__["ReduxDataProxy"](this.store, this.reduxRootSelector || defaultReduxRootSelector, this.fragmentMatcher, this.reducerConfig);
+        }
+        return this.proxy;
+    };
+    return ApolloClient;
+}());
+/* harmony default export */ __webpack_exports__["default"] = (ApolloClient);
+//# sourceMappingURL=ApolloClient.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/actions.js":
+/*!**************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/actions.js ***!
+  \**************************************************************************/
+/*! exports provided: isQueryResultAction, isQueryErrorAction, isQueryInitAction, isQueryResultClientAction, isQueryStopAction, isMutationInitAction, isMutationResultAction, isMutationErrorAction, isUpdateQueryResultAction, isStoreResetAction, isSubscriptionResultAction, isWriteAction */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isQueryResultAction", function() { return isQueryResultAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isQueryErrorAction", function() { return isQueryErrorAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isQueryInitAction", function() { return isQueryInitAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isQueryResultClientAction", function() { return isQueryResultClientAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isQueryStopAction", function() { return isQueryStopAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMutationInitAction", function() { return isMutationInitAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMutationResultAction", function() { return isMutationResultAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isMutationErrorAction", function() { return isMutationErrorAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isUpdateQueryResultAction", function() { return isUpdateQueryResultAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isStoreResetAction", function() { return isStoreResetAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSubscriptionResultAction", function() { return isSubscriptionResultAction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isWriteAction", function() { return isWriteAction; });
+function isQueryResultAction(action) {
+    return action.type === 'APOLLO_QUERY_RESULT';
+}
+function isQueryErrorAction(action) {
+    return action.type === 'APOLLO_QUERY_ERROR';
+}
+function isQueryInitAction(action) {
+    return action.type === 'APOLLO_QUERY_INIT';
+}
+function isQueryResultClientAction(action) {
+    return action.type === 'APOLLO_QUERY_RESULT_CLIENT';
+}
+function isQueryStopAction(action) {
+    return action.type === 'APOLLO_QUERY_STOP';
+}
+function isMutationInitAction(action) {
+    return action.type === 'APOLLO_MUTATION_INIT';
+}
+function isMutationResultAction(action) {
+    return action.type === 'APOLLO_MUTATION_RESULT';
+}
+function isMutationErrorAction(action) {
+    return action.type === 'APOLLO_MUTATION_ERROR';
+}
+function isUpdateQueryResultAction(action) {
+    return action.type === 'APOLLO_UPDATE_QUERY_RESULT';
+}
+function isStoreResetAction(action) {
+    return action.type === 'APOLLO_STORE_RESET';
+}
+function isSubscriptionResultAction(action) {
+    return action.type === 'APOLLO_SUBSCRIPTION_RESULT';
+}
+function isWriteAction(action) {
+    return action.type === 'APOLLO_WRITE';
+}
+//# sourceMappingURL=actions.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/core/ObservableQuery.js":
+/*!***************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/core/ObservableQuery.js ***!
+  \***************************************************************************************/
+/*! exports provided: ObservableQuery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObservableQuery", function() { return ObservableQuery; });
+/* harmony import */ var _util_Observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/Observable */ "../node_modules/react-apollo/node_modules/apollo-client/util/Observable.js");
+/* harmony import */ var _errors_ApolloError__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../errors/ApolloError */ "../node_modules/react-apollo/node_modules/apollo-client/errors/ApolloError.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types */ "../node_modules/react-apollo/node_modules/apollo-client/core/types.js");
+/* harmony import */ var _util_errorHandling__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/errorHandling */ "../node_modules/react-apollo/node_modules/apollo-client/util/errorHandling.js");
+/* harmony import */ var _util_isEqual__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/isEqual */ "../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js");
+/* harmony import */ var _util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../util/maybeDeepFreeze */ "../node_modules/react-apollo/node_modules/apollo-client/util/maybeDeepFreeze.js");
+/* harmony import */ var _queries_networkStatus__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../queries/networkStatus */ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js");
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+
+
+var ObservableQuery = (function (_super) {
+    __extends(ObservableQuery, _super);
+    function ObservableQuery(_a) {
+        var scheduler = _a.scheduler, options = _a.options, _b = _a.shouldSubscribe, shouldSubscribe = _b === void 0 ? true : _b;
+        var _this = this;
+        var queryManager = scheduler.queryManager;
+        var queryId = queryManager.generateQueryId();
+        var subscriberFunction = function (observer) {
+            return _this.onSubscribe(observer);
+        };
+        _this = _super.call(this, subscriberFunction) || this;
+        _this.isCurrentlyPolling = false;
+        _this.options = options;
+        _this.variables = _this.options.variables || {};
+        _this.scheduler = scheduler;
+        _this.queryManager = queryManager;
+        _this.queryId = queryId;
+        _this.shouldSubscribe = shouldSubscribe;
+        _this.observers = [];
+        _this.subscriptionHandles = [];
+        return _this;
+    }
+    ObservableQuery.prototype.result = function () {
+        var that = this;
+        return new Promise(function (resolve, reject) {
+            var subscription = null;
+            var observer = {
+                next: function (result) {
+                    resolve(result);
+                    var selectedObservers = that.observers.filter(function (obs) { return obs !== observer; });
+                    if (selectedObservers.length === 0) {
+                        that.queryManager.removeQuery(that.queryId);
+                    }
+                    setTimeout(function () {
+                        subscription.unsubscribe();
+                    }, 0);
+                },
+                error: function (error) {
+                    reject(error);
+                },
+            };
+            subscription = that.subscribe(observer);
+        });
+    };
+    ObservableQuery.prototype.currentResult = function () {
+        var _a = this.queryManager.getCurrentQueryResult(this, true), data = _a.data, partial = _a.partial;
+        var queryStoreValue = this.queryManager.queryStore.get(this.queryId);
+        if (queryStoreValue &&
+            ((queryStoreValue.graphQLErrors &&
+                queryStoreValue.graphQLErrors.length > 0) ||
+                queryStoreValue.networkError)) {
+            var error = new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_1__["ApolloError"]({
+                graphQLErrors: queryStoreValue.graphQLErrors,
+                networkError: queryStoreValue.networkError,
+            });
+            return {
+                data: {},
+                loading: false,
+                networkStatus: queryStoreValue.networkStatus,
+                error: error,
+            };
+        }
+        var queryLoading = !queryStoreValue ||
+            queryStoreValue.networkStatus === _queries_networkStatus__WEBPACK_IMPORTED_MODULE_6__["NetworkStatus"].loading;
+        var loading = (this.options.fetchPolicy === 'network-only' && queryLoading) ||
+            (partial && this.options.fetchPolicy !== 'cache-only');
+        var networkStatus;
+        if (queryStoreValue) {
+            networkStatus = queryStoreValue.networkStatus;
+        }
+        else {
+            networkStatus = loading ? _queries_networkStatus__WEBPACK_IMPORTED_MODULE_6__["NetworkStatus"].loading : _queries_networkStatus__WEBPACK_IMPORTED_MODULE_6__["NetworkStatus"].ready;
+        }
+        var result = {
+            data: data,
+            loading: Object(_queries_networkStatus__WEBPACK_IMPORTED_MODULE_6__["isNetworkRequestInFlight"])(networkStatus),
+            networkStatus: networkStatus,
+        };
+        if (!partial) {
+            var stale = false;
+            this.lastResult = __assign({}, result, { stale: stale });
+        }
+        return __assign({}, result, { partial: partial });
+    };
+    ObservableQuery.prototype.getLastResult = function () {
+        return this.lastResult;
+    };
+    ObservableQuery.prototype.refetch = function (variables) {
+        this.variables = __assign({}, this.variables, variables);
+        if (this.options.fetchPolicy === 'cache-only') {
+            return Promise.reject(new Error('cache-only fetchPolicy option should not be used together with query refetch.'));
+        }
+        this.options.variables = __assign({}, this.options.variables, this.variables);
+        var combinedOptions = __assign({}, this.options, { fetchPolicy: 'network-only' });
+        return this.queryManager
+            .fetchQuery(this.queryId, combinedOptions, _types__WEBPACK_IMPORTED_MODULE_2__["FetchType"].refetch)
+            .then(function (result) { return Object(_util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_5__["default"])(result); });
+    };
+    ObservableQuery.prototype.fetchMore = function (fetchMoreOptions) {
+        var _this = this;
+        if (!fetchMoreOptions.updateQuery) {
+            throw new Error('updateQuery option is required. This function defines how to update the query data with the new results.');
+        }
+        return Promise.resolve()
+            .then(function () {
+            var qid = _this.queryManager.generateQueryId();
+            var combinedOptions = null;
+            if (fetchMoreOptions.query) {
+                combinedOptions = fetchMoreOptions;
+            }
+            else {
+                var variables = __assign({}, _this.variables, fetchMoreOptions.variables);
+                combinedOptions = __assign({}, _this.options, fetchMoreOptions, { variables: variables });
+            }
+            combinedOptions = __assign({}, combinedOptions, { query: combinedOptions.query, fetchPolicy: 'network-only' });
+            return _this.queryManager.fetchQuery(qid, combinedOptions, _types__WEBPACK_IMPORTED_MODULE_2__["FetchType"].normal, _this.queryId);
+        })
+            .then(function (fetchMoreResult) {
+            var data = fetchMoreResult.data;
+            var reducer = fetchMoreOptions.updateQuery;
+            var mapFn = function (previousResult, _a) {
+                var variables = _a.variables;
+                var queryVariables = variables;
+                return reducer(previousResult, {
+                    fetchMoreResult: data,
+                    queryVariables: queryVariables,
+                });
+            };
+            _this.updateQuery(mapFn);
+            return fetchMoreResult;
+        });
+    };
+    ObservableQuery.prototype.subscribeToMore = function (options) {
+        var _this = this;
+        var observable = this.queryManager.startGraphQLSubscription({
+            query: options.document,
+            variables: options.variables,
+        });
+        var subscription = observable.subscribe({
+            next: function (data) {
+                if (options.updateQuery) {
+                    var reducer_1 = options.updateQuery;
+                    var mapFn = function (previousResult, _a) {
+                        var variables = _a.variables;
+                        return reducer_1(previousResult, {
+                            subscriptionData: { data: data },
+                            variables: variables,
+                        });
+                    };
+                    _this.updateQuery(mapFn);
+                }
+            },
+            error: function (err) {
+                if (options.onError) {
+                    options.onError(err);
+                }
+                else {
+                    console.error('Unhandled GraphQL subscription error', err);
+                }
+            },
+        });
+        this.subscriptionHandles.push(subscription);
+        return function () {
+            var i = _this.subscriptionHandles.indexOf(subscription);
+            if (i >= 0) {
+                _this.subscriptionHandles.splice(i, 1);
+                subscription.unsubscribe();
+            }
+        };
+    };
+    ObservableQuery.prototype.setOptions = function (opts) {
+        var oldOptions = this.options;
+        this.options = __assign({}, this.options, opts);
+        if (opts.pollInterval) {
+            this.startPolling(opts.pollInterval);
+        }
+        else if (opts.pollInterval === 0) {
+            this.stopPolling();
+        }
+        var tryFetch = (oldOptions.fetchPolicy !== 'network-only' &&
+            opts.fetchPolicy === 'network-only') ||
+            (oldOptions.fetchPolicy === 'cache-only' &&
+                opts.fetchPolicy !== 'cache-only') ||
+            (oldOptions.fetchPolicy === 'standby' &&
+                opts.fetchPolicy !== 'standby') ||
+            false;
+        return this.setVariables(this.options.variables, tryFetch, opts.fetchResults);
+    };
+    ObservableQuery.prototype.setVariables = function (variables, tryFetch, fetchResults) {
+        if (tryFetch === void 0) { tryFetch = false; }
+        if (fetchResults === void 0) { fetchResults = true; }
+        var newVariables = __assign({}, this.variables, variables);
+        if (Object(_util_isEqual__WEBPACK_IMPORTED_MODULE_4__["isEqual"])(newVariables, this.variables) && !tryFetch) {
+            if (this.observers.length === 0 || !fetchResults) {
+                return new Promise(function (resolve) { return resolve(); });
+            }
+            return this.result();
+        }
+        else {
+            this.variables = newVariables;
+            this.options.variables = newVariables;
+            if (this.observers.length === 0) {
+                return new Promise(function (resolve) { return resolve(); });
+            }
+            return this.queryManager
+                .fetchQuery(this.queryId, __assign({}, this.options, { variables: this.variables }))
+                .then(function (result) { return Object(_util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_5__["default"])(result); });
+        }
+    };
+    ObservableQuery.prototype.updateQuery = function (mapFn) {
+        var _a = this.queryManager.getQueryWithPreviousResult(this.queryId), previousResult = _a.previousResult, variables = _a.variables, document = _a.document;
+        var newResult = Object(_util_errorHandling__WEBPACK_IMPORTED_MODULE_3__["tryFunctionOrLogError"])(function () {
+            return mapFn(previousResult, { variables: variables });
+        });
+        if (newResult) {
+            this.queryManager.store.dispatch({
+                type: 'APOLLO_UPDATE_QUERY_RESULT',
+                newResult: newResult,
+                variables: variables,
+                document: document,
+                operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(document),
+            });
+        }
+    };
+    ObservableQuery.prototype.stopPolling = function () {
+        if (this.isCurrentlyPolling) {
+            this.scheduler.stopPollingQuery(this.queryId);
+            this.options.pollInterval = undefined;
+            this.isCurrentlyPolling = false;
+        }
+    };
+    ObservableQuery.prototype.startPolling = function (pollInterval) {
+        if (this.options.fetchPolicy === 'cache-first' ||
+            this.options.fetchPolicy === 'cache-only') {
+            throw new Error('Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.');
+        }
+        if (this.isCurrentlyPolling) {
+            this.scheduler.stopPollingQuery(this.queryId);
+            this.isCurrentlyPolling = false;
+        }
+        this.options.pollInterval = pollInterval;
+        this.isCurrentlyPolling = true;
+        this.scheduler.startPollingQuery(this.options, this.queryId);
+    };
+    ObservableQuery.prototype.onSubscribe = function (observer) {
+        var _this = this;
+        this.observers.push(observer);
+        if (observer.next && this.lastResult) {
+            observer.next(this.lastResult);
+        }
+        if (observer.error && this.lastError) {
+            observer.error(this.lastError);
+        }
+        if (this.observers.length === 1) {
+            this.setUpQuery();
+        }
+        var retQuerySubscription = {
+            unsubscribe: function () {
+                if (!_this.observers.some(function (el) { return el === observer; })) {
+                    return;
+                }
+                _this.observers = _this.observers.filter(function (obs) { return obs !== observer; });
+                if (_this.observers.length === 0) {
+                    _this.tearDownQuery();
+                }
+            },
+        };
+        return retQuerySubscription;
+    };
+    ObservableQuery.prototype.setUpQuery = function () {
+        var _this = this;
+        if (this.shouldSubscribe) {
+            this.queryManager.addObservableQuery(this.queryId, this);
+        }
+        if (!!this.options.pollInterval) {
+            if (this.options.fetchPolicy === 'cache-first' ||
+                this.options.fetchPolicy === 'cache-only') {
+                throw new Error('Queries that specify the cache-first and cache-only fetchPolicies cannot also be polling queries.');
+            }
+            this.isCurrentlyPolling = true;
+            this.scheduler.startPollingQuery(this.options, this.queryId);
+        }
+        var observer = {
+            next: function (result) {
+                _this.lastResult = result;
+                _this.observers.forEach(function (obs) {
+                    if (obs.next) {
+                        obs.next(result);
+                    }
+                });
+            },
+            error: function (error) {
+                _this.observers.forEach(function (obs) {
+                    if (obs.error) {
+                        obs.error(error);
+                    }
+                    else {
+                        console.error('Unhandled error', error.message, error.stack);
+                    }
+                });
+                _this.lastError = error;
+            },
+        };
+        this.queryManager.startQuery(this.queryId, this.options, this.queryManager.queryListenerForObserver(this.queryId, this.options, observer));
+    };
+    ObservableQuery.prototype.tearDownQuery = function () {
+        if (this.isCurrentlyPolling) {
+            this.scheduler.stopPollingQuery(this.queryId);
+            this.isCurrentlyPolling = false;
+        }
+        this.subscriptionHandles.forEach(function (sub) { return sub.unsubscribe(); });
+        this.subscriptionHandles = [];
+        this.queryManager.stopQuery(this.queryId);
+        if (this.shouldSubscribe) {
+            this.queryManager.removeObservableQuery(this.queryId);
+        }
+        this.observers = [];
+    };
+    return ObservableQuery;
+}(_util_Observable__WEBPACK_IMPORTED_MODULE_0__["Observable"]));
+
+//# sourceMappingURL=ObservableQuery.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/core/QueryManager.js":
+/*!************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/core/QueryManager.js ***!
+  \************************************************************************************/
+/*! exports provided: QueryManager */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryManager", function() { return QueryManager; });
+/* harmony import */ var _transport_Deduplicator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../transport/Deduplicator */ "../node_modules/react-apollo/node_modules/apollo-client/transport/Deduplicator.js");
+/* harmony import */ var _util_isEqual__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/isEqual */ "../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+/* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./types */ "../node_modules/react-apollo/node_modules/apollo-client/core/types.js");
+/* harmony import */ var _queries_store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../queries/store */ "../node_modules/react-apollo/node_modules/apollo-client/queries/store.js");
+/* harmony import */ var _queries_networkStatus__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../queries/networkStatus */ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store */ "../node_modules/react-apollo/node_modules/apollo-client/store.js");
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../queries/queryTransform */ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js");
+/* harmony import */ var _data_resultReducers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../data/resultReducers */ "../node_modules/react-apollo/node_modules/apollo-client/data/resultReducers.js");
+/* harmony import */ var _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../data/fragmentMatcher */ "../node_modules/react-apollo/node_modules/apollo-client/data/fragmentMatcher.js");
+/* harmony import */ var _util_environment__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../util/environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+/* harmony import */ var _util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../util/maybeDeepFreeze */ "../node_modules/react-apollo/node_modules/apollo-client/util/maybeDeepFreeze.js");
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! graphql/language/printer */ "../node_modules/react-apollo/node_modules/graphql/language/printer.js");
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(graphql_language_printer__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _data_readFromStore__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../data/readFromStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js");
+/* harmony import */ var _mutations_store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../mutations/store */ "../node_modules/react-apollo/node_modules/apollo-client/mutations/store.js");
+/* harmony import */ var _scheduler_scheduler__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../scheduler/scheduler */ "../node_modules/react-apollo/node_modules/apollo-client/scheduler/scheduler.js");
+/* harmony import */ var _util_Observable__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../util/Observable */ "../node_modules/react-apollo/node_modules/apollo-client/util/Observable.js");
+/* harmony import */ var _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../errors/ApolloError */ "../node_modules/react-apollo/node_modules/apollo-client/errors/ApolloError.js");
+/* harmony import */ var _ObservableQuery__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./ObservableQuery */ "../node_modules/react-apollo/node_modules/apollo-client/core/ObservableQuery.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var QueryManager = (function () {
+    function QueryManager(_a) {
+        var networkInterface = _a.networkInterface, store = _a.store, reduxRootSelector = _a.reduxRootSelector, _b = _a.reducerConfig, reducerConfig = _b === void 0 ? {} : _b, fragmentMatcher = _a.fragmentMatcher, _c = _a.addTypename, addTypename = _c === void 0 ? true : _c, _d = _a.queryDeduplication, queryDeduplication = _d === void 0 ? false : _d, _e = _a.ssrMode, ssrMode = _e === void 0 ? false : _e;
+        var _this = this;
+        this.mutationStore = new _mutations_store__WEBPACK_IMPORTED_MODULE_15__["MutationStore"]();
+        this.queryStore = new _queries_store__WEBPACK_IMPORTED_MODULE_4__["QueryStore"]();
+        this.idCounter = 1;
+        this.lastRequestId = {};
+        this.disableBroadcasting = false;
+        this.networkInterface = networkInterface;
+        this.deduplicator = new _transport_Deduplicator__WEBPACK_IMPORTED_MODULE_0__["Deduplicator"](networkInterface);
+        this.store = store;
+        this.reduxRootSelector = reduxRootSelector;
+        this.reducerConfig = reducerConfig;
+        this.pollingTimers = {};
+        this.queryListeners = {};
+        this.queryDocuments = {};
+        this.addTypename = addTypename;
+        this.queryDeduplication = queryDeduplication;
+        this.ssrMode = ssrMode;
+        if (typeof fragmentMatcher === 'undefined') {
+            this.fragmentMatcher = new _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_10__["HeuristicFragmentMatcher"]();
+        }
+        else {
+            this.fragmentMatcher = fragmentMatcher;
+        }
+        this.scheduler = new _scheduler_scheduler__WEBPACK_IMPORTED_MODULE_16__["QueryScheduler"]({
+            queryManager: this,
+        });
+        this.fetchQueryPromises = {};
+        this.observableQueries = {};
+        this.queryIdsByName = {};
+        if (this.store['subscribe']) {
+            var currentStoreData_1;
+            this.store['subscribe'](function () {
+                var previousStoreData = currentStoreData_1 || {};
+                var previousStoreHasData = Object.keys(previousStoreData).length;
+                currentStoreData_1 = _this.getApolloState();
+                if (Object(_util_isEqual__WEBPACK_IMPORTED_MODULE_1__["isEqual"])(previousStoreData, currentStoreData_1) &&
+                    previousStoreHasData) {
+                    return;
+                }
+                _this.broadcastQueries();
+            });
+        }
+    }
+    QueryManager.prototype.broadcastNewStore = function (store) {
+        this.broadcastQueries();
+    };
+    QueryManager.prototype.mutate = function (_a) {
+        var _this = this;
+        var mutation = _a.mutation, variables = _a.variables, optimisticResponse = _a.optimisticResponse, updateQueriesByName = _a.updateQueries, _b = _a.refetchQueries, refetchQueries = _b === void 0 ? [] : _b, updateWithProxyFn = _a.update;
+        if (!mutation) {
+            throw new Error('mutation option is required. You must specify your GraphQL document in the mutation option.');
+        }
+        var mutationId = this.generateQueryId();
+        if (this.addTypename) {
+            mutation = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__["addTypenameToDocument"])(mutation);
+        }
+        variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"])({}, Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getDefaultValues"])(Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getMutationDefinition"])(mutation)), variables);
+        var mutationString = Object(graphql_language_printer__WEBPACK_IMPORTED_MODULE_13__["print"])(mutation);
+        var request = {
+            query: mutation,
+            variables: variables,
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(mutation),
+        };
+        this.queryDocuments[mutationId] = mutation;
+        var generateUpdateQueriesInfo = function () {
+            var ret = {};
+            if (updateQueriesByName) {
+                Object.keys(updateQueriesByName).forEach(function (queryName) {
+                    return (_this.queryIdsByName[queryName] || []).forEach(function (queryId) {
+                        ret[queryId] = {
+                            reducer: updateQueriesByName[queryName],
+                            query: _this.queryStore.get(queryId),
+                        };
+                    });
+                });
+            }
+            return ret;
+        };
+        this.store.dispatch({
+            type: 'APOLLO_MUTATION_INIT',
+            mutationString: mutationString,
+            mutation: mutation,
+            variables: variables || {},
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(mutation),
+            mutationId: mutationId,
+            optimisticResponse: optimisticResponse,
+            extraReducers: this.getExtraReducers(),
+            updateQueries: generateUpdateQueriesInfo(),
+            update: updateWithProxyFn,
+        });
+        this.mutationStore.initMutation(mutationId, mutationString, variables);
+        return new Promise(function (resolve, reject) {
+            _this.networkInterface
+                .query(request)
+                .then(function (result) {
+                if (result.errors) {
+                    var error = new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                        graphQLErrors: result.errors,
+                    });
+                    _this.store.dispatch({
+                        type: 'APOLLO_MUTATION_ERROR',
+                        error: error,
+                        mutationId: mutationId,
+                    });
+                    _this.mutationStore.markMutationError(mutationId, error);
+                    delete _this.queryDocuments[mutationId];
+                    reject(error);
+                    return;
+                }
+                _this.store.dispatch({
+                    type: 'APOLLO_MUTATION_RESULT',
+                    result: result,
+                    mutationId: mutationId,
+                    document: mutation,
+                    operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(mutation),
+                    variables: variables || {},
+                    extraReducers: _this.getExtraReducers(),
+                    updateQueries: generateUpdateQueriesInfo(),
+                    update: updateWithProxyFn,
+                });
+                _this.mutationStore.markMutationResult(mutationId);
+                var reducerError = _this.getApolloState().reducerError;
+                if (reducerError && reducerError.mutationId === mutationId) {
+                    reject(reducerError.error);
+                    return;
+                }
+                if (typeof refetchQueries[0] === 'string') {
+                    refetchQueries.forEach(function (name) {
+                        _this.refetchQueryByName(name);
+                    });
+                }
+                else {
+                    refetchQueries.forEach(function (pureQuery) {
+                        _this.query({
+                            query: pureQuery.query,
+                            variables: pureQuery.variables,
+                            fetchPolicy: 'network-only',
+                        });
+                    });
+                }
+                delete _this.queryDocuments[mutationId];
+                resolve(result);
+            })
+                .catch(function (err) {
+                _this.store.dispatch({
+                    type: 'APOLLO_MUTATION_ERROR',
+                    error: err,
+                    mutationId: mutationId,
+                });
+                delete _this.queryDocuments[mutationId];
+                reject(new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                    networkError: err,
+                }));
+            });
+        });
+    };
+    QueryManager.prototype.fetchQuery = function (queryId, options, fetchType, fetchMoreForQueryId) {
+        var _this = this;
+        var _a = options.variables, variables = _a === void 0 ? {} : _a, _b = options.metadata, metadata = _b === void 0 ? null : _b, _c = options.fetchPolicy, fetchPolicy = _c === void 0 ? 'cache-first' : _c;
+        var queryDoc = this.transformQueryDocument(options).queryDoc;
+        var queryString = Object(graphql_language_printer__WEBPACK_IMPORTED_MODULE_13__["print"])(queryDoc);
+        var storeResult;
+        var needToFetch = fetchPolicy === 'network-only';
+        if (fetchType !== _types__WEBPACK_IMPORTED_MODULE_3__["FetchType"].refetch && fetchPolicy !== 'network-only') {
+            var _d = Object(_data_readFromStore__WEBPACK_IMPORTED_MODULE_14__["diffQueryAgainstStore"])({
+                query: queryDoc,
+                store: this.reduxRootSelector(this.store.getState()).data,
+                variables: variables,
+                returnPartialData: true,
+                fragmentMatcherFunction: this.fragmentMatcher.match,
+                config: this.reducerConfig,
+            }), isMissing = _d.isMissing, result = _d.result;
+            needToFetch = isMissing || fetchPolicy === 'cache-and-network';
+            storeResult = result;
+        }
+        var shouldFetch = needToFetch && fetchPolicy !== 'cache-only' && fetchPolicy !== 'standby';
+        var requestId = this.generateRequestId();
+        this.queryDocuments[queryId] = queryDoc;
+        this.queryStore.initQuery({
+            queryId: queryId,
+            queryString: queryString,
+            document: queryDoc,
+            storePreviousVariables: shouldFetch,
+            variables: variables,
+            isPoll: fetchType === _types__WEBPACK_IMPORTED_MODULE_3__["FetchType"].poll,
+            isRefetch: fetchType === _types__WEBPACK_IMPORTED_MODULE_3__["FetchType"].refetch,
+            metadata: metadata,
+            fetchMoreForQueryId: fetchMoreForQueryId,
+        });
+        this.broadcastQueries();
+        if (QueryManager.EMIT_REDUX_ACTIONS) {
+            this.store.dispatch({
+                type: 'APOLLO_QUERY_INIT',
+                queryString: queryString,
+                document: queryDoc,
+                operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(queryDoc),
+                variables: variables,
+                fetchPolicy: fetchPolicy,
+                queryId: queryId,
+                requestId: requestId,
+                storePreviousVariables: shouldFetch,
+                isPoll: fetchType === _types__WEBPACK_IMPORTED_MODULE_3__["FetchType"].poll,
+                isRefetch: fetchType === _types__WEBPACK_IMPORTED_MODULE_3__["FetchType"].refetch,
+                fetchMoreForQueryId: fetchMoreForQueryId,
+                metadata: metadata,
+            });
+        }
+        this.lastRequestId[queryId] = requestId;
+        var shouldDispatchClientResult = !shouldFetch || fetchPolicy === 'cache-and-network';
+        if (shouldDispatchClientResult) {
+            this.queryStore.markQueryResultClient(queryId, !shouldFetch);
+            this.broadcastQueries();
+            if (QueryManager.EMIT_REDUX_ACTIONS) {
+                this.store.dispatch({
+                    type: 'APOLLO_QUERY_RESULT_CLIENT',
+                    result: { data: storeResult },
+                    variables: variables,
+                    document: queryDoc,
+                    operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(queryDoc),
+                    complete: !shouldFetch,
+                    queryId: queryId,
+                    requestId: requestId,
+                });
+            }
+        }
+        if (shouldFetch) {
+            var networkResult = this.fetchRequest({
+                requestId: requestId,
+                queryId: queryId,
+                document: queryDoc,
+                options: options,
+                fetchMoreForQueryId: fetchMoreForQueryId,
+            }).catch(function (error) {
+                if (Object(_errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["isApolloError"])(error)) {
+                    throw error;
+                }
+                else {
+                    if (requestId >= (_this.lastRequestId[queryId] || 1)) {
+                        if (QueryManager.EMIT_REDUX_ACTIONS) {
+                            _this.store.dispatch({
+                                type: 'APOLLO_QUERY_ERROR',
+                                error: error,
+                                queryId: queryId,
+                                requestId: requestId,
+                                fetchMoreForQueryId: fetchMoreForQueryId,
+                            });
+                        }
+                        _this.queryStore.markQueryError(queryId, error, fetchMoreForQueryId);
+                        _this.broadcastQueries();
+                    }
+                    _this.removeFetchQueryPromise(requestId);
+                    throw new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                        networkError: error,
+                    });
+                }
+            });
+            if (fetchPolicy !== 'cache-and-network') {
+                return networkResult;
+            }
+        }
+        return Promise.resolve({ data: storeResult });
+    };
+    QueryManager.prototype.queryListenerForObserver = function (queryId, options, observer) {
+        var _this = this;
+        var previouslyHadError = false;
+        return function (queryStoreValue) {
+            if (!queryStoreValue) {
+                return;
+            }
+            queryStoreValue = _this.queryStore.get(queryId);
+            var storedQuery = _this.observableQueries[queryId];
+            var observableQuery = storedQuery ? storedQuery.observableQuery : null;
+            var fetchPolicy = observableQuery
+                ? observableQuery.options.fetchPolicy
+                : options.fetchPolicy;
+            if (fetchPolicy === 'standby') {
+                return;
+            }
+            var lastResult = observableQuery
+                ? observableQuery.getLastResult()
+                : null;
+            var shouldNotifyIfLoading = queryStoreValue.previousVariables ||
+                fetchPolicy === 'cache-only' ||
+                fetchPolicy === 'cache-and-network';
+            var networkStatusChanged = lastResult &&
+                queryStoreValue.networkStatus !== lastResult.networkStatus;
+            if (!Object(_queries_networkStatus__WEBPACK_IMPORTED_MODULE_5__["isNetworkRequestInFlight"])(queryStoreValue.networkStatus) ||
+                (networkStatusChanged && options.notifyOnNetworkStatusChange) ||
+                shouldNotifyIfLoading) {
+                if ((queryStoreValue.graphQLErrors &&
+                    queryStoreValue.graphQLErrors.length > 0) ||
+                    queryStoreValue.networkError) {
+                    var apolloError_1 = new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                        graphQLErrors: queryStoreValue.graphQLErrors,
+                        networkError: queryStoreValue.networkError,
+                    });
+                    previouslyHadError = true;
+                    if (observer.error) {
+                        try {
+                            observer.error(apolloError_1);
+                        }
+                        catch (e) {
+                            setTimeout(function () {
+                                throw e;
+                            }, 0);
+                        }
+                    }
+                    else {
+                        setTimeout(function () {
+                            throw apolloError_1;
+                        }, 0);
+                        if (!Object(_util_environment__WEBPACK_IMPORTED_MODULE_11__["isProduction"])()) {
+                            console.info('An unhandled error was thrown because no error handler is registered ' +
+                                'for the query ' +
+                                queryStoreValue.queryString);
+                        }
+                    }
+                }
+                else {
+                    try {
+                        var _a = Object(_data_readFromStore__WEBPACK_IMPORTED_MODULE_14__["diffQueryAgainstStore"])({
+                            store: _this.getDataWithOptimisticResults(),
+                            query: _this.queryDocuments[queryId],
+                            variables: queryStoreValue.previousVariables || queryStoreValue.variables,
+                            config: _this.reducerConfig,
+                            fragmentMatcherFunction: _this.fragmentMatcher.match,
+                            previousResult: lastResult && lastResult.data,
+                        }), data = _a.result, isMissing = _a.isMissing;
+                        var resultFromStore = void 0;
+                        if (isMissing && fetchPolicy !== 'cache-only') {
+                            resultFromStore = {
+                                data: lastResult && lastResult.data,
+                                loading: Object(_queries_networkStatus__WEBPACK_IMPORTED_MODULE_5__["isNetworkRequestInFlight"])(queryStoreValue.networkStatus),
+                                networkStatus: queryStoreValue.networkStatus,
+                                stale: true,
+                            };
+                        }
+                        else {
+                            resultFromStore = {
+                                data: data,
+                                loading: Object(_queries_networkStatus__WEBPACK_IMPORTED_MODULE_5__["isNetworkRequestInFlight"])(queryStoreValue.networkStatus),
+                                networkStatus: queryStoreValue.networkStatus,
+                                stale: false,
+                            };
+                        }
+                        if (observer.next) {
+                            var isDifferentResult = !(lastResult &&
+                                resultFromStore &&
+                                lastResult.networkStatus === resultFromStore.networkStatus &&
+                                lastResult.stale === resultFromStore.stale &&
+                                lastResult.data === resultFromStore.data);
+                            if (isDifferentResult || previouslyHadError) {
+                                try {
+                                    observer.next(Object(_util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_12__["default"])(resultFromStore));
+                                }
+                                catch (e) {
+                                    setTimeout(function () {
+                                        throw e;
+                                    }, 0);
+                                }
+                            }
+                        }
+                        previouslyHadError = false;
+                    }
+                    catch (error) {
+                        previouslyHadError = true;
+                        if (observer.error) {
+                            observer.error(new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                                networkError: error,
+                            }));
+                        }
+                        return;
+                    }
+                }
+            }
+        };
+    };
+    QueryManager.prototype.watchQuery = function (options, shouldSubscribe) {
+        if (shouldSubscribe === void 0) { shouldSubscribe = true; }
+        if (options.returnPartialData) {
+            throw new Error('returnPartialData option is no longer supported since Apollo Client 1.0.');
+        }
+        if (options.forceFetch) {
+            throw new Error('forceFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.');
+        }
+        if (options.noFetch) {
+            throw new Error('noFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.');
+        }
+        if (options.fetchPolicy === 'standby') {
+            throw new Error('client.watchQuery cannot be called with fetchPolicy set to "standby"');
+        }
+        var queryDefinition = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getQueryDefinition"])(options.query);
+        if (queryDefinition.variableDefinitions &&
+            queryDefinition.variableDefinitions.length) {
+            var defaultValues = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getDefaultValues"])(queryDefinition);
+            options.variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"])({}, defaultValues, options.variables);
+        }
+        if (typeof options.notifyOnNetworkStatusChange === 'undefined') {
+            options.notifyOnNetworkStatusChange = false;
+        }
+        var transformedOptions = __assign({}, options);
+        var observableQuery = new _ObservableQuery__WEBPACK_IMPORTED_MODULE_19__["ObservableQuery"]({
+            scheduler: this.scheduler,
+            options: transformedOptions,
+            shouldSubscribe: shouldSubscribe,
+        });
+        return observableQuery;
+    };
+    QueryManager.prototype.query = function (options) {
+        var _this = this;
+        if (!options.query) {
+            throw new Error('query option is required. You must specify your GraphQL document in the query option.');
+        }
+        if (options.query.kind !== 'Document') {
+            throw new Error('You must wrap the query string in a "gql" tag.');
+        }
+        if (options.returnPartialData) {
+            throw new Error('returnPartialData option only supported on watchQuery.');
+        }
+        if (options.pollInterval) {
+            throw new Error('pollInterval option only supported on watchQuery.');
+        }
+        if (options.forceFetch) {
+            throw new Error('forceFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.');
+        }
+        if (options.noFetch) {
+            throw new Error('noFetch option is no longer supported since Apollo Client 1.0. Use fetchPolicy instead.');
+        }
+        if (typeof options.notifyOnNetworkStatusChange !== 'undefined') {
+            throw new Error('Cannot call "query" with "notifyOnNetworkStatusChange" option. Only "watchQuery" has that option.');
+        }
+        options.notifyOnNetworkStatusChange = false;
+        var requestId = this.idCounter;
+        var resPromise = new Promise(function (resolve, reject) {
+            _this.addFetchQueryPromise(requestId, resPromise, resolve, reject);
+            return _this.watchQuery(options, false)
+                .result()
+                .then(function (result) {
+                _this.removeFetchQueryPromise(requestId);
+                resolve(result);
+            })
+                .catch(function (error) {
+                _this.removeFetchQueryPromise(requestId);
+                reject(error);
+            });
+        });
+        return resPromise;
+    };
+    QueryManager.prototype.generateQueryId = function () {
+        var queryId = this.idCounter.toString();
+        this.idCounter++;
+        return queryId;
+    };
+    QueryManager.prototype.stopQueryInStore = function (queryId) {
+        this.queryStore.stopQuery(queryId);
+        this.broadcastQueries();
+        if (QueryManager.EMIT_REDUX_ACTIONS) {
+            this.store.dispatch({
+                type: 'APOLLO_QUERY_STOP',
+                queryId: queryId,
+            });
+        }
+    };
+    QueryManager.prototype.getApolloState = function () {
+        return this.reduxRootSelector(this.store.getState());
+    };
+    QueryManager.prototype.selectApolloState = function (store) {
+        return this.reduxRootSelector(store.getState());
+    };
+    QueryManager.prototype.getInitialState = function () {
+        return { data: this.getApolloState().data };
+    };
+    QueryManager.prototype.getDataWithOptimisticResults = function () {
+        return Object(_store__WEBPACK_IMPORTED_MODULE_6__["getDataWithOptimisticResults"])(this.getApolloState());
+    };
+    QueryManager.prototype.addQueryListener = function (queryId, listener) {
+        this.queryListeners[queryId] = this.queryListeners[queryId] || [];
+        this.queryListeners[queryId].push(listener);
+    };
+    QueryManager.prototype.addFetchQueryPromise = function (requestId, promise, resolve, reject) {
+        this.fetchQueryPromises[requestId.toString()] = {
+            promise: promise,
+            resolve: resolve,
+            reject: reject,
+        };
+    };
+    QueryManager.prototype.removeFetchQueryPromise = function (requestId) {
+        delete this.fetchQueryPromises[requestId.toString()];
+    };
+    QueryManager.prototype.addObservableQuery = function (queryId, observableQuery) {
+        this.observableQueries[queryId] = { observableQuery: observableQuery };
+        var queryDef = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getQueryDefinition"])(observableQuery.options.query);
+        if (queryDef.name && queryDef.name.value) {
+            var queryName = queryDef.name.value;
+            this.queryIdsByName[queryName] = this.queryIdsByName[queryName] || [];
+            this.queryIdsByName[queryName].push(observableQuery.queryId);
+        }
+    };
+    QueryManager.prototype.removeObservableQuery = function (queryId) {
+        var observableQuery = this.observableQueries[queryId].observableQuery;
+        var definition = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getQueryDefinition"])(observableQuery.options.query);
+        var queryName = definition.name ? definition.name.value : null;
+        delete this.observableQueries[queryId];
+        if (queryName) {
+            this.queryIdsByName[queryName] = this.queryIdsByName[queryName].filter(function (val) {
+                return !(observableQuery.queryId === val);
+            });
+        }
+    };
+    QueryManager.prototype.resetStore = function () {
+        var _this = this;
+        Object.keys(this.fetchQueryPromises).forEach(function (key) {
+            var reject = _this.fetchQueryPromises[key].reject;
+            reject(new Error('Store reset while query was in flight.'));
+        });
+        this.queryStore.reset(Object.keys(this.observableQueries));
+        this.store.dispatch({
+            type: 'APOLLO_STORE_RESET',
+            observableQueryIds: Object.keys(this.observableQueries),
+        });
+        this.mutationStore.reset();
+        var observableQueryPromises = [];
+        Object.keys(this.observableQueries).forEach(function (queryId) {
+            var storeQuery = _this.queryStore.get(queryId);
+            var fetchPolicy = _this.observableQueries[queryId].observableQuery
+                .options.fetchPolicy;
+            if (fetchPolicy !== 'cache-only' && fetchPolicy !== 'standby') {
+                observableQueryPromises.push(_this.observableQueries[queryId].observableQuery.refetch());
+            }
+        });
+        return Promise.all(observableQueryPromises);
+    };
+    QueryManager.prototype.startQuery = function (queryId, options, listener) {
+        this.addQueryListener(queryId, listener);
+        this.fetchQuery(queryId, options)
+            .catch(function (error) { return undefined; });
+        return queryId;
+    };
+    QueryManager.prototype.startGraphQLSubscription = function (options) {
+        var _this = this;
+        var query = options.query;
+        var transformedDoc = query;
+        if (this.addTypename) {
+            transformedDoc = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__["addTypenameToDocument"])(transformedDoc);
+        }
+        var variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"])({}, Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getDefaultValues"])(Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationDefinition"])(query)), options.variables);
+        var request = {
+            query: transformedDoc,
+            variables: variables,
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(transformedDoc),
+        };
+        var subId;
+        var observers = [];
+        return new _util_Observable__WEBPACK_IMPORTED_MODULE_17__["Observable"](function (observer) {
+            observers.push(observer);
+            if (observers.length === 1) {
+                var handler = function (error, result) {
+                    if (error) {
+                        observers.forEach(function (obs) {
+                            if (obs.error) {
+                                obs.error(error);
+                            }
+                        });
+                    }
+                    else {
+                        _this.store.dispatch({
+                            type: 'APOLLO_SUBSCRIPTION_RESULT',
+                            document: transformedDoc,
+                            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(transformedDoc),
+                            result: { data: result },
+                            variables: variables,
+                            subscriptionId: subId,
+                            extraReducers: _this.getExtraReducers(),
+                        });
+                        observers.forEach(function (obs) {
+                            if (obs.next) {
+                                obs.next(result);
+                            }
+                        });
+                    }
+                };
+                subId = _this
+                    .networkInterface.subscribe(request, handler);
+            }
+            return {
+                unsubscribe: function () {
+                    observers = observers.filter(function (obs) { return obs !== observer; });
+                    if (observers.length === 0) {
+                        _this.networkInterface.unsubscribe(subId);
+                    }
+                },
+                _networkSubscriptionId: subId,
+            };
+        });
+    };
+    QueryManager.prototype.removeQuery = function (queryId) {
+        delete this.queryListeners[queryId];
+        delete this.queryDocuments[queryId];
+    };
+    QueryManager.prototype.stopQuery = function (queryId) {
+        this.removeQuery(queryId);
+        this.stopQueryInStore(queryId);
+    };
+    QueryManager.prototype.getCurrentQueryResult = function (observableQuery, isOptimistic) {
+        if (isOptimistic === void 0) { isOptimistic = false; }
+        var _a = this.getQueryParts(observableQuery), variables = _a.variables, document = _a.document;
+        var lastResult = observableQuery.getLastResult();
+        var queryOptions = observableQuery.options;
+        var readOptions = {
+            store: isOptimistic
+                ? this.getDataWithOptimisticResults()
+                : this.getApolloState().data,
+            query: document,
+            variables: variables,
+            config: this.reducerConfig,
+            previousResult: lastResult ? lastResult.data : undefined,
+            fragmentMatcherFunction: this.fragmentMatcher.match,
+        };
+        try {
+            var data = Object(_data_readFromStore__WEBPACK_IMPORTED_MODULE_14__["readQueryFromStore"])(readOptions);
+            return Object(_util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_12__["default"])({ data: data, partial: false });
+        }
+        catch (e) {
+            return Object(_util_maybeDeepFreeze__WEBPACK_IMPORTED_MODULE_12__["default"])({ data: {}, partial: true });
+        }
+    };
+    QueryManager.prototype.getQueryWithPreviousResult = function (queryIdOrObservable, isOptimistic) {
+        if (isOptimistic === void 0) { isOptimistic = false; }
+        var observableQuery;
+        if (typeof queryIdOrObservable === 'string') {
+            if (!this.observableQueries[queryIdOrObservable]) {
+                throw new Error("ObservableQuery with this id doesn't exist: " + queryIdOrObservable);
+            }
+            observableQuery = this.observableQueries[queryIdOrObservable]
+                .observableQuery;
+        }
+        else {
+            observableQuery = queryIdOrObservable;
+        }
+        var _a = this.getQueryParts(observableQuery), variables = _a.variables, document = _a.document;
+        var data = this.getCurrentQueryResult(observableQuery, isOptimistic).data;
+        return {
+            previousResult: data,
+            variables: variables,
+            document: document,
+        };
+    };
+    QueryManager.prototype.getQueryParts = function (observableQuery) {
+        var queryOptions = observableQuery.options;
+        var transformedDoc = observableQuery.options.query;
+        if (this.addTypename) {
+            transformedDoc = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__["addTypenameToDocument"])(transformedDoc);
+        }
+        return {
+            variables: queryOptions.variables,
+            document: transformedDoc,
+        };
+    };
+    QueryManager.prototype.transformQueryDocument = function (options) {
+        var queryDoc = options.query;
+        if (this.addTypename) {
+            queryDoc = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__["addTypenameToDocument"])(queryDoc);
+        }
+        return {
+            queryDoc: queryDoc,
+        };
+    };
+    QueryManager.prototype.getExtraReducers = function () {
+        var _this = this;
+        return Object.keys(this.observableQueries)
+            .map(function (obsQueryId) {
+            var query = _this.observableQueries[obsQueryId].observableQuery;
+            var queryOptions = query.options;
+            if (queryOptions.reducer) {
+                return Object(_data_resultReducers__WEBPACK_IMPORTED_MODULE_9__["createStoreReducer"])(queryOptions.reducer, _this.addTypename
+                    ? Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_8__["addTypenameToDocument"])(queryOptions.query)
+                    : queryOptions.query, query.variables || {}, _this.reducerConfig);
+            }
+            return null;
+        })
+            .filter(function (reducer) { return reducer !== null; });
+    };
+    QueryManager.prototype.fetchRequest = function (_a) {
+        var _this = this;
+        var requestId = _a.requestId, queryId = _a.queryId, document = _a.document, options = _a.options, fetchMoreForQueryId = _a.fetchMoreForQueryId;
+        var variables = options.variables;
+        var request = {
+            query: document,
+            variables: variables,
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(document),
+        };
+        var retPromise = new Promise(function (resolve, reject) {
+            _this.addFetchQueryPromise(requestId, retPromise, resolve, reject);
+            _this.deduplicator
+                .query(request, _this.queryDeduplication)
+                .then(function (result) {
+                var extraReducers = _this.getExtraReducers();
+                if (requestId >= (_this.lastRequestId[queryId] || 1)) {
+                    _this.disableBroadcasting = true;
+                    _this.store.dispatch({
+                        type: 'APOLLO_QUERY_RESULT',
+                        document: document,
+                        variables: variables ? variables : {},
+                        operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getOperationName"])(document),
+                        result: result,
+                        queryId: queryId,
+                        requestId: requestId,
+                        fetchMoreForQueryId: fetchMoreForQueryId,
+                        extraReducers: extraReducers,
+                    });
+                    _this.disableBroadcasting = false;
+                    var reducerError = _this.getApolloState().reducerError;
+                    if (!reducerError || reducerError.queryId !== queryId) {
+                        _this.queryStore.markQueryResult(queryId, result, fetchMoreForQueryId);
+                        _this.broadcastQueries();
+                    }
+                }
+                _this.removeFetchQueryPromise(requestId);
+                if (result.errors) {
+                    throw new _errors_ApolloError__WEBPACK_IMPORTED_MODULE_18__["ApolloError"]({
+                        graphQLErrors: result.errors,
+                    });
+                }
+                return result;
+            })
+                .then(function (result) {
+                var resultFromStore;
+                if (fetchMoreForQueryId) {
+                    resultFromStore = result.data;
+                }
+                else {
+                    try {
+                        resultFromStore = Object(_data_readFromStore__WEBPACK_IMPORTED_MODULE_14__["readQueryFromStore"])({
+                            store: _this.getApolloState().data,
+                            variables: variables,
+                            query: document,
+                            config: _this.reducerConfig,
+                            fragmentMatcherFunction: _this.fragmentMatcher.match,
+                        });
+                    }
+                    catch (e) { }
+                }
+                var reducerError = _this.getApolloState().reducerError;
+                if (reducerError && reducerError.queryId === queryId) {
+                    return Promise.reject(reducerError.error);
+                }
+                _this.removeFetchQueryPromise(requestId);
+                resolve({
+                    data: resultFromStore,
+                    loading: false,
+                    networkStatus: _queries_networkStatus__WEBPACK_IMPORTED_MODULE_5__["NetworkStatus"].ready,
+                    stale: false,
+                });
+                return Promise.resolve();
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+        return retPromise;
+    };
+    QueryManager.prototype.refetchQueryByName = function (queryName) {
+        var _this = this;
+        var refetchedQueries = this.queryIdsByName[queryName];
+        if (refetchedQueries === undefined) {
+            console.warn("Warning: unknown query with name " + queryName + " asked to refetch");
+            return;
+        }
+        else {
+            return Promise.all(refetchedQueries.map(function (queryId) {
+                return _this.observableQueries[queryId].observableQuery.refetch();
+            }));
+        }
+    };
+    QueryManager.prototype.broadcastQueries = function () {
+        var _this = this;
+        if (this.disableBroadcasting) {
+            return;
+        }
+        Object.keys(this.queryListeners).forEach(function (queryId) {
+            var listeners = _this.queryListeners[queryId];
+            if (listeners) {
+                listeners.forEach(function (listener) {
+                    if (listener) {
+                        var queryStoreValue = _this.queryStore.get(queryId);
+                        listener(queryStoreValue);
+                    }
+                });
+            }
+        });
+    };
+    QueryManager.prototype.generateRequestId = function () {
+        var requestId = this.idCounter;
+        this.idCounter++;
+        return requestId;
+    };
+    QueryManager.EMIT_REDUX_ACTIONS = true;
+    return QueryManager;
+}());
+
+//# sourceMappingURL=QueryManager.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/core/types.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/core/types.js ***!
+  \*****************************************************************************/
+/*! exports provided: FetchType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FetchType", function() { return FetchType; });
+var FetchType;
+(function (FetchType) {
+    FetchType[FetchType["normal"] = 1] = "normal";
+    FetchType[FetchType["refetch"] = 2] = "refetch";
+    FetchType[FetchType["poll"] = 3] = "poll";
+})(FetchType || (FetchType = {}));
+//# sourceMappingURL=types.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/fragmentMatcher.js":
+/*!***************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/fragmentMatcher.js ***!
+  \***************************************************************************************/
+/*! exports provided: IntrospectionFragmentMatcher, HeuristicFragmentMatcher */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IntrospectionFragmentMatcher", function() { return IntrospectionFragmentMatcher; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeuristicFragmentMatcher", function() { return HeuristicFragmentMatcher; });
+/* harmony import */ var _util_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+/* harmony import */ var _util_warnOnce__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/warnOnce */ "../node_modules/react-apollo/node_modules/apollo-client/util/warnOnce.js");
+
+
+var IntrospectionFragmentMatcher = (function () {
+    function IntrospectionFragmentMatcher(options) {
+        if (options && options.introspectionQueryResultData) {
+            this.possibleTypesMap = this.parseIntrospectionResult(options.introspectionQueryResultData);
+            this.isReady = true;
+        }
+        else {
+            this.isReady = false;
+        }
+        this.match = this.match.bind(this);
+    }
+    IntrospectionFragmentMatcher.prototype.match = function (idValue, typeCondition, context) {
+        if (!this.isReady) {
+            throw new Error('FragmentMatcher.match() was called before FragmentMatcher.init()');
+        }
+        var obj = context.store[idValue.id];
+        if (!obj) {
+            return false;
+        }
+        if (!obj.__typename) {
+            throw new Error("Cannot match fragment because __typename property is missing: " + JSON.stringify(obj));
+        }
+        if (obj.__typename === typeCondition) {
+            return true;
+        }
+        var implementingTypes = this.possibleTypesMap[typeCondition];
+        if (implementingTypes && implementingTypes.indexOf(obj.__typename) > -1) {
+            return true;
+        }
+        return false;
+    };
+    IntrospectionFragmentMatcher.prototype.parseIntrospectionResult = function (introspectionResultData) {
+        var typeMap = {};
+        introspectionResultData.__schema.types.forEach(function (type) {
+            if (type.kind === 'UNION' || type.kind === 'INTERFACE') {
+                typeMap[type.name] = type.possibleTypes.map(function (implementingType) { return implementingType.name; });
+            }
+        });
+        return typeMap;
+    };
+    return IntrospectionFragmentMatcher;
+}());
+
+var haveWarned = false;
+var HeuristicFragmentMatcher = (function () {
+    function HeuristicFragmentMatcher() {
+    }
+    HeuristicFragmentMatcher.prototype.ensureReady = function () {
+        return Promise.resolve();
+    };
+    HeuristicFragmentMatcher.prototype.canBypassInit = function () {
+        return true;
+    };
+    HeuristicFragmentMatcher.prototype.match = function (idValue, typeCondition, context) {
+        var obj = context.store[idValue.id];
+        if (!obj) {
+            return false;
+        }
+        if (!obj.__typename) {
+            if (!haveWarned) {
+                console.warn("You're using fragments in your queries, but either don't have the addTypename:\n  true option set in Apollo Client, or you are trying to write a fragment to the store without the __typename.\n   Please turn on the addTypename option and include __typename when writing fragments so that Apollo Client\n   can accurately match fragments.");
+                console.warn('Could not find __typename on Fragment ', typeCondition, obj);
+                console.warn("DEPRECATION WARNING: using fragments without __typename is unsupported behavior " +
+                    "and will be removed in future versions of Apollo client. You should fix this and set addTypename to true now.");
+                if (!Object(_util_environment__WEBPACK_IMPORTED_MODULE_0__["isTest"])()) {
+                    haveWarned = true;
+                }
+            }
+            context.returnPartialData = true;
+            return true;
+        }
+        if (obj.__typename === typeCondition) {
+            return true;
+        }
+        Object(_util_warnOnce__WEBPACK_IMPORTED_MODULE_1__["warnOnceInDevelopment"])("You are using the simple (heuristic) fragment matcher, but your queries contain union or interface types.\n     Apollo Client will not be able to able to accurately map fragments." +
+            "To make this error go away, use the IntrospectionFragmentMatcher as described in the docs: " +
+            "http://dev.apollodata.com/react/initialization.html#fragment-matcher", 'error');
+        context.returnPartialData = true;
+        return true;
+    };
+    return HeuristicFragmentMatcher;
+}());
+
+//# sourceMappingURL=fragmentMatcher.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/proxy.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/proxy.js ***!
+  \*****************************************************************************/
+/*! exports provided: ReduxDataProxy, TransactionDataProxy */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReduxDataProxy", function() { return ReduxDataProxy; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TransactionDataProxy", function() { return TransactionDataProxy; });
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _optimistic_data_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../optimistic-data/store */ "../node_modules/react-apollo/node_modules/apollo-client/optimistic-data/store.js");
+/* harmony import */ var _readFromStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./readFromStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js");
+/* harmony import */ var _writeToStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./writeToStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js");
+/* harmony import */ var _queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../queries/queryTransform */ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+var ReduxDataProxy = (function () {
+    function ReduxDataProxy(store, reduxRootSelector, fragmentMatcher, reducerConfig) {
+        this.store = store;
+        this.reduxRootSelector = reduxRootSelector;
+        this.reducerConfig = reducerConfig;
+        this.fragmentMatcher = fragmentMatcher;
+    }
+    ReduxDataProxy.prototype.readQuery = function (_a) {
+        var query = _a.query, variables = _a.variables;
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        return Object(_readFromStore__WEBPACK_IMPORTED_MODULE_2__["readQueryFromStore"])({
+            rootId: 'ROOT_QUERY',
+            store: Object(_optimistic_data_store__WEBPACK_IMPORTED_MODULE_1__["getDataWithOptimisticResults"])(this.reduxRootSelector(this.store.getState())),
+            query: query,
+            variables: variables,
+            fragmentMatcherFunction: this.fragmentMatcher.match,
+            config: this.reducerConfig,
+        });
+    };
+    ReduxDataProxy.prototype.readFragment = function (_a) {
+        var id = _a.id, fragment = _a.fragment, fragmentName = _a.fragmentName, variables = _a.variables;
+        var query = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getFragmentQueryDocument"])(fragment, fragmentName);
+        var data = Object(_optimistic_data_store__WEBPACK_IMPORTED_MODULE_1__["getDataWithOptimisticResults"])(this.reduxRootSelector(this.store.getState()));
+        if (typeof data[id] === 'undefined') {
+            return null;
+        }
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        return Object(_readFromStore__WEBPACK_IMPORTED_MODULE_2__["readQueryFromStore"])({
+            rootId: id,
+            store: data,
+            query: query,
+            variables: variables,
+            fragmentMatcherFunction: this.fragmentMatcher.match,
+            config: this.reducerConfig,
+        });
+    };
+    ReduxDataProxy.prototype.writeQuery = function (_a) {
+        var data = _a.data, query = _a.query, variables = _a.variables;
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        this.store.dispatch({
+            type: 'APOLLO_WRITE',
+            writes: [
+                {
+                    rootId: 'ROOT_QUERY',
+                    result: data,
+                    document: query,
+                    operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getOperationName"])(query),
+                    variables: variables || {},
+                },
+            ],
+        });
+    };
+    ReduxDataProxy.prototype.writeFragment = function (_a) {
+        var data = _a.data, id = _a.id, fragment = _a.fragment, fragmentName = _a.fragmentName, variables = _a.variables;
+        var document = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getFragmentQueryDocument"])(fragment, fragmentName);
+        if (this.reducerConfig.addTypename) {
+            document = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(document);
+        }
+        this.store.dispatch({
+            type: 'APOLLO_WRITE',
+            writes: [
+                {
+                    rootId: id,
+                    result: data,
+                    document: document,
+                    operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getOperationName"])(document),
+                    variables: variables || {},
+                },
+            ],
+        });
+    };
+    return ReduxDataProxy;
+}());
+
+var TransactionDataProxy = (function () {
+    function TransactionDataProxy(data, reducerConfig) {
+        this.data = __assign({}, data);
+        this.reducerConfig = reducerConfig;
+        this.writes = [];
+        this.isFinished = false;
+    }
+    TransactionDataProxy.prototype.finish = function () {
+        this.assertNotFinished();
+        var writes = this.writes;
+        this.writes = [];
+        this.isFinished = true;
+        return writes;
+    };
+    TransactionDataProxy.prototype.readQuery = function (_a) {
+        var query = _a.query, variables = _a.variables;
+        this.assertNotFinished();
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        return Object(_readFromStore__WEBPACK_IMPORTED_MODULE_2__["readQueryFromStore"])({
+            rootId: 'ROOT_QUERY',
+            store: this.data,
+            query: query,
+            variables: variables,
+            config: this.reducerConfig,
+            fragmentMatcherFunction: this.reducerConfig.fragmentMatcher,
+        });
+    };
+    TransactionDataProxy.prototype.readFragment = function (_a) {
+        var id = _a.id, fragment = _a.fragment, fragmentName = _a.fragmentName, variables = _a.variables;
+        this.assertNotFinished();
+        if (!fragment) {
+            throw new Error('fragment option is required. Please pass a GraphQL fragment to readFragment.');
+        }
+        var data = this.data;
+        var query = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getFragmentQueryDocument"])(fragment, fragmentName);
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        if (typeof data[id] === 'undefined') {
+            return null;
+        }
+        return Object(_readFromStore__WEBPACK_IMPORTED_MODULE_2__["readQueryFromStore"])({
+            rootId: id,
+            store: data,
+            query: query,
+            variables: variables,
+            config: this.reducerConfig,
+            fragmentMatcherFunction: this.reducerConfig.fragmentMatcher,
+        });
+    };
+    TransactionDataProxy.prototype.writeQuery = function (_a) {
+        var data = _a.data, query = _a.query, variables = _a.variables;
+        this.assertNotFinished();
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        this.applyWrite({
+            rootId: 'ROOT_QUERY',
+            result: data,
+            document: query,
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getOperationName"])(query),
+            variables: variables || {},
+        });
+    };
+    TransactionDataProxy.prototype.writeFragment = function (_a) {
+        var data = _a.data, id = _a.id, fragment = _a.fragment, fragmentName = _a.fragmentName, variables = _a.variables;
+        this.assertNotFinished();
+        if (!fragment) {
+            throw new Error('fragment option is required. Please pass a GraphQL fragment to writeFragment.');
+        }
+        var query = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getFragmentQueryDocument"])(fragment, fragmentName);
+        if (this.reducerConfig.addTypename) {
+            query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_4__["addTypenameToDocument"])(query);
+        }
+        this.applyWrite({
+            rootId: id,
+            result: data,
+            document: query,
+            operationName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getOperationName"])(query),
+            variables: variables || {},
+        });
+    };
+    TransactionDataProxy.prototype.assertNotFinished = function () {
+        if (this.isFinished) {
+            throw new Error('Cannot call transaction methods after the transaction has finished.');
+        }
+    };
+    TransactionDataProxy.prototype.applyWrite = function (write) {
+        Object(_writeToStore__WEBPACK_IMPORTED_MODULE_3__["writeResultToStore"])({
+            result: write.result,
+            dataId: write.rootId,
+            document: write.document,
+            variables: write.variables,
+            store: this.data,
+            dataIdFromObject: this.reducerConfig.dataIdFromObject || (function () { return null; }),
+            fragmentMatcherFunction: this.reducerConfig.fragmentMatcher,
+        });
+        this.writes.push(write);
+    };
+    return TransactionDataProxy;
+}());
+
+//# sourceMappingURL=proxy.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js ***!
+  \*************************************************************************************/
+/*! exports provided: ID_KEY, readQueryFromStore, diffQueryAgainstStore, assertIdValue */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ID_KEY", function() { return ID_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "readQueryFromStore", function() { return readQueryFromStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "diffQueryAgainstStore", function() { return diffQueryAgainstStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "assertIdValue", function() { return assertIdValue; });
+/* harmony import */ var graphql_anywhere__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql-anywhere */ "../node_modules/graphql-anywhere/lib/src/index.js");
+/* harmony import */ var graphql_anywhere__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_anywhere__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _storeUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _util_isEqual__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/isEqual */ "../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+var ID_KEY = typeof Symbol !== 'undefined' ? Symbol('id') : '@@id';
+function readQueryFromStore(options) {
+    var optsPatch = { returnPartialData: false };
+    return diffQueryAgainstStore(__assign({}, options, optsPatch)).result;
+}
+var readStoreResolver = function (fieldName, idValue, args, context, _a) {
+    var resultKey = _a.resultKey, directives = _a.directives;
+    assertIdValue(idValue);
+    var objId = idValue.id;
+    var obj = context.store[objId];
+    var storeKeyName = Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["getStoreKeyName"])(fieldName, args, directives);
+    var fieldValue = (obj || {})[storeKeyName];
+    if (typeof fieldValue === 'undefined') {
+        if (context.customResolvers &&
+            obj &&
+            (obj.__typename || objId === 'ROOT_QUERY')) {
+            var typename = obj.__typename || 'Query';
+            var type = context.customResolvers[typename];
+            if (type) {
+                var resolver = type[fieldName];
+                if (resolver) {
+                    fieldValue = resolver(obj, args);
+                }
+            }
+        }
+        if (typeof fieldValue === 'undefined') {
+            if (!context.returnPartialData) {
+                throw new Error("Can't find field " + storeKeyName + " on object (" + objId + ") " + JSON.stringify(obj, null, 2) + ".");
+            }
+            context.hasMissingField = true;
+            return fieldValue;
+        }
+    }
+    if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isJsonValue"])(fieldValue)) {
+        if (idValue.previousResult &&
+            Object(_util_isEqual__WEBPACK_IMPORTED_MODULE_3__["isEqual"])(idValue.previousResult[resultKey], fieldValue.json)) {
+            return idValue.previousResult[resultKey];
+        }
+        return fieldValue.json;
+    }
+    if (idValue.previousResult) {
+        fieldValue = addPreviousResultToIdValues(fieldValue, idValue.previousResult[resultKey]);
+    }
+    return fieldValue;
+};
+function diffQueryAgainstStore(_a) {
+    var store = _a.store, query = _a.query, variables = _a.variables, previousResult = _a.previousResult, _b = _a.returnPartialData, returnPartialData = _b === void 0 ? true : _b, _c = _a.rootId, rootId = _c === void 0 ? 'ROOT_QUERY' : _c, fragmentMatcherFunction = _a.fragmentMatcherFunction, config = _a.config;
+    var queryDefinition = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_2__["getQueryDefinition"])(query);
+    variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_4__["assign"])({}, Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_2__["getDefaultValues"])(queryDefinition), variables);
+    var context = {
+        store: store,
+        returnPartialData: returnPartialData,
+        customResolvers: (config && config.customResolvers) || {},
+        hasMissingField: false,
+    };
+    var rootIdValue = {
+        type: 'id',
+        id: rootId,
+        previousResult: previousResult,
+    };
+    var result = graphql_anywhere__WEBPACK_IMPORTED_MODULE_0___default()(readStoreResolver, query, rootIdValue, context, variables, {
+        fragmentMatcher: fragmentMatcherFunction,
+        resultMapper: resultMapper,
+    });
+    return {
+        result: result,
+        isMissing: context.hasMissingField,
+    };
+}
+function assertIdValue(idValue) {
+    if (!Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(idValue)) {
+        throw new Error("Encountered a sub-selection on the query, but the store doesn't have an object reference. This should never happen during normal use unless you have custom code that is directly manipulating the store; please file an issue.");
+    }
+}
+function addPreviousResultToIdValues(value, previousResult) {
+    if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(value)) {
+        return __assign({}, value, { previousResult: previousResult });
+    }
+    else if (Array.isArray(value)) {
+        var idToPreviousResult_1 = {};
+        if (Array.isArray(previousResult)) {
+            previousResult.forEach(function (item) {
+                if (item && item[ID_KEY]) {
+                    idToPreviousResult_1[item[ID_KEY]] = item;
+                }
+            });
+        }
+        return value.map(function (item, i) {
+            var itemPreviousResult = previousResult && previousResult[i];
+            if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(item)) {
+                itemPreviousResult = idToPreviousResult_1[item.id] || itemPreviousResult;
+            }
+            return addPreviousResultToIdValues(item, itemPreviousResult);
+        });
+    }
+    return value;
+}
+function resultMapper(resultFields, idValue) {
+    if (idValue.previousResult) {
+        var currentResultKeys_1 = Object.keys(resultFields);
+        var sameAsPreviousResult = Object.keys(idValue.previousResult).reduce(function (sameKeys, key) { return sameKeys && currentResultKeys_1.indexOf(key) > -1; }, true) &&
+            currentResultKeys_1.reduce(function (same, key) {
+                return same &&
+                    areNestedArrayItemsStrictlyEqual(resultFields[key], idValue.previousResult[key]);
+            }, true);
+        if (sameAsPreviousResult) {
+            return idValue.previousResult;
+        }
+    }
+    Object.defineProperty(resultFields, ID_KEY, {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: idValue.id,
+    });
+    return resultFields;
+}
+function areNestedArrayItemsStrictlyEqual(a, b) {
+    if (a === b) {
+        return true;
+    }
+    if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) {
+        return false;
+    }
+    return a.reduce(function (same, item, i) { return same && areNestedArrayItemsStrictlyEqual(item, b[i]); }, true);
+}
+//# sourceMappingURL=readFromStore.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/replaceQueryResults.js":
+/*!*******************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/replaceQueryResults.js ***!
+  \*******************************************************************************************/
+/*! exports provided: replaceQueryResults */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replaceQueryResults", function() { return replaceQueryResults; });
+/* harmony import */ var _writeToStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./writeToStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+function replaceQueryResults(state, _a, config) {
+    var variables = _a.variables, document = _a.document, newResult = _a.newResult;
+    var clonedState = __assign({}, state);
+    return Object(_writeToStore__WEBPACK_IMPORTED_MODULE_0__["writeResultToStore"])({
+        result: newResult,
+        dataId: 'ROOT_QUERY',
+        variables: variables,
+        document: document,
+        store: clonedState,
+        dataIdFromObject: config.dataIdFromObject,
+        fragmentMatcherFunction: config.fragmentMatcher,
+    });
+}
+//# sourceMappingURL=replaceQueryResults.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/resultReducers.js":
+/*!**************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/resultReducers.js ***!
+  \**************************************************************************************/
+/*! exports provided: createStoreReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createStoreReducer", function() { return createStoreReducer; });
+/* harmony import */ var _readFromStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./readFromStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js");
+/* harmony import */ var _writeToStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./writeToStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js");
+
+
+function createStoreReducer(resultReducer, document, variables, config) {
+    return function (store, action) {
+        var _a = Object(_readFromStore__WEBPACK_IMPORTED_MODULE_0__["diffQueryAgainstStore"])({
+            store: store,
+            query: document,
+            variables: variables,
+            returnPartialData: true,
+            fragmentMatcherFunction: config.fragmentMatcher,
+            config: config,
+        }), result = _a.result, isMissing = _a.isMissing;
+        if (isMissing) {
+            return store;
+        }
+        var nextResult;
+        try {
+            nextResult = resultReducer(result, action, variables);
+        }
+        catch (err) {
+            console.warn('Unhandled error in result reducer', err);
+            throw err;
+        }
+        if (result !== nextResult) {
+            return Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                dataId: 'ROOT_QUERY',
+                result: nextResult,
+                store: store,
+                document: document,
+                variables: variables,
+                dataIdFromObject: config.dataIdFromObject,
+                fragmentMatcherFunction: config.fragmentMatcher,
+            });
+        }
+        return store;
+    };
+}
+//# sourceMappingURL=resultReducers.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/store.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/store.js ***!
+  \*****************************************************************************/
+/*! exports provided: data */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "data", function() { return data; });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions */ "../node_modules/react-apollo/node_modules/apollo-client/actions.js");
+/* harmony import */ var _writeToStore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./writeToStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js");
+/* harmony import */ var _data_proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/proxy */ "../node_modules/react-apollo/node_modules/apollo-client/data/proxy.js");
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _storeUtils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony import */ var _replaceQueryResults__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./replaceQueryResults */ "../node_modules/react-apollo/node_modules/apollo-client/data/replaceQueryResults.js");
+/* harmony import */ var _readFromStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./readFromStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js");
+/* harmony import */ var _util_errorHandling__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../util/errorHandling */ "../node_modules/react-apollo/node_modules/apollo-client/util/errorHandling.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+
+
+function data(previousState, action, config) {
+    if (previousState === void 0) { previousState = {}; }
+    var constAction = action;
+    if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isQueryResultAction"])(action)) {
+        if (action.fetchMoreForQueryId) {
+            return previousState;
+        }
+        if (!Object(_storeUtils__WEBPACK_IMPORTED_MODULE_4__["graphQLResultHasError"])(action.result)) {
+            var clonedState = __assign({}, previousState);
+            var newState_1 = Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                result: action.result.data,
+                dataId: 'ROOT_QUERY',
+                document: action.document,
+                variables: action.variables,
+                store: clonedState,
+                dataIdFromObject: config.dataIdFromObject,
+                fragmentMatcherFunction: config.fragmentMatcher,
+            });
+            if (action.extraReducers) {
+                action.extraReducers.forEach(function (reducer) {
+                    newState_1 = reducer(newState_1, constAction);
+                });
+            }
+            return newState_1;
+        }
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isSubscriptionResultAction"])(action)) {
+        if (!Object(_storeUtils__WEBPACK_IMPORTED_MODULE_4__["graphQLResultHasError"])(action.result)) {
+            var clonedState = __assign({}, previousState);
+            var newState_2 = Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                result: action.result.data,
+                dataId: 'ROOT_SUBSCRIPTION',
+                document: action.document,
+                variables: action.variables,
+                store: clonedState,
+                dataIdFromObject: config.dataIdFromObject,
+                fragmentMatcherFunction: config.fragmentMatcher,
+            });
+            if (action.extraReducers) {
+                action.extraReducers.forEach(function (reducer) {
+                    newState_2 = reducer(newState_2, constAction);
+                });
+            }
+            return newState_2;
+        }
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isMutationResultAction"])(constAction)) {
+        if (!constAction.result.errors) {
+            var clonedState = __assign({}, previousState);
+            var newState_3 = Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                result: constAction.result.data,
+                dataId: 'ROOT_MUTATION',
+                document: constAction.document,
+                variables: constAction.variables,
+                store: clonedState,
+                dataIdFromObject: config.dataIdFromObject,
+                fragmentMatcherFunction: config.fragmentMatcher,
+            });
+            var updateQueries_1 = constAction.updateQueries;
+            if (updateQueries_1) {
+                Object.keys(updateQueries_1)
+                    .filter(function (id) { return updateQueries_1[id]; })
+                    .forEach(function (queryId) {
+                    var _a = updateQueries_1[queryId], query = _a.query, reducer = _a.reducer;
+                    var _b = Object(_readFromStore__WEBPACK_IMPORTED_MODULE_6__["diffQueryAgainstStore"])({
+                        store: previousState,
+                        query: query.document,
+                        variables: query.variables,
+                        returnPartialData: true,
+                        fragmentMatcherFunction: config.fragmentMatcher,
+                        config: config,
+                    }), currentQueryResult = _b.result, isMissing = _b.isMissing;
+                    if (isMissing) {
+                        return;
+                    }
+                    var nextQueryResult = Object(_util_errorHandling__WEBPACK_IMPORTED_MODULE_7__["tryFunctionOrLogError"])(function () {
+                        return reducer(currentQueryResult, {
+                            mutationResult: constAction.result,
+                            queryName: Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_3__["getOperationName"])(query.document),
+                            queryVariables: query.variables,
+                        });
+                    });
+                    if (nextQueryResult) {
+                        newState_3 = Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                            result: nextQueryResult,
+                            dataId: 'ROOT_QUERY',
+                            document: query.document,
+                            variables: query.variables,
+                            store: newState_3,
+                            dataIdFromObject: config.dataIdFromObject,
+                            fragmentMatcherFunction: config.fragmentMatcher,
+                        });
+                    }
+                });
+            }
+            if (constAction.update) {
+                var update_1 = constAction.update;
+                var proxy_1 = new _data_proxy__WEBPACK_IMPORTED_MODULE_2__["TransactionDataProxy"](newState_3, config);
+                Object(_util_errorHandling__WEBPACK_IMPORTED_MODULE_7__["tryFunctionOrLogError"])(function () { return update_1(proxy_1, constAction.result); });
+                var writes = proxy_1.finish();
+                newState_3 = data(newState_3, { type: 'APOLLO_WRITE', writes: writes }, config);
+            }
+            if (constAction.extraReducers) {
+                constAction.extraReducers.forEach(function (reducer) {
+                    newState_3 = reducer(newState_3, constAction);
+                });
+            }
+            return newState_3;
+        }
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isUpdateQueryResultAction"])(constAction)) {
+        return Object(_replaceQueryResults__WEBPACK_IMPORTED_MODULE_5__["replaceQueryResults"])(previousState, constAction, config);
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isStoreResetAction"])(action)) {
+        return {};
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isWriteAction"])(action)) {
+        return action.writes.reduce(function (currentState, write) {
+            return Object(_writeToStore__WEBPACK_IMPORTED_MODULE_1__["writeResultToStore"])({
+                result: write.result,
+                dataId: write.rootId,
+                document: write.document,
+                variables: write.variables,
+                store: currentState,
+                dataIdFromObject: config.dataIdFromObject,
+                fragmentMatcherFunction: config.fragmentMatcher,
+            });
+        }, __assign({}, previousState));
+    }
+    return previousState;
+}
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js":
+/*!**********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js ***!
+  \**********************************************************************************/
+/*! exports provided: valueToObjectRepresentation, storeKeyNameFromField, getStoreKeyName, resultKeyNameFromField, isField, isInlineFragment, graphQLResultHasError, isIdValue, toIdValue, isJsonValue */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "valueToObjectRepresentation", function() { return valueToObjectRepresentation; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storeKeyNameFromField", function() { return storeKeyNameFromField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getStoreKeyName", function() { return getStoreKeyName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "resultKeyNameFromField", function() { return resultKeyNameFromField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isField", function() { return isField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isInlineFragment", function() { return isInlineFragment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "graphQLResultHasError", function() { return graphQLResultHasError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isIdValue", function() { return isIdValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "toIdValue", function() { return toIdValue; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isJsonValue", function() { return isJsonValue; });
+function isStringValue(value) {
+    return value.kind === 'StringValue';
+}
+function isBooleanValue(value) {
+    return value.kind === 'BooleanValue';
+}
+function isIntValue(value) {
+    return value.kind === 'IntValue';
+}
+function isFloatValue(value) {
+    return value.kind === 'FloatValue';
+}
+function isVariable(value) {
+    return value.kind === 'Variable';
+}
+function isObjectValue(value) {
+    return value.kind === 'ObjectValue';
+}
+function isListValue(value) {
+    return value.kind === 'ListValue';
+}
+function isEnumValue(value) {
+    return value.kind === 'EnumValue';
+}
+function valueToObjectRepresentation(argObj, name, value, variables) {
+    if (isIntValue(value) || isFloatValue(value)) {
+        argObj[name.value] = Number(value.value);
+    }
+    else if (isBooleanValue(value) || isStringValue(value)) {
+        argObj[name.value] = value.value;
+    }
+    else if (isObjectValue(value)) {
+        var nestedArgObj_1 = {};
+        value.fields.map(function (obj) {
+            return valueToObjectRepresentation(nestedArgObj_1, obj.name, obj.value, variables);
+        });
+        argObj[name.value] = nestedArgObj_1;
+    }
+    else if (isVariable(value)) {
+        var variableValue = (variables || {})[value.name.value];
+        argObj[name.value] = variableValue;
+    }
+    else if (isListValue(value)) {
+        argObj[name.value] = value.values.map(function (listValue) {
+            var nestedArgArrayObj = {};
+            valueToObjectRepresentation(nestedArgArrayObj, name, listValue, variables);
+            return nestedArgArrayObj[name.value];
+        });
+    }
+    else if (isEnumValue(value)) {
+        argObj[name.value] = value.value;
+    }
+    else {
+        throw new Error("The inline argument \"" + name.value + "\" of kind \"" + value
+            .kind + "\" is not supported.\n                    Use variables instead of inline arguments to overcome this limitation.");
+    }
+}
+function storeKeyNameFromField(field, variables) {
+    var directivesObj = null;
+    if (field.directives) {
+        directivesObj = {};
+        field.directives.forEach(function (directive) {
+            directivesObj[directive.name.value] = {};
+            if (directive.arguments) {
+                directive.arguments.forEach(function (_a) {
+                    var name = _a.name, value = _a.value;
+                    return valueToObjectRepresentation(directivesObj[directive.name.value], name, value, variables);
+                });
+            }
+        });
+    }
+    var argObj = null;
+    if (field.arguments && field.arguments.length) {
+        argObj = {};
+        field.arguments.forEach(function (_a) {
+            var name = _a.name, value = _a.value;
+            return valueToObjectRepresentation(argObj, name, value, variables);
+        });
+    }
+    return getStoreKeyName(field.name.value, argObj, directivesObj);
+}
+function getStoreKeyName(fieldName, args, directives) {
+    if (directives &&
+        directives['connection'] &&
+        directives['connection']['key']) {
+        if (directives['connection']['filter'] &&
+            directives['connection']['filter'].length > 0) {
+            var filterKeys = directives['connection']['filter']
+                ? directives['connection']['filter']
+                : [];
+            filterKeys.sort();
+            var queryArgs_1 = args;
+            var filteredArgs_1 = {};
+            filterKeys.forEach(function (key) {
+                filteredArgs_1[key] = queryArgs_1[key];
+            });
+            return directives['connection']['key'] + "(" + JSON.stringify(filteredArgs_1) + ")";
+        }
+        else {
+            return directives['connection']['key'];
+        }
+    }
+    if (args) {
+        var stringifiedArgs = JSON.stringify(args);
+        return fieldName + "(" + stringifiedArgs + ")";
+    }
+    return fieldName;
+}
+function resultKeyNameFromField(field) {
+    return field.alias ? field.alias.value : field.name.value;
+}
+function isField(selection) {
+    return selection.kind === 'Field';
+}
+function isInlineFragment(selection) {
+    return selection.kind === 'InlineFragment';
+}
+function graphQLResultHasError(result) {
+    return result.errors && result.errors.length;
+}
+function isIdValue(idObject) {
+    return (idObject != null &&
+        typeof idObject === 'object' &&
+        idObject.type === 'id');
+}
+function toIdValue(id, generated) {
+    if (generated === void 0) { generated = false; }
+    return {
+        type: 'id',
+        id: id,
+        generated: generated,
+    };
+}
+function isJsonValue(jsonObject) {
+    return (jsonObject != null &&
+        typeof jsonObject === 'object' &&
+        jsonObject.type === 'json');
+}
+//# sourceMappingURL=storeUtils.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js":
+/*!************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js ***!
+  \************************************************************************************/
+/*! exports provided: writeQueryToStore, writeResultToStore, writeSelectionSetToStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "writeQueryToStore", function() { return writeQueryToStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "writeResultToStore", function() { return writeResultToStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "writeSelectionSetToStore", function() { return writeSelectionSetToStore; });
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _storeUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony import */ var _queries_directives__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../queries/directives */ "../node_modules/react-apollo/node_modules/apollo-client/queries/directives.js");
+/* harmony import */ var _util_environment__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../util/environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+
+var WriteError = (function (_super) {
+    __extends(WriteError, _super);
+    function WriteError() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.type = 'WriteError';
+        return _this;
+    }
+    return WriteError;
+}(Error));
+function enhanceErrorWithDocument(error, document) {
+    var enhancedError = new WriteError("Error writing result to store for query " + (document.loc &&
+        document.loc.source &&
+        document.loc.source.body));
+    enhancedError.message += '/n' + error.message;
+    enhancedError.stack = error.stack;
+    return enhancedError;
+}
+function writeQueryToStore(_a) {
+    var result = _a.result, query = _a.query, _b = _a.store, store = _b === void 0 ? {} : _b, variables = _a.variables, dataIdFromObject = _a.dataIdFromObject, _c = _a.fragmentMap, fragmentMap = _c === void 0 ? {} : _c, fragmentMatcherFunction = _a.fragmentMatcherFunction;
+    var queryDefinition = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getQueryDefinition"])(query);
+    variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_4__["assign"])({}, Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getDefaultValues"])(queryDefinition), variables);
+    try {
+        return writeSelectionSetToStore({
+            dataId: 'ROOT_QUERY',
+            result: result,
+            selectionSet: queryDefinition.selectionSet,
+            context: {
+                store: store,
+                processedData: {},
+                variables: variables,
+                dataIdFromObject: dataIdFromObject,
+                fragmentMap: fragmentMap,
+                fragmentMatcherFunction: fragmentMatcherFunction,
+            },
+        });
+    }
+    catch (e) {
+        throw enhanceErrorWithDocument(e, query);
+    }
+}
+function writeResultToStore(_a) {
+    var dataId = _a.dataId, result = _a.result, document = _a.document, _b = _a.store, store = _b === void 0 ? {} : _b, variables = _a.variables, dataIdFromObject = _a.dataIdFromObject, fragmentMatcherFunction = _a.fragmentMatcherFunction;
+    var operationDefinition = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getOperationDefinition"])(document);
+    var selectionSet = operationDefinition.selectionSet;
+    var fragmentMap = Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["createFragmentMap"])(Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getFragmentDefinitions"])(document));
+    variables = Object(_util_assign__WEBPACK_IMPORTED_MODULE_4__["assign"])({}, Object(_queries_getFromAST__WEBPACK_IMPORTED_MODULE_0__["getDefaultValues"])(operationDefinition), variables);
+    try {
+        return writeSelectionSetToStore({
+            result: result,
+            dataId: dataId,
+            selectionSet: selectionSet,
+            context: {
+                store: store,
+                processedData: {},
+                variables: variables,
+                dataIdFromObject: dataIdFromObject,
+                fragmentMap: fragmentMap,
+                fragmentMatcherFunction: fragmentMatcherFunction,
+            },
+        });
+    }
+    catch (e) {
+        throw enhanceErrorWithDocument(e, document);
+    }
+}
+function writeSelectionSetToStore(_a) {
+    var result = _a.result, dataId = _a.dataId, selectionSet = _a.selectionSet, context = _a.context;
+    var variables = context.variables, store = context.store, dataIdFromObject = context.dataIdFromObject, fragmentMap = context.fragmentMap;
+    selectionSet.selections.forEach(function (selection) {
+        var included = Object(_queries_directives__WEBPACK_IMPORTED_MODULE_2__["shouldInclude"])(selection, variables);
+        if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isField"])(selection)) {
+            var resultFieldKey = Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["resultKeyNameFromField"])(selection);
+            var value = result[resultFieldKey];
+            if (included) {
+                if (typeof value !== 'undefined') {
+                    writeFieldToStore({
+                        dataId: dataId,
+                        value: value,
+                        field: selection,
+                        context: context,
+                    });
+                }
+                else {
+                    if (context.fragmentMatcherFunction) {
+                        if (!Object(_util_environment__WEBPACK_IMPORTED_MODULE_3__["isProduction"])()) {
+                            console.warn("Missing field " + resultFieldKey + " in " + JSON.stringify(result, null, 2).substring(0, 100));
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            var fragment = void 0;
+            if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isInlineFragment"])(selection)) {
+                fragment = selection;
+            }
+            else {
+                fragment = (fragmentMap || {})[selection.name.value];
+                if (!fragment) {
+                    throw new Error("No fragment named " + selection.name.value + ".");
+                }
+            }
+            var matches = true;
+            if (context.fragmentMatcherFunction && fragment.typeCondition) {
+                var idValue = { type: 'id', id: 'self', generated: false };
+                var fakeContext = {
+                    store: { self: result },
+                    returnPartialData: false,
+                    hasMissingField: false,
+                    customResolvers: {},
+                };
+                matches = context.fragmentMatcherFunction(idValue, fragment.typeCondition.name.value, fakeContext);
+                if (fakeContext.returnPartialData) {
+                    console.error('WARNING: heuristic fragment matching going on!');
+                }
+            }
+            if (included && matches) {
+                writeSelectionSetToStore({
+                    result: result,
+                    selectionSet: fragment.selectionSet,
+                    dataId: dataId,
+                    context: context,
+                });
+            }
+        }
+    });
+    return store;
+}
+function isGeneratedId(id) {
+    return id[0] === '$';
+}
+function mergeWithGenerated(generatedKey, realKey, cache) {
+    var generated = cache[generatedKey];
+    var real = cache[realKey];
+    Object.keys(generated).forEach(function (key) {
+        var value = generated[key];
+        var realValue = real[key];
+        if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(value) && isGeneratedId(value.id) && Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(realValue)) {
+            mergeWithGenerated(value.id, realValue.id, cache);
+        }
+        delete cache[generatedKey];
+        cache[realKey] = __assign({}, generated, real);
+    });
+}
+function isDataProcessed(dataId, field, processedData) {
+    if (!processedData) {
+        return false;
+    }
+    if (processedData[dataId]) {
+        if (processedData[dataId].indexOf(field) >= 0) {
+            return true;
+        }
+        else {
+            processedData[dataId].push(field);
+        }
+    }
+    else {
+        processedData[dataId] = [field];
+    }
+    return false;
+}
+function writeFieldToStore(_a) {
+    var field = _a.field, value = _a.value, dataId = _a.dataId, context = _a.context;
+    var variables = context.variables, dataIdFromObject = context.dataIdFromObject, store = context.store, fragmentMap = context.fragmentMap;
+    var storeValue;
+    var storeFieldName = Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["storeKeyNameFromField"])(field, variables);
+    var shouldMerge = false;
+    var generatedKey = '';
+    if (!field.selectionSet || value === null) {
+        storeValue =
+            value != null && typeof value === 'object'
+                ?
+                    { type: 'json', json: value }
+                :
+                    value;
+    }
+    else if (Array.isArray(value)) {
+        var generatedId = dataId + "." + storeFieldName;
+        storeValue = processArrayValue(value, generatedId, field.selectionSet, context);
+    }
+    else {
+        var valueDataId = dataId + "." + storeFieldName;
+        var generated = true;
+        if (!isGeneratedId(valueDataId)) {
+            valueDataId = '$' + valueDataId;
+        }
+        if (dataIdFromObject) {
+            var semanticId = dataIdFromObject(value);
+            if (semanticId && isGeneratedId(semanticId)) {
+                throw new Error('IDs returned by dataIdFromObject cannot begin with the "$" character.');
+            }
+            if (semanticId) {
+                valueDataId = semanticId;
+                generated = false;
+            }
+        }
+        if (!isDataProcessed(valueDataId, field, context.processedData)) {
+            writeSelectionSetToStore({
+                dataId: valueDataId,
+                result: value,
+                selectionSet: field.selectionSet,
+                context: context,
+            });
+        }
+        storeValue = {
+            type: 'id',
+            id: valueDataId,
+            generated: generated,
+        };
+        if (store[dataId] && store[dataId][storeFieldName] !== storeValue) {
+            var escapedId = store[dataId][storeFieldName];
+            if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(storeValue) &&
+                storeValue.generated &&
+                Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(escapedId) &&
+                !escapedId.generated) {
+                throw new Error("Store error: the application attempted to write an object with no provided id" +
+                    (" but the store already contains an id of " + escapedId.id + " for this object."));
+            }
+            if (Object(_storeUtils__WEBPACK_IMPORTED_MODULE_1__["isIdValue"])(escapedId) && escapedId.generated) {
+                generatedKey = escapedId.id;
+                shouldMerge = true;
+            }
+        }
+    }
+    var newStoreObj = __assign({}, store[dataId], (_b = {}, _b[storeFieldName] = storeValue, _b));
+    if (shouldMerge) {
+        mergeWithGenerated(generatedKey, storeValue.id, store);
+    }
+    if (!store[dataId] || storeValue !== store[dataId][storeFieldName]) {
+        store[dataId] = newStoreObj;
+    }
+    var _b;
+}
+function processArrayValue(value, generatedId, selectionSet, context) {
+    return value.map(function (item, index) {
+        if (item === null) {
+            return null;
+        }
+        var itemDataId = generatedId + "." + index;
+        if (Array.isArray(item)) {
+            return processArrayValue(item, itemDataId, selectionSet, context);
+        }
+        var generated = true;
+        if (context.dataIdFromObject) {
+            var semanticId = context.dataIdFromObject(item);
+            if (semanticId) {
+                itemDataId = semanticId;
+                generated = false;
+            }
+        }
+        if (!isDataProcessed(itemDataId, selectionSet, context.processedData)) {
+            writeSelectionSetToStore({
+                dataId: itemDataId,
+                result: item,
+                selectionSet: selectionSet,
+                context: context,
+            });
+        }
+        var idStoreValue = {
+            type: 'id',
+            id: itemDataId,
+            generated: generated,
+        };
+        return idStoreValue;
+    });
+}
+//# sourceMappingURL=writeToStore.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/errors/ApolloError.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/errors/ApolloError.js ***!
+  \*************************************************************************************/
+/*! exports provided: isApolloError, ApolloError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isApolloError", function() { return isApolloError; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApolloError", function() { return ApolloError; });
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+function isApolloError(err) {
+    return err.hasOwnProperty('graphQLErrors');
+}
+var generateErrorMessage = function (err) {
+    var message = '';
+    if (Array.isArray(err.graphQLErrors) && err.graphQLErrors.length !== 0) {
+        err.graphQLErrors.forEach(function (graphQLError) {
+            var errorMessage = graphQLError
+                ? graphQLError.message
+                : 'Error message not found.';
+            message += "GraphQL error: " + errorMessage + "\n";
+        });
+    }
+    if (err.networkError) {
+        message += 'Network error: ' + err.networkError.message + '\n';
+    }
+    message = message.replace(/\n$/, '');
+    return message;
+};
+var ApolloError = (function (_super) {
+    __extends(ApolloError, _super);
+    function ApolloError(_a) {
+        var graphQLErrors = _a.graphQLErrors, networkError = _a.networkError, errorMessage = _a.errorMessage, extraInfo = _a.extraInfo;
+        var _this = _super.call(this, errorMessage) || this;
+        _this.graphQLErrors = graphQLErrors || [];
+        _this.networkError = networkError || null;
+        if (!errorMessage) {
+            _this.message = generateErrorMessage(_this);
+        }
+        else {
+            _this.message = errorMessage;
+        }
+        _this.extraInfo = extraInfo;
+        return _this;
+    }
+    return ApolloError;
+}(Error));
+
+//# sourceMappingURL=ApolloError.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/index.js":
+/*!************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/index.js ***!
+  \************************************************************************/
+/*! exports provided: createNetworkInterface, createBatchingNetworkInterface, createApolloStore, createApolloReducer, readQueryFromStore, writeQueryToStore, addTypenameToDocument, createFragmentMap, NetworkStatus, ApolloError, getQueryDefinition, getMutationDefinition, getFragmentDefinitions, toIdValue, IntrospectionFragmentMatcher, printAST, HTTPFetchNetworkInterface, HTTPBatchedNetworkInterface, ObservableQuery, ApolloClient, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _transport_networkInterface__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./transport/networkInterface */ "../node_modules/react-apollo/node_modules/apollo-client/transport/networkInterface.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createNetworkInterface", function() { return _transport_networkInterface__WEBPACK_IMPORTED_MODULE_0__["createNetworkInterface"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HTTPFetchNetworkInterface", function() { return _transport_networkInterface__WEBPACK_IMPORTED_MODULE_0__["HTTPFetchNetworkInterface"]; });
+
+/* harmony import */ var _transport_batchedNetworkInterface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./transport/batchedNetworkInterface */ "../node_modules/react-apollo/node_modules/apollo-client/transport/batchedNetworkInterface.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createBatchingNetworkInterface", function() { return _transport_batchedNetworkInterface__WEBPACK_IMPORTED_MODULE_1__["createBatchingNetworkInterface"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "HTTPBatchedNetworkInterface", function() { return _transport_batchedNetworkInterface__WEBPACK_IMPORTED_MODULE_1__["HTTPBatchedNetworkInterface"]; });
+
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! graphql/language/printer */ "../node_modules/react-apollo/node_modules/graphql/language/printer.js");
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(graphql_language_printer__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "printAST", function() { return graphql_language_printer__WEBPACK_IMPORTED_MODULE_2__["print"]; });
+
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "../node_modules/react-apollo/node_modules/apollo-client/store.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createApolloStore", function() { return _store__WEBPACK_IMPORTED_MODULE_3__["createApolloStore"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createApolloReducer", function() { return _store__WEBPACK_IMPORTED_MODULE_3__["createApolloReducer"]; });
+
+/* harmony import */ var _core_ObservableQuery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./core/ObservableQuery */ "../node_modules/react-apollo/node_modules/apollo-client/core/ObservableQuery.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ObservableQuery", function() { return _core_ObservableQuery__WEBPACK_IMPORTED_MODULE_4__["ObservableQuery"]; });
+
+/* harmony import */ var _data_readFromStore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./data/readFromStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/readFromStore.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "readQueryFromStore", function() { return _data_readFromStore__WEBPACK_IMPORTED_MODULE_5__["readQueryFromStore"]; });
+
+/* harmony import */ var _data_writeToStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./data/writeToStore */ "../node_modules/react-apollo/node_modules/apollo-client/data/writeToStore.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "writeQueryToStore", function() { return _data_writeToStore__WEBPACK_IMPORTED_MODULE_6__["writeQueryToStore"]; });
+
+/* harmony import */ var _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./queries/getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createFragmentMap", function() { return _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["createFragmentMap"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getQueryDefinition", function() { return _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getQueryDefinition"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getMutationDefinition", function() { return _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getMutationDefinition"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getFragmentDefinitions", function() { return _queries_getFromAST__WEBPACK_IMPORTED_MODULE_7__["getFragmentDefinitions"]; });
+
+/* harmony import */ var _queries_networkStatus__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./queries/networkStatus */ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NetworkStatus", function() { return _queries_networkStatus__WEBPACK_IMPORTED_MODULE_8__["NetworkStatus"]; });
+
+/* harmony import */ var _queries_queryTransform__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./queries/queryTransform */ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "addTypenameToDocument", function() { return _queries_queryTransform__WEBPACK_IMPORTED_MODULE_9__["addTypenameToDocument"]; });
+
+/* harmony import */ var _errors_ApolloError__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./errors/ApolloError */ "../node_modules/react-apollo/node_modules/apollo-client/errors/ApolloError.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloError", function() { return _errors_ApolloError__WEBPACK_IMPORTED_MODULE_10__["ApolloError"]; });
+
+/* harmony import */ var _ApolloClient__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./ApolloClient */ "../node_modules/react-apollo/node_modules/apollo-client/ApolloClient.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "ApolloClient", function() { return _ApolloClient__WEBPACK_IMPORTED_MODULE_11__["default"]; });
+
+/* harmony import */ var _data_storeUtils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./data/storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "toIdValue", function() { return _data_storeUtils__WEBPACK_IMPORTED_MODULE_12__["toIdValue"]; });
+
+/* harmony import */ var _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./data/fragmentMatcher */ "../node_modules/react-apollo/node_modules/apollo-client/data/fragmentMatcher.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "IntrospectionFragmentMatcher", function() { return _data_fragmentMatcher__WEBPACK_IMPORTED_MODULE_13__["IntrospectionFragmentMatcher"]; });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (_ApolloClient__WEBPACK_IMPORTED_MODULE_11__["default"]);
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/mutations/store.js":
+/*!**********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/mutations/store.js ***!
+  \**********************************************************************************/
+/*! exports provided: MutationStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MutationStore", function() { return MutationStore; });
+var MutationStore = (function () {
+    function MutationStore() {
+        this.store = {};
+    }
+    MutationStore.prototype.getStore = function () {
+        return this.store;
+    };
+    MutationStore.prototype.get = function (mutationId) {
+        return this.store[mutationId];
+    };
+    MutationStore.prototype.initMutation = function (mutationId, mutationString, variables) {
+        this.store[mutationId] = {
+            mutationString: mutationString,
+            variables: variables || {},
+            loading: true,
+            error: null,
+        };
+    };
+    MutationStore.prototype.markMutationError = function (mutationId, error) {
+        this.store[mutationId].loading = false;
+        this.store[mutationId].error = error;
+    };
+    MutationStore.prototype.markMutationResult = function (mutationId) {
+        this.store[mutationId].loading = false;
+        this.store[mutationId].error = null;
+    };
+    MutationStore.prototype.reset = function () {
+        this.store = {};
+    };
+    return MutationStore;
+}());
+
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/optimistic-data/store.js":
+/*!****************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/optimistic-data/store.js ***!
+  \****************************************************************************************/
+/*! exports provided: getDataWithOptimisticResults, optimistic */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataWithOptimisticResults", function() { return getDataWithOptimisticResults; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "optimistic", function() { return optimistic; });
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions */ "../node_modules/react-apollo/node_modules/apollo-client/actions.js");
+/* harmony import */ var _data_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../data/store */ "../node_modules/react-apollo/node_modules/apollo-client/data/store.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+var optimisticDefaultState = [];
+function getDataWithOptimisticResults(store) {
+    if (store.optimistic.length === 0) {
+        return store.data;
+    }
+    var patches = store.optimistic.map(function (opt) { return opt.data; });
+    return _util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"].apply(void 0, [{}, store.data].concat(patches));
+}
+function optimistic(previousState, action, store, config) {
+    if (previousState === void 0) { previousState = optimisticDefaultState; }
+    if (Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isMutationInitAction"])(action) && action.optimisticResponse) {
+        var optimisticResponse = void 0;
+        if (typeof action.optimisticResponse === 'function') {
+            optimisticResponse = action.optimisticResponse(action.variables);
+        }
+        else {
+            optimisticResponse = action.optimisticResponse;
+        }
+        var fakeMutationResultAction = {
+            type: 'APOLLO_MUTATION_RESULT',
+            result: { data: optimisticResponse },
+            document: action.mutation,
+            operationName: action.operationName,
+            variables: action.variables,
+            mutationId: action.mutationId,
+            extraReducers: action.extraReducers,
+            updateQueries: action.updateQueries,
+            update: action.update,
+        };
+        var optimisticData = getDataWithOptimisticResults(__assign({}, store, { optimistic: previousState }));
+        var patch = getOptimisticDataPatch(optimisticData, fakeMutationResultAction, store.queries, store.mutations, config);
+        var optimisticState = {
+            action: fakeMutationResultAction,
+            data: patch,
+            mutationId: action.mutationId,
+        };
+        var newState = previousState.concat([optimisticState]);
+        return newState;
+    }
+    else if ((Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isMutationErrorAction"])(action) || Object(_actions__WEBPACK_IMPORTED_MODULE_0__["isMutationResultAction"])(action)) &&
+        previousState.some(function (change) { return change.mutationId === action.mutationId; })) {
+        return rollbackOptimisticData(function (change) { return change.mutationId === action.mutationId; }, previousState, store, config);
+    }
+    return previousState;
+}
+function getOptimisticDataPatch(previousData, optimisticAction, queries, mutations, config) {
+    var optimisticData = Object(_data_store__WEBPACK_IMPORTED_MODULE_1__["data"])(previousData, optimisticAction, config);
+    var patch = {};
+    Object.keys(optimisticData).forEach(function (key) {
+        if (optimisticData[key] !== previousData[key]) {
+            patch[key] = optimisticData[key];
+        }
+    });
+    return patch;
+}
+function rollbackOptimisticData(filterFn, previousState, store, config) {
+    if (previousState === void 0) { previousState = optimisticDefaultState; }
+    var optimisticData = Object(_util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"])({}, store.data);
+    var newState = previousState
+        .filter(function (item) { return !filterFn(item); })
+        .map(function (change) {
+        var patch = getOptimisticDataPatch(optimisticData, change.action, store.queries, store.mutations, config);
+        Object(_util_assign__WEBPACK_IMPORTED_MODULE_2__["assign"])(optimisticData, patch);
+        return __assign({}, change, { data: patch });
+    });
+    return newState;
+}
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/queries/directives.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/queries/directives.js ***!
+  \*************************************************************************************/
+/*! exports provided: shouldInclude */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shouldInclude", function() { return shouldInclude; });
+function shouldInclude(selection, variables) {
+    if (variables === void 0) { variables = {}; }
+    if (!selection.directives) {
+        return true;
+    }
+    var res = true;
+    selection.directives.forEach(function (directive) {
+        if (directive.name.value !== 'skip' && directive.name.value !== 'include') {
+            return;
+        }
+        var directiveArguments = directive.arguments || [];
+        var directiveName = directive.name.value;
+        if (directiveArguments.length !== 1) {
+            throw new Error("Incorrect number of arguments for the @" + directiveName + " directive.");
+        }
+        var ifArgument = directiveArguments[0];
+        if (!ifArgument.name || ifArgument.name.value !== 'if') {
+            throw new Error("Invalid argument for the @" + directiveName + " directive.");
+        }
+        var ifValue = directiveArguments[0].value;
+        var evaledValue = false;
+        if (!ifValue || ifValue.kind !== 'BooleanValue') {
+            if (ifValue.kind !== 'Variable') {
+                throw new Error("Argument for the @" + directiveName + " directive must be a variable or a bool ean value.");
+            }
+            else {
+                evaledValue = variables[ifValue.name.value];
+                if (evaledValue === undefined) {
+                    throw new Error("Invalid variable referenced in @" + directiveName + " directive.");
+                }
+            }
+        }
+        else {
+            evaledValue = ifValue.value;
+        }
+        if (directiveName === 'skip') {
+            evaledValue = !evaledValue;
+        }
+        if (!evaledValue) {
+            res = false;
+        }
+    });
+    return res;
+}
+//# sourceMappingURL=directives.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js ***!
+  \*************************************************************************************/
+/*! exports provided: getMutationDefinition, checkDocument, getOperationName, getFragmentDefinitions, getQueryDefinition, getOperationDefinition, getFragmentDefinition, createFragmentMap, getFragmentQueryDocument, getDefaultValues */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMutationDefinition", function() { return getMutationDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "checkDocument", function() { return checkDocument; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOperationName", function() { return getOperationName; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFragmentDefinitions", function() { return getFragmentDefinitions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getQueryDefinition", function() { return getQueryDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getOperationDefinition", function() { return getOperationDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFragmentDefinition", function() { return getFragmentDefinition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFragmentMap", function() { return createFragmentMap; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFragmentQueryDocument", function() { return getFragmentQueryDocument; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDefaultValues", function() { return getDefaultValues; });
+/* harmony import */ var _data_storeUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../data/storeUtils */ "../node_modules/react-apollo/node_modules/apollo-client/data/storeUtils.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+function getMutationDefinition(doc) {
+    checkDocument(doc);
+    var mutationDef = null;
+    doc.definitions.forEach(function (definition) {
+        if (definition.kind === 'OperationDefinition' &&
+            definition.operation === 'mutation') {
+            mutationDef = definition;
+        }
+    });
+    if (!mutationDef) {
+        throw new Error('Must contain a mutation definition.');
+    }
+    return mutationDef;
+}
+function checkDocument(doc) {
+    if (doc.kind !== 'Document') {
+        throw new Error("Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
+    }
+    var foundOperation = false;
+    doc.definitions.forEach(function (definition) {
+        switch (definition.kind) {
+            case 'FragmentDefinition':
+                break;
+            case 'OperationDefinition':
+                if (foundOperation) {
+                    throw new Error('Queries must have exactly one operation definition.');
+                }
+                foundOperation = true;
+                break;
+            default:
+                throw new Error("Schema type definitions not allowed in queries. Found: \"" + definition.kind + "\"");
+        }
+    });
+}
+function getOperationName(doc) {
+    var res = null;
+    doc.definitions.forEach(function (definition) {
+        if (definition.kind === 'OperationDefinition' && definition.name) {
+            res = definition.name.value;
+        }
+    });
+    return res;
+}
+function getFragmentDefinitions(doc) {
+    var fragmentDefinitions = doc.definitions.filter(function (definition) {
+        if (definition.kind === 'FragmentDefinition') {
+            return true;
+        }
+        else {
+            return false;
+        }
+    });
+    return fragmentDefinitions;
+}
+function getQueryDefinition(doc) {
+    checkDocument(doc);
+    var queryDef = null;
+    doc.definitions.map(function (definition) {
+        if (definition.kind === 'OperationDefinition' &&
+            definition.operation === 'query') {
+            queryDef = definition;
+        }
+    });
+    if (!queryDef) {
+        throw new Error('Must contain a query definition.');
+    }
+    return queryDef;
+}
+function getOperationDefinition(doc) {
+    checkDocument(doc);
+    var opDef = null;
+    doc.definitions.map(function (definition) {
+        if (definition.kind === 'OperationDefinition') {
+            opDef = definition;
+        }
+    });
+    if (!opDef) {
+        throw new Error('Must contain a query definition.');
+    }
+    return opDef;
+}
+function getFragmentDefinition(doc) {
+    if (doc.kind !== 'Document') {
+        throw new Error("Expecting a parsed GraphQL document. Perhaps you need to wrap the query string in a \"gql\" tag? http://docs.apollostack.com/apollo-client/core.html#gql");
+    }
+    if (doc.definitions.length > 1) {
+        throw new Error('Fragment must have exactly one definition.');
+    }
+    var fragmentDef = doc.definitions[0];
+    if (fragmentDef.kind !== 'FragmentDefinition') {
+        throw new Error('Must be a fragment definition.');
+    }
+    return fragmentDef;
+}
+function createFragmentMap(fragments) {
+    if (fragments === void 0) { fragments = []; }
+    var symTable = {};
+    fragments.forEach(function (fragment) {
+        symTable[fragment.name.value] = fragment;
+    });
+    return symTable;
+}
+function getFragmentQueryDocument(document, fragmentName) {
+    var actualFragmentName = fragmentName;
+    var fragments = [];
+    document.definitions.forEach(function (definition) {
+        if (definition.kind === 'OperationDefinition') {
+            throw new Error("Found a " + definition.operation + " operation" + (definition.name
+                ? " named '" + definition.name.value + "'"
+                : '') + ". " +
+                'No operations are allowed when using a fragment as a query. Only fragments are allowed.');
+        }
+        if (definition.kind === 'FragmentDefinition') {
+            fragments.push(definition);
+        }
+    });
+    if (typeof actualFragmentName === 'undefined') {
+        if (fragments.length !== 1) {
+            throw new Error("Found " + fragments.length + " fragments. `fragmentName` must be provided when there is not exactly 1 fragment.");
+        }
+        actualFragmentName = fragments[0].name.value;
+    }
+    var query = __assign({}, document, { definitions: [
+            {
+                kind: 'OperationDefinition',
+                operation: 'query',
+                selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                        {
+                            kind: 'FragmentSpread',
+                            name: {
+                                kind: 'Name',
+                                value: actualFragmentName,
+                            },
+                        },
+                    ],
+                },
+            }
+        ].concat(document.definitions) });
+    return query;
+}
+function getDefaultValues(definition) {
+    if (definition.variableDefinitions && definition.variableDefinitions.length) {
+        var defaultValues = definition.variableDefinitions
+            .filter(function (_a) {
+            var defaultValue = _a.defaultValue;
+            return defaultValue;
+        })
+            .map(function (_a) {
+            var variable = _a.variable, defaultValue = _a.defaultValue;
+            var defaultValueObj = {};
+            Object(_data_storeUtils__WEBPACK_IMPORTED_MODULE_0__["valueToObjectRepresentation"])(defaultValueObj, variable.name, defaultValue);
+            return defaultValueObj;
+        });
+        return _util_assign__WEBPACK_IMPORTED_MODULE_1__["assign"].apply(void 0, [{}].concat(defaultValues));
+    }
+    return {};
+}
+//# sourceMappingURL=getFromAST.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js":
+/*!****************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js ***!
+  \****************************************************************************************/
+/*! exports provided: NetworkStatus, isNetworkRequestInFlight */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NetworkStatus", function() { return NetworkStatus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNetworkRequestInFlight", function() { return isNetworkRequestInFlight; });
+var NetworkStatus;
+(function (NetworkStatus) {
+    NetworkStatus[NetworkStatus["loading"] = 1] = "loading";
+    NetworkStatus[NetworkStatus["setVariables"] = 2] = "setVariables";
+    NetworkStatus[NetworkStatus["fetchMore"] = 3] = "fetchMore";
+    NetworkStatus[NetworkStatus["refetch"] = 4] = "refetch";
+    NetworkStatus[NetworkStatus["poll"] = 6] = "poll";
+    NetworkStatus[NetworkStatus["ready"] = 7] = "ready";
+    NetworkStatus[NetworkStatus["error"] = 8] = "error";
+})(NetworkStatus || (NetworkStatus = {}));
+function isNetworkRequestInFlight(networkStatus) {
+    return networkStatus < 7;
+}
+//# sourceMappingURL=networkStatus.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js":
+/*!*****************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js ***!
+  \*****************************************************************************************/
+/*! exports provided: addTypenameToDocument, removeConnectionDirectiveFromDocument */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTypenameToDocument", function() { return addTypenameToDocument; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeConnectionDirectiveFromDocument", function() { return removeConnectionDirectiveFromDocument; });
+/* harmony import */ var _getFromAST__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getFromAST */ "../node_modules/react-apollo/node_modules/apollo-client/queries/getFromAST.js");
+/* harmony import */ var _util_cloneDeep__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../util/cloneDeep */ "../node_modules/react-apollo/node_modules/apollo-client/util/cloneDeep.js");
+
+
+var TYPENAME_FIELD = {
+    kind: 'Field',
+    name: {
+        kind: 'Name',
+        value: '__typename',
+    },
+};
+function addTypenameToSelectionSet(selectionSet, isRoot) {
+    if (isRoot === void 0) { isRoot = false; }
+    if (selectionSet.selections) {
+        if (!isRoot) {
+            var alreadyHasThisField = selectionSet.selections.some(function (selection) {
+                return (selection.kind === 'Field' &&
+                    selection.name.value === '__typename');
+            });
+            if (!alreadyHasThisField) {
+                selectionSet.selections.push(TYPENAME_FIELD);
+            }
+        }
+        selectionSet.selections.forEach(function (selection) {
+            if (selection.kind === 'Field') {
+                if (selection.name.value.lastIndexOf('__', 0) !== 0 &&
+                    selection.selectionSet) {
+                    addTypenameToSelectionSet(selection.selectionSet);
+                }
+            }
+            else if (selection.kind === 'InlineFragment') {
+                if (selection.selectionSet) {
+                    addTypenameToSelectionSet(selection.selectionSet);
+                }
+            }
+        });
+    }
+}
+function removeConnectionDirectiveFromSelectionSet(selectionSet) {
+    if (selectionSet.selections) {
+        selectionSet.selections.forEach(function (selection) {
+            if (selection.kind === 'Field' &&
+                selection &&
+                selection.directives) {
+                selection.directives = selection.directives.filter(function (directive) {
+                    var willRemove = directive.name.value === 'connection';
+                    if (willRemove) {
+                        if (!directive.arguments ||
+                            !directive.arguments.some(function (arg) { return arg.name.value === 'key'; })) {
+                            console.warn('Removing an @connection directive even though it does not have a key. ' +
+                                'You may want to use the key parameter to specify a store key.');
+                        }
+                    }
+                    return !willRemove;
+                });
+            }
+        });
+        selectionSet.selections.forEach(function (selection) {
+            if (selection.kind === 'Field') {
+                if (selection.selectionSet) {
+                    removeConnectionDirectiveFromSelectionSet(selection.selectionSet);
+                }
+            }
+            else if (selection.kind === 'InlineFragment') {
+                if (selection.selectionSet) {
+                    removeConnectionDirectiveFromSelectionSet(selection.selectionSet);
+                }
+            }
+        });
+    }
+}
+function addTypenameToDocument(doc) {
+    Object(_getFromAST__WEBPACK_IMPORTED_MODULE_0__["checkDocument"])(doc);
+    var docClone = Object(_util_cloneDeep__WEBPACK_IMPORTED_MODULE_1__["cloneDeep"])(doc);
+    docClone.definitions.forEach(function (definition) {
+        var isRoot = definition.kind === 'OperationDefinition';
+        addTypenameToSelectionSet(definition.selectionSet, isRoot);
+    });
+    return docClone;
+}
+function removeConnectionDirectiveFromDocument(doc) {
+    Object(_getFromAST__WEBPACK_IMPORTED_MODULE_0__["checkDocument"])(doc);
+    var docClone = Object(_util_cloneDeep__WEBPACK_IMPORTED_MODULE_1__["cloneDeep"])(doc);
+    docClone.definitions.forEach(function (definition) {
+        removeConnectionDirectiveFromSelectionSet(definition.selectionSet);
+    });
+    return docClone;
+}
+//# sourceMappingURL=queryTransform.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/queries/store.js":
+/*!********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/queries/store.js ***!
+  \********************************************************************************/
+/*! exports provided: QueryStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryStore", function() { return QueryStore; });
+/* harmony import */ var _util_isEqual__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/isEqual */ "../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js");
+/* harmony import */ var _networkStatus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./networkStatus */ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+var QueryStore = (function () {
+    function QueryStore() {
+        this.store = {};
+    }
+    QueryStore.prototype.getStore = function () {
+        return this.store;
+    };
+    QueryStore.prototype.get = function (queryId) {
+        return this.store[queryId];
+    };
+    QueryStore.prototype.initQuery = function (query) {
+        var previousQuery = this.store[query.queryId];
+        if (previousQuery && previousQuery.queryString !== query.queryString) {
+            throw new Error('Internal Error: may not update existing query string in store');
+        }
+        var isSetVariables = false;
+        var previousVariables = null;
+        if (query.storePreviousVariables &&
+            previousQuery &&
+            previousQuery.networkStatus !== _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].loading) {
+            if (!Object(_util_isEqual__WEBPACK_IMPORTED_MODULE_0__["isEqual"])(previousQuery.variables, query.variables)) {
+                isSetVariables = true;
+                previousVariables = previousQuery.variables;
+            }
+        }
+        var networkStatus;
+        if (isSetVariables) {
+            networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].setVariables;
+        }
+        else if (query.isPoll) {
+            networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].poll;
+        }
+        else if (query.isRefetch) {
+            networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].refetch;
+        }
+        else {
+            networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].loading;
+        }
+        this.store[query.queryId] = {
+            queryString: query.queryString,
+            document: query.document,
+            variables: query.variables,
+            previousVariables: previousVariables,
+            networkError: null,
+            graphQLErrors: [],
+            networkStatus: networkStatus,
+            metadata: query.metadata,
+        };
+        if (typeof query.fetchMoreForQueryId === 'string') {
+            this.store[query.fetchMoreForQueryId].networkStatus =
+                _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].fetchMore;
+        }
+    };
+    QueryStore.prototype.markQueryResult = function (queryId, result, fetchMoreForQueryId) {
+        if (!this.store[queryId]) {
+            return;
+        }
+        this.store[queryId].networkError = null;
+        this.store[queryId].graphQLErrors =
+            result.errors && result.errors.length ? result.errors : [];
+        this.store[queryId].previousVariables = null;
+        this.store[queryId].networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].ready;
+        if (typeof fetchMoreForQueryId === 'string') {
+            this.store[fetchMoreForQueryId].networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].ready;
+        }
+    };
+    QueryStore.prototype.markQueryError = function (queryId, error, fetchMoreForQueryId) {
+        if (!this.store[queryId]) {
+            return;
+        }
+        this.store[queryId].networkError = error;
+        this.store[queryId].networkStatus = _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].error;
+        if (typeof fetchMoreForQueryId === 'string') {
+            this.markQueryError(fetchMoreForQueryId, error, undefined);
+        }
+    };
+    QueryStore.prototype.markQueryResultClient = function (queryId, complete) {
+        if (!this.store[queryId]) {
+            return;
+        }
+        this.store[queryId].networkError = null;
+        this.store[queryId].previousVariables = null;
+        this.store[queryId].networkStatus = complete
+            ? _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].ready
+            : _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].loading;
+    };
+    QueryStore.prototype.stopQuery = function (queryId) {
+        delete this.store[queryId];
+    };
+    QueryStore.prototype.reset = function (observableQueryIds) {
+        var _this = this;
+        this.store = Object.keys(this.store)
+            .filter(function (queryId) {
+            return observableQueryIds.indexOf(queryId) > -1;
+        })
+            .reduce(function (res, key) {
+            res[key] = __assign({}, _this.store[key], { networkStatus: _networkStatus__WEBPACK_IMPORTED_MODULE_1__["NetworkStatus"].loading });
+            return res;
+        }, {});
+    };
+    return QueryStore;
+}());
+
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/scheduler/scheduler.js":
+/*!**************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/scheduler/scheduler.js ***!
+  \**************************************************************************************/
+/*! exports provided: QueryScheduler */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryScheduler", function() { return QueryScheduler; });
+/* harmony import */ var _core_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/types */ "../node_modules/react-apollo/node_modules/apollo-client/core/types.js");
+/* harmony import */ var _core_ObservableQuery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/ObservableQuery */ "../node_modules/react-apollo/node_modules/apollo-client/core/ObservableQuery.js");
+/* harmony import */ var _queries_networkStatus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../queries/networkStatus */ "../node_modules/react-apollo/node_modules/apollo-client/queries/networkStatus.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+var QueryScheduler = (function () {
+    function QueryScheduler(_a) {
+        var queryManager = _a.queryManager;
+        this.queryManager = queryManager;
+        this.pollingTimers = {};
+        this.inFlightQueries = {};
+        this.registeredQueries = {};
+        this.intervalQueries = {};
+    }
+    QueryScheduler.prototype.checkInFlight = function (queryId) {
+        var query = this.queryManager.queryStore.get(queryId);
+        return (query &&
+            query.networkStatus !== _queries_networkStatus__WEBPACK_IMPORTED_MODULE_2__["NetworkStatus"].ready &&
+            query.networkStatus !== _queries_networkStatus__WEBPACK_IMPORTED_MODULE_2__["NetworkStatus"].error);
+    };
+    QueryScheduler.prototype.fetchQuery = function (queryId, options, fetchType) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            _this.queryManager
+                .fetchQuery(queryId, options, fetchType)
+                .then(function (result) {
+                resolve(result);
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    QueryScheduler.prototype.startPollingQuery = function (options, queryId, listener) {
+        if (!options.pollInterval) {
+            throw new Error('Attempted to start a polling query without a polling interval.');
+        }
+        if (this.queryManager.ssrMode) {
+            return queryId;
+        }
+        this.registeredQueries[queryId] = options;
+        if (listener) {
+            this.queryManager.addQueryListener(queryId, listener);
+        }
+        this.addQueryOnInterval(queryId, options);
+        return queryId;
+    };
+    QueryScheduler.prototype.stopPollingQuery = function (queryId) {
+        delete this.registeredQueries[queryId];
+    };
+    QueryScheduler.prototype.fetchQueriesOnInterval = function (interval) {
+        var _this = this;
+        this.intervalQueries[interval] = this.intervalQueries[interval].filter(function (queryId) {
+            if (!_this.registeredQueries.hasOwnProperty(queryId)) {
+                return false;
+            }
+            if (_this.checkInFlight(queryId)) {
+                return true;
+            }
+            var queryOptions = _this.registeredQueries[queryId];
+            var pollingOptions = __assign({}, queryOptions);
+            pollingOptions.fetchPolicy = 'network-only';
+            _this.fetchQuery(queryId, pollingOptions, _core_types__WEBPACK_IMPORTED_MODULE_0__["FetchType"].poll);
+            return true;
+        });
+        if (this.intervalQueries[interval].length === 0) {
+            clearInterval(this.pollingTimers[interval]);
+            delete this.intervalQueries[interval];
+        }
+    };
+    QueryScheduler.prototype.addQueryOnInterval = function (queryId, queryOptions) {
+        var _this = this;
+        var interval = queryOptions.pollInterval;
+        if (!interval) {
+            throw new Error("A poll interval is required to start polling query with id '" + queryId + "'.");
+        }
+        if (this.intervalQueries.hasOwnProperty(interval.toString()) &&
+            this.intervalQueries[interval].length > 0) {
+            this.intervalQueries[interval].push(queryId);
+        }
+        else {
+            this.intervalQueries[interval] = [queryId];
+            this.pollingTimers[interval] = setInterval(function () {
+                _this.fetchQueriesOnInterval(interval);
+            }, interval);
+        }
+    };
+    QueryScheduler.prototype.registerPollingQuery = function (queryOptions) {
+        if (!queryOptions.pollInterval) {
+            throw new Error('Attempted to register a non-polling query with the scheduler.');
+        }
+        return new _core_ObservableQuery__WEBPACK_IMPORTED_MODULE_1__["ObservableQuery"]({
+            scheduler: this,
+            options: queryOptions,
+        });
+    };
+    return QueryScheduler;
+}());
+
+//# sourceMappingURL=scheduler.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/store.js":
+/*!************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/store.js ***!
+  \************************************************************************/
+/*! exports provided: getDataWithOptimisticResults, createApolloReducer, createApolloStore */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApolloReducer", function() { return createApolloReducer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createApolloStore", function() { return createApolloStore; });
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "../node_modules/redux/es/index.js");
+/* harmony import */ var _data_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./data/store */ "../node_modules/react-apollo/node_modules/apollo-client/data/store.js");
+/* harmony import */ var _optimistic_data_store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./optimistic-data/store */ "../node_modules/react-apollo/node_modules/apollo-client/optimistic-data/store.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDataWithOptimisticResults", function() { return _optimistic_data_store__WEBPACK_IMPORTED_MODULE_2__["getDataWithOptimisticResults"]; });
+
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./actions */ "../node_modules/react-apollo/node_modules/apollo-client/actions.js");
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+var crashReporter = function (store) { return function (next) { return function (action) {
+    try {
+        return next(action);
+    }
+    catch (err) {
+        console.error('Caught an exception!', err);
+        console.error(err.stack);
+        throw err;
+    }
+}; }; };
+var createReducerError = function (error, action) {
+    var reducerError = { error: error };
+    if (Object(_actions__WEBPACK_IMPORTED_MODULE_3__["isQueryResultAction"])(action)) {
+        reducerError.queryId = action.queryId;
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_3__["isSubscriptionResultAction"])(action)) {
+        reducerError.subscriptionId = action.subscriptionId;
+    }
+    else if (Object(_actions__WEBPACK_IMPORTED_MODULE_3__["isMutationResultAction"])(action)) {
+        reducerError.mutationId = action.mutationId;
+    }
+    return reducerError;
+};
+function createApolloReducer(config) {
+    return function apolloReducer(state, action) {
+        if (state === void 0) { state = {}; }
+        try {
+            var newState = {
+                data: Object(_data_store__WEBPACK_IMPORTED_MODULE_1__["data"])(state.data, action, config),
+                optimistic: [],
+                reducerError: null,
+            };
+            newState.optimistic = Object(_optimistic_data_store__WEBPACK_IMPORTED_MODULE_2__["optimistic"])(state.optimistic, action, newState, config);
+            if (state.data === newState.data &&
+                state.optimistic === newState.optimistic &&
+                state.reducerError === newState.reducerError) {
+                return state;
+            }
+            return newState;
+        }
+        catch (reducerError) {
+            return __assign({}, state, { reducerError: createReducerError(reducerError, action) });
+        }
+    };
+}
+function createApolloStore(_a) {
+    var _b = _a === void 0 ? {} : _a, _c = _b.reduxRootKey, reduxRootKey = _c === void 0 ? 'apollo' : _c, initialState = _b.initialState, _d = _b.config, config = _d === void 0 ? {} : _d, _e = _b.reportCrashes, reportCrashes = _e === void 0 ? true : _e, logger = _b.logger;
+    var enhancers = [];
+    var middlewares = [];
+    if (reportCrashes) {
+        middlewares.push(crashReporter);
+    }
+    if (logger) {
+        middlewares.push(logger);
+    }
+    if (middlewares.length > 0) {
+        enhancers.push(redux__WEBPACK_IMPORTED_MODULE_0__["applyMiddleware"].apply(void 0, middlewares));
+    }
+    if (typeof window !== 'undefined') {
+        var anyWindow = window;
+        if (anyWindow.devToolsExtension) {
+            enhancers.push(anyWindow.devToolsExtension());
+        }
+    }
+    var compose = redux__WEBPACK_IMPORTED_MODULE_0__["compose"];
+    if (initialState &&
+        initialState[reduxRootKey] &&
+        initialState[reduxRootKey]['queries']) {
+        throw new Error('Apollo initial state may not contain queries, only data');
+    }
+    if (initialState &&
+        initialState[reduxRootKey] &&
+        initialState[reduxRootKey]['mutations']) {
+        throw new Error('Apollo initial state may not contain mutations, only data');
+    }
+    return Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])((_f = {}, _f[reduxRootKey] = createApolloReducer(config), _f)), initialState, compose.apply(void 0, enhancers));
+    var _f;
+}
+//# sourceMappingURL=store.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/transport/Deduplicator.js":
+/*!*****************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/transport/Deduplicator.js ***!
+  \*****************************************************************************************/
+/*! exports provided: Deduplicator */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Deduplicator", function() { return Deduplicator; });
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! graphql/language/printer */ "../node_modules/react-apollo/node_modules/graphql/language/printer.js");
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(graphql_language_printer__WEBPACK_IMPORTED_MODULE_0__);
+
+var Deduplicator = (function () {
+    function Deduplicator(networkInterface) {
+        this.networkInterface = networkInterface;
+        this.inFlightRequestPromises = {};
+    }
+    Deduplicator.prototype.query = function (request, deduplicate) {
+        var _this = this;
+        if (deduplicate === void 0) { deduplicate = true; }
+        if (!deduplicate) {
+            return this.networkInterface.query(request);
+        }
+        var key = this.getKey(request);
+        if (!this.inFlightRequestPromises[key]) {
+            this.inFlightRequestPromises[key] = this.networkInterface.query(request);
+        }
+        return this.inFlightRequestPromises[key]
+            .then(function (res) {
+            delete _this.inFlightRequestPromises[key];
+            return res;
+        })
+            .catch(function (err) {
+            delete _this.inFlightRequestPromises[key];
+            throw err;
+        });
+    };
+    Deduplicator.prototype.getKey = function (request) {
+        return Object(graphql_language_printer__WEBPACK_IMPORTED_MODULE_0__["print"])(request.query) + "|" + JSON.stringify(request.variables) + "|" + request.operationName;
+    };
+    return Deduplicator;
+}());
+
+//# sourceMappingURL=Deduplicator.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/transport/batchedNetworkInterface.js":
+/*!****************************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/transport/batchedNetworkInterface.js ***!
+  \****************************************************************************************************/
+/*! exports provided: HTTPBatchedNetworkInterface, createBatchingNetworkInterface */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HTTPBatchedNetworkInterface", function() { return HTTPBatchedNetworkInterface; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createBatchingNetworkInterface", function() { return createBatchingNetworkInterface; });
+/* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
+/* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(whatwg_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _networkInterface__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./networkInterface */ "../node_modules/react-apollo/node_modules/apollo-client/transport/networkInterface.js");
+/* harmony import */ var _queries_queryTransform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../queries/queryTransform */ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js");
+/* harmony import */ var _batching__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./batching */ "../node_modules/react-apollo/node_modules/apollo-client/transport/batching.js");
+/* harmony import */ var _util_assign__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../util/assign */ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+
+
+var HTTPBatchedNetworkInterface = (function (_super) {
+    __extends(HTTPBatchedNetworkInterface, _super);
+    function HTTPBatchedNetworkInterface(_a) {
+        var uri = _a.uri, _b = _a.batchInterval, batchInterval = _b === void 0 ? 10 : _b, _c = _a.batchMax, batchMax = _c === void 0 ? 0 : _c, fetchOpts = _a.fetchOpts;
+        var _this = _super.call(this, uri, fetchOpts) || this;
+        if (typeof batchInterval !== 'number') {
+            throw new Error("batchInterval must be a number, got " + batchInterval);
+        }
+        if (typeof batchMax !== 'number') {
+            throw new Error("batchMax must be a number, got " + batchMax);
+        }
+        _this.batcher = new _batching__WEBPACK_IMPORTED_MODULE_3__["QueryBatcher"]({
+            batchInterval: batchInterval,
+            batchMax: batchMax,
+            batchFetchFunction: _this.batchQuery.bind(_this),
+        });
+        return _this;
+    }
+    HTTPBatchedNetworkInterface.prototype.query = function (request) {
+        return this.batcher.enqueueRequest(request);
+    };
+    HTTPBatchedNetworkInterface.prototype.batchQuery = function (requests) {
+        var _this = this;
+        var options = __assign({}, this._opts);
+        var middlewarePromise = this.applyBatchMiddlewares({
+            requests: requests,
+            options: options,
+        });
+        return new Promise(function (resolve, reject) {
+            middlewarePromise
+                .then(function (batchRequestAndOptions) {
+                batchRequestAndOptions.requests.forEach(function (r) {
+                    if (r.query)
+                        r.query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_2__["removeConnectionDirectiveFromDocument"])(r.query);
+                });
+                return _this.batchedFetchFromRemoteEndpoint(batchRequestAndOptions)
+                    .then(function (result) {
+                    var httpResponse = result;
+                    if (!httpResponse.ok) {
+                        return _this.applyBatchAfterwares({
+                            responses: [httpResponse],
+                            options: batchRequestAndOptions.options,
+                        }).then(function () {
+                            var httpError = new Error("Network request failed with status " + httpResponse.status + " - \"" + httpResponse.statusText + "\"");
+                            httpError.response = httpResponse;
+                            throw httpError;
+                        });
+                    }
+                    return result.json();
+                })
+                    .then(function (responses) {
+                    if (typeof responses.map !== 'function') {
+                        throw new Error('BatchingNetworkInterface: server response is not an array');
+                    }
+                    _this.applyBatchAfterwares({
+                        responses: responses,
+                        options: batchRequestAndOptions.options,
+                    })
+                        .then(function (responseAndOptions) {
+                        resolve(responseAndOptions.responses);
+                    })
+                        .catch(function (error) {
+                        reject(error);
+                    });
+                });
+            })
+                .catch(function (error) {
+                reject(error);
+            });
+        });
+    };
+    HTTPBatchedNetworkInterface.prototype.applyBatchMiddlewares = function (_a) {
+        var _this = this;
+        var requests = _a.requests, options = _a.options;
+        return new Promise(function (resolve, reject) {
+            var queue = function (funcs, scope) {
+                var next = function () {
+                    if (funcs.length > 0) {
+                        var f = funcs.shift();
+                        if (f) {
+                            f.applyBatchMiddleware.apply(scope, [
+                                { requests: requests, options: options },
+                                next,
+                            ]);
+                        }
+                    }
+                    else {
+                        resolve({
+                            requests: requests,
+                            options: options,
+                        });
+                    }
+                };
+                next();
+            };
+            queue(_this._middlewares.slice(), _this);
+        });
+    };
+    HTTPBatchedNetworkInterface.prototype.applyBatchAfterwares = function (_a) {
+        var _this = this;
+        var responses = _a.responses, options = _a.options;
+        return new Promise(function (resolve, reject) {
+            var responseObject = { responses: responses, options: options };
+            var queue = function (funcs, scope) {
+                var next = function () {
+                    if (funcs.length > 0) {
+                        var f = funcs.shift();
+                        if (f) {
+                            f.applyBatchAfterware.apply(scope, [responseObject, next]);
+                        }
+                    }
+                    else {
+                        resolve(responseObject);
+                    }
+                };
+                next();
+            };
+            queue(_this._afterwares.slice(), _this);
+        });
+    };
+    HTTPBatchedNetworkInterface.prototype.use = function (middlewares) {
+        var _this = this;
+        middlewares.map(function (middleware) {
+            if (typeof middleware.applyBatchMiddleware === 'function') {
+                _this._middlewares.push(middleware);
+            }
+            else {
+                throw new Error('Batch middleware must implement the applyBatchMiddleware function');
+            }
+        });
+        return this;
+    };
+    HTTPBatchedNetworkInterface.prototype.useAfter = function (afterwares) {
+        var _this = this;
+        afterwares.map(function (afterware) {
+            if (typeof afterware.applyBatchAfterware === 'function') {
+                _this._afterwares.push(afterware);
+            }
+            else {
+                throw new Error('Batch afterware must implement the applyBatchAfterware function');
+            }
+        });
+        return this;
+    };
+    HTTPBatchedNetworkInterface.prototype.batchedFetchFromRemoteEndpoint = function (batchRequestAndOptions) {
+        var options = {};
+        Object(_util_assign__WEBPACK_IMPORTED_MODULE_4__["assign"])(options, batchRequestAndOptions.options);
+        var printedRequests = batchRequestAndOptions.requests.map(function (request) {
+            return Object(_networkInterface__WEBPACK_IMPORTED_MODULE_1__["printRequest"])(request);
+        });
+        return fetch(this._uri, __assign({}, this._opts, { body: JSON.stringify(printedRequests), method: 'POST' }, options, { headers: __assign({ Accept: '*/*', 'Content-Type': 'application/json' }, options.headers) }));
+    };
+    return HTTPBatchedNetworkInterface;
+}(_networkInterface__WEBPACK_IMPORTED_MODULE_1__["BaseNetworkInterface"]));
+
+function createBatchingNetworkInterface(options) {
+    if (!options) {
+        throw new Error('You must pass an options argument to createNetworkInterface.');
+    }
+    return new HTTPBatchedNetworkInterface({
+        uri: options.uri,
+        batchInterval: options.batchInterval,
+        batchMax: options.batchMax,
+        fetchOpts: options.opts || {},
+    });
+}
+//# sourceMappingURL=batchedNetworkInterface.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/transport/batching.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/transport/batching.js ***!
+  \*************************************************************************************/
+/*! exports provided: QueryBatcher */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QueryBatcher", function() { return QueryBatcher; });
+var QueryBatcher = (function () {
+    function QueryBatcher(_a) {
+        var batchInterval = _a.batchInterval, _b = _a.batchMax, batchMax = _b === void 0 ? 0 : _b, batchFetchFunction = _a.batchFetchFunction;
+        this.queuedRequests = [];
+        this.queuedRequests = [];
+        this.batchInterval = batchInterval;
+        this.batchMax = batchMax;
+        this.batchFetchFunction = batchFetchFunction;
+    }
+    QueryBatcher.prototype.enqueueRequest = function (request) {
+        var fetchRequest = {
+            request: request,
+        };
+        this.queuedRequests.push(fetchRequest);
+        fetchRequest.promise = new Promise(function (resolve, reject) {
+            fetchRequest.resolve = resolve;
+            fetchRequest.reject = reject;
+        });
+        if (this.queuedRequests.length === 1) {
+            this.scheduleQueueConsumption();
+        }
+        if (this.queuedRequests.length === this.batchMax) {
+            this.consumeQueue();
+        }
+        return fetchRequest.promise;
+    };
+    QueryBatcher.prototype.consumeQueue = function () {
+        var requests = this.queuedRequests.map(function (queuedRequest) { return queuedRequest.request; });
+        var promises = [];
+        var resolvers = [];
+        var rejecters = [];
+        this.queuedRequests.forEach(function (fetchRequest, index) {
+            promises.push(fetchRequest.promise);
+            resolvers.push(fetchRequest.resolve);
+            rejecters.push(fetchRequest.reject);
+        });
+        this.queuedRequests = [];
+        var batchedPromise = this.batchFetchFunction(requests);
+        batchedPromise
+            .then(function (results) {
+            results.forEach(function (result, index) {
+                resolvers[index](result);
+            });
+        })
+            .catch(function (error) {
+            rejecters.forEach(function (rejecter, index) {
+                rejecters[index](error);
+            });
+        });
+        return promises;
+    };
+    QueryBatcher.prototype.scheduleQueueConsumption = function () {
+        var _this = this;
+        setTimeout(function () {
+            if (_this.queuedRequests.length) {
+                _this.consumeQueue();
+            }
+        }, this.batchInterval);
+    };
+    return QueryBatcher;
+}());
+
+//# sourceMappingURL=batching.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/transport/networkInterface.js":
+/*!*********************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/transport/networkInterface.js ***!
+  \*********************************************************************************************/
+/*! exports provided: printRequest, BaseNetworkInterface, HTTPFetchNetworkInterface, createNetworkInterface */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "printRequest", function() { return printRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BaseNetworkInterface", function() { return BaseNetworkInterface; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HTTPFetchNetworkInterface", function() { return HTTPFetchNetworkInterface; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createNetworkInterface", function() { return createNetworkInterface; });
+/* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! whatwg-fetch */ "../node_modules/whatwg-fetch/fetch.js");
+/* harmony import */ var whatwg_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(whatwg_fetch__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! graphql/language/printer */ "../node_modules/react-apollo/node_modules/graphql/language/printer.js");
+/* harmony import */ var graphql_language_printer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(graphql_language_printer__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _queries_queryTransform__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../queries/queryTransform */ "../node_modules/react-apollo/node_modules/apollo-client/queries/queryTransform.js");
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+
+
+
+function printRequest(request) {
+    return __assign({}, request, { query: Object(graphql_language_printer__WEBPACK_IMPORTED_MODULE_1__["print"])(request.query) });
+}
+var BaseNetworkInterface = (function () {
+    function BaseNetworkInterface(uri, opts) {
+        if (opts === void 0) { opts = {}; }
+        if (!uri) {
+            throw new Error('A remote endpoint is required for a network layer');
+        }
+        if (typeof uri !== 'string') {
+            throw new Error('Remote endpoint must be a string');
+        }
+        this._uri = uri;
+        this._opts = __assign({}, opts);
+        this._middlewares = [];
+        this._afterwares = [];
+    }
+    BaseNetworkInterface.prototype.query = function (request) {
+        return new Promise(function (resolve, reject) {
+            reject(new Error('BaseNetworkInterface should not be used directly'));
+        });
+    };
+    return BaseNetworkInterface;
+}());
+
+var HTTPFetchNetworkInterface = (function (_super) {
+    __extends(HTTPFetchNetworkInterface, _super);
+    function HTTPFetchNetworkInterface() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    HTTPFetchNetworkInterface.prototype.applyMiddlewares = function (requestAndOptions) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var request = requestAndOptions.request, options = requestAndOptions.options;
+            var queue = function (funcs, scope) {
+                var next = function (err) {
+                    if (err) {
+                        reject(err);
+                    }
+                    else if (funcs.length > 0) {
+                        var f = funcs.shift();
+                        if (f) {
+                            f.applyMiddleware.apply(scope, [{ request: request, options: options }, next]);
+                        }
+                    }
+                    else {
+                        resolve({
+                            request: request,
+                            options: options,
+                        });
+                    }
+                };
+                next();
+            };
+            queue(_this._middlewares.slice(), _this);
+        });
+    };
+    HTTPFetchNetworkInterface.prototype.applyAfterwares = function (_a) {
+        var _this = this;
+        var response = _a.response, options = _a.options;
+        return new Promise(function (resolve, reject) {
+            var responseObject = { response: response, options: options };
+            var queue = function (funcs, scope) {
+                var next = function () {
+                    if (funcs.length > 0) {
+                        var f = funcs.shift();
+                        if (f) {
+                            f.applyAfterware.apply(scope, [responseObject, next]);
+                        }
+                    }
+                    else {
+                        resolve(responseObject);
+                    }
+                };
+                next();
+            };
+            queue(_this._afterwares.slice(), _this);
+        });
+    };
+    HTTPFetchNetworkInterface.prototype.fetchFromRemoteEndpoint = function (_a) {
+        var request = _a.request, options = _a.options;
+        return fetch(this._uri, __assign({}, this._opts, { body: JSON.stringify(printRequest(request)), method: 'POST' }, options, { headers: __assign({ Accept: '*/*', 'Content-Type': 'application/json' }, options.headers) }));
+    };
+    HTTPFetchNetworkInterface.prototype.query = function (request) {
+        var _this = this;
+        var options = __assign({}, this._opts);
+        return this.applyMiddlewares({
+            request: request,
+            options: options,
+        })
+            .then(function (rao) {
+            if (rao.request.query) {
+                rao.request.query = Object(_queries_queryTransform__WEBPACK_IMPORTED_MODULE_2__["removeConnectionDirectiveFromDocument"])(rao.request.query);
+            }
+            return rao;
+        })
+            .then(function (rao) { return _this.fetchFromRemoteEndpoint.call(_this, rao); })
+            .then(function (response) {
+            return _this.applyAfterwares({
+                response: response,
+                options: options,
+            });
+        })
+            .then(function (_a) {
+            var response = _a.response;
+            var httpResponse = response;
+            return httpResponse.json().catch(function (error) {
+                var httpError = new Error("Network request failed with status " + response.status + " - \"" + response.statusText + "\"");
+                httpError.response = httpResponse;
+                httpError.parseError = error;
+                throw httpError;
+            });
+        })
+            .then(function (payload) {
+            if (!payload.hasOwnProperty('data') &&
+                !payload.hasOwnProperty('errors')) {
+                throw new Error("Server response was missing for query '" + request.debugName + "'.");
+            }
+            else {
+                return payload;
+            }
+        });
+    };
+    HTTPFetchNetworkInterface.prototype.use = function (middlewares) {
+        var _this = this;
+        middlewares.map(function (middleware) {
+            if (typeof middleware.applyMiddleware === 'function') {
+                _this._middlewares.push(middleware);
+            }
+            else {
+                throw new Error('Middleware must implement the applyMiddleware function');
+            }
+        });
+        return this;
+    };
+    HTTPFetchNetworkInterface.prototype.useAfter = function (afterwares) {
+        var _this = this;
+        afterwares.map(function (afterware) {
+            if (typeof afterware.applyAfterware === 'function') {
+                _this._afterwares.push(afterware);
+            }
+            else {
+                throw new Error('Afterware must implement the applyAfterware function');
+            }
+        });
+        return this;
+    };
+    return HTTPFetchNetworkInterface;
+}(BaseNetworkInterface));
+
+function createNetworkInterface(uriOrInterfaceOpts, secondArgOpts) {
+    if (secondArgOpts === void 0) { secondArgOpts = {}; }
+    if (!uriOrInterfaceOpts) {
+        throw new Error('You must pass an options argument to createNetworkInterface.');
+    }
+    var uri;
+    var opts;
+    if (typeof uriOrInterfaceOpts === 'string') {
+        console.warn("Passing the URI as the first argument to createNetworkInterface is deprecated as of Apollo Client 0.5. Please pass it as the \"uri\" property of the network interface options.");
+        opts = secondArgOpts.opts;
+        uri = uriOrInterfaceOpts;
+    }
+    else {
+        opts = uriOrInterfaceOpts.opts;
+        uri = uriOrInterfaceOpts.uri;
+    }
+    return new HTTPFetchNetworkInterface(uri, opts);
+}
+//# sourceMappingURL=networkInterface.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/Observable.js":
+/*!**********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/Observable.js ***!
+  \**********************************************************************************/
+/*! exports provided: Observable */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Observable", function() { return Observable; });
+/* harmony import */ var symbol_observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! symbol-observable */ "../node_modules/symbol-observable/es/index.js");
+
+function isSubscription(subscription) {
+    return subscription.unsubscribe !== undefined;
+}
+var Observable = (function () {
+    function Observable(subscriberFunction) {
+        this.subscriberFunction = subscriberFunction;
+    }
+    Observable.prototype[symbol_observable__WEBPACK_IMPORTED_MODULE_0__["default"]] = function () {
+        return this;
+    };
+    Observable.prototype.subscribe = function (observer) {
+        var subscriptionOrCleanupFunction = this.subscriberFunction(observer);
+        if (isSubscription(subscriptionOrCleanupFunction)) {
+            return subscriptionOrCleanupFunction;
+        }
+        else {
+            return {
+                unsubscribe: subscriptionOrCleanupFunction,
+            };
+        }
+    };
+    return Observable;
+}());
+
+//# sourceMappingURL=Observable.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/assign.js":
+/*!******************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/assign.js ***!
+  \******************************************************************************/
+/*! exports provided: assign */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "assign", function() { return assign; });
+function assign(target) {
+    var sources = [];
+    for (var _i = 1; _i < arguments.length; _i++) {
+        sources[_i - 1] = arguments[_i];
+    }
+    sources.forEach(function (source) {
+        if (typeof source === 'undefined' || source === null) {
+            return;
+        }
+        Object.keys(source).forEach(function (key) {
+            target[key] = source[key];
+        });
+    });
+    return target;
+}
+//# sourceMappingURL=assign.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/cloneDeep.js":
+/*!*********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/cloneDeep.js ***!
+  \*********************************************************************************/
+/*! exports provided: cloneDeep */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "cloneDeep", function() { return cloneDeep; });
+function cloneDeep(value) {
+    if (Array.isArray(value)) {
+        return value.map(function (item) { return cloneDeep(item); });
+    }
+    if (value !== null && typeof value === 'object') {
+        var nextValue = {};
+        for (var key in value) {
+            if (value.hasOwnProperty(key)) {
+                nextValue[key] = cloneDeep(value[key]);
+            }
+        }
+        return nextValue;
+    }
+    return value;
+}
+//# sourceMappingURL=cloneDeep.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js":
+/*!***********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/environment.js ***!
+  \***********************************************************************************/
+/*! exports provided: getEnv, isEnv, isProduction, isDevelopment, isTest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEnv", function() { return getEnv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEnv", function() { return isEnv; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isProduction", function() { return isProduction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isDevelopment", function() { return isDevelopment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTest", function() { return isTest; });
+function getEnv() {
+    if (typeof process !== 'undefined' && "development") {
+        return "development";
+    }
+    return 'development';
+}
+function isEnv(env) {
+    return getEnv() === env;
+}
+function isProduction() {
+    return isEnv('production') === true;
+}
+function isDevelopment() {
+    return isEnv('development') === true;
+}
+function isTest() {
+    return isEnv('test') === true;
+}
+//# sourceMappingURL=environment.js.map
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../node-libs-browser/node_modules/process/browser.js */ "../node_modules/node-libs-browser/node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/errorHandling.js":
+/*!*************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/errorHandling.js ***!
+  \*************************************************************************************/
+/*! exports provided: tryFunctionOrLogError */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tryFunctionOrLogError", function() { return tryFunctionOrLogError; });
+function tryFunctionOrLogError(f) {
+    try {
+        return f();
+    }
+    catch (e) {
+        if (console.error) {
+            console.error(e);
+        }
+    }
+}
+//# sourceMappingURL=errorHandling.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js":
+/*!*******************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/isEqual.js ***!
+  \*******************************************************************************/
+/*! exports provided: isEqual */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isEqual", function() { return isEqual; });
+function isEqual(a, b) {
+    if (a === b) {
+        return true;
+    }
+    if (a instanceof Date && b instanceof Date) {
+        return a.getTime() === b.getTime();
+    }
+    if (a != null &&
+        typeof a === 'object' &&
+        b != null &&
+        typeof b === 'object') {
+        for (var key in a) {
+            if (Object.prototype.hasOwnProperty.call(a, key)) {
+                if (!Object.prototype.hasOwnProperty.call(b, key)) {
+                    return false;
+                }
+                if (!isEqual(a[key], b[key])) {
+                    return false;
+                }
+            }
+        }
+        for (var key in b) {
+            if (!Object.prototype.hasOwnProperty.call(a, key)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    return false;
+}
+//# sourceMappingURL=isEqual.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/maybeDeepFreeze.js":
+/*!***************************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/maybeDeepFreeze.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return maybeDeepFreeze; });
+/* harmony import */ var _environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+
+function deepFreeze(o) {
+    Object.freeze(o);
+    Object.getOwnPropertyNames(o).forEach(function (prop) {
+        if (o.hasOwnProperty(prop) &&
+            o[prop] !== null &&
+            (typeof o[prop] === 'object' || typeof o[prop] === 'function') &&
+            !Object.isFrozen(o[prop])) {
+            deepFreeze(o[prop]);
+        }
+    });
+    return o;
+}
+function maybeDeepFreeze(obj) {
+    if (Object(_environment__WEBPACK_IMPORTED_MODULE_0__["isDevelopment"])() || Object(_environment__WEBPACK_IMPORTED_MODULE_0__["isTest"])()) {
+        return deepFreeze(obj);
+    }
+    return obj;
+}
+//# sourceMappingURL=maybeDeepFreeze.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/util/warnOnce.js":
+/*!********************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/util/warnOnce.js ***!
+  \********************************************************************************/
+/*! exports provided: warnOnceInDevelopment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "warnOnceInDevelopment", function() { return warnOnceInDevelopment; });
+/* harmony import */ var _environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./environment */ "../node_modules/react-apollo/node_modules/apollo-client/util/environment.js");
+
+var haveWarned = Object.create({});
+function warnOnceInDevelopment(msg, type) {
+    if (type === void 0) { type = 'warn'; }
+    if (Object(_environment__WEBPACK_IMPORTED_MODULE_0__["isProduction"])()) {
+        return;
+    }
+    if (!haveWarned[msg]) {
+        if (!Object(_environment__WEBPACK_IMPORTED_MODULE_0__["isTest"])()) {
+            haveWarned[msg] = true;
+        }
+        switch (type) {
+            case 'error':
+                console.error(msg);
+                break;
+            default:
+                console.warn(msg);
+        }
+    }
+}
+//# sourceMappingURL=warnOnce.js.map
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/apollo-client/version.js":
+/*!**************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/apollo-client/version.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+exports.version = "1.9.3"
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/graphql/language/printer.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/graphql/language/printer.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.print = print;
+
+var _visitor = __webpack_require__(/*! ./visitor */ "../node_modules/react-apollo/node_modules/graphql/language/visitor.js");
+
+/**
+ * Converts an AST into a string, using one set of reasonable
+ * formatting rules.
+ */
+function print(ast) {
+  return (0, _visitor.visit)(ast, { leave: printDocASTReducer });
+} /**
+   *  Copyright (c) 2015, Facebook, Inc.
+   *  All rights reserved.
+   *
+   *  This source code is licensed under the BSD-style license found in the
+   *  LICENSE file in the root directory of this source tree. An additional grant
+   *  of patent rights can be found in the PATENTS file in the same directory.
+   */
+
+var printDocASTReducer = {
+  Name: function Name(node) {
+    return node.value;
+  },
+  Variable: function Variable(node) {
+    return '$' + node.name;
+  },
+
+  // Document
+
+  Document: function Document(node) {
+    return join(node.definitions, '\n\n') + '\n';
+  },
+
+  OperationDefinition: function OperationDefinition(node) {
+    var op = node.operation;
+    var name = node.name;
+    var varDefs = wrap('(', join(node.variableDefinitions, ', '), ')');
+    var directives = join(node.directives, ' ');
+    var selectionSet = node.selectionSet;
+    // Anonymous queries with no directives or variable definitions can use
+    // the query short form.
+    return !name && !directives && !varDefs && op === 'query' ? selectionSet : join([op, join([name, varDefs]), directives, selectionSet], ' ');
+  },
+
+
+  VariableDefinition: function VariableDefinition(_ref) {
+    var variable = _ref.variable,
+        type = _ref.type,
+        defaultValue = _ref.defaultValue;
+    return variable + ': ' + type + wrap(' = ', defaultValue);
+  },
+
+  SelectionSet: function SelectionSet(_ref2) {
+    var selections = _ref2.selections;
+    return block(selections);
+  },
+
+  Field: function Field(_ref3) {
+    var alias = _ref3.alias,
+        name = _ref3.name,
+        args = _ref3.arguments,
+        directives = _ref3.directives,
+        selectionSet = _ref3.selectionSet;
+    return join([wrap('', alias, ': ') + name + wrap('(', join(args, ', '), ')'), join(directives, ' '), selectionSet], ' ');
+  },
+
+  Argument: function Argument(_ref4) {
+    var name = _ref4.name,
+        value = _ref4.value;
+    return name + ': ' + value;
+  },
+
+  // Fragments
+
+  FragmentSpread: function FragmentSpread(_ref5) {
+    var name = _ref5.name,
+        directives = _ref5.directives;
+    return '...' + name + wrap(' ', join(directives, ' '));
+  },
+
+  InlineFragment: function InlineFragment(_ref6) {
+    var typeCondition = _ref6.typeCondition,
+        directives = _ref6.directives,
+        selectionSet = _ref6.selectionSet;
+    return join(['...', wrap('on ', typeCondition), join(directives, ' '), selectionSet], ' ');
+  },
+
+  FragmentDefinition: function FragmentDefinition(_ref7) {
+    var name = _ref7.name,
+        typeCondition = _ref7.typeCondition,
+        directives = _ref7.directives,
+        selectionSet = _ref7.selectionSet;
+    return 'fragment ' + name + ' on ' + typeCondition + ' ' + wrap('', join(directives, ' '), ' ') + selectionSet;
+  },
+
+  // Value
+
+  IntValue: function IntValue(_ref8) {
+    var value = _ref8.value;
+    return value;
+  },
+  FloatValue: function FloatValue(_ref9) {
+    var value = _ref9.value;
+    return value;
+  },
+  StringValue: function StringValue(_ref10) {
+    var value = _ref10.value;
+    return JSON.stringify(value);
+  },
+  BooleanValue: function BooleanValue(_ref11) {
+    var value = _ref11.value;
+    return JSON.stringify(value);
+  },
+  NullValue: function NullValue() {
+    return 'null';
+  },
+  EnumValue: function EnumValue(_ref12) {
+    var value = _ref12.value;
+    return value;
+  },
+  ListValue: function ListValue(_ref13) {
+    var values = _ref13.values;
+    return '[' + join(values, ', ') + ']';
+  },
+  ObjectValue: function ObjectValue(_ref14) {
+    var fields = _ref14.fields;
+    return '{' + join(fields, ', ') + '}';
+  },
+  ObjectField: function ObjectField(_ref15) {
+    var name = _ref15.name,
+        value = _ref15.value;
+    return name + ': ' + value;
+  },
+
+  // Directive
+
+  Directive: function Directive(_ref16) {
+    var name = _ref16.name,
+        args = _ref16.arguments;
+    return '@' + name + wrap('(', join(args, ', '), ')');
+  },
+
+  // Type
+
+  NamedType: function NamedType(_ref17) {
+    var name = _ref17.name;
+    return name;
+  },
+  ListType: function ListType(_ref18) {
+    var type = _ref18.type;
+    return '[' + type + ']';
+  },
+  NonNullType: function NonNullType(_ref19) {
+    var type = _ref19.type;
+    return type + '!';
+  },
+
+  // Type System Definitions
+
+  SchemaDefinition: function SchemaDefinition(_ref20) {
+    var directives = _ref20.directives,
+        operationTypes = _ref20.operationTypes;
+    return join(['schema', join(directives, ' '), block(operationTypes)], ' ');
+  },
+
+  OperationTypeDefinition: function OperationTypeDefinition(_ref21) {
+    var operation = _ref21.operation,
+        type = _ref21.type;
+    return operation + ': ' + type;
+  },
+
+  ScalarTypeDefinition: function ScalarTypeDefinition(_ref22) {
+    var name = _ref22.name,
+        directives = _ref22.directives;
+    return join(['scalar', name, join(directives, ' ')], ' ');
+  },
+
+  ObjectTypeDefinition: function ObjectTypeDefinition(_ref23) {
+    var name = _ref23.name,
+        interfaces = _ref23.interfaces,
+        directives = _ref23.directives,
+        fields = _ref23.fields;
+    return join(['type', name, wrap('implements ', join(interfaces, ', ')), join(directives, ' '), block(fields)], ' ');
+  },
+
+  FieldDefinition: function FieldDefinition(_ref24) {
+    var name = _ref24.name,
+        args = _ref24.arguments,
+        type = _ref24.type,
+        directives = _ref24.directives;
+    return name + wrap('(', join(args, ', '), ')') + ': ' + type + wrap(' ', join(directives, ' '));
+  },
+
+  InputValueDefinition: function InputValueDefinition(_ref25) {
+    var name = _ref25.name,
+        type = _ref25.type,
+        defaultValue = _ref25.defaultValue,
+        directives = _ref25.directives;
+    return join([name + ': ' + type, wrap('= ', defaultValue), join(directives, ' ')], ' ');
+  },
+
+  InterfaceTypeDefinition: function InterfaceTypeDefinition(_ref26) {
+    var name = _ref26.name,
+        directives = _ref26.directives,
+        fields = _ref26.fields;
+    return join(['interface', name, join(directives, ' '), block(fields)], ' ');
+  },
+
+  UnionTypeDefinition: function UnionTypeDefinition(_ref27) {
+    var name = _ref27.name,
+        directives = _ref27.directives,
+        types = _ref27.types;
+    return join(['union', name, join(directives, ' '), '= ' + join(types, ' | ')], ' ');
+  },
+
+  EnumTypeDefinition: function EnumTypeDefinition(_ref28) {
+    var name = _ref28.name,
+        directives = _ref28.directives,
+        values = _ref28.values;
+    return join(['enum', name, join(directives, ' '), block(values)], ' ');
+  },
+
+  EnumValueDefinition: function EnumValueDefinition(_ref29) {
+    var name = _ref29.name,
+        directives = _ref29.directives;
+    return join([name, join(directives, ' ')], ' ');
+  },
+
+  InputObjectTypeDefinition: function InputObjectTypeDefinition(_ref30) {
+    var name = _ref30.name,
+        directives = _ref30.directives,
+        fields = _ref30.fields;
+    return join(['input', name, join(directives, ' '), block(fields)], ' ');
+  },
+
+  TypeExtensionDefinition: function TypeExtensionDefinition(_ref31) {
+    var definition = _ref31.definition;
+    return 'extend ' + definition;
+  },
+
+  DirectiveDefinition: function DirectiveDefinition(_ref32) {
+    var name = _ref32.name,
+        args = _ref32.arguments,
+        locations = _ref32.locations;
+    return 'directive @' + name + wrap('(', join(args, ', '), ')') + ' on ' + join(locations, ' | ');
+  }
+};
+
+/**
+ * Given maybeArray, print an empty string if it is null or empty, otherwise
+ * print all items together separated by separator if provided
+ */
+function join(maybeArray, separator) {
+  return maybeArray ? maybeArray.filter(function (x) {
+    return x;
+  }).join(separator || '') : '';
+}
+
+/**
+ * Given array, print each item on its own line, wrapped in an
+ * indented "{ }" block.
+ */
+function block(array) {
+  return array && array.length !== 0 ? indent('{\n' + join(array, '\n')) + '\n}' : '{}';
+}
+
+/**
+ * If maybeString is not null or empty, then wrap with start and end, otherwise
+ * print an empty string.
+ */
+function wrap(start, maybeString, end) {
+  return maybeString ? start + maybeString + (end || '') : '';
+}
+
+function indent(maybeString) {
+  return maybeString && maybeString.replace(/\n/g, '\n  ');
+}
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/node_modules/graphql/language/visitor.js":
+/*!*****************************************************************************!*\
+  !*** ../node_modules/react-apollo/node_modules/graphql/language/visitor.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.visit = visit;
+exports.visitInParallel = visitInParallel;
+exports.visitWithTypeInfo = visitWithTypeInfo;
+exports.getVisitFn = getVisitFn;
+/**
+ *  Copyright (c) 2015, Facebook, Inc.
+ *  All rights reserved.
+ *
+ *  This source code is licensed under the BSD-style license found in the
+ *  LICENSE file in the root directory of this source tree. An additional grant
+ *  of patent rights can be found in the PATENTS file in the same directory.
+ */
+
+var QueryDocumentKeys = exports.QueryDocumentKeys = {
+  Name: [],
+
+  Document: ['definitions'],
+  OperationDefinition: ['name', 'variableDefinitions', 'directives', 'selectionSet'],
+  VariableDefinition: ['variable', 'type', 'defaultValue'],
+  Variable: ['name'],
+  SelectionSet: ['selections'],
+  Field: ['alias', 'name', 'arguments', 'directives', 'selectionSet'],
+  Argument: ['name', 'value'],
+
+  FragmentSpread: ['name', 'directives'],
+  InlineFragment: ['typeCondition', 'directives', 'selectionSet'],
+  FragmentDefinition: ['name', 'typeCondition', 'directives', 'selectionSet'],
+
+  IntValue: [],
+  FloatValue: [],
+  StringValue: [],
+  BooleanValue: [],
+  NullValue: [],
+  EnumValue: [],
+  ListValue: ['values'],
+  ObjectValue: ['fields'],
+  ObjectField: ['name', 'value'],
+
+  Directive: ['name', 'arguments'],
+
+  NamedType: ['name'],
+  ListType: ['type'],
+  NonNullType: ['type'],
+
+  SchemaDefinition: ['directives', 'operationTypes'],
+  OperationTypeDefinition: ['type'],
+
+  ScalarTypeDefinition: ['name', 'directives'],
+  ObjectTypeDefinition: ['name', 'interfaces', 'directives', 'fields'],
+  FieldDefinition: ['name', 'arguments', 'type', 'directives'],
+  InputValueDefinition: ['name', 'type', 'defaultValue', 'directives'],
+  InterfaceTypeDefinition: ['name', 'directives', 'fields'],
+  UnionTypeDefinition: ['name', 'directives', 'types'],
+  EnumTypeDefinition: ['name', 'directives', 'values'],
+  EnumValueDefinition: ['name', 'directives'],
+  InputObjectTypeDefinition: ['name', 'directives', 'fields'],
+
+  TypeExtensionDefinition: ['definition'],
+
+  DirectiveDefinition: ['name', 'arguments', 'locations']
+};
+
+var BREAK = exports.BREAK = {};
+
+/**
+ * visit() will walk through an AST using a depth first traversal, calling
+ * the visitor's enter function at each node in the traversal, and calling the
+ * leave function after visiting that node and all of its child nodes.
+ *
+ * By returning different values from the enter and leave functions, the
+ * behavior of the visitor can be altered, including skipping over a sub-tree of
+ * the AST (by returning false), editing the AST by returning a value or null
+ * to remove the value, or to stop the whole traversal by returning BREAK.
+ *
+ * When using visit() to edit an AST, the original AST will not be modified, and
+ * a new version of the AST with the changes applied will be returned from the
+ * visit function.
+ *
+ *     const editedAST = visit(ast, {
+ *       enter(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: skip visiting this node
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       },
+ *       leave(node, key, parent, path, ancestors) {
+ *         // @return
+ *         //   undefined: no action
+ *         //   false: no action
+ *         //   visitor.BREAK: stop visiting altogether
+ *         //   null: delete this node
+ *         //   any value: replace this node with the returned value
+ *       }
+ *     });
+ *
+ * Alternatively to providing enter() and leave() functions, a visitor can
+ * instead provide functions named the same as the kinds of AST nodes, or
+ * enter/leave visitors at a named key, leading to four permutations of
+ * visitor API:
+ *
+ * 1) Named visitors triggered when entering a node a specific kind.
+ *
+ *     visit(ast, {
+ *       Kind(node) {
+ *         // enter the "Kind" node
+ *       }
+ *     })
+ *
+ * 2) Named visitors that trigger upon entering and leaving a node of
+ *    a specific kind.
+ *
+ *     visit(ast, {
+ *       Kind: {
+ *         enter(node) {
+ *           // enter the "Kind" node
+ *         }
+ *         leave(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
+ *
+ * 3) Generic visitors that trigger upon entering and leaving any node.
+ *
+ *     visit(ast, {
+ *       enter(node) {
+ *         // enter any node
+ *       },
+ *       leave(node) {
+ *         // leave any node
+ *       }
+ *     })
+ *
+ * 4) Parallel visitors for entering and leaving nodes of a specific kind.
+ *
+ *     visit(ast, {
+ *       enter: {
+ *         Kind(node) {
+ *           // enter the "Kind" node
+ *         }
+ *       },
+ *       leave: {
+ *         Kind(node) {
+ *           // leave the "Kind" node
+ *         }
+ *       }
+ *     })
+ */
+function visit(root, visitor, keyMap) {
+  var visitorKeys = keyMap || QueryDocumentKeys;
+
+  var stack = void 0;
+  var inArray = Array.isArray(root);
+  var keys = [root];
+  var index = -1;
+  var edits = [];
+  var parent = void 0;
+  var path = [];
+  var ancestors = [];
+  var newRoot = root;
+
+  do {
+    index++;
+    var isLeaving = index === keys.length;
+    var key = void 0;
+    var node = void 0;
+    var isEdited = isLeaving && edits.length !== 0;
+    if (isLeaving) {
+      key = ancestors.length === 0 ? undefined : path.pop();
+      node = parent;
+      parent = ancestors.pop();
+      if (isEdited) {
+        if (inArray) {
+          node = node.slice();
+        } else {
+          var clone = {};
+          for (var k in node) {
+            if (node.hasOwnProperty(k)) {
+              clone[k] = node[k];
+            }
+          }
+          node = clone;
+        }
+        var editOffset = 0;
+        for (var ii = 0; ii < edits.length; ii++) {
+          var editKey = edits[ii][0];
+          var editValue = edits[ii][1];
+          if (inArray) {
+            editKey -= editOffset;
+          }
+          if (inArray && editValue === null) {
+            node.splice(editKey, 1);
+            editOffset++;
+          } else {
+            node[editKey] = editValue;
+          }
+        }
+      }
+      index = stack.index;
+      keys = stack.keys;
+      edits = stack.edits;
+      inArray = stack.inArray;
+      stack = stack.prev;
+    } else {
+      key = parent ? inArray ? index : keys[index] : undefined;
+      node = parent ? parent[key] : newRoot;
+      if (node === null || node === undefined) {
+        continue;
+      }
+      if (parent) {
+        path.push(key);
+      }
+    }
+
+    var result = void 0;
+    if (!Array.isArray(node)) {
+      if (!isNode(node)) {
+        throw new Error('Invalid AST Node: ' + JSON.stringify(node));
+      }
+      var visitFn = getVisitFn(visitor, node.kind, isLeaving);
+      if (visitFn) {
+        result = visitFn.call(visitor, node, key, parent, path, ancestors);
+
+        if (result === BREAK) {
+          break;
+        }
+
+        if (result === false) {
+          if (!isLeaving) {
+            path.pop();
+            continue;
+          }
+        } else if (result !== undefined) {
+          edits.push([key, result]);
+          if (!isLeaving) {
+            if (isNode(result)) {
+              node = result;
+            } else {
+              path.pop();
+              continue;
+            }
+          }
+        }
+      }
+    }
+
+    if (result === undefined && isEdited) {
+      edits.push([key, node]);
+    }
+
+    if (!isLeaving) {
+      stack = { inArray: inArray, index: index, keys: keys, edits: edits, prev: stack };
+      inArray = Array.isArray(node);
+      keys = inArray ? node : visitorKeys[node.kind] || [];
+      index = -1;
+      edits = [];
+      if (parent) {
+        ancestors.push(parent);
+      }
+      parent = node;
+    }
+  } while (stack !== undefined);
+
+  if (edits.length !== 0) {
+    newRoot = edits[edits.length - 1][1];
+  }
+
+  return newRoot;
+}
+
+function isNode(maybeNode) {
+  return maybeNode && typeof maybeNode.kind === 'string';
+}
+
+/**
+ * Creates a new visitor instance which delegates to many visitors to run in
+ * parallel. Each visitor will be visited for each node before moving on.
+ *
+ * If a prior visitor edits a node, no following visitors will see that node.
+ */
+function visitInParallel(visitors) {
+  var skipping = new Array(visitors.length);
+
+  return {
+    enter: function enter(node) {
+      for (var i = 0; i < visitors.length; i++) {
+        if (!skipping[i]) {
+          var fn = getVisitFn(visitors[i], node.kind, /* isLeaving */false);
+          if (fn) {
+            var result = fn.apply(visitors[i], arguments);
+            if (result === false) {
+              skipping[i] = node;
+            } else if (result === BREAK) {
+              skipping[i] = BREAK;
+            } else if (result !== undefined) {
+              return result;
+            }
+          }
+        }
+      }
+    },
+    leave: function leave(node) {
+      for (var i = 0; i < visitors.length; i++) {
+        if (!skipping[i]) {
+          var fn = getVisitFn(visitors[i], node.kind, /* isLeaving */true);
+          if (fn) {
+            var result = fn.apply(visitors[i], arguments);
+            if (result === BREAK) {
+              skipping[i] = BREAK;
+            } else if (result !== undefined && result !== false) {
+              return result;
+            }
+          }
+        } else if (skipping[i] === node) {
+          skipping[i] = null;
+        }
+      }
+    }
+  };
+}
+
+/**
+ * Creates a new visitor instance which maintains a provided TypeInfo instance
+ * along with visiting visitor.
+ */
+function visitWithTypeInfo(typeInfo, visitor) {
+  return {
+    enter: function enter(node) {
+      typeInfo.enter(node);
+      var fn = getVisitFn(visitor, node.kind, /* isLeaving */false);
+      if (fn) {
+        var result = fn.apply(visitor, arguments);
+        if (result !== undefined) {
+          typeInfo.leave(node);
+          if (isNode(result)) {
+            typeInfo.enter(result);
+          }
+        }
+        return result;
+      }
+    },
+    leave: function leave(node) {
+      var fn = getVisitFn(visitor, node.kind, /* isLeaving */true);
+      var result = void 0;
+      if (fn) {
+        result = fn.apply(visitor, arguments);
+      }
+      typeInfo.leave(node);
+      return result;
+    }
+  };
+}
+
+/**
+ * Given a visitor instance, if it is leaving or not, and a node kind, return
+ * the function the visitor runtime should call.
+ */
+function getVisitFn(visitor, kind, isLeaving) {
+  var kindVisitor = visitor[kind];
+  if (kindVisitor) {
+    if (!isLeaving && typeof kindVisitor === 'function') {
+      // { Kind() {} }
+      return kindVisitor;
+    }
+    var kindSpecificVisitor = isLeaving ? kindVisitor.leave : kindVisitor.enter;
+    if (typeof kindSpecificVisitor === 'function') {
+      // { Kind: { enter() {}, leave() {} } }
+      return kindSpecificVisitor;
+    }
+  } else {
+    var specificVisitor = isLeaving ? visitor.leave : visitor.enter;
+    if (specificVisitor) {
+      if (typeof specificVisitor === 'function') {
+        // { enter() {}, leave() {} }
+        return specificVisitor;
+      }
+      var specificKindVisitor = specificVisitor[kind];
+      if (typeof specificKindVisitor === 'function') {
+        // { enter: { Kind() {} }, leave: { Kind() {} } }
+        return specificKindVisitor;
+      }
+    }
+  }
+}
+
+/***/ }),
+
+/***/ "../node_modules/react-apollo/react-apollo.browser.umd.js":
+/*!****************************************************************!*\
+  !*** ../node_modules/react-apollo/react-apollo.browser.umd.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+	 true ? factory(exports, __webpack_require__(/*! react */ "react"), __webpack_require__(/*! prop-types */ "../node_modules/prop-types/index.js"), __webpack_require__(/*! redux */ "../node_modules/redux/es/index.js"), __webpack_require__(/*! apollo-client */ "../node_modules/react-apollo/node_modules/apollo-client/index.js"), __webpack_require__(/*! graphql-tag */ "../node_modules/graphql-tag/src/index.js")) :
+	undefined;
+}(this, (function (exports,React,PropTypes,redux,apolloClient,graphqlTag) { 'use strict';
+
+graphqlTag = graphqlTag && graphqlTag.hasOwnProperty('default') ? graphqlTag['default'] : graphqlTag;
+
+var __assign = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __rest = (undefined && undefined.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) if (e.indexOf(p[i]) < 0)
+            t[p[i]] = s[p[i]];
+    return t;
+};
+var ObservableQueryRecycler = (function () {
+    function ObservableQueryRecycler() {
+        this.observableQueries = [];
+    }
+    ObservableQueryRecycler.prototype.recycle = function (observableQuery) {
+        observableQuery.setOptions({
+            fetchPolicy: 'standby',
+            pollInterval: 0,
+            fetchResults: false,
+        });
+        this.observableQueries.push({
+            observableQuery: observableQuery,
+            subscription: observableQuery.subscribe({}),
+        });
+    };
+    ObservableQueryRecycler.prototype.reuse = function (options) {
+        if (this.observableQueries.length <= 0) {
+            return null;
+        }
+        var _a = this.observableQueries.pop(), observableQuery = _a.observableQuery, subscription = _a.subscription;
+        subscription.unsubscribe();
+        var ssr = options.ssr, skip = options.skip, client = options.client, modifiableOpts = __rest(options, ["ssr", "skip", "client"]);
+        observableQuery.setOptions(__assign({}, modifiableOpts, { pollInterval: options.pollInterval, fetchPolicy: options.fetchPolicy }));
+        return observableQuery;
+    };
+    return ObservableQueryRecycler;
+}());
+
+var __extends$1 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var QueryRecyclerProvider = (function (_super) {
+    __extends$1(QueryRecyclerProvider, _super);
+    function QueryRecyclerProvider(props) {
+        var _this = _super.call(this, props) || this;
+        _this.recyclers = new WeakMap();
+        _this.getQueryRecycler = _this.getQueryRecycler.bind(_this);
+        return _this;
+    }
+    QueryRecyclerProvider.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
+        if (this.context.client !== nextContext.client) {
+            this.recyclers = new WeakMap();
+        }
+    };
+    QueryRecyclerProvider.prototype.getQueryRecycler = function (component) {
+        if (!this.recyclers.has(component)) {
+            this.recyclers.set(component, new ObservableQueryRecycler());
+        }
+        return this.recyclers.get(component);
+    };
+    QueryRecyclerProvider.prototype.getChildContext = function () {
+        return ({
+            getQueryRecycler: this.getQueryRecycler
+        });
+    };
+    QueryRecyclerProvider.prototype.render = function () {
+        return React.Children.only(this.props.children);
+    };
+    QueryRecyclerProvider.propTypes = {
+        children: PropTypes.element.isRequired
+    };
+    QueryRecyclerProvider.contextTypes = {
+        client: PropTypes.object
+    };
+    QueryRecyclerProvider.childContextTypes = {
+        getQueryRecycler: PropTypes.func.isRequired
+    };
+    return QueryRecyclerProvider;
+}(React.Component));
+
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var invariant = __webpack_require__(/*! invariant */ "../node_modules/invariant/browser.js");
+var ApolloProvider = (function (_super) {
+    __extends(ApolloProvider, _super);
+    function ApolloProvider(props, context) {
+        var _this = _super.call(this, props, context) || this;
+        invariant(props.client, 'ApolloClient was not passed a client instance. Make ' +
+            'sure you pass in your client via the "client" prop.');
+        if (!props.store && typeof props.client.initStore === 'function') {
+            props.client.initStore();
+        }
+        return _this;
+    }
+    ApolloProvider.prototype.componentWillReceiveProps = function (nextProps) {
+        if (nextProps.client !== this.props.client &&
+            !nextProps.store &&
+            typeof nextProps.client.initStore === 'function') {
+            nextProps.client.initStore();
+        }
+    };
+    ApolloProvider.prototype.getChildContext = function () {
+        return {
+            store: this.props.store || this.context.store,
+            client: this.props.client,
+        };
+    };
+    ApolloProvider.prototype.render = function () {
+        return (React.createElement(QueryRecyclerProvider, null, React.Children.only(this.props.children)));
+    };
+    ApolloProvider.propTypes = {
+        store: PropTypes.shape({
+            subscribe: PropTypes.func.isRequired,
+            dispatch: PropTypes.func.isRequired,
+            getState: PropTypes.func.isRequired,
+        }),
+        client: PropTypes.object.isRequired,
+        children: PropTypes.element.isRequired,
+    };
+    ApolloProvider.childContextTypes = {
+        store: PropTypes.object,
+        client: PropTypes.object.isRequired,
+    };
+    ApolloProvider.contextTypes = {
+        store: PropTypes.object,
+    };
+    return ApolloProvider;
+}(React.Component));
+
+function shallowEqual(objA, objB) {
+    if (!objA || !objB)
+        return false;
+    if (objA === objB)
+        return true;
+    var keysA = Object.keys(objA);
+    var keysB = Object.keys(objB);
+    if (keysA.length !== keysB.length)
+        return false;
+    var hasOwn = Object.prototype.hasOwnProperty;
+    for (var i = 0; i < keysA.length; i++) {
+        if (!hasOwn.call(objB, keysA[i]) || objA[keysA[i]] !== objB[keysA[i]]) {
+            return false;
+        }
+    }
+    return true;
+}
+
+var invariant$2 = __webpack_require__(/*! invariant */ "../node_modules/invariant/browser.js");
+var DocumentType;
+(function (DocumentType) {
+    DocumentType[DocumentType["Query"] = 0] = "Query";
+    DocumentType[DocumentType["Mutation"] = 1] = "Mutation";
+    DocumentType[DocumentType["Subscription"] = 2] = "Subscription";
+})(DocumentType || (DocumentType = {}));
+function parser(document) {
+    var variables, type, name;
+    invariant$2(!!document && !!document.kind, "Argument of " + document + " passed to parser was not a valid GraphQL DocumentNode. You may need to use 'graphql-tag' or another method to convert your operation into a document");
+    var fragments = document.definitions.filter(function (x) { return x.kind === 'FragmentDefinition'; });
+    var queries = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'query';
+    });
+    var mutations = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'mutation';
+    });
+    var subscriptions = document.definitions.filter(function (x) {
+        return x.kind === 'OperationDefinition' && x.operation === 'subscription';
+    });
+    invariant$2(!fragments.length ||
+        (queries.length || mutations.length || subscriptions.length), "Passing only a fragment to 'graphql' is not yet supported. You must include a query, subscription or mutation as well");
+    invariant$2(queries.length + mutations.length + subscriptions.length <= 1, "react-apollo only supports a query, subscription, or a mutation per HOC. " + document + " had " + queries.length + " queries, " + subscriptions.length + " subscriptions and " + mutations.length + " mutations. You can use 'compose' to join multiple operation types to a component");
+    type = queries.length ? DocumentType.Query : DocumentType.Mutation;
+    if (!queries.length && !mutations.length)
+        type = DocumentType.Subscription;
+    var definitions = queries.length
+        ? queries
+        : mutations.length ? mutations : subscriptions;
+    invariant$2(definitions.length === 1, "react-apollo only supports one defintion per HOC. " + document + " had " + definitions.length + " definitions. You can use 'compose' to join multiple operation types to a component");
+    var definition = definitions[0];
+    variables = definition.variableDefinitions || [];
+    var hasName = definition.name && definition.name.kind === 'Name';
+    name = hasName ? definition.name.value : 'data';
+    return { name: name, type: type, variables: variables };
+}
+
+var __extends$2 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign$1 = (undefined && undefined.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var pick = __webpack_require__(/*! lodash.pick */ "../node_modules/lodash.pick/index.js");
+var invariant$1 = __webpack_require__(/*! invariant */ "../node_modules/invariant/browser.js");
+var assign = __webpack_require__(/*! object-assign */ "../node_modules/object-assign/index.js");
+var hoistNonReactStatics = __webpack_require__(/*! hoist-non-react-statics */ "../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+var defaultMapPropsToOptions = function (props) { return ({}); };
+var defaultMapResultToProps = function (props) { return props; };
+var defaultMapPropsToSkip = function (props) { return false; };
+function observableQueryFields(observable) {
+    var fields = pick(observable, 'variables', 'refetch', 'fetchMore', 'updateQuery', 'startPolling', 'stopPolling', 'subscribeToMore');
+    Object.keys(fields).forEach(function (key) {
+        if (typeof fields[key] === 'function') {
+            fields[key] = fields[key].bind(observable);
+        }
+    });
+    return fields;
+}
+function getDisplayName(WrappedComponent) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+var nextVersion = 0;
+function graphql(document, operationOptions) {
+    if (operationOptions === void 0) { operationOptions = {}; }
+    var _a = operationOptions.options, options = _a === void 0 ? defaultMapPropsToOptions : _a, _b = operationOptions.skip, skip = _b === void 0 ? defaultMapPropsToSkip : _b, _c = operationOptions.alias, alias = _c === void 0 ? 'Apollo' : _c;
+    var mapPropsToOptions = options;
+    if (typeof mapPropsToOptions !== 'function')
+        mapPropsToOptions = function () { return options; };
+    var mapPropsToSkip = skip;
+    if (typeof mapPropsToSkip !== 'function')
+        mapPropsToSkip = function () { return skip; };
+    var mapResultToProps = operationOptions.props;
+    var operation = parser(document);
+    var version = nextVersion++;
+    function wrapWithApolloComponent(WrappedComponent) {
+        var graphQLDisplayName = alias + "(" + getDisplayName(WrappedComponent) + ")";
+        var GraphQL = (function (_super) {
+            __extends$2(GraphQL, _super);
+            function GraphQL(props, context) {
+                var _this = _super.call(this, props, context) || this;
+                _this.previousData = {};
+                _this.version = version;
+                _this.type = operation.type;
+                _this.dataForChildViaMutation = _this.dataForChildViaMutation.bind(_this);
+                _this.setWrappedInstance = _this.setWrappedInstance.bind(_this);
+                return _this;
+            }
+            GraphQL.prototype.componentWillMount = function () {
+                if (!this.shouldSkip(this.props)) {
+                    this.setInitialProps();
+                }
+            };
+            GraphQL.prototype.componentDidMount = function () {
+                this.hasMounted = true;
+                if (this.type === DocumentType.Mutation)
+                    return;
+                if (!this.shouldSkip(this.props)) {
+                    this.subscribeToQuery();
+                    if (this.refetcherQueue) {
+                        var _a = this.refetcherQueue, args = _a.args, resolve = _a.resolve, reject = _a.reject;
+                        this.queryObservable.refetch(args).then(resolve).catch(reject);
+                    }
+                }
+            };
+            GraphQL.prototype.componentWillReceiveProps = function (nextProps, nextContext) {
+                var client = mapPropsToOptions(nextProps).client;
+                if (shallowEqual(this.props, nextProps) &&
+                    (this.client === client || this.client === nextContext.client)) {
+                    return;
+                }
+                this.shouldRerender = true;
+                if (this.client !== client && this.client !== nextContext.client) {
+                    if (client) {
+                        this.client = client;
+                    }
+                    else {
+                        this.client = nextContext.client;
+                    }
+                    this.unsubscribeFromQuery();
+                    this.queryObservable = null;
+                    this.previousData = {};
+                    this.updateQuery(nextProps);
+                    if (!this.shouldSkip(nextProps)) {
+                        this.subscribeToQuery();
+                    }
+                    return;
+                }
+                if (this.type === DocumentType.Mutation) {
+                    return;
+                }
+                if (this.type === DocumentType.Subscription &&
+                    operationOptions.shouldResubscribe &&
+                    operationOptions.shouldResubscribe(this.props, nextProps)) {
+                    this.unsubscribeFromQuery();
+                    delete this.queryObservable;
+                    this.updateQuery(nextProps);
+                    this.subscribeToQuery();
+                    return;
+                }
+                if (this.shouldSkip(nextProps)) {
+                    if (!this.shouldSkip(this.props)) {
+                        this.unsubscribeFromQuery();
+                    }
+                    return;
+                }
+                this.updateQuery(nextProps);
+                this.subscribeToQuery();
+            };
+            GraphQL.prototype.componentWillUnmount = function () {
+                if (this.type === DocumentType.Query) {
+                    if (this.queryObservable) {
+                        var recycler = this.getQueryRecycler();
+                        if (recycler) {
+                            recycler.recycle(this.queryObservable);
+                            delete this.queryObservable;
+                        }
+                    }
+                    this.unsubscribeFromQuery();
+                }
+                if (this.type === DocumentType.Subscription)
+                    this.unsubscribeFromQuery();
+                this.hasMounted = false;
+            };
+            GraphQL.prototype.getQueryRecycler = function () {
+                return (this.context.getQueryRecycler &&
+                    this.context.getQueryRecycler(GraphQL));
+            };
+            GraphQL.prototype.getClient = function (props) {
+                if (this.client)
+                    return this.client;
+                var client = mapPropsToOptions(props).client;
+                if (client) {
+                    this.client = client;
+                }
+                else {
+                    this.client = this.context.client;
+                }
+                invariant$1(!!this.client, "Could not find \"client\" in the context of " +
+                    ("\"" + graphQLDisplayName + "\". ") +
+                    "Wrap the root component in an <ApolloProvider>");
+                return this.client;
+            };
+            GraphQL.prototype.calculateOptions = function (props, newOpts) {
+                if (props === void 0) { props = this.props; }
+                var opts = mapPropsToOptions(props);
+                if (newOpts && newOpts.variables) {
+                    newOpts.variables = assign({}, opts.variables, newOpts.variables);
+                }
+                if (newOpts)
+                    opts = assign({}, opts, newOpts);
+                if (opts.variables || !operation.variables.length)
+                    return opts;
+                var variables = {};
+                for (var _i = 0, _a = operation.variables; _i < _a.length; _i++) {
+                    var _b = _a[_i], variable = _b.variable, type = _b.type;
+                    if (!variable.name || !variable.name.value)
+                        continue;
+                    if (typeof props[variable.name.value] !== 'undefined') {
+                        variables[variable.name.value] = props[variable.name.value];
+                        continue;
+                    }
+                    if (type.kind !== 'NonNullType') {
+                        variables[variable.name.value] = null;
+                        continue;
+                    }
+                    invariant$1(typeof props[variable.name.value] !== 'undefined', "The operation '" + operation.name + "' wrapping '" + getDisplayName(WrappedComponent) + "' " +
+                        ("is expecting a variable: '" + variable.name
+                            .value + "' but it was not found in the props ") +
+                        ("passed to '" + graphQLDisplayName + "'"));
+                }
+                opts = __assign$1({}, opts, { variables: variables });
+                return opts;
+            };
+            GraphQL.prototype.calculateResultProps = function (result) {
+                var name = this.type === DocumentType.Mutation ? 'mutate' : 'data';
+                if (operationOptions.name)
+                    name = operationOptions.name;
+                var newResult = (_a = {},
+                    _a[name] = result,
+                    _a.ownProps = this.props,
+                    _a);
+                if (mapResultToProps)
+                    return mapResultToProps(newResult);
+                return _b = {}, _b[name] = defaultMapResultToProps(result), _b;
+                var _a, _b;
+            };
+            GraphQL.prototype.setInitialProps = function () {
+                if (this.type === DocumentType.Mutation) {
+                    return;
+                }
+                var opts = this.calculateOptions(this.props);
+                this.createQuery(opts);
+            };
+            GraphQL.prototype.createQuery = function (opts, props) {
+                if (props === void 0) { props = this.props; }
+                if (this.type === DocumentType.Subscription) {
+                    this.queryObservable = this.getClient(props).subscribe(assign({
+                        query: document,
+                    }, opts));
+                }
+                else {
+                    var recycler = this.getQueryRecycler();
+                    var queryObservable = null;
+                    if (recycler)
+                        queryObservable = recycler.reuse(opts);
+                    if (queryObservable === null) {
+                        this.queryObservable = this.getClient(props).watchQuery(assign({
+                            query: document,
+                            metadata: {
+                                reactComponent: {
+                                    displayName: graphQLDisplayName,
+                                },
+                            },
+                        }, opts));
+                    }
+                    else {
+                        this.queryObservable = queryObservable;
+                    }
+                }
+            };
+            GraphQL.prototype.updateQuery = function (props) {
+                var opts = this.calculateOptions(props);
+                if (!this.queryObservable) {
+                    this.createQuery(opts, props);
+                }
+                if (this.queryObservable._setOptionsNoResult) {
+                    this.queryObservable._setOptionsNoResult(opts);
+                }
+                else {
+                    if (this.queryObservable.setOptions) {
+                        this.queryObservable
+                            .setOptions(opts)
+                            .catch(function (error) { return null; });
+                    }
+                }
+            };
+            GraphQL.prototype.fetchData = function () {
+                if (this.shouldSkip())
+                    return false;
+                if (operation.type === DocumentType.Mutation ||
+                    operation.type === DocumentType.Subscription)
+                    return false;
+                var opts = this.calculateOptions();
+                if (opts.ssr === false)
+                    return false;
+                if (opts.fetchPolicy === 'network-only' ||
+                    opts.fetchPolicy === 'cache-and-network') {
+                    opts.fetchPolicy = 'cache-first';
+                }
+                var observable = this.getClient(this.props).watchQuery(assign({ query: document }, opts));
+                var result = observable.currentResult();
+                if (result.loading) {
+                    return observable.result();
+                }
+                else {
+                    return false;
+                }
+            };
+            GraphQL.prototype.subscribeToQuery = function () {
+                var _this = this;
+                if (this.querySubscription) {
+                    return;
+                }
+                var next = function (results) {
+                    if (_this.type === DocumentType.Subscription) {
+                        _this.lastSubscriptionData = results;
+                        results = { data: results };
+                    }
+                    var clashingKeys = Object.keys(observableQueryFields(results.data));
+                    invariant$1(clashingKeys.length === 0, "the result of the '" + graphQLDisplayName + "' operation contains keys that " +
+                        "conflict with the return object." +
+                        clashingKeys.map(function (k) { return "'" + k + "'"; }).join(', ') +
+                        " not allowed.");
+                    _this.forceRenderChildren();
+                };
+                var handleError = function (error) {
+                    if (error.hasOwnProperty('graphQLErrors'))
+                        return next({ error: error });
+                    throw error;
+                };
+                this.querySubscription = this.queryObservable.subscribe({
+                    next: next,
+                    error: handleError,
+                });
+            };
+            GraphQL.prototype.unsubscribeFromQuery = function () {
+                if (this.querySubscription) {
+                    this.querySubscription.unsubscribe();
+                    delete this.querySubscription;
+                }
+            };
+            GraphQL.prototype.shouldSkip = function (props) {
+                if (props === void 0) { props = this.props; }
+                return (mapPropsToSkip(props) || mapPropsToOptions(props).skip);
+            };
+            GraphQL.prototype.forceRenderChildren = function () {
+                this.shouldRerender = true;
+                if (this.hasMounted)
+                    this.forceUpdate();
+            };
+            GraphQL.prototype.getWrappedInstance = function () {
+                invariant$1(operationOptions.withRef, "To access the wrapped instance, you need to specify " +
+                    "{ withRef: true } in the options");
+                return this.wrappedInstance;
+            };
+            GraphQL.prototype.setWrappedInstance = function (ref) {
+                this.wrappedInstance = ref;
+            };
+            GraphQL.prototype.dataForChildViaMutation = function (mutationOpts) {
+                var opts = this.calculateOptions(this.props, mutationOpts);
+                if (typeof opts.variables === 'undefined')
+                    delete opts.variables;
+                opts.mutation = document;
+                return this.getClient(this.props).mutate(opts);
+            };
+            GraphQL.prototype.dataForChild = function () {
+                var _this = this;
+                if (this.type === DocumentType.Mutation) {
+                    return this.dataForChildViaMutation;
+                }
+                var opts = this.calculateOptions(this.props);
+                var data = {};
+                assign(data, observableQueryFields(this.queryObservable));
+                if (this.type === DocumentType.Subscription) {
+                    assign(data, {
+                        loading: !this.lastSubscriptionData,
+                        variables: opts.variables,
+                    }, this.lastSubscriptionData);
+                }
+                else {
+                    var currentResult = this.queryObservable.currentResult();
+                    var loading = currentResult.loading, error_1 = currentResult.error, networkStatus = currentResult.networkStatus;
+                    assign(data, { loading: loading, networkStatus: networkStatus });
+                    var logErrorTimeoutId_1 = setTimeout(function () {
+                        if (error_1) {
+                            console.error('Unhandled (in react-apollo)', error_1.stack || error_1);
+                        }
+                    }, 10);
+                    Object.defineProperty(data, 'error', {
+                        configurable: true,
+                        enumerable: true,
+                        get: function () {
+                            clearTimeout(logErrorTimeoutId_1);
+                            return error_1;
+                        },
+                    });
+                    if (loading) {
+                        assign(data, this.previousData, currentResult.data);
+                    }
+                    else if (error_1) {
+                        assign(data, (this.queryObservable.getLastResult() || {}).data);
+                    }
+                    else {
+                        assign(data, currentResult.data);
+                        this.previousData = currentResult.data;
+                    }
+                    if (!this.querySubscription) {
+                        data.refetch = function (args) {
+                            return new Promise(function (r, f) {
+                                _this.refetcherQueue = { resolve: r, reject: f, args: args };
+                            });
+                        };
+                    }
+                }
+                return data;
+            };
+            GraphQL.prototype.render = function () {
+                if (this.shouldSkip()) {
+                    if (operationOptions.withRef) {
+                        return React.createElement(WrappedComponent, assign({}, this.props, { ref: this.setWrappedInstance }));
+                    }
+                    return React.createElement(WrappedComponent, this.props);
+                }
+                var _a = this, shouldRerender = _a.shouldRerender, renderedElement = _a.renderedElement, props = _a.props;
+                this.shouldRerender = false;
+                if (!shouldRerender &&
+                    renderedElement &&
+                    renderedElement.type === WrappedComponent) {
+                    return renderedElement;
+                }
+                var data = this.dataForChild();
+                var clientProps = this.calculateResultProps(data);
+                var mergedPropsAndData = assign({}, props, clientProps);
+                if (operationOptions.withRef)
+                    mergedPropsAndData.ref = this.setWrappedInstance;
+                this.renderedElement = React.createElement(WrappedComponent, mergedPropsAndData);
+                return this.renderedElement;
+            };
+            GraphQL.displayName = graphQLDisplayName;
+            GraphQL.WrappedComponent = WrappedComponent;
+            GraphQL.contextTypes = {
+                client: PropTypes.object,
+                getQueryRecycler: PropTypes.func,
+            };
+            return GraphQL;
+        }(React.Component));
+        return hoistNonReactStatics(GraphQL, WrappedComponent, {});
+    }
+    return wrapWithApolloComponent;
+}
+
+var __extends$3 = (undefined && undefined.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var invariant$3 = __webpack_require__(/*! invariant */ "../node_modules/invariant/browser.js");
+var assign$1 = __webpack_require__(/*! object-assign */ "../node_modules/object-assign/index.js");
+var hoistNonReactStatics$1 = __webpack_require__(/*! hoist-non-react-statics */ "../node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js");
+function getDisplayName$1(WrappedComponent) {
+    return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+}
+function withApollo(WrappedComponent, operationOptions) {
+    if (operationOptions === void 0) { operationOptions = {}; }
+    var withDisplayName = "withApollo(" + getDisplayName$1(WrappedComponent) + ")";
+    var WithApollo = (function (_super) {
+        __extends$3(WithApollo, _super);
+        function WithApollo(props, context) {
+            var _this = _super.call(this, props, context) || this;
+            _this.client = context.client;
+            _this.setWrappedInstance = _this.setWrappedInstance.bind(_this);
+            invariant$3(!!_this.client, "Could not find \"client\" in the context of " +
+                ("\"" + withDisplayName + "\". ") +
+                "Wrap the root component in an <ApolloProvider>");
+            return _this;
+        }
+        WithApollo.prototype.getWrappedInstance = function () {
+            invariant$3(operationOptions.withRef, "To access the wrapped instance, you need to specify " +
+                "{ withRef: true } in the options");
+            return this.wrappedInstance;
+        };
+        WithApollo.prototype.setWrappedInstance = function (ref) {
+            this.wrappedInstance = ref;
+        };
+        WithApollo.prototype.render = function () {
+            var props = assign$1({}, this.props);
+            props.client = this.client;
+            if (operationOptions.withRef)
+                props.ref = this.setWrappedInstance;
+            return React.createElement(WrappedComponent, props);
+        };
+        WithApollo.displayName = withDisplayName;
+        WithApollo.WrappedComponent = WrappedComponent;
+        WithApollo.contextTypes = { client: PropTypes.object.isRequired };
+        return WithApollo;
+    }(React.Component));
+    return hoistNonReactStatics$1(WithApollo, WrappedComponent, {});
+}
+
+exports.ApolloProvider = ApolloProvider;
+exports.graphql = graphql;
+exports.withApollo = withApollo;
+exports.compose = redux.compose;
+exports.gql = graphqlTag;
+Object.keys(apolloClient).forEach(function (key) { exports[key] = apolloClient[key]; });
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
+//# sourceMappingURL=react-apollo.browser.umd.js.map
+
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/applyMiddleware.js":
+/*!***************************************************!*\
+  !*** ../node_modules/redux/es/applyMiddleware.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return applyMiddleware; });
+/* harmony import */ var _compose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./compose */ "../node_modules/redux/es/compose.js");
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+
+
+/**
+ * Creates a store enhancer that applies middleware to the dispatch method
+ * of the Redux store. This is handy for a variety of tasks, such as expressing
+ * asynchronous actions in a concise manner, or logging every action payload.
+ *
+ * See `redux-thunk` package as an example of the Redux middleware.
+ *
+ * Because middleware is potentially asynchronous, this should be the first
+ * store enhancer in the composition chain.
+ *
+ * Note that each middleware will be given the `dispatch` and `getState` functions
+ * as named arguments.
+ *
+ * @param {...Function} middlewares The middleware chain to be applied.
+ * @returns {Function} A store enhancer applying the middleware.
+ */
+function applyMiddleware() {
+  for (var _len = arguments.length, middlewares = Array(_len), _key = 0; _key < _len; _key++) {
+    middlewares[_key] = arguments[_key];
+  }
+
+  return function (createStore) {
+    return function (reducer, preloadedState, enhancer) {
+      var store = createStore(reducer, preloadedState, enhancer);
+      var _dispatch = store.dispatch;
+      var chain = [];
+
+      var middlewareAPI = {
+        getState: store.getState,
+        dispatch: function dispatch(action) {
+          return _dispatch(action);
+        }
+      };
+      chain = middlewares.map(function (middleware) {
+        return middleware(middlewareAPI);
+      });
+      _dispatch = _compose__WEBPACK_IMPORTED_MODULE_0__["default"].apply(undefined, chain)(store.dispatch);
+
+      return _extends({}, store, {
+        dispatch: _dispatch
+      });
+    };
+  };
+}
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/bindActionCreators.js":
+/*!******************************************************!*\
+  !*** ../node_modules/redux/es/bindActionCreators.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return bindActionCreators; });
+function bindActionCreator(actionCreator, dispatch) {
+  return function () {
+    return dispatch(actionCreator.apply(undefined, arguments));
+  };
+}
+
+/**
+ * Turns an object whose values are action creators, into an object with the
+ * same keys, but with every function wrapped into a `dispatch` call so they
+ * may be invoked directly. This is just a convenience method, as you can call
+ * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
+ *
+ * For convenience, you can also pass a single function as the first argument,
+ * and get a function in return.
+ *
+ * @param {Function|Object} actionCreators An object whose values are action
+ * creator functions. One handy way to obtain it is to use ES6 `import * as`
+ * syntax. You may also pass a single function.
+ *
+ * @param {Function} dispatch The `dispatch` function available on your Redux
+ * store.
+ *
+ * @returns {Function|Object} The object mimicking the original object, but with
+ * every action creator wrapped into the `dispatch` call. If you passed a
+ * function as `actionCreators`, the return value will also be a single
+ * function.
+ */
+function bindActionCreators(actionCreators, dispatch) {
+  if (typeof actionCreators === 'function') {
+    return bindActionCreator(actionCreators, dispatch);
+  }
+
+  if (typeof actionCreators !== 'object' || actionCreators === null) {
+    throw new Error('bindActionCreators expected an object or a function, instead received ' + (actionCreators === null ? 'null' : typeof actionCreators) + '. ' + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
+  }
+
+  var keys = Object.keys(actionCreators);
+  var boundActionCreators = {};
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var actionCreator = actionCreators[key];
+    if (typeof actionCreator === 'function') {
+      boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
+    }
+  }
+  return boundActionCreators;
+}
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/combineReducers.js":
+/*!***************************************************!*\
+  !*** ../node_modules/redux/es/combineReducers.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return combineReducers; });
+/* harmony import */ var _createStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createStore */ "../node_modules/redux/es/createStore.js");
+/* harmony import */ var lodash_es_isPlainObject__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash-es/isPlainObject */ "../node_modules/lodash-es/isPlainObject.js");
+/* harmony import */ var _utils_warning__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/warning */ "../node_modules/redux/es/utils/warning.js");
+
+
+
+
+function getUndefinedStateErrorMessage(key, action) {
+  var actionType = action && action.type;
+  var actionName = actionType && '"' + actionType.toString() + '"' || 'an action';
+
+  return 'Given action ' + actionName + ', reducer "' + key + '" returned undefined. ' + 'To ignore an action, you must explicitly return the previous state. ' + 'If you want this reducer to hold no value, you can return null instead of undefined.';
+}
+
+function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
+  var reducerKeys = Object.keys(reducers);
+  var argumentName = action && action.type === _createStore__WEBPACK_IMPORTED_MODULE_0__["ActionTypes"].INIT ? 'preloadedState argument passed to createStore' : 'previous state received by the reducer';
+
+  if (reducerKeys.length === 0) {
+    return 'Store does not have a valid reducer. Make sure the argument passed ' + 'to combineReducers is an object whose values are reducers.';
+  }
+
+  if (!Object(lodash_es_isPlainObject__WEBPACK_IMPORTED_MODULE_1__["default"])(inputState)) {
+    return 'The ' + argumentName + ' has unexpected type of "' + {}.toString.call(inputState).match(/\s([a-z|A-Z]+)/)[1] + '". Expected argument to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"');
+  }
+
+  var unexpectedKeys = Object.keys(inputState).filter(function (key) {
+    return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
+  });
+
+  unexpectedKeys.forEach(function (key) {
+    unexpectedKeyCache[key] = true;
+  });
+
+  if (unexpectedKeys.length > 0) {
+    return 'Unexpected ' + (unexpectedKeys.length > 1 ? 'keys' : 'key') + ' ' + ('"' + unexpectedKeys.join('", "') + '" found in ' + argumentName + '. ') + 'Expected to find one of the known reducer keys instead: ' + ('"' + reducerKeys.join('", "') + '". Unexpected keys will be ignored.');
+  }
+}
+
+function assertReducerShape(reducers) {
+  Object.keys(reducers).forEach(function (key) {
+    var reducer = reducers[key];
+    var initialState = reducer(undefined, { type: _createStore__WEBPACK_IMPORTED_MODULE_0__["ActionTypes"].INIT });
+
+    if (typeof initialState === 'undefined') {
+      throw new Error('Reducer "' + key + '" returned undefined during initialization. ' + 'If the state passed to the reducer is undefined, you must ' + 'explicitly return the initial state. The initial state may ' + 'not be undefined. If you don\'t want to set a value for this reducer, ' + 'you can use null instead of undefined.');
+    }
+
+    var type = '@@redux/PROBE_UNKNOWN_ACTION_' + Math.random().toString(36).substring(7).split('').join('.');
+    if (typeof reducer(undefined, { type: type }) === 'undefined') {
+      throw new Error('Reducer "' + key + '" returned undefined when probed with a random type. ' + ('Don\'t try to handle ' + _createStore__WEBPACK_IMPORTED_MODULE_0__["ActionTypes"].INIT + ' or other actions in "redux/*" ') + 'namespace. They are considered private. Instead, you must return the ' + 'current state for any unknown actions, unless it is undefined, ' + 'in which case you must return the initial state, regardless of the ' + 'action type. The initial state may not be undefined, but can be null.');
+    }
+  });
+}
+
+/**
+ * Turns an object whose values are different reducer functions, into a single
+ * reducer function. It will call every child reducer, and gather their results
+ * into a single state object, whose keys correspond to the keys of the passed
+ * reducer functions.
+ *
+ * @param {Object} reducers An object whose values correspond to different
+ * reducer functions that need to be combined into one. One handy way to obtain
+ * it is to use ES6 `import * as reducers` syntax. The reducers may never return
+ * undefined for any action. Instead, they should return their initial state
+ * if the state passed to them was undefined, and the current state for any
+ * unrecognized action.
+ *
+ * @returns {Function} A reducer function that invokes every reducer inside the
+ * passed object, and builds a state object with the same shape.
+ */
+function combineReducers(reducers) {
+  var reducerKeys = Object.keys(reducers);
+  var finalReducers = {};
+  for (var i = 0; i < reducerKeys.length; i++) {
+    var key = reducerKeys[i];
+
+    if (true) {
+      if (typeof reducers[key] === 'undefined') {
+        Object(_utils_warning__WEBPACK_IMPORTED_MODULE_2__["default"])('No reducer provided for key "' + key + '"');
+      }
+    }
+
+    if (typeof reducers[key] === 'function') {
+      finalReducers[key] = reducers[key];
+    }
+  }
+  var finalReducerKeys = Object.keys(finalReducers);
+
+  var unexpectedKeyCache = void 0;
+  if (true) {
+    unexpectedKeyCache = {};
+  }
+
+  var shapeAssertionError = void 0;
+  try {
+    assertReducerShape(finalReducers);
+  } catch (e) {
+    shapeAssertionError = e;
+  }
+
+  return function combination() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var action = arguments[1];
+
+    if (shapeAssertionError) {
+      throw shapeAssertionError;
+    }
+
+    if (true) {
+      var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
+      if (warningMessage) {
+        Object(_utils_warning__WEBPACK_IMPORTED_MODULE_2__["default"])(warningMessage);
+      }
+    }
+
+    var hasChanged = false;
+    var nextState = {};
+    for (var _i = 0; _i < finalReducerKeys.length; _i++) {
+      var _key = finalReducerKeys[_i];
+      var reducer = finalReducers[_key];
+      var previousStateForKey = state[_key];
+      var nextStateForKey = reducer(previousStateForKey, action);
+      if (typeof nextStateForKey === 'undefined') {
+        var errorMessage = getUndefinedStateErrorMessage(_key, action);
+        throw new Error(errorMessage);
+      }
+      nextState[_key] = nextStateForKey;
+      hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
+    }
+    return hasChanged ? nextState : state;
+  };
+}
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/compose.js":
+/*!*******************************************!*\
+  !*** ../node_modules/redux/es/compose.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return compose; });
+/**
+ * Composes single-argument functions from right to left. The rightmost
+ * function can take multiple arguments as it provides the signature for
+ * the resulting composite function.
+ *
+ * @param {...Function} funcs The functions to compose.
+ * @returns {Function} A function obtained by composing the argument functions
+ * from right to left. For example, compose(f, g, h) is identical to doing
+ * (...args) => f(g(h(...args))).
+ */
+
+function compose() {
+  for (var _len = arguments.length, funcs = Array(_len), _key = 0; _key < _len; _key++) {
+    funcs[_key] = arguments[_key];
+  }
+
+  if (funcs.length === 0) {
+    return function (arg) {
+      return arg;
+    };
+  }
+
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+
+  return funcs.reduce(function (a, b) {
+    return function () {
+      return a(b.apply(undefined, arguments));
+    };
+  });
+}
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/createStore.js":
+/*!***********************************************!*\
+  !*** ../node_modules/redux/es/createStore.js ***!
+  \***********************************************/
+/*! exports provided: ActionTypes, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActionTypes", function() { return ActionTypes; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return createStore; });
+/* harmony import */ var lodash_es_isPlainObject__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash-es/isPlainObject */ "../node_modules/lodash-es/isPlainObject.js");
+/* harmony import */ var symbol_observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! symbol-observable */ "../node_modules/symbol-observable/es/index.js");
+
+
+
+/**
+ * These are private action types reserved by Redux.
+ * For any unknown actions, you must return the current state.
+ * If the current state is undefined, you must return the initial state.
+ * Do not reference these action types directly in your code.
+ */
+var ActionTypes = {
+  INIT: '@@redux/INIT'
+
+  /**
+   * Creates a Redux store that holds the state tree.
+   * The only way to change the data in the store is to call `dispatch()` on it.
+   *
+   * There should only be a single store in your app. To specify how different
+   * parts of the state tree respond to actions, you may combine several reducers
+   * into a single reducer function by using `combineReducers`.
+   *
+   * @param {Function} reducer A function that returns the next state tree, given
+   * the current state tree and the action to handle.
+   *
+   * @param {any} [preloadedState] The initial state. You may optionally specify it
+   * to hydrate the state from the server in universal apps, or to restore a
+   * previously serialized user session.
+   * If you use `combineReducers` to produce the root reducer function, this must be
+   * an object with the same shape as `combineReducers` keys.
+   *
+   * @param {Function} [enhancer] The store enhancer. You may optionally specify it
+   * to enhance the store with third-party capabilities such as middleware,
+   * time travel, persistence, etc. The only store enhancer that ships with Redux
+   * is `applyMiddleware()`.
+   *
+   * @returns {Store} A Redux store that lets you read the state, dispatch actions
+   * and subscribe to changes.
+   */
+};function createStore(reducer, preloadedState, enhancer) {
+  var _ref2;
+
+  if (typeof preloadedState === 'function' && typeof enhancer === 'undefined') {
+    enhancer = preloadedState;
+    preloadedState = undefined;
+  }
+
+  if (typeof enhancer !== 'undefined') {
+    if (typeof enhancer !== 'function') {
+      throw new Error('Expected the enhancer to be a function.');
+    }
+
+    return enhancer(createStore)(reducer, preloadedState);
+  }
+
+  if (typeof reducer !== 'function') {
+    throw new Error('Expected the reducer to be a function.');
+  }
+
+  var currentReducer = reducer;
+  var currentState = preloadedState;
+  var currentListeners = [];
+  var nextListeners = currentListeners;
+  var isDispatching = false;
+
+  function ensureCanMutateNextListeners() {
+    if (nextListeners === currentListeners) {
+      nextListeners = currentListeners.slice();
+    }
+  }
+
+  /**
+   * Reads the state tree managed by the store.
+   *
+   * @returns {any} The current state tree of your application.
+   */
+  function getState() {
+    return currentState;
+  }
+
+  /**
+   * Adds a change listener. It will be called any time an action is dispatched,
+   * and some part of the state tree may potentially have changed. You may then
+   * call `getState()` to read the current state tree inside the callback.
+   *
+   * You may call `dispatch()` from a change listener, with the following
+   * caveats:
+   *
+   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
+   * If you subscribe or unsubscribe while the listeners are being invoked, this
+   * will not have any effect on the `dispatch()` that is currently in progress.
+   * However, the next `dispatch()` call, whether nested or not, will use a more
+   * recent snapshot of the subscription list.
+   *
+   * 2. The listener should not expect to see all state changes, as the state
+   * might have been updated multiple times during a nested `dispatch()` before
+   * the listener is called. It is, however, guaranteed that all subscribers
+   * registered before the `dispatch()` started will be called with the latest
+   * state by the time it exits.
+   *
+   * @param {Function} listener A callback to be invoked on every dispatch.
+   * @returns {Function} A function to remove this change listener.
+   */
+  function subscribe(listener) {
+    if (typeof listener !== 'function') {
+      throw new Error('Expected listener to be a function.');
+    }
+
+    var isSubscribed = true;
+
+    ensureCanMutateNextListeners();
+    nextListeners.push(listener);
+
+    return function unsubscribe() {
+      if (!isSubscribed) {
+        return;
+      }
+
+      isSubscribed = false;
+
+      ensureCanMutateNextListeners();
+      var index = nextListeners.indexOf(listener);
+      nextListeners.splice(index, 1);
+    };
+  }
+
+  /**
+   * Dispatches an action. It is the only way to trigger a state change.
+   *
+   * The `reducer` function, used to create the store, will be called with the
+   * current state tree and the given `action`. Its return value will
+   * be considered the **next** state of the tree, and the change listeners
+   * will be notified.
+   *
+   * The base implementation only supports plain object actions. If you want to
+   * dispatch a Promise, an Observable, a thunk, or something else, you need to
+   * wrap your store creating function into the corresponding middleware. For
+   * example, see the documentation for the `redux-thunk` package. Even the
+   * middleware will eventually dispatch plain object actions using this method.
+   *
+   * @param {Object} action A plain object representing “what changed”. It is
+   * a good idea to keep actions serializable so you can record and replay user
+   * sessions, or use the time travelling `redux-devtools`. An action must have
+   * a `type` property which may not be `undefined`. It is a good idea to use
+   * string constants for action types.
+   *
+   * @returns {Object} For convenience, the same action object you dispatched.
+   *
+   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
+   * return something else (for example, a Promise you can await).
+   */
+  function dispatch(action) {
+    if (!Object(lodash_es_isPlainObject__WEBPACK_IMPORTED_MODULE_0__["default"])(action)) {
+      throw new Error('Actions must be plain objects. ' + 'Use custom middleware for async actions.');
+    }
+
+    if (typeof action.type === 'undefined') {
+      throw new Error('Actions may not have an undefined "type" property. ' + 'Have you misspelled a constant?');
+    }
+
+    if (isDispatching) {
+      throw new Error('Reducers may not dispatch actions.');
+    }
+
+    try {
+      isDispatching = true;
+      currentState = currentReducer(currentState, action);
+    } finally {
+      isDispatching = false;
+    }
+
+    var listeners = currentListeners = nextListeners;
+    for (var i = 0; i < listeners.length; i++) {
+      var listener = listeners[i];
+      listener();
+    }
+
+    return action;
+  }
+
+  /**
+   * Replaces the reducer currently used by the store to calculate the state.
+   *
+   * You might need this if your app implements code splitting and you want to
+   * load some of the reducers dynamically. You might also need this if you
+   * implement a hot reloading mechanism for Redux.
+   *
+   * @param {Function} nextReducer The reducer for the store to use instead.
+   * @returns {void}
+   */
+  function replaceReducer(nextReducer) {
+    if (typeof nextReducer !== 'function') {
+      throw new Error('Expected the nextReducer to be a function.');
+    }
+
+    currentReducer = nextReducer;
+    dispatch({ type: ActionTypes.INIT });
+  }
+
+  /**
+   * Interoperability point for observable/reactive libraries.
+   * @returns {observable} A minimal observable of state changes.
+   * For more information, see the observable proposal:
+   * https://github.com/tc39/proposal-observable
+   */
+  function observable() {
+    var _ref;
+
+    var outerSubscribe = subscribe;
+    return _ref = {
+      /**
+       * The minimal observable subscription method.
+       * @param {Object} observer Any object that can be used as an observer.
+       * The observer object should have a `next` method.
+       * @returns {subscription} An object with an `unsubscribe` method that can
+       * be used to unsubscribe the observable from the store, and prevent further
+       * emission of values from the observable.
+       */
+      subscribe: function subscribe(observer) {
+        if (typeof observer !== 'object') {
+          throw new TypeError('Expected the observer to be an object.');
+        }
+
+        function observeState() {
+          if (observer.next) {
+            observer.next(getState());
+          }
+        }
+
+        observeState();
+        var unsubscribe = outerSubscribe(observeState);
+        return { unsubscribe: unsubscribe };
+      }
+    }, _ref[symbol_observable__WEBPACK_IMPORTED_MODULE_1__["default"]] = function () {
+      return this;
+    }, _ref;
+  }
+
+  // When a store is created, an "INIT" action is dispatched so that every
+  // reducer returns their initial state. This effectively populates
+  // the initial state tree.
+  dispatch({ type: ActionTypes.INIT });
+
+  return _ref2 = {
+    dispatch: dispatch,
+    subscribe: subscribe,
+    getState: getState,
+    replaceReducer: replaceReducer
+  }, _ref2[symbol_observable__WEBPACK_IMPORTED_MODULE_1__["default"]] = observable, _ref2;
+}
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/index.js":
+/*!*****************************************!*\
+  !*** ../node_modules/redux/es/index.js ***!
+  \*****************************************/
+/*! exports provided: createStore, combineReducers, bindActionCreators, applyMiddleware, compose */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _createStore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./createStore */ "../node_modules/redux/es/createStore.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "createStore", function() { return _createStore__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _combineReducers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./combineReducers */ "../node_modules/redux/es/combineReducers.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "combineReducers", function() { return _combineReducers__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _bindActionCreators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./bindActionCreators */ "../node_modules/redux/es/bindActionCreators.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "bindActionCreators", function() { return _bindActionCreators__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+/* harmony import */ var _applyMiddleware__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./applyMiddleware */ "../node_modules/redux/es/applyMiddleware.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "applyMiddleware", function() { return _applyMiddleware__WEBPACK_IMPORTED_MODULE_3__["default"]; });
+
+/* harmony import */ var _compose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./compose */ "../node_modules/redux/es/compose.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "compose", function() { return _compose__WEBPACK_IMPORTED_MODULE_4__["default"]; });
+
+/* harmony import */ var _utils_warning__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./utils/warning */ "../node_modules/redux/es/utils/warning.js");
+
+
+
+
+
+
+
+/*
+* This is a dummy function to check if the function name has been altered by minification.
+* If the function has been minified and NODE_ENV !== 'production', warn the user.
+*/
+function isCrushed() {}
+
+if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCrushed.name !== 'isCrushed') {
+  Object(_utils_warning__WEBPACK_IMPORTED_MODULE_5__["default"])('You are currently using minified code outside of NODE_ENV === \'production\'. ' + 'This means that you are running a slower development build of Redux. ' + 'You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify ' + 'or DefinePlugin for webpack (http://stackoverflow.com/questions/30030031) ' + 'to ensure you have the correct code for your production build.');
+}
+
+
+
+/***/ }),
+
+/***/ "../node_modules/redux/es/utils/warning.js":
+/*!*************************************************!*\
+  !*** ../node_modules/redux/es/utils/warning.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return warning; });
+/**
+ * Prints a warning in the console if it exists.
+ *
+ * @param {String} message The warning message.
+ * @returns {void}
+ */
+function warning(message) {
+  /* eslint-disable no-console */
+  if (typeof console !== 'undefined' && typeof console.error === 'function') {
+    console.error(message);
+  }
+  /* eslint-enable no-console */
+  try {
+    // This error was thrown as a convenience so that if you enable
+    // "break on all exceptions" in your console,
+    // it would pause the execution at this line.
+    throw new Error(message);
+    /* eslint-disable no-empty */
+  } catch (e) {}
+  /* eslint-enable no-empty */
+}
+
+/***/ }),
+
+/***/ "../node_modules/symbol-observable/es/index.js":
+/*!*****************************************************!*\
+  !*** ../node_modules/symbol-observable/es/index.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global, module) {/* harmony import */ var _ponyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ponyfill.js */ "../node_modules/symbol-observable/es/ponyfill.js");
+/* global window */
+
+
+var root;
+
+if (typeof self !== 'undefined') {
+  root = self;
+} else if (typeof window !== 'undefined') {
+  root = window;
+} else if (typeof global !== 'undefined') {
+  root = global;
+} else if (true) {
+  root = module;
+} else {}
+
+var result = Object(_ponyfill_js__WEBPACK_IMPORTED_MODULE_0__["default"])(root);
+/* harmony default export */ __webpack_exports__["default"] = (result);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "../node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../webpack/buildin/harmony-module.js */ "../node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "../node_modules/symbol-observable/es/ponyfill.js":
+/*!********************************************************!*\
+  !*** ../node_modules/symbol-observable/es/ponyfill.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return symbolObservablePonyfill; });
+function symbolObservablePonyfill(root) {
+	var result;
+	var Symbol = root.Symbol;
+
+	if (typeof Symbol === 'function') {
+		if (Symbol.observable) {
+			result = Symbol.observable;
+		} else {
+			result = Symbol('observable');
+			Symbol.observable = result;
+		}
+	} else {
+		result = '@@observable';
+	}
+
+	return result;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/webpack/buildin/global.js":
+/*!*************************************************!*\
+  !*** ../node_modules/webpack/buildin/global.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+
+/***/ "../node_modules/webpack/buildin/harmony-module.js":
+/*!*********************************************************!*\
+  !*** ../node_modules/webpack/buildin/harmony-module.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = function(originalModule) {
+	if (!originalModule.webpackPolyfill) {
+		var module = Object.create(originalModule);
+		// module.parent = undefined by default
+		if (!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		Object.defineProperty(module, "exports", {
+			enumerable: true
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+
+/***/ "../node_modules/whatwg-fetch/fetch.js":
+/*!*********************************************!*\
+  !*** ../node_modules/whatwg-fetch/fetch.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function(self) {
+  'use strict';
+
+  if (self.fetch) {
+    return
+  }
+
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob()
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  }
+
+  if (support.arrayBuffer) {
+    var viewClasses = [
+      '[object Int8Array]',
+      '[object Uint8Array]',
+      '[object Uint8ClampedArray]',
+      '[object Int16Array]',
+      '[object Uint16Array]',
+      '[object Int32Array]',
+      '[object Uint32Array]',
+      '[object Float32Array]',
+      '[object Float64Array]'
+    ]
+
+    var isDataView = function(obj) {
+      return obj && DataView.prototype.isPrototypeOf(obj)
+    }
+
+    var isArrayBufferView = ArrayBuffer.isView || function(obj) {
+      return obj && viewClasses.indexOf(Object.prototype.toString.call(obj)) > -1
+    }
+  }
+
+  function normalizeName(name) {
+    if (typeof name !== 'string') {
+      name = String(name)
+    }
+    if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
+      throw new TypeError('Invalid character in header field name')
+    }
+    return name.toLowerCase()
+  }
+
+  function normalizeValue(value) {
+    if (typeof value !== 'string') {
+      value = String(value)
+    }
+    return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift()
+        return {done: value === undefined, value: value}
+      }
+    }
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      }
+    }
+
+    return iterator
+  }
+
+  function Headers(headers) {
+    this.map = {}
+
+    if (headers instanceof Headers) {
+      headers.forEach(function(value, name) {
+        this.append(name, value)
+      }, this)
+    } else if (Array.isArray(headers)) {
+      headers.forEach(function(header) {
+        this.append(header[0], header[1])
+      }, this)
+    } else if (headers) {
+      Object.getOwnPropertyNames(headers).forEach(function(name) {
+        this.append(name, headers[name])
+      }, this)
+    }
+  }
+
+  Headers.prototype.append = function(name, value) {
+    name = normalizeName(name)
+    value = normalizeValue(value)
+    var oldValue = this.map[name]
+    this.map[name] = oldValue ? oldValue+','+value : value
+  }
+
+  Headers.prototype['delete'] = function(name) {
+    delete this.map[normalizeName(name)]
+  }
+
+  Headers.prototype.get = function(name) {
+    name = normalizeName(name)
+    return this.has(name) ? this.map[name] : null
+  }
+
+  Headers.prototype.has = function(name) {
+    return this.map.hasOwnProperty(normalizeName(name))
+  }
+
+  Headers.prototype.set = function(name, value) {
+    this.map[normalizeName(name)] = normalizeValue(value)
+  }
+
+  Headers.prototype.forEach = function(callback, thisArg) {
+    for (var name in this.map) {
+      if (this.map.hasOwnProperty(name)) {
+        callback.call(thisArg, this.map[name], name, this)
+      }
+    }
+  }
+
+  Headers.prototype.keys = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push(name) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.values = function() {
+    var items = []
+    this.forEach(function(value) { items.push(value) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.entries = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push([name, value]) })
+    return iteratorFor(items)
+  }
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+  }
+
+  function consumed(body) {
+    if (body.bodyUsed) {
+      return Promise.reject(new TypeError('Already read'))
+    }
+    body.bodyUsed = true
+  }
+
+  function fileReaderReady(reader) {
+    return new Promise(function(resolve, reject) {
+      reader.onload = function() {
+        resolve(reader.result)
+      }
+      reader.onerror = function() {
+        reject(reader.error)
+      }
+    })
+  }
+
+  function readBlobAsArrayBuffer(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsArrayBuffer(blob)
+    return promise
+  }
+
+  function readBlobAsText(blob) {
+    var reader = new FileReader()
+    var promise = fileReaderReady(reader)
+    reader.readAsText(blob)
+    return promise
+  }
+
+  function readArrayBufferAsText(buf) {
+    var view = new Uint8Array(buf)
+    var chars = new Array(view.length)
+
+    for (var i = 0; i < view.length; i++) {
+      chars[i] = String.fromCharCode(view[i])
+    }
+    return chars.join('')
+  }
+
+  function bufferClone(buf) {
+    if (buf.slice) {
+      return buf.slice(0)
+    } else {
+      var view = new Uint8Array(buf.byteLength)
+      view.set(new Uint8Array(buf))
+      return view.buffer
+    }
+  }
+
+  function Body() {
+    this.bodyUsed = false
+
+    this._initBody = function(body) {
+      this._bodyInit = body
+      if (!body) {
+        this._bodyText = ''
+      } else if (typeof body === 'string') {
+        this._bodyText = body
+      } else if (support.blob && Blob.prototype.isPrototypeOf(body)) {
+        this._bodyBlob = body
+      } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
+        this._bodyFormData = body
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString()
+      } else if (support.arrayBuffer && support.blob && isDataView(body)) {
+        this._bodyArrayBuffer = bufferClone(body.buffer)
+        // IE 10-11 can't handle a DataView body.
+        this._bodyInit = new Blob([this._bodyArrayBuffer])
+      } else if (support.arrayBuffer && (ArrayBuffer.prototype.isPrototypeOf(body) || isArrayBufferView(body))) {
+        this._bodyArrayBuffer = bufferClone(body)
+      } else {
+        throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type)
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+        }
+      }
+    }
+
+    if (support.blob) {
+      this.blob = function() {
+        var rejected = consumed(this)
+        if (rejected) {
+          return rejected
+        }
+
+        if (this._bodyBlob) {
+          return Promise.resolve(this._bodyBlob)
+        } else if (this._bodyArrayBuffer) {
+          return Promise.resolve(new Blob([this._bodyArrayBuffer]))
+        } else if (this._bodyFormData) {
+          throw new Error('could not read FormData body as blob')
+        } else {
+          return Promise.resolve(new Blob([this._bodyText]))
+        }
+      }
+
+      this.arrayBuffer = function() {
+        if (this._bodyArrayBuffer) {
+          return consumed(this) || Promise.resolve(this._bodyArrayBuffer)
+        } else {
+          return this.blob().then(readBlobAsArrayBuffer)
+        }
+      }
+    }
+
+    this.text = function() {
+      var rejected = consumed(this)
+      if (rejected) {
+        return rejected
+      }
+
+      if (this._bodyBlob) {
+        return readBlobAsText(this._bodyBlob)
+      } else if (this._bodyArrayBuffer) {
+        return Promise.resolve(readArrayBufferAsText(this._bodyArrayBuffer))
+      } else if (this._bodyFormData) {
+        throw new Error('could not read FormData body as text')
+      } else {
+        return Promise.resolve(this._bodyText)
+      }
+    }
+
+    if (support.formData) {
+      this.formData = function() {
+        return this.text().then(decode)
+      }
+    }
+
+    this.json = function() {
+      return this.text().then(JSON.parse)
+    }
+
+    return this
+  }
+
+  // HTTP methods whose capitalization should be normalized
+  var methods = ['DELETE', 'GET', 'HEAD', 'OPTIONS', 'POST', 'PUT']
+
+  function normalizeMethod(method) {
+    var upcased = method.toUpperCase()
+    return (methods.indexOf(upcased) > -1) ? upcased : method
+  }
+
+  function Request(input, options) {
+    options = options || {}
+    var body = options.body
+
+    if (input instanceof Request) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url
+      this.credentials = input.credentials
+      if (!options.headers) {
+        this.headers = new Headers(input.headers)
+      }
+      this.method = input.method
+      this.mode = input.mode
+      if (!body && input._bodyInit != null) {
+        body = input._bodyInit
+        input.bodyUsed = true
+      }
+    } else {
+      this.url = String(input)
+    }
+
+    this.credentials = options.credentials || this.credentials || 'omit'
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers)
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET')
+    this.mode = options.mode || this.mode || null
+    this.referrer = null
+
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
+      throw new TypeError('Body not allowed for GET or HEAD requests')
+    }
+    this._initBody(body)
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this, { body: this._bodyInit })
+  }
+
+  function decode(body) {
+    var form = new FormData()
+    body.trim().split('&').forEach(function(bytes) {
+      if (bytes) {
+        var split = bytes.split('=')
+        var name = split.shift().replace(/\+/g, ' ')
+        var value = split.join('=').replace(/\+/g, ' ')
+        form.append(decodeURIComponent(name), decodeURIComponent(value))
+      }
+    })
+    return form
+  }
+
+  function parseHeaders(rawHeaders) {
+    var headers = new Headers()
+    // Replace instances of \r\n and \n followed by at least one space or horizontal tab with a space
+    // https://tools.ietf.org/html/rfc7230#section-3.2
+    var preProcessedHeaders = rawHeaders.replace(/\r?\n[\t ]+/g, ' ')
+    preProcessedHeaders.split(/\r?\n/).forEach(function(line) {
+      var parts = line.split(':')
+      var key = parts.shift().trim()
+      if (key) {
+        var value = parts.join(':').trim()
+        headers.append(key, value)
+      }
+    })
+    return headers
+  }
+
+  Body.call(Request.prototype)
+
+  function Response(bodyInit, options) {
+    if (!options) {
+      options = {}
+    }
+
+    this.type = 'default'
+    this.status = options.status === undefined ? 200 : options.status
+    this.ok = this.status >= 200 && this.status < 300
+    this.statusText = 'statusText' in options ? options.statusText : 'OK'
+    this.headers = new Headers(options.headers)
+    this.url = options.url || ''
+    this._initBody(bodyInit)
+  }
+
+  Body.call(Response.prototype)
+
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  }
+
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''})
+    response.type = 'error'
+    return response
+  }
+
+  var redirectStatuses = [301, 302, 303, 307, 308]
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
+    }
+
+    return new Response(null, {status: status, headers: {location: url}})
+  }
+
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+
+  self.fetch = function(input, init) {
+    return new Promise(function(resolve, reject) {
+      var request = new Request(input, init)
+      var xhr = new XMLHttpRequest()
+
+      xhr.onload = function() {
+        var options = {
+          status: xhr.status,
+          statusText: xhr.statusText,
+          headers: parseHeaders(xhr.getAllResponseHeaders() || '')
+        }
+        options.url = 'responseURL' in xhr ? xhr.responseURL : options.headers.get('X-Request-URL')
+        var body = 'response' in xhr ? xhr.response : xhr.responseText
+        resolve(new Response(body, options))
+      }
+
+      xhr.onerror = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.ontimeout = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.open(request.method, request.url, true)
+
+      if (request.credentials === 'include') {
+        xhr.withCredentials = true
+      } else if (request.credentials === 'omit') {
+        xhr.withCredentials = false
+      }
+
+      if ('responseType' in xhr && support.blob) {
+        xhr.responseType = 'blob'
+      }
+
+      request.headers.forEach(function(value, name) {
+        xhr.setRequestHeader(name, value)
+      })
+
+      xhr.send(typeof request._bodyInit === 'undefined' ? null : request._bodyInit)
+    })
+  }
+  self.fetch.polyfill = true
+})(typeof self !== 'undefined' ? self : this);
+
+
+/***/ }),
+
+/***/ "./components/withLoadingHandler.tsx":
+/*!*******************************************!*\
+  !*** ./components/withLoadingHandler.tsx ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = undefined && undefined.__assign || Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) {
+            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+    }
+    return t;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
+var createGraphQLClient_1 = __webpack_require__(/*! ../createGraphQLClient */ "./createGraphQLClient.tsx");
+var graphQLClient = createGraphQLClient_1.createGraphQLClient();
+var withLoadingHandler = function withLoadingHandler(TheComponent) {
+    var LoadingHandlerWrapper = function LoadingHandlerWrapper(props) {
+        if (props.data.loading) {
+            return React.createElement("h1", null, "Loading");
+        } else {
+            return React.createElement(react_apollo_1.ApolloProvider, { client: graphQLClient }, React.createElement(TheComponent, __assign({}, props)));
+        }
+    };
+    return LoadingHandlerWrapper;
+};
+exports.default = withLoadingHandler;
+
+/***/ }),
+
+/***/ "./createGraphQLClient.tsx":
+/*!*********************************!*\
+  !*** ./createGraphQLClient.tsx ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
+// 	http://dev.apollodata.com/react/initialization.html#creating-client
+exports.createGraphQLClient = function () {
+    var networkInterface = react_apollo_1.createNetworkInterface({
+        uri: 'http://localhost:9977/graphql'
+    });
+    var client = new react_apollo_1.ApolloClient({
+        networkInterface: networkInterface
+    });
+    return client;
+};
+
+/***/ }),
+
+/***/ "./domain/gqlfragments/owner.graphql":
+/*!*******************************************!*\
+  !*** ./domain/gqlfragments/owner.graphql ***!
+  \*******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"owner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Owner"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"firstName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"lastName"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"address"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"city"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"telephone"},"arguments":[],"directives":[]}]}}],"loc":{"start":0,"end":93}};
+    doc.loc.source = {"body":"fragment owner on Owner {\r\n  id\r\n  firstName\r\n  lastName\r\n  address\r\n  city\r\n  telephone\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  
+
+      module.exports = doc;
+    
+
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerListPage/OwnerListPage.tsx":
+/*!******************************************************!*\
+  !*** ./domain/owner/OwnerListPage/OwnerListPage.tsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
+var OwnerListQueryGql = __webpack_require__(/*! ./OwnerListQuery.graphql */ "./domain/owner/OwnerListPage/OwnerListQuery.graphql");
+var withLoadingHandler_1 = __webpack_require__(/*! ../../../components/withLoadingHandler */ "./components/withLoadingHandler.tsx");
+var OwnerRow = function OwnerRow(_a) {
+    var owner = _a.owner;
+    return React.createElement("tr", { key: owner.id }, React.createElement("td", null, owner.firstName, " ", owner.lastName), React.createElement("td", { className: "hidden-sm hidden-xs" }, owner.address), React.createElement("td", null, owner.city), React.createElement("td", null, owner.telephone), React.createElement("td", { className: "hidden-xs" }, owner.pets.map(function (pet) {
+        return pet.name;
+    }).join(", ")), React.createElement("td", { className: "hidden-xs" }, owner.pets.reduce(function (total, currentPet) {
+        return total + currentPet.visits.totalCount;
+    }, 0) || ""));
+};
+var OwnersTable = function OwnersTable(_a) {
+    var owners = _a.owners;
+    return React.createElement("table", { className: "table table-striped" }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Name"), React.createElement("th", { className: "hidden-sm hidden-xs" }, "Address"), React.createElement("th", null, "City"), React.createElement("th", null, "Telephone"), React.createElement("th", { className: "hidden-xs" }, "Pets"), React.createElement("th", { className: "hidden-xs" }, "Visits"))), React.createElement("tbody", null, owners.map(function (owner) {
+        return React.createElement(OwnerRow, { key: owner.id, owner: owner });
+    })));
+};
+var OwnerListPage = function OwnerListPage(_a) {
+    var owners = _a.data.owners;
+    return React.createElement("section", null, React.createElement("h2", null, owners.length, " Owners found"), React.createElement(OwnersTable, { owners: owners }));
+};
+exports.default = react_apollo_1.graphql(OwnerListQueryGql)(withLoadingHandler_1.default(OwnerListPage));
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerListPage/OwnerListQuery.graphql":
+/*!***********************************************************!*\
+  !*** ./domain/owner/OwnerListPage/OwnerListQuery.graphql ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ownerSummary"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Owner"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"owner"},"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"pets"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"visits"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"totalCount"},"arguments":[],"directives":[]}]}}]}}]}},{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ownerList"},"variableDefinitions":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"owners"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ownerSummary"},"directives":[]}]}}]}}],"loc":{"start":0,"end":221}};
+    doc.loc.source = {"body":"#import \"../../gqlfragments/owner.graphql\"\r\n\r\nfragment ownerSummary on Owner {\r\n  ...owner\r\n  pets {\r\n    name\r\n    visits {\r\n      totalCount\r\n    }\r\n  }\r\n}\r\n\r\nquery ownerList {\r\n  owners {\r\n    ...ownerSummary\r\n  }\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  doc.definitions = doc.definitions.concat(unique(__webpack_require__(/*! ../../gqlfragments/owner.graphql */ "./domain/gqlfragments/owner.graphql").definitions));
+
+
+    // Collect any fragment/type references from a node, adding them to the refs Set
+    function collectFragmentReferences(node, refs) {
+      if (node.kind === "FragmentSpread") {
+        refs.add(node.name.value);
+      } else if (node.kind === "VariableDefinition") {
+        var type = node.type;
+        if (type.kind === "NamedType") {
+          refs.add(type.name.value);
+        }
+      }
+
+      if (node.selectionSet) {
+        node.selectionSet.selections.forEach(function(selection) {
+          collectFragmentReferences(selection, refs);
+        });
+      }
+
+      if (node.variableDefinitions) {
+        node.variableDefinitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+
+      if (node.definitions) {
+        node.definitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+    }
+
+    var definitionRefs = {};
+    (function extractReferences() {
+      doc.definitions.forEach(function(def) {
+        if (def.name) {
+          var refs = new Set();
+          collectFragmentReferences(def, refs);
+          definitionRefs[def.name.value] = refs;
+        }
+      });
+    })();
+
+    function findOperation(doc, name) {
+      for (var i = 0; i < doc.definitions.length; i++) {
+        var element = doc.definitions[i];
+        if (element.name && element.name.value == name) {
+          return element;
+        }
+      }
+    }
+
+    function oneQuery(doc, operationName) {
+      // Copy the DocumentNode, but clear out the definitions
+      var newDoc = {
+        kind: doc.kind,
+        definitions: [findOperation(doc, operationName)]
+      };
+      if (doc.hasOwnProperty("loc")) {
+        newDoc.loc = doc.loc;
+      }
+
+      // Now, for the operation we're running, find any fragments referenced by
+      // it or the fragments it references
+      var opRefs = definitionRefs[operationName] || new Set();
+      var allRefs = new Set();
+      var newRefs = new Set(opRefs);
+      while (newRefs.size > 0) {
+        var prevRefs = newRefs;
+        newRefs = new Set();
+
+        prevRefs.forEach(function(refName) {
+          if (!allRefs.has(refName)) {
+            allRefs.add(refName);
+            var childRefs = definitionRefs[refName] || new Set();
+            childRefs.forEach(function(childRef) {
+              newRefs.add(childRef);
+            });
+          }
+        });
+      }
+
+      allRefs.forEach(function(refName) {
+        var op = findOperation(doc, refName);
+        if (op) {
+          newDoc.definitions.push(op);
+        }
+      });
+
+      return newDoc;
+    }
+
+    module.exports = doc;
+    
+        module.exports["ownerList"] = oneQuery(doc, "ownerList");
+        
+
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerListPage/index.tsx":
+/*!**********************************************!*\
+  !*** ./domain/owner/OwnerListPage/index.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var OwnerListPage_1 = __webpack_require__(/*! ./OwnerListPage */ "./domain/owner/OwnerListPage/OwnerListPage.tsx");
+var coreModule = __webpack_require__(/*! grafana/app/core/core_module */ "grafana/app/core/core_module");
+// import coreModule from 'grafana/app/core/core_module';
+coreModule.directive('ownersList', ['reactDirective', function (reactDirective) {
+    return reactDirective(OwnerListPage_1.default, ['change', 'database', 'execute', 'query', 'request']);
+}]);
+
+/***/ }),
+
+/***/ "./module.ts":
+/*!*******************!*\
+  !*** ./module.ts ***!
+  \*******************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var WelcomePage_1 = __webpack_require__(/*! ./ui/WelcomePage */ "./ui/WelcomePage.ts");
+exports.WelcomePage = WelcomePage_1.WelcomePage;
+var OwnersPage_1 = __webpack_require__(/*! ./ui/OwnersPage */ "./ui/OwnersPage.ts");
+exports.OwnersPage = OwnersPage_1.OwnersPage;
+
+/***/ }),
+
+/***/ "./ui/OwnersPage.ts":
+/*!**************************!*\
+  !*** ./ui/OwnersPage.ts ***!
+  \**************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __extends = undefined && undefined.__extends || function () {
+    var extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function (d, b) {
+        d.__proto__ = b;
+    } || function (d, b) {
+        for (var p in b) {
+            if (b.hasOwnProperty(p)) d[p] = b[p];
+        }
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() {
+            this.constructor = d;
+        }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+}();
+Object.defineProperty(exports, "__esModule", { value: true });
+__webpack_require__(/*! ../domain/owner/OwnerListPage/index */ "./domain/owner/OwnerListPage/index.tsx");
+var React = __webpack_require__(/*! react */ "react");
+var createGraphQLClient_1 = __webpack_require__(/*! ../createGraphQLClient */ "./createGraphQLClient.tsx");
+var graphQLClient = createGraphQLClient_1.createGraphQLClient();
+var OwnersPage = /** @class */function (_super) {
+    __extends(OwnersPage, _super);
+    function OwnersPage() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OwnersPage.templateUrl = '/partials/owners.html';
+    return OwnersPage;
+}(React.Component);
+exports.OwnersPage = OwnersPage;
+
+/***/ }),
+
+/***/ "./ui/WelcomePage.ts":
+/*!***************************!*\
+  !*** ./ui/WelcomePage.ts ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var WelcomePage = /** @class */function () {
+    function WelcomePage() {}
+    WelcomePage.templateUrl = '/partials/welcome.html';
+    return WelcomePage;
+}();
+exports.WelcomePage = WelcomePage;
+
+/***/ }),
+
+/***/ "grafana/app/core/core_module":
+/*!***************************************!*\
+  !*** external "app/core/core_module" ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_grafana_app_core_core_module__;
+
+/***/ }),
+
+/***/ "react":
+/*!************************!*\
+  !*** external "react" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_react__;
+
+/***/ })
+
+/******/ })});;
 //# sourceMappingURL=module.js.map

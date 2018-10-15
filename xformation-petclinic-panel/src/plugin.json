@@ -10,7 +10,7 @@
         "url": "https://xformation.com"
       },
       "keywords": ["petclinic", "panel"],
-      "version": "1.0.0",
+      "version": "1.0.6",
       "updated": "2018-10-12",
       "logos": {
         "small": "img/react-logo.svg",

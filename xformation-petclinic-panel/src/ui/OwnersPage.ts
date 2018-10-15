@@ -4,7 +4,8 @@ import * as ReactDOM from "react-dom";
 import { createGraphQLClient } from "../createGraphQLClient";
 import { ApolloProvider } from "react-apollo";
 
-export class OwnersPage{
+const graphQLClient = createGraphQLClient();
+
+export class OwnersPage extends React.Component{
     static templateUrl = '/partials/owners.html';
-    graphQLClient = createGraphQLClient();
 }

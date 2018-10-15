@@ -63,6 +63,7 @@
     "lint-staged": "^7.2.0",
     "ng-annotate-webpack-plugin": "^0.3.0",
     "prettier": "1.10.2",
+    "react-hot-loader": "^4.3.11",
     "replace-in-file-webpack-plugin": "^1.0.6",
     "style-loader": "^0.21.0",
     "ts-jest": "^22.4.6",
