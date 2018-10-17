@@ -1,11 +1,8 @@
-import '../domain/owner/OwnerListPage/index';
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { createGraphQLClient } from "../createGraphQLClient";
-import { ApolloProvider } from "react-apollo";
+import init  from './MainApp';
 
-const graphQLClient = createGraphQLClient();
-
-export class OwnersPage extends React.Component{
+export class OwnersPage{
     static templateUrl = '/partials/owners.html';
+    constructor(){
+        init();
+    }
 }
