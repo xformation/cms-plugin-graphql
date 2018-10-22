@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps, Link } from "react-router-dom";
 import { graphql, QueryProps } from "react-apollo";
 
 import * as OwnerListQueryGql from "./OwnerListQuery.graphql";
@@ -9,7 +9,9 @@ import withLoadingHandler from "../../../components/withLoadingHandler";
 const OwnerRow = ({ owner }: { owner: OwnerSummaryFragment }) =>
   <tr key={owner.id}>
     <td>
-      {owner.firstName} {owner.lastName}
+      <Link to={`/owners/${owner.id}`}>
+        {owner.firstName} {owner.lastName}
+      </Link>
     </td>
     <td className="hidden-sm hidden-xs">
       {owner.address}
