@@ -17652,6 +17652,28 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./components/LinkButton.tsx":
+/*!***********************************!*\
+  !*** ./components/LinkButton.tsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/es/index.js");
+var LinkButton = function LinkButton(_a) {
+    var to = _a.to,
+        children = _a.children;
+    return React.createElement(react_router_dom_1.Link, { to: to, className: "btn btn-default" }, children);
+};
+exports.default = LinkButton;
+
+/***/ }),
+
 /***/ "./components/withLoadingHandler.tsx":
 /*!*******************************************!*\
   !*** ./components/withLoadingHandler.tsx ***!
@@ -17743,6 +17765,142 @@ exports.createGraphQLClient = function () {
 
 /***/ }),
 
+/***/ "./domain/gqlfragments/ownerDetails.graphql":
+/*!**************************************************!*\
+  !*** ./domain/gqlfragments/ownerDetails.graphql ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ownerDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Owner"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"owner"},"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"pets"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"petDetails"},"directives":[]}]}}]}}],"loc":{"start":0,"end":144}};
+    doc.loc.source = {"body":"#import \"./owner.graphql\"\r\n#import \"./petDetails.graphql\"\r\n\r\nfragment ownerDetails on Owner {\r\n  ...owner\r\n  pets {\r\n    ...petDetails\r\n  }\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  doc.definitions = doc.definitions.concat(unique(__webpack_require__(/*! ./owner.graphql */ "./domain/gqlfragments/owner.graphql").definitions));
+doc.definitions = doc.definitions.concat(unique(__webpack_require__(/*! ./petDetails.graphql */ "./domain/gqlfragments/petDetails.graphql").definitions));
+
+
+      module.exports = doc;
+    
+
+
+/***/ }),
+
+/***/ "./domain/gqlfragments/pet.graphql":
+/*!*****************************************!*\
+  !*** ./domain/gqlfragments/pet.graphql ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"pet"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Pet"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"birthDate"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"type"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"name"},"arguments":[],"directives":[]}]}}]}}],"loc":{"start":0,"end":86}};
+    doc.loc.source = {"body":"fragment pet on Pet {\r\n  id\r\n  name\r\n  birthDate\r\n  type {\r\n    id\r\n    name\r\n  }\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  
+
+      module.exports = doc;
+    
+
+
+/***/ }),
+
+/***/ "./domain/gqlfragments/petDetails.graphql":
+/*!************************************************!*\
+  !*** ./domain/gqlfragments/petDetails.graphql ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"petDetails"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Pet"}},"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"pet"},"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"visits"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"visits"},"arguments":[],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"date"},"arguments":[],"directives":[]},{"kind":"Field","name":{"kind":"Name","value":"description"},"arguments":[],"directives":[]}]}}]}}]}}],"loc":{"start":0,"end":149}};
+    doc.loc.source = {"body":"#import \"./pet.graphql\"\r\n\r\nfragment petDetails on Pet {\r\n  ...pet\r\n  visits {\r\n    visits {\r\n      id\r\n      date\r\n      description\r\n    }\r\n  }\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  doc.definitions = doc.definitions.concat(unique(__webpack_require__(/*! ./pet.graphql */ "./domain/gqlfragments/pet.graphql").definitions));
+
+
+      module.exports = doc;
+    
+
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerApp.tsx":
+/*!***********************************!*\
+  !*** ./domain/owner/OwnerApp.tsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
+var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/es/index.js");
+var createGraphQLClient_1 = __webpack_require__(/*! ../../createGraphQLClient */ "./createGraphQLClient.tsx");
+var OwnerListPage_1 = __webpack_require__(/*! ./OwnerListPage */ "./domain/owner/OwnerListPage/index.ts");
+var OwnerPage_1 = __webpack_require__(/*! ./OwnerPage */ "./domain/owner/OwnerPage/index.ts");
+var graphQLClient = createGraphQLClient_1.createGraphQLClient();
+function init() {
+    setTimeout(function () {
+        ReactDOM.render(React.createElement(react_apollo_1.ApolloProvider, { client: graphQLClient }, React.createElement(react_router_dom_1.BrowserRouter, null, React.createElement(react_router_dom_1.Switch, null, React.createElement(react_router_dom_1.Route, { path: "/plugins/xformation-petclinic-panel/page/owners", component: OwnerListPage_1.default }), React.createElement(react_router_dom_1.Route, { path: "/plugins/xformation-petclinic-panel/page/owners/:ownerId", component: OwnerPage_1.default })))), document.getElementById("mount"));
+    }, 1000);
+}
+exports.default = init;
+
+/***/ }),
+
 /***/ "./domain/owner/OwnerListPage/OwnerListPage.tsx":
 /*!******************************************************!*\
   !*** ./domain/owner/OwnerListPage/OwnerListPage.tsx ***!
@@ -17755,12 +17913,13 @@ exports.createGraphQLClient = function () {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(/*! react */ "react");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/es/index.js");
 var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
 var OwnerListQueryGql = __webpack_require__(/*! ./OwnerListQuery.graphql */ "./domain/owner/OwnerListPage/OwnerListQuery.graphql");
 var withLoadingHandler_1 = __webpack_require__(/*! ../../../components/withLoadingHandler */ "./components/withLoadingHandler.tsx");
 var OwnerRow = function OwnerRow(_a) {
     var owner = _a.owner;
-    return React.createElement("tr", { key: owner.id }, React.createElement("td", null, owner.firstName, " ", owner.lastName), React.createElement("td", { className: "hidden-sm hidden-xs" }, owner.address), React.createElement("td", null, owner.city), React.createElement("td", null, owner.telephone), React.createElement("td", { className: "hidden-xs" }, owner.pets.map(function (pet) {
+    return React.createElement("tr", { key: owner.id }, React.createElement("td", null, React.createElement(react_router_dom_1.Link, { to: "/plugins/xformation-petclinic-panel/page/owners/" + owner.id }, owner.firstName, " ", owner.lastName)), React.createElement("td", { className: "hidden-sm hidden-xs" }, owner.address), React.createElement("td", null, owner.city), React.createElement("td", null, owner.telephone), React.createElement("td", { className: "hidden-xs" }, owner.pets.map(function (pet) {
         return pet.name;
     }).join(", ")), React.createElement("td", { className: "hidden-xs" }, owner.pets.reduce(function (total, currentPet) {
         return total + currentPet.visits.totalCount;
@@ -17908,28 +18067,272 @@ exports.default = react_apollo_1.graphql(OwnerListQueryGql)(withLoadingHandler_1
 
 /***/ }),
 
-/***/ "./domain/owner/OwnerListPage/index.tsx":
+/***/ "./domain/owner/OwnerListPage/index.ts":
+/*!*********************************************!*\
+  !*** ./domain/owner/OwnerListPage/index.ts ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var OwnerListPage_1 = __webpack_require__(/*! ./OwnerListPage */ "./domain/owner/OwnerListPage/OwnerListPage.tsx");
+exports.default = OwnerListPage_1.default;
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerPage/OwnerDetailsTable.tsx":
+/*!******************************************************!*\
+  !*** ./domain/owner/OwnerPage/OwnerDetailsTable.tsx ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/es/index.js");
+exports.default = function (_a) {
+    var owner = _a.owner;
+    return React.createElement("section", null, React.createElement("h2", null, "Owner Information"), React.createElement("table", { className: "table table-striped" }, React.createElement("tbody", null, React.createElement("tr", null, React.createElement("th", null, "Name"), React.createElement("td", null, React.createElement("b", null, owner.firstName, " ", owner.lastName))), React.createElement("tr", null, React.createElement("th", null, "Address"), React.createElement("td", null, owner.address)), React.createElement("tr", null, React.createElement("th", null, "City"), React.createElement("td", null, owner.city)), React.createElement("tr", null, React.createElement("th", null, "Telephone"), React.createElement("td", null, owner.telephone)))), React.createElement(react_router_dom_1.Link, { to: "/owners/" + owner.id + "/edit", className: "btn btn-default" }, "Edit Owner"), "\xA0", React.createElement(react_router_dom_1.Link, { to: "/owners/" + owner.id + "/pets/new", className: "btn btn-default" }, "Add New Pet"));
+};
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerPage/OwnerPage.tsx":
 /*!**********************************************!*\
-  !*** ./domain/owner/OwnerListPage/index.tsx ***!
+  !*** ./domain/owner/OwnerPage/OwnerPage.tsx ***!
   \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// import {default as OwnerListPage} from './OwnerListPage';
 
 Object.defineProperty(exports, "__esModule", { value: true });
-// var coreModule = require('grafana/app/core/core_module');
-// // import coreModule from 'grafana/app/core/core_module';
-// coreModule.directive('ownersList', [
-//     'reactDirective',
-//     (reactDirective:Function) => {
-//         return reactDirective(OwnerListPage, ['change', 'database', 'execute', 'query', 'request']);
-//     },
-// ]);
-var OwnerListPage_1 = __webpack_require__(/*! ./OwnerListPage */ "./domain/owner/OwnerListPage/OwnerListPage.tsx");
-exports.default = OwnerListPage_1.default;
+var React = __webpack_require__(/*! react */ "react");
+var withOwnerFromRouteParams_1 = __webpack_require__(/*! ../withOwnerFromRouteParams */ "./domain/owner/withOwnerFromRouteParams.tsx");
+var PetsTable_1 = __webpack_require__(/*! ./PetsTable */ "./domain/owner/OwnerPage/PetsTable.tsx");
+var OwnerDetailsTable_1 = __webpack_require__(/*! ./OwnerDetailsTable */ "./domain/owner/OwnerPage/OwnerDetailsTable.tsx");
+var OwnerPage = function OwnerPage(_a) {
+    var owner = _a.owner;
+    return React.createElement("span", null, React.createElement(OwnerDetailsTable_1.default, { owner: owner }), React.createElement(PetsTable_1.default, { owner: owner }));
+};
+exports.default = withOwnerFromRouteParams_1.default(OwnerPage);
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerPage/PetsTable.tsx":
+/*!**********************************************!*\
+  !*** ./domain/owner/OwnerPage/PetsTable.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var LinkButton_1 = __webpack_require__(/*! ../../../components/LinkButton */ "./components/LinkButton.tsx");
+var VisitsTable = function VisitsTable(_a) {
+    var ownerId = _a.ownerId,
+        pet = _a.pet;
+    return React.createElement("table", { className: "table-condensed" }, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Visit Date"), React.createElement("th", null, "Description"))), React.createElement("tbody", null, pet.visits.visits.map(function (visit) {
+        return React.createElement("tr", { key: visit.id }, React.createElement("td", null, visit.date), React.createElement("td", null, visit.description));
+    }), React.createElement("tr", null, React.createElement("td", null, React.createElement(LinkButton_1.default, { to: "/owners/" + ownerId + "/pets/" + pet.id + "/visits/new" }, "Add Visit")))));
+};
+exports.default = function (_a) {
+    var owner = _a.owner;
+    return React.createElement("section", null, React.createElement("h2", null, "Pets and Visits"), owner.pets.length === 0 ? React.createElement("h3", null, "This owner has no Pets") : React.createElement("table", { className: "table table-striped" }, React.createElement("tbody", null, owner.pets.map(function (pet) {
+        return React.createElement("tr", { key: pet.id }, React.createElement("td", { style: { verticalAlign: "top" } }, React.createElement("dl", { className: "dl-horizontal" }, React.createElement("dt", null, "Name"), React.createElement("dd", null, pet.name), React.createElement("dt", null, "Birth Date"), React.createElement("dd", null, pet.birthDate), React.createElement("dt", null, "Type"), React.createElement("dd", null, pet.type.name), React.createElement("dt", null, React.createElement(LinkButton_1.default, { to: "/owners/" + owner.id + "/pets/" + pet.id + "/edit" }, "Edit Pet")))), React.createElement("td", { style: { verticalAlign: "top" } }, React.createElement(VisitsTable, { ownerId: owner.id, pet: pet })));
+    }))));
+};
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerPage/index.ts":
+/*!*****************************************!*\
+  !*** ./domain/owner/OwnerPage/index.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var OwnerPage_1 = __webpack_require__(/*! ./OwnerPage */ "./domain/owner/OwnerPage/OwnerPage.tsx");
+exports.default = OwnerPage_1.default;
+
+/***/ }),
+
+/***/ "./domain/owner/OwnerQuery.graphql":
+/*!*****************************************!*\
+  !*** ./domain/owner/OwnerQuery.graphql ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+    var doc = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"owner"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"ownerId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"owner"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"ownerId"}}}],"directives":[],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ownerDetails"},"directives":[]}]}}]}}],"loc":{"start":0,"end":135}};
+    doc.loc.source = {"body":"#import \"../gqlfragments/ownerDetails.graphql\"\r\n\r\nquery owner($ownerId: Int!) {\r\n  owner(id: $ownerId) {\r\n    ...ownerDetails\r\n  }\r\n}\r\n","name":"GraphQL request","locationOffset":{"line":1,"column":1}};
+  
+
+    var names = {};
+    function unique(defs) {
+      return defs.filter(
+        function(def) {
+          if (def.kind !== 'FragmentDefinition') return true;
+          var name = def.name.value
+          if (names[name]) {
+            return false;
+          } else {
+            names[name] = true;
+            return true;
+          }
+        }
+      )
+    }
+  doc.definitions = doc.definitions.concat(unique(__webpack_require__(/*! ../gqlfragments/ownerDetails.graphql */ "./domain/gqlfragments/ownerDetails.graphql").definitions));
+
+
+    // Collect any fragment/type references from a node, adding them to the refs Set
+    function collectFragmentReferences(node, refs) {
+      if (node.kind === "FragmentSpread") {
+        refs.add(node.name.value);
+      } else if (node.kind === "VariableDefinition") {
+        var type = node.type;
+        if (type.kind === "NamedType") {
+          refs.add(type.name.value);
+        }
+      }
+
+      if (node.selectionSet) {
+        node.selectionSet.selections.forEach(function(selection) {
+          collectFragmentReferences(selection, refs);
+        });
+      }
+
+      if (node.variableDefinitions) {
+        node.variableDefinitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+
+      if (node.definitions) {
+        node.definitions.forEach(function(def) {
+          collectFragmentReferences(def, refs);
+        });
+      }
+    }
+
+    var definitionRefs = {};
+    (function extractReferences() {
+      doc.definitions.forEach(function(def) {
+        if (def.name) {
+          var refs = new Set();
+          collectFragmentReferences(def, refs);
+          definitionRefs[def.name.value] = refs;
+        }
+      });
+    })();
+
+    function findOperation(doc, name) {
+      for (var i = 0; i < doc.definitions.length; i++) {
+        var element = doc.definitions[i];
+        if (element.name && element.name.value == name) {
+          return element;
+        }
+      }
+    }
+
+    function oneQuery(doc, operationName) {
+      // Copy the DocumentNode, but clear out the definitions
+      var newDoc = {
+        kind: doc.kind,
+        definitions: [findOperation(doc, operationName)]
+      };
+      if (doc.hasOwnProperty("loc")) {
+        newDoc.loc = doc.loc;
+      }
+
+      // Now, for the operation we're running, find any fragments referenced by
+      // it or the fragments it references
+      var opRefs = definitionRefs[operationName] || new Set();
+      var allRefs = new Set();
+      var newRefs = new Set(opRefs);
+      while (newRefs.size > 0) {
+        var prevRefs = newRefs;
+        newRefs = new Set();
+
+        prevRefs.forEach(function(refName) {
+          if (!allRefs.has(refName)) {
+            allRefs.add(refName);
+            var childRefs = definitionRefs[refName] || new Set();
+            childRefs.forEach(function(childRef) {
+              newRefs.add(childRef);
+            });
+          }
+        });
+      }
+
+      allRefs.forEach(function(refName) {
+        var op = findOperation(doc, refName);
+        if (op) {
+          newDoc.definitions.push(op);
+        }
+      });
+
+      return newDoc;
+    }
+
+    module.exports = doc;
+    
+        module.exports["owner"] = oneQuery(doc, "owner");
+        
+
+
+/***/ }),
+
+/***/ "./domain/owner/withOwnerFromRouteParams.tsx":
+/*!***************************************************!*\
+  !*** ./domain/owner/withOwnerFromRouteParams.tsx ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var React = __webpack_require__(/*! react */ "react");
+var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
+var OwnerQueryGql = __webpack_require__(/*! ./OwnerQuery.graphql */ "./domain/owner/OwnerQuery.graphql");
+var withLoadingHandler_1 = __webpack_require__(/*! ../../components/withLoadingHandler */ "./components/withLoadingHandler.tsx");
+// this function takes a Component, that must have OwnerPageProps-compatible properties.
+// The function loads the Owner with the ownerId specified in the route params
+// and passes the loaded owner to the specified Component
+var withOwnerFromRouteParams = function withOwnerFromRouteParams(TheOwnerComponent) {
+    var withOwnerFromRouteParamsWrapper = function withOwnerFromRouteParamsWrapper(props) {
+        return React.createElement(TheOwnerComponent, { owner: props.data.owner });
+    };
+    return react_apollo_1.graphql(OwnerQueryGql, {
+        options: function options(_a) {
+            var match = _a.match;
+            return {
+                variables: {
+                    ownerId: match.params.ownerId
+                }
+            };
+        }
+    })(withLoadingHandler_1.default(withOwnerFromRouteParamsWrapper));
+};
+exports.default = withOwnerFromRouteParams;
 
 /***/ }),
 
@@ -17951,33 +18354,6 @@ exports.OwnersPage = OwnersPage_1.OwnersPage;
 
 /***/ }),
 
-/***/ "./ui/MainApp.tsx":
-/*!************************!*\
-  !*** ./ui/MainApp.tsx ***!
-  \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var React = __webpack_require__(/*! react */ "react");
-var ReactDOM = __webpack_require__(/*! react-dom */ "react-dom");
-var react_apollo_1 = __webpack_require__(/*! react-apollo */ "../node_modules/react-apollo/react-apollo.browser.umd.js");
-var react_router_dom_1 = __webpack_require__(/*! react-router-dom */ "../node_modules/react-router-dom/es/index.js");
-var createGraphQLClient_1 = __webpack_require__(/*! ../createGraphQLClient */ "./createGraphQLClient.tsx");
-var OwnerListPage_1 = __webpack_require__(/*! ../domain/owner/OwnerListPage */ "./domain/owner/OwnerListPage/index.tsx");
-var graphQLClient = createGraphQLClient_1.createGraphQLClient();
-function init() {
-    setTimeout(function () {
-        ReactDOM.render(React.createElement(react_apollo_1.ApolloProvider, { client: graphQLClient }, React.createElement(react_router_dom_1.BrowserRouter, null, React.createElement(react_router_dom_1.Switch, null, React.createElement(react_router_dom_1.Route, { component: OwnerListPage_1.default })))), document.getElementById("mount"));
-    }, 1000);
-}
-exports.default = init;
-
-/***/ }),
-
 /***/ "./ui/OwnersPage.ts":
 /*!**************************!*\
   !*** ./ui/OwnersPage.ts ***!
@@ -17989,10 +18365,10 @@ exports.default = init;
 
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var MainApp_1 = __webpack_require__(/*! ./MainApp */ "./ui/MainApp.tsx");
+var OwnerApp_1 = __webpack_require__(/*! ../domain/owner/OwnerApp */ "./domain/owner/OwnerApp.tsx");
 var OwnersPage = /** @class */function () {
     function OwnersPage() {
-        MainApp_1.default();
+        OwnerApp_1.default();
     }
     OwnersPage.templateUrl = '/partials/owners.html';
     return OwnersPage;

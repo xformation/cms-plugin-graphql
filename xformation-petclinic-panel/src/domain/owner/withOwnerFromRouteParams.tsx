@@ -30,7 +30,7 @@ const withOwnerFromRouteParams = (
   }>
 ) => {
   const withOwnerFromRouteParamsWrapper = (props: OwnerPageFullProps) => <TheOwnerComponent owner={props.data.owner} />;
-  return graphql<OwnerQuery, OwnerPageProps>(OwnerQueryGql, {
+  return graphql<OwnerQuery, OwnerPageProps, OwnerPageFullProps>(OwnerQueryGql, {
     options: ({ match }) => ({
       variables: {
         ownerId: match.params.ownerId

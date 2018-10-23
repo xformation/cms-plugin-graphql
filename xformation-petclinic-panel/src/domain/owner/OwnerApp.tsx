@@ -18,7 +18,7 @@ export default function init(){
         <BrowserRouter>
           <Switch>
             <Route path="/plugins/xformation-petclinic-panel/page/owners" component={OwnersListPage} />
-            <Route exact path="/plugins/xformation-petclinic-panel/page/owners/:ownerId" component={OwnerPage} />
+            <Route path="/plugins/xformation-petclinic-panel/page/owners/:ownerId" component={OwnerPage} />
           </Switch>
         </BrowserRouter>
       </ApolloProvider>,
