@@ -6,6 +6,8 @@ import * as OwnerQueryGql from "./OwnerQuery.graphql";
 import { ReactFunctionOrComponentClass, OwnerQuery, OwnerDetailsFragment } from "../types";
 import withLoadingHandler from "../../components/withLoadingHandler";
 
+var queryString = require('query-string');
+
 // Specifies the parameters taken from the route definition (/.../:ownerId)
 type OwnerPageRouteParams = {
   ownerId: any
@@ -31,9 +33,10 @@ const withOwnerFromRouteParams = (
 ) => {
   const withOwnerFromRouteParamsWrapper = (props: OwnerPageFullProps) => <TheOwnerComponent owner={props.data.owner} />;
   return graphql<OwnerQuery, OwnerPageProps, OwnerPageFullProps>(OwnerQueryGql, {
-    options: ({ match }) => ({
+    options: ({ match }) => (
+    {
       variables: {
-        ownerId: match.params.ownerId
+        ownerId: queryString.parse(location.search).id
       }
     })
   })(withLoadingHandler(withOwnerFromRouteParamsWrapper));

@@ -30,8 +30,15 @@
         "type": "page",
         "name": "Owners",
         "addToNav": true,
-        "defaultNav": true,
+        "defaultNav": false,
         "component": "OwnersPage"
+      },
+      {
+        "type": "page",
+        "name": "Owner",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "OwnerPage"
       }
     ],
   

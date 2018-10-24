@@ -9,7 +9,7 @@ import withLoadingHandler from "../../../components/withLoadingHandler";
 const OwnerRow = ({ owner }: { owner: OwnerSummaryFragment }) =>
   <tr key={owner.id}>
     <td>
-      <Link to={`/plugins/xformation-petclinic-panel/page/owners/${owner.id}`}>
+      <Link to={`/plugins/xformation-petclinic-panel/page/owner?id=${owner.id}`}>
         {owner.firstName} {owner.lastName}
       </Link>
     </td>
