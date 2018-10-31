@@ -9,7 +9,7 @@ import withLoadingHandler from "../../../components/withLoadingHandler";
 const OwnerRow = ({ owner }: { owner: OwnerSummaryFragment }) =>
   <tr key={owner.id}>
     <td>
-      <Link to={`/plugins/xformation-petclinic-panel/page/owner?id=${owner.id}`}>
+      <Link className="table-link" to={`/plugins/xformation-petclinic-panel/page/owner?id=${owner.id}`}>
         {owner.firstName} {owner.lastName}
       </Link>
     </td>
@@ -31,7 +31,7 @@ const OwnerRow = ({ owner }: { owner: OwnerSummaryFragment }) =>
   </tr>;
 
 const OwnersTable = ({ owners }: { owners: OwnerSummaryFragment[] }) =>
-  <table className="table table-striped">
+  <table className="striped-table">
     <thead>
       <tr>
         <th>Name</th>
@@ -54,7 +54,7 @@ type OwnerListPageProps = {
 
 const OwnerListPage = ({ data: { owners } }: OwnerListPageProps) =>
   <section>
-    <h2>
+    <h2 className="heading">
       {owners.length} Owners found
     </h2>
     <OwnersTable owners={owners} />

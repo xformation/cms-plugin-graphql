@@ -5,7 +5,7 @@ import LinkButton from "../../../components/LinkButton";
 import { OwnerDetailsFragment, PetDetailsFragment } from "../../types";
 
 const VisitsTable = ({ ownerId, pet }: { ownerId: number; pet: PetDetailsFragment }) =>
-  <table className="table-condensed">
+  <table className="table-striped">
     <thead>
       <tr>
         <th>Visit Date</th>

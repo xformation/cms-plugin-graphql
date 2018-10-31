@@ -2,6 +2,11 @@
     "type": "app",
     "name": "PetClinic",
     "id": "xformation-petclinic-panel",
+
+    "css": {
+      "dark":  "css/dark.css",
+      "light":  "css/light.css"
+    },
   
     "info": {
       "description": "Petclinic for grafana",
@@ -39,6 +44,13 @@
         "addToNav": false,
         "defaultNav": false,
         "component": "OwnerPage"
+      },
+      {
+        "type": "page",
+        "name": "EditOwner",
+        "addToNav": false,
+        "defaultNav": false,
+        "component": "EditOwnerPage"
       }
     ],
   

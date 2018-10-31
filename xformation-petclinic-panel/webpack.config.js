@@ -36,6 +36,7 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'plugin.json', to: '.' },
       { from: 'partials/*', to: '.' },
+      { from: 'css/*', to: '.' },
       { from: 'img/*', to: '.' },
     ]),
     new ReplaceInFileWebpackPlugin([{

@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 export default ({ owner }: { owner: OwnerFragment }) =>
   <section>
-    <h2>Owner Information</h2>
-    <table className="table table-striped">
+    <h2 className="heading">Owner Information</h2>
+    <table className="striped-table">
       <tbody>
         <tr>
           <th>Name</th>
@@ -36,11 +36,7 @@ export default ({ owner }: { owner: OwnerFragment }) =>
         </tr>
       </tbody>
     </table>
-    <Link to={`/owners/${owner.id}/edit`} className="btn btn-default">
+    <Link to={`/plugins/xformation-petclinic-panel/page/editowner?id=${owner.id}`} className="btn btn-primary">
       Edit Owner
-    </Link>
-    &nbsp;
-    <Link to={`/owners/${owner.id}/pets/new`} className="btn btn-default">
-      Add New Pet
     </Link>
   </section>;
